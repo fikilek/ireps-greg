@@ -1,0 +1,899 @@
+/* Importing fonts form Google */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+/* common */
+
+/* form variables */
+:root {
+	/* TODO: find the formular ot convert from px to rem. root font-size rem is 62.5% */
+	--auth-form-width: 60rem;
+	/* 10px = 1rem */
+}
+
+/* form header */
+
+.ireps-form {
+	transition: 2s;
+}
+
+.ireps-form .po-container {
+	background-color: #ecf0f3;
+	border-radius: 2rem;
+	box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+	font-size: 1.5rem;
+	padding: 10px 15px 10px 10px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+}
+
+/* form header */
+
+.ireps-form .po-container .form-header {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 0.1rem solid;
+	padding-bottom: 1rem;
+}
+
+.ireps-form .po-container .form-header .form-header-title {
+	display: flex;
+	align-items: center;
+}
+
+.ireps-form .po-container .form-header .form-header-title-status-btn {
+	font-size: 1.6rem;
+	border-radius: 1rem;
+	padding: 0.3rem;
+	margin-right: 2rem;
+}
+
+.ireps-form .po-container .form-header .form-header-close-btn-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.ireps-form .po-container .form-header .form-header-close-btn-wrapper h3 {
+	margin: 0 2rem;
+}
+
+.ireps-form .po-container .form-header .form-header-close-btn-wrapper button {
+	font-size: 1.6rem;
+	border-radius: 1rem;
+	width: 3rem;
+	height: 3rem;
+}
+
+/* form body */
+
+.ireps-form .po-container .form-body .po-form {
+	display: grid;
+	width: 600px;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"fs-uc"
+		/* form section updated created*/
+		"fs-ipgs"
+		/* form section inv payment grv*/
+		"fs-poi"
+		/* form section purchase order items*/
+		"fs-grv"
+		/* form section goods received*/
+		"form-btns";
+	/* form section buttons */
+	gap: 2rem;
+}
+
+.ireps-form .po-container .form-body .fs-uc {
+	grid-area: fs-uc;
+	border-left: 0.1rem solid;
+	padding-left: 2rem;
+}
+
+/* po-form */
+.ireps-form .po-container .form-body .form-field {
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-template-rows: 1fr;
+	height: 3rem;
+	border-radius: 1.2rem;
+	box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+	margin: 2px 0px;
+}
+
+/* form section Inv Payment Grv Supplier (ipgs) */
+
+.ireps-form .po-container .form-body .fs-ipgs {
+	grid-area: fs-ipgs;
+	border-left: 0.1rem solid;
+	padding-left: 2rem;
+}
+
+.ireps-form .po-container .form-body .fs-ipg .form-field button {
+	background-color: #fff;
+	border-radius: 0 1.2rem 1.2rem 0;
+	border: none;
+	padding-left: 2rem;
+}
+
+.ireps-form .po-container .form-body div.fs-ipg div.po-form-inv,
+.ireps-form .po-container .form-body div.fs-ipg div.po-form-payment,
+.ireps-form .po-container .form-body div.fs-ipg div.po-form-grv {
+	grid-template-columns: 10% 50% 40%;
+}
+
+.ireps-form .po-container .form-body div.fs-ipg div.po-form-inv .ipg-data,
+.ireps-form .po-container .form-body div.fs-ipg div.po-form-payment .ipg-data,
+.ireps-form .po-container .form-body div.fs-ipg div.po-form-grv .ipg-data {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ireps-form .po-container .form-body .fsh {
+	display: flex;
+	align-items: center;
+	outline: 0.1rem solid;
+}
+
+.ireps-form .po-container .form-body .open-colse-icons {
+	margin-right: 1rem;
+}
+
+.ireps-form .po-container .form-body .open-colse-icons button {
+	font-size: 1.6rem;
+	padding: 0.1rem;
+	width: 3rem;
+	font-weight: 600;
+}
+
+.ireps-form .po-container .form-body .fsb {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	/* transition: 2s; */
+	margin-top: 2rem;
+	gap: 2rem;
+}
+
+.ireps-form .po-container .form-body .form-btns {
+	grid-area: form-btns;
+}
+
+.ireps-form .po-container .form-body .form-btn {
+	background-color: #dae4fa99;
+	color: rgba(150, 149, 149, 0.539);
+	border: 1px solid lightgray;
+	border-radius: 1.5rem;
+	box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+	/* letter-spacing: 1.3px; */
+
+	width: 13rem;
+	height: 4rem;
+	line-height: 4rem;
+	text-align: center;
+}
+
+/********************************************************************
+*********************************************************************
+START OF form section : po items (poi) 
+********************************************************************/
+
+.ireps-form .po-container .form-body .fs-poi {
+	grid-area: fs-poi;
+	border-left: 0.1rem solid;
+	padding-left: 2rem;
+}
+
+.ireps-form .po-container .form-body .fsb-poi {
+	display: grid;
+	grid-template-columns: 1fr;
+
+	/* transition: 2s; */
+	margin-top: 2rem;
+	gap: 2rem;
+}
+
+/********************************************************************
+END OF form section : po items (poi) 
+*********************************************************************
+********************************************************************/
+
+/* form show hide class */
+
+.ireps-form .po-container .showSection {
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	position: static;
+}
+
+.ireps-form .po-container .hideSection {
+	display: none;
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+}
+
+.fs-btns {
+	display: flex;
+	justify-content: space-around;
+	border-top: 0.1rem solid;
+	padding: 1rem;
+}
+
+.btn-po-form-supplimentary-data {
+	z-index: 1000;
+}
+
+.fpw-container,
+.po-container {
+	background-color: #ecf0f3;
+	border-radius: 2rem;
+	box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+	font-size: 1.5rem;
+	padding: 10px 15px 10px 10px;
+}
+
+.signin-header,
+.fpw-header,
+.po-header {
+	position: relative;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
+}
+
+.signin-header-title-img,
+.signup-header-title-img,
+.fpw-header-title-img,
+.po-header-title-img {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+}
+
+.signin-header-close-btn,
+.signup-header-close-btn,
+.fpw-header-close-btn,
+.po-header-close-btn {
+	position: absolute;
+	top: -1rem;
+	right: -1.5rem;
+}
+
+.signin-header-close-btn button,
+.signup-header-close-btn button,
+.fpw-header-close-btn button,
+.po-header-close-btn button {
+	font-size: 3rem;
+	color: #fff;
+	background-color: coral;
+	padding: 0 0.9rem;
+	border-radius: 0 20px 0 20px;
+	border: none;
+}
+
+.signin-header-close-btn button:hover,
+.signup-header-close-btn button:hover,
+.fpw-header-close-btn button:hover,
+.po-header-close-btn button:hover {
+	cursor: pointer;
+}
+
+.signin-img,
+.signup-img,
+.fpw-img,
+.po-img {
+	width: 8rem;
+	border-radius: 50%;
+	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+		0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* TODO: I dont understand why fpw grid cannot take gap of 2rem */
+.fpw-form {
+	display: grid;
+	grid-template-rows: auto;
+	gap: 1rem;
+}
+
+.form-field {
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-template-rows: 1fr;
+	height: 3rem;
+	border-radius: 1.2rem;
+	box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+	margin: 2px 0px;
+}
+
+.form-field-icon {
+	justify-content: center;
+	align-self: center;
+	margin: auto;
+}
+
+.form-field-email {
+	grid-area: form-field-email;
+	margin: 0;
+}
+
+.form-field-password {
+	grid-area: form-field-password;
+	margin: 0;
+}
+
+.form-field-phoneNumber {
+	grid-area: form-field-phoneNumber;
+}
+
+.form-field-surname {
+	grid-area: form-field-surname;
+}
+
+.form-field-name {
+	grid-area: form-field-name;
+}
+
+.form-field-role {
+	grid-area: form-field-role;
+	margin: 0;
+}
+
+.form-field-confirm-password {
+	grid-area: form-field-confirmPassword;
+}
+
+.form-btns {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	grid-area: form-btns;
+}
+
+.form-btn {
+	background-color: #dae4fa99;
+	color: rgba(150, 149, 149, 0.539);
+	border: 1px solid lightgray;
+	border-radius: 1.5rem;
+	/* box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff; */
+	/* letter-spacing: 1.3px; */
+
+	width: 130px;
+	height: 4rem;
+	line-height: 4rem;
+	text-align: center;
+}
+
+.form-field input {
+	border-radius: 0 1.2rem 1.2rem 0;
+	border: none;
+	padding-left: 2rem;
+}
+
+/* po form */
+/********************************************************************
+*********************************************************************
+START of Po form
+********************************************************************/
+
+.hide {
+	/* display: none; */
+	visibility: hidden;
+}
+
+.show {
+	/* display: block; */
+	visibility: visible;
+}
+
+.fs-po-items-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.fs-title-totals {
+	margin-right: 2px;
+}
+
+.po-form-payment {
+	grid-area: po-form-payment;
+}
+
+.fs-title-created {
+	display: flex;
+	justify-content: space-between;
+}
+
+.fs-show-hide-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: lightcyan;
+}
+
+/* Po - Grv Section */
+
+.ireps-form .po-container .form-body .fs-grv {
+	grid-area: fs-grv;
+	border-left: 0.1rem solid;
+	padding-left: 2rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv {
+	grid-template-columns: 1fr 1fr 1fr;
+	/* grid-template-areas: "fsb-grv-receiver fsb-grv-witness fsb-grv-store"; */
+	font-size: 1.2rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fs-fsb-grv {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fsb-grv-receiver {
+	/* grid-area: fsb-grv-receiver; */
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fsb-grv-receiver .fsr-received {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fsb-grv-witness {
+	/* grid-area: fsb-grv-witness; */
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fsb-grv-store {
+	/* grid-area: fsb-grv-store; */
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fs-title {
+	font-size: 1.5rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .form-field {
+	font-size: 1.2rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .form-field input {
+	font-size: 1.2rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .form-field select {
+	font-size: 1.2rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv button {
+	height: 2.5rem;
+	font-size: 1rem;
+	line-height: 0.5rem;
+	width: 5rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fsw-btns {
+	display: flex;
+	justify-content: space-around;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fsw-btns button {
+	height: 2.5rem;
+	font-size: 1rem;
+	line-height: 0.5rem;
+	width: 5rem;
+	background: none;
+	border-radius: 0;
+	color: black;
+	border: 0.1rem solid;
+	box-shadow: none;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .cancel-witnessing {
+	/* display: flex;
+	justify-content: center;
+	align-items: center; */
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .cancel-witnessing button {
+	width: 10rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .cancel-receiving button {
+	width: 10rem;
+}
+
+.ireps-form .po-container .form-body .po-form .fs-grv .fsb-grv .fs-btns {
+	border: none;
+	padding: 1rem 1rem 0 1rem;
+}
+
+/***************************************************************
+/***************************************************************
+/***************************************************************
+START OF SINGIN FORM 
+****************************************************************/
+
+.signin-container {
+	background-color: #ecf0f3;
+	border-radius: 2rem;
+	box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+	font-size: 1.5rem;
+	padding: 10px 15px 10px 10px;
+	width: 29rem;
+}
+
+.signin-form {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"form-field-email"
+		"form-field-password "
+		"form-btns";
+}
+
+.signin-container .signin-form .auth-error {
+	color: red;
+	font-weight: 500;
+	text-align: center;
+	margin: auto;
+}
+
+.signin-container .signin-form .form-btns button.pending {
+	border: 0.1rem solid rgb(255, 127, 80);
+}
+
+/***************************************************************
+END OF SINGIN FORM 
+****************************************************************
+***************************************************************
+***************************************************************/
+
+.fpw-form {
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"form-field-email"
+		"form-field-password "
+		"form-btns";
+}
+
+.signin-container .form-btn:hover,
+.signup-container .form-btn:hover,
+.fpw-container .form-btn:hover {
+	background-color: #c8edff;
+}
+
+.signin-footer,
+.fpw-footer,
+.po-footer {
+	display: grid;
+	grid-gap: 1rem;
+}
+
+/* .signin-footer-signup,
+.signin-footer-fpw {
+width: 100%;
+} */
+
+.signin-footer a {
+	background-color: #bbdeef;
+	padding: 0.4rem 2rem;
+	border-radius: 2rem;
+	/* width: 100%; */
+	/* width: 100%; */
+	display: block;
+	text-align: center;
+}
+
+@media (max-width: 380px) {
+	.signin-container {
+		margin: 30px 20px;
+		padding: 40px 15px 15px 15px;
+	}
+}
+
+.form-signin {
+	display: block;
+}
+
+.form-fpw {
+	display: none;
+}
+
+.signin-show {
+	display: block;
+}
+
+.signin-hide {
+	display: none;
+}
+
+/* START of SIGNUP css */
+
+/* signup container */
+
+.signup-container {
+	width: 60rem;
+	/* 600px */
+	background-color: #ecf0f3;
+	border-radius: 2rem;
+	box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+	font-size: 1.5rem;
+	padding: 10px 15px 10px 10px;
+}
+
+.auth-form-container {
+	width: 60rem;
+	/* 600px */
+	background-color: #ecf0f3;
+	border-radius: 2rem;
+	box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+	font-size: 1.5rem;
+	padding: 10px 15px 10px 10px;
+}
+
+/* signup header */
+
+.signup-container .signup-header {
+	position: relative;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
+}
+
+/* signup form */
+
+.signup-container .signup-form {
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"form-field-surname form-field-name"
+		"form-field-email form-field-phoneNumber"
+		"form-field-password form-field-confirmPassword"
+		"form-btns form-btns"
+		"auth-error-field auth-error-field";
+	display: grid;
+	grid-template-rows: auto;
+	gap: 1rem;
+}
+
+/* .signup-container .signup-form .form-btns .auth-error {
+	color: red;
+	font-weight: 500;
+	text-align: center;
+	margin: auto;
+} */
+
+/* signup footer */
+
+.signup-container .signup-footer {
+	display: flex;
+	text-align: center;
+}
+
+.signup-container .signup-footer-signin-link {
+	background-color: #bbdeef;
+	padding: 0.4rem 2rem;
+	border-radius: 2rem;
+	width: 100%;
+}
+
+.signup-container .signup-form .form-btns button.pending {
+	border: 0.1rem solid rgb(255, 127, 80);
+}
+
+.signup-container .signup-form .auth-error-field {
+	grid-area: auth-error-field;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.signup-container .signup-form .auth-error-field .auth-error {
+	color: red;
+	font-weight: 500;
+	text-align: center;
+	padding: 1rem;
+}
+
+/* signup madia quiries */
+
+@media screen and (max-width: 850px) {
+	.signup-container {
+		width: 50rem;
+	}
+
+	.signup-container .signup-form {
+		display: grid;
+		grid-template-rows: auto;
+		gap: 1rem;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.signup-container {
+		width: 29rem;
+	}
+
+	.signup-container .signup-form {
+		grid-template-areas:
+			"form-field-surname"
+			"form-field-name"
+			"form-field-email"
+			"form-field-phoneNumber"
+			"form-field-password"
+			"form-field-confirmPassword"
+			"form-btns"
+			"auth-error-field";
+	}
+
+	.signup-container .signup-form .form-field {
+		width: 26rem;
+	}
+}
+
+/* END of signup css */
+
+.fpw-footer {
+	display: flex;
+	margin: 2rem 0 1rem 0;
+}
+
+.signin-footer-forgotten-link,
+.signin-footer-signup-link,
+.fpw-footer-remembered-pwd-link,
+.fpw-footer-signup-link {
+	background-color: #bbdeef;
+	padding: 0.4rem 2rem;
+	border-radius: 2rem;
+}
+
+@media (max-width: 380px) {
+	.signup-container {
+		margin: 30px 20px;
+		padding: 40px 15px 15px 15px;
+	}
+}
+
+.form-signup {
+	display: block;
+}
+
+.form-fpw {
+	display: none;
+}
+
+.signup-show {
+	display: block;
+}
+
+.signup-hide {
+	display: none;
+}
+
+input:not(:placeholder-shown) {
+	/* border-color: green; */
+}
+
+input:placeholder-shown {
+	/* border-color: red; */
+}
+
+input::placeholder {
+	color: rgb(191, 191, 203);
+}
+
+/* sigout */
+
+.signout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 5rem;
+}
+
+.close-btn {
+	font-size: 5rem;
+	padding: 2rem;
+	margin: 5rem;
+}
+
+.signout-confirm-btns {
+	display: flex;
+}
+
+.signout-confirm-btns button {
+	border-radius: 2rem;
+	z-index: 1000;
+}
+
+.signout-confirm-btns button:hover {
+	border-radius: 3rem;
+	cursor: pointer;
+	transform: scale(1.1);
+	background-color: beige;
+	border: none;
+}
+
+/* grv form */
+
+.grv-form {
+	width: 600px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"fs-updated fs-created"
+		"fs-store fs-supplier"
+		"fs-confirm-receipt fs-witness-receipt"
+		"fs-po-items fs-po-items"
+		"fs-grv-comments fs-grv-comments"
+		"fs-media fs-media"
+		"fs-btns fs-btns";
+}
+
+.fs-store {
+	grid-area: fs-store;
+}
+
+.fs-store-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.fs-grv-comments {
+	grid-area: fs-grv-comments;
+}
+
+.fs-media {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-area: fs-media;
+	gap: 1rem;
+	grid-template-areas:
+		"fs-media-title fs-media-title fs-media-title"
+		"media-pics media-videos media-voice";
+}
+
+.fs-media-title {
+	grid-area: fs-media-title;
+}
+
+.media-pics {
+	grid-area: media-pics;
+}
+
+.media-videos {
+	grid-area: media-videos;
+}
+
+.media-voice {
+	grid-area: media-voice;
+}
+
+.grv-media {
+	border: 2px solid lightgreen;
+	padding: 3px;
+}
+
+.media-item {
+	padding: 2px;
+	border: 2px solid lightgreen;
+	margin: 5px 0;
+}
+
+/* 
+	START AUTH FORM ------------------------------- 
+*/

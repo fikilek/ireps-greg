@@ -1,0 +1,598 @@
+.form-container {
+  width: 60rem;
+  background-color: var(--form-background);
+  border: 0.1rem solid;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+
+
+/* form sections */
+
+.form-container form .fs .fsh {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+  background-color: lightcyan;
+}
+
+.form-container form .fs .grey-out {
+  color: rgb(255, 0, 0);
+}
+
+.form-container form .fs .fsh button {
+  font-size: 1.5rem;
+  width: 2rem;
+}
+
+.form-container form .fs .fsh .fsh-left {
+  display: grid;
+  grid-template-columns: 0.3fr 0.6fr 1.5fr 0.6fr;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(214, 226, 215);
+  border-radius: 0.5rem;
+  padding-right: 1rem;
+}
+
+.form-container form .fs .fsh .fsh-left .ast-no {
+  color: rgb(20, 73, 151);
+  font-weight: 600;
+}
+
+.form-container form .fs .fsh .fsh-right {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  background-color: rgb(214, 226, 215);
+  border-radius: 0.5rem;
+  padding-right: 1rem;
+}
+
+.form-container form .fs .fsh .fsh-left {
+  /* border-left: 1rem solid red; */
+}
+
+.form-container form .fs .fsh .fsh-right {
+  padding-left: 1rem;
+  /* justify-content: end; */
+}
+
+.form-container form .fs .fsb {
+  /* margin-left: 2rem; */
+}
+
+.form-container form .fs .fsb .ast .ast-wrapper {
+  margin-top: 1.5rem;
+}
+ 
+.form-container form .fs .fsb .ast .ast-row,
+.form-container form .fs .fsb .ast .fsb-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  font-size: 1.3rem;
+}
+
+.form-container form .fs .fsb .fs-wrapper {
+  margin-top: 1.5rem;
+}
+
+
+.form-container form .fs .fsb .ast .ast-row .half-row {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 1rem;
+}
+
+.form-container form .fs .fsb .ast .ast-row .half-row-50-50 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form .fs .fsb .ast .ast-row .half-row-20-50 {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 1rem;
+}
+
+.form-container form .fs .fsb .ast .ast-row .data {
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 0.5em;
+}
+
+.form-container form .fs .fsb .ast .ast-row .data .data-header {
+  border-bottom: 0.5rem solid #dad4ce;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.form-container form .fs .fsb .ast .ast-row .data .scns {
+  border-top: 0.5rem solid #dad4ce;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.form-container form .fs .fsb .ast .ast-row .data .scns-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-container form .fs .fsb .ast .ast-row .data .scns .scns-row span {
+  display: inline-block;
+}
+
+
+.form-container form .fs .fsb .ast .read-only-row {
+  margin-bottom: 1.5rem;
+}
+
+.form-container form .fs .fsb .ast .read-only-row .data span {
+  font-weight: 700;
+  color: rgb(42, 94, 248);
+}
+
+.form-container .data-emphasis {
+  font-weight: 700;
+  color: rgb(42, 94, 248);
+}
+
+.form-container form .fs .fsb .ast .sc-row .form-control {
+  height: auto;
+}
+
+.form-container form .fs .fsb .ast .sc-row .sc,
+.form-container form .fs .fsb .ast .sc-row .sc-header {
+  display: grid;
+  grid-template-columns: 0.05fr 1fr 0.5fr 1fr 0.3fr;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-container form .fs .fsb .ast .sc-row .sc input {
+  height: 2rem;
+}
+
+.form-container form .fs .fsb .ast .sc-row .sc .sc-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.form-container form .fs .fsb .ast .sc-row .sc-form {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 1fr 0.2fr;
+  gap: 1rem;
+  padding: 0 0 1rem 0;
+}
+
+.form-container form .fs .fsb .ast .sc-row .table-scns .sc {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 1fr 0.2fr;
+  gap: 1rem;
+  padding: 0 0 1rem 0;
+}
+
+.form-container form .fs .fsb .ast .sc-row .table-scns .sc p {
+  background-color: #d6fff1;
+  height: 2.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid;
+  padding: 0.5rem;
+}
+
+.form-container form .fs .fsb .ast .sc-row .table-scns .sc .sc-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-container form .fs .fsb .ast .sc-row .table-scns .sc .sc-btns svg {
+  pointer-events: none;
+}
+
+.form-container form .fs .fsb .ast .sc-row .sc-form input {
+  height: 2.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid;
+  padding: 0.5rem;
+}
+
+.form-container form .hide-section {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+}
+
+.form-container form .show-section {
+  /* visibility: visible; */
+  opacity: 100;
+}
+
+/* trnForm */
+
+.form-container form .trn-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
+    "fs-customer-details fs-customer-details"
+    "fs-customer-adr fs-customer-adr"
+    "fs-customer-contact-person fs-customer-contact-person"
+    "fs-trn-data fs-trn-data"
+    "fs-metadata fs-metadata"
+    "form-btns form-btns"
+  ;
+}
+
+.form-container form .trn-form .fs-customer-details {
+  grid-area: fs-customer-details;
+  display: grid;
+  column-gap: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-details .customer-cartegory-type,
+.form-container form .trn-form .fs-customer-details .customer-type-juristic-person,
+.form-container form .trn-form .fs-customer-details .customer-billing,
+.form-container form .trn-form .fs-customer-details .customer-type-warm-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-adr {
+  grid-area: fs-customer-adr;
+  display: grid;
+  column-gap: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-adr .customer-adr-wrapper,
+.form-container form .trn-form .fs-ast-adr .ast-adr-wrapper,
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper {
+  margin-top: 1.7rem;
+}
+
+.form-container form .trn-form .fs-customer-adr .customer-adr-wrapper .customer-address {
+  display: grid;
+  grid-template-columns: 6fr 2fr 2fr;
+  gap: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-adr .customer-adr-wrapper .munic-town-suburb,
+.form-container form .trn-form .fs-customer-adr .customer-adr-wrapper .province-country {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-adr .customer-adr-wrapper .lat-lon {
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.form-container form .trn-form .fs-customer-adr .customer-adr-wrapper .lat-lon button {
+  background-color: #dae4fa99;
+  border-radius: 0.6rem;
+  height: 4rem;
+  font-size: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-contact-person {
+  grid-area: fs-customer-contact-person;
+  display: grid;
+  column-gap: 1rem;
+}
+
+.form-container form .trn-form .fs-customer-contact-person .contact-person {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .location-premises {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .location-adr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  grid-template-areas:
+    'exact-nearest-adr exact-nearest-adr'
+    'gps-lat-lon gps-lat-lon '
+  ;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .keypad-cb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .keypad-cb .keypad-searial-no,
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .keypad-cb .cb {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .keypad-cb .keypad-searial-no button,
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .keypad-cb .cb button {
+  background-color: #dae4fa99;
+  border-radius: 0.6rem;
+  height: 4rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .location-adr .exact-nearest-adr {
+  grid-area: exact-nearest-adr;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .location-adr .gps-lat-lon {
+  grid-area: gps-lat-lon;
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .location-adr .gps-lat-lon button {
+  background-color: #dae4fa99;
+  border-radius: 0.6rem;
+  height: 4rem;
+  font-size: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .meter .service-connection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .customer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .ast-data-wrapper .customer button {
+  background-color: #dae4fa99;
+  border-radius: 0.6rem;
+  height: 4rem;
+  font-size: 1rem;
+}
+
+
+.form-container form .trn-form .fs-trn-data {
+  grid-area: fs-trn-data;
+  display: grid;
+  column-gap: 1rem;
+}
+
+.form-container form .trn-form .fs-trn-data .trn-data-wrapper {
+  margin-top: 1.7rem;
+}
+
+.form-container form .trn-form .fs-customer-data {
+  grid-area: fs-customer-data;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
+    ""
+}
+
+.form-container form .trn-form .fs-metadata {
+  grid-area: fs-metadata;
+  display: grid;
+}
+
+.form-container form .trn-form .fs-metadata .metadata-updated-created {
+  margin-top: 1.7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
+    "updated created";
+}
+
+.form-container form .trn-form .fs-metadata .metadata-updated-created .updated {
+  grid-area: updated;
+}
+
+.form-container form .trn-form .fs-metadata .metadata-updated-created .created {
+  grid-area: created;
+}
+
+/* AstForm */
+
+.form-container form .ast-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "common-data common-data"
+    "specific-data specific-data"
+    "updated created";
+  column-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-container form .ast-form .common-data {
+  grid-area: common-data;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+.form-container form .ast-form .specific-data {
+  grid-area: specific-data;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+/* StoresForm, Suppliers, mobile-devices, simcards, ast states, trn states, ast cartegories */
+
+.form-container form .stores-form,
+.form-container form .spl-form,
+.form-container form .mobile-devices-form,
+.form-container form .simcards-form,
+.form-container form .user-roles-form,
+.form-container form .ast-states-form,
+.form-container form .trn-states-form,
+.form-container form .ast-cartegories-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "specific-data specific-data"
+    "updated created";
+  column-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-container form .specific-data {
+  grid-area: specific-data;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+/* form controls */
+
+.form-container form .form-control {
+  height: 5.5rem;
+  position: relative;
+}
+
+.form-container form .form-control label {
+  position: absolute;
+  left: 1rem;
+  top: 0.8rem;
+  cursor: text;
+  transition: 250ms;
+  background-color: white;
+  padding: 0.1rem;
+  font-size: 1.5rem;
+  color: var(--form-label-color);
+}
+
+
+.form-container form .updated {
+  grid-area: updated;
+}
+
+.form-container form .created {
+  grid-area: created;
+}
+
+.form-container form .form-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  grid-area: form-btns;
+  border: 1px solid;
+  border-radius: 0.6rem;
+  height: 5rem;
+}
+
+.form-container form .form-btns .form-btn {
+  background-color: #dae4fa99;
+  color: rgba(150, 149, 149, 0.539);
+  border: 1px solid lightgray;
+  border-radius: 0.6rem;
+  /* box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff; */
+  letter-spacing: 0.13rem;
+  width: 15rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+}
+
+.form-container form .form-btns .form-btn:disabled:hover,
+.form-container form .form-btns .form-btn:disabled {
+  background-color: rgb(83, 49, 49);
+  color: red;
+  cursor: not-allowed;
+}
+
+.form-container form .form-btns .form-btn:hover {
+  outline: 0.1rem solid rgb(121, 255, 121);
+  cursor: pointer;
+  background-color: #e8fee8b5;
+}
+
+.form-container form .form-control .inputError {
+  border: 1px solid red;
+}
+
+
+.form-container form .form-control input,
+.form-container form .form-control select {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 0.1rem solid;
+  height: 4rem;
+  padding: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.form-container form .form-control input::placeholder {
+  opacity: 0;
+}
+
+.form-container form .form-control input:focus~label,
+.form-container form .form-control input:not(:placeholder-shown)~label,
+.form-container form .form-control .react-datepicker-wrapper~label,
+.form-container form .form-control select:not(:placeholder-shown)~label {
+  top: -1rem;
+  font-size: 1.3rem;
+  left: 0.8rem;
+  color: white;
+  background-color: grey;
+  outline: 0.1rem solid darkgray;
+}
+
+/* form .form-control select {
+  color: rgb(134, 154, 160);
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid rgb(119, 136, 153);
+  background-color: azure;
+  font-weight: 300;
+} */
+
+/* form .form-control select option {
+  color: rgb(11, 18, 216);
+
+} */
+
+.ast-checkout-form-container {
+  width: 100rem;
+}
+
+.ast-checkout-form {
+  /* width: 100rem; */
+  height: 70vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
+    "ast-stores-pannel ast-field-pannel"
+  ;
+}
+
+.ast-checkout-form .ast-stores-pannel {
+  grid-area: ast-stores-pannel;
+}
+
+.ast-checkout-form .ast-field-pannel {
+  grid-area: ast-field-pannel;
+}

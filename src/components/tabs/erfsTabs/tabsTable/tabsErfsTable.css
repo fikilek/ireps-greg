@@ -1,0 +1,99 @@
+
+.poi-table {
+	width: 500px;
+	height: 200px
+}
+
+.tabs-table-ml2 {
+	position: relative;
+}
+
+.tabs-table-ml2:hover::before {
+	content: attr(data-tooltip);
+	font-size: 3rem;
+	color: #000;
+	position: absolute;
+	top: -100%;
+	left: 10%;
+	background-color: darkgoldenrod;
+	border-radius: 1rem;
+	padding-top: 1rem;
+}
+
+.btn-table-row {
+	color: rgb(134, 154, 160);
+	padding: 4px;
+	border-radius: 5px;
+	border: 1px solid rgb(119, 136, 153);
+	background-color: azure;
+	font-weight: 300;
+	width: 70px;
+}
+
+.btn-po-table-created {
+	/* background-color: rgba(252, 255, 207, 0.559); */
+	color:  rgb(202, 202, 18);
+	/* font-weight:300; */
+}
+
+.btn-po-table-approved {
+	/* background-color: rgba(227, 245, 224, 0.731); */
+	color: rgb(135, 222, 54);
+	/* font-weight:300; */
+}
+
+.btn-serial-no {
+	width: 120px;
+}
+
+.btn-linked-ast-serial-no,
+.btn-serial-no {
+	min-width: 120px;
+	text-align: left;
+}
+
+.btn-trn-count,
+.btn-trn-history {
+	width: 70px;
+}
+
+.btn-ast-state {
+	width: 100px;
+}
+
+.btn-created-at-location {
+	width: 40px;
+}
+
+.btn-trn-select {
+	width: 130px;
+}
+
+.btn-system-id {
+	width: 80px;
+	height: 30px;
+}
+
+.btn-media {
+	width: 80px;
+}
+
+.btn-po-status {
+	width: 90px;
+}
+
+.btn-po-status-created {
+	background-color: lightgreen;
+	color: #ff9090;
+	width: 90px;
+}
+
+.btn-po-status-aproved {
+	background-color: #ff9090;
+	color: whitesmoke;
+	width: 90px;
+}
+
+.btn-view-grv {
+	width: 100px;
+}

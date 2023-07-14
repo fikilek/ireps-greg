@@ -1,0 +1,99 @@
+:root {}
+
+/* -------------------------------------------------------------------- */
+/* START CONTAINER ------------------------------------------------------- */
+
+.auth-form-container {
+  width: 60rem;
+  background-color: #ecf0f3;
+  border-radius: 2rem;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+  font-size: 1.5rem;
+  padding: 10px 15px 10px 10px;
+}
+
+/* END CONTAINER ------------------------------------------------------- */
+/* -------------------------------------------------------------------- */
+
+.auth-form-container .signup-form {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "form-field-surname form-field-name"
+    "form-field-email form-field-phoneNumber"
+    "form-field-password form-field-confirmPassword"
+    "form-btns form-btns"
+    "auth-error-field auth-error-field";
+  display: grid;
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+
+/* START FOOTER --------------------------------------- */
+
+.auth-form-container .signup-footer {
+  display: flex;
+  text-align: center;
+}
+
+.auth-form-container .signup-footer-signin-link {
+  background-color: #bbdeef;
+  padding: 0.4rem 2rem;
+  border-radius: 2rem;
+  width: 100%;
+}
+
+/* END FOOTER --------------------------------------- */
+
+.auth-form-container .signup-form .form-btns button.pending {
+  border: 0.1rem solid rgb(255, 127, 80);
+}
+
+.auth-form-container .signup-form .auth-error-field {
+  grid-area: auth-error-field;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form-container .signup-form .auth-error-field .auth-error {
+  color: red;
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* signup madia quiries */
+
+@media screen and (max-width: 850px) {
+  .auth-form-container {
+    width: 50rem;
+  }
+
+  .auth-form-container .signup-form {
+    display: grid;
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .auth-form-container {
+    width: 29rem;
+  }
+
+  .auth-form-container .signup-form {
+    grid-template-areas:
+      "form-field-surname"
+      "form-field-name"
+      "form-field-email"
+      "form-field-phoneNumber"
+      "form-field-password"
+      "form-field-confirmPassword"
+      "form-btns"
+      "auth-error-field";
+  }
+
+  .auth-form-container .signup-form .form-field {
+    width: 26rem;
+  }
+}

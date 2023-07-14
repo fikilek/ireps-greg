@@ -1,0 +1,10 @@
+
+.user-signature-btn {
+  width: 100px;
+}
+
+.disabled:disabled {
+  background-color: rgb(222, 168, 168);
+  color: red;
+  cursor: not-allowed;
+}

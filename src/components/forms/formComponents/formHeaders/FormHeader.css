@@ -1,0 +1,101 @@
+.form-container .form-header {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid lightgray;
+}
+
+.form-container .form-header span {
+  font-weight: 600;
+}
+
+
+.form-container .form-header .header-line1,
+.form-container .form-header .header-line2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2rem;
+  /* height: 2rem; */
+}
+
+
+
+.form-container .form-header button {
+  background-color: #dae4fa99;
+  color: rgba(150, 149, 149, 0.539);
+  border: 1px solid lightgray;
+  border-radius: 0.6rem;
+  text-align: center;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.form-container .form-header button:hover {
+  cursor: pointer;
+  background-color: #e8fee8b5;
+  outline: 0.1rem solid rgb(121, 255, 121);
+}
+
+/* formhader 5 */
+
+.form-container .form-header5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid lightgray;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-container .form-header5 .fh5-left {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  font-size: inherit;
+  border-radius: 0.6rem;
+  gap: 1rem;
+}
+
+.form-container .form-header5 .fh5-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: inherit;
+  border-radius: 0.6rem;
+  gap: 1rem;
+}
+
+.form-container .form-header5 .fh5-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-container .form-header5 .fh5-left p,
+.form-container .form-header .header-line1 .form-header-paragraph {
+  border: 1px solid lightgray;
+  height: 3rem;
+  border-radius: 0.6rem;
+  line-height: 3rem;
+  padding: 0 2rem;
+}
+
+.form-container .form-header5 .fh5-right button {
+  background-color: #dae4fa99;
+  /* color: rgba(150, 149, 149, 0.539); */
+  border: 1px solid lightgray;
+  border-radius: 0.6rem;
+  text-align: center;
+  font-size: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}

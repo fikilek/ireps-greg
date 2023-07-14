@@ -1,0 +1,80 @@
+.signature-container {
+	width: 30rem;
+	padding: 1rem;
+	border: 0.1rem solid;
+	border-radius: 1rem;
+	font-size: 1.5rem;
+	background-color: rgb(211, 235, 255);
+}
+
+/* ss: signature-status */
+
+.signature-container .ss .ss-info {
+	margin: 2rem 0;
+}
+
+.signature-container .ss .ss-header {
+	border-bottom: 0.1rem solid;
+	padding-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.signature-container .ss .ss-header button {
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	width: 3rem;
+}
+
+/* sf: signature form */
+
+.signature-container .sf .sf-header {
+	border-bottom: 0.1rem solid;
+	padding-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.signature-container .sf .sf-header button {
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	width: 3rem;
+}
+
+.signature-container .sf .sf-form {
+	/* display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem; */
+}
+
+.signature-container .sf .form-field {
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-template-rows: 1fr;
+	height: 3rem;
+	border-radius: 1.2rem;
+	box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+	margin: 2rem 0;
+}
+
+.signature-container .sf .sf-form-btns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem 0;
+}
+
+.signature-container .sf .sf-form-btns button {
+	border-radius: 0.5rem;
+	cursor: pointer;
+	width: 10rem;
+}
+
+.signature-container .ss .ss-footer .user-signature-cancel-btn {
+	display: flex;
+	justify-content: center;
+}

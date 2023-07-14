@@ -1,0 +1,18 @@
+
+
+.pipt img {
+  width: 40px;
+  height: 40px;
+}
+
+.pipt-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pipt table {
+  width: 100%;
+}

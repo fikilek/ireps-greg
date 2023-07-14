@@ -1,0 +1,13 @@
+
+.pipi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pipi img {
+  width: 30px;
+  height: 30px;
+}

@@ -1,0 +1,77 @@
+.header-container {
+	position: fixed;
+	margin: 0 auto;
+	padding: 0 0.5rem;
+	height: inherit;
+	width: 100%;
+}
+
+header {
+	width: 100%;
+	height: var(--header-height);
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid;
+}
+
+header .logo {
+	width: 5rem;
+	height: var(--logo-height);
+	width: var(--logo-width);
+	background-color: var(--logo-priamry-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 100%;
+}
+
+header .logo svg {
+	margin: auto;
+	font-size: 3rem;
+	/* color: #eee; */
+}
+
+header .menu-icons {
+	font-size: 4rem;
+	position: absolute;
+	top: 50%;
+	right: 2rem;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 1500;
+	display: none;
+}
+
+@media screen and (max-width: 850px) {
+	header .menu-icons {
+		display: block;
+	}
+}
+
+header .menu-icons svg {
+	/* this stles the open and close menu icons */
+}
+
+.pages {
+	height: calc(100vh - var(--header-height));
+	width: 100%;
+	position: fixed;
+	top: var(--header-height);
+	left: 0;
+	outline: 1px solid #cfc5b1;
+	overflow: auto;
+}
+
+.loading-spinner,
+.test-nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.loading-spinner span {
+	transform: translateY(-10px);
+}

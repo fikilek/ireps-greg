@@ -1,0 +1,100 @@
+.table {
+  height: 100%;
+  font-size: 1.5rem;
+}
+
+.table .table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.table .table-header .views {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table .table-header .views .views-btn {
+  margin: 0 0.5rem;
+}
+
+.new-trns-from-erfs {
+  height: 60rem;
+  font-size: 1.5rem;
+  width: 90rem;
+}
+
+.table .trn-ast-checkout .trn-ast-count {
+  color: blue;
+  font-weight: 800;
+}
+
+.table .table-row-btn {
+  background-color: #dae4fa99;
+  border: 1px solid lightgray;
+  border-radius: 0.6rem;
+  text-align: center;
+  font-size: inherit;
+  height: 2.5rem;
+  padding: 0 1rem;
+}
+
+.table .table-row-btn-trn-data {
+  width: 11rem;
+}
+
+.table .table-row-btn-creator {
+  width: 9rem;
+}
+
+.table .table-row-btn-ast-no {
+  width: 13rem;
+}
+
+.table .table-row-btn:hover {
+  cursor: pointer
+}
+
+.table .data-emphasis {
+  font-weight: 700;
+  color: rgb(42, 94, 248);
+}
+
+.table .table-header-close-btn {
+  background-color: #dae4fa99;
+  color: rgba(150, 149, 149, 0.539);
+  border: 1px solid lightgray;
+  border-radius: 0.6rem;
+  text-align: center;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.table .table-header-close-btn:hover {
+  cursor: pointer;
+}
+
+.table .table-header1 {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  padding: 1rem;
+  border-radius: 1rem 1rem 0 0;
+  border: 1px solid lightgray;
+  align-items: center;
+}
+
+.tableTrnsForAstsTooltip {
+  background-color: rgb(255, 255, 255);
+  min-width: 50rem;
+}
+
+.tableTrnsForAstsTooltip table th.ast-no {
+  min-width: 15rem;
+}
+
+.tableTrnsForAstsTooltip th .ast-no {
+  width: 15rem;
+}

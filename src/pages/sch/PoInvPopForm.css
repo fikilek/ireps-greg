@@ -1,0 +1,44 @@
+.poipf-container {
+  background-color: bisque;
+  position: absolute;
+  width: 45%;
+  z-index: 100;
+}
+
+.poipf-container .poipf-hide {
+  display: none;
+}
+
+.poipf-container .poipf-show {
+  display: block;
+}
+
+.poipf-container .poipf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.poipf-container .error {
+  color: red;
+  text-align: center;
+}
+
+.poipf-container .img-preview-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid;
+}
+
+.poip-container .poip-body .poipf-container .poipf-show .poipf-body .img-preview-wrapper img {
+  max-height: 27.2rem;
+  max-width: 34rem;
+}
+
+.poip-container .poip-body .poipf-container .poipf-show .poipf-body .poip-form .poip-form-image-preview-and-btn {
+
+}
+

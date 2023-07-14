@@ -1,0 +1,3 @@
+This is a purchase order Invoice Proof of Payment folder
+Camel case is used as a stantdard naming convension
+Every file will start with "poInvPop"

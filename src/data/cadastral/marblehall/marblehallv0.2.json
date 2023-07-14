@@ -1,0 +1,1242 @@
+[
+	{
+		"address": {
+			"country": "South Africa",
+			"town": "Marblehall",
+			"gps": {
+				"longitude": 29.282458,
+				"latitude": -24.965688
+			},
+			"street": "",
+			"province": "Limpopo",
+			"dm": "Sekhukhune",
+			"systemAdr": "",
+			"lmMetro": "Ephraim Mogale",
+			"suburbTownship": "",
+			"ward": ""
+		},
+		"billing": {
+			"tariff": "",
+			"indigent": "",
+			"accountNo": [
+				{
+					"AccountNo": ""
+				},
+				{
+					"AccountNo": ""
+				}
+			]
+		},
+		"customer": {
+			"warmBody": {
+				"idNo": "",
+				"gender": "",
+				"surname": "",
+				"name": ""
+			},
+			"cartegory": "",
+			"type": "",
+			"contactPerson": {
+				"whatsApp": "",
+				"name": "",
+				"landLine": "",
+				"email": "",
+				"surname": "",
+				"cellNo": "",
+				"emailAdr": ""
+			},
+			"juristicPerson": {
+				"name": "",
+				"registeredName": "",
+				"tradingName": "",
+				"registeredNo": ""
+			}
+		},
+		"erfNo": "379",
+		"metaData": {
+			"createdAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			},
+			"erfHistory": "",
+			"erfType": "",
+			"createdByUser": "fikile kentane",
+			"updatedByUser": "fikile kentane",
+			"updatedAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			}
+		},
+		"standUse": "",
+		"asts": [
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnType": "",
+					"trnHistory": "",
+					"trnNo": "",
+					"updatedByUser": ""
+				},
+				"id": "",
+				"astData": {
+					"cb": {
+						"type": "",
+						"size": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astNo": "",
+					"astState": "",
+					"astCartegory": ""
+				},
+				"cbInstallation": {
+					"linkedMeter": {
+						"meterNo": "",
+						"isLinkedToMeter": ""
+					},
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"astAdr": {
+						"gps": {
+							"lat": "",
+							"lng": ""
+						},
+						"adr": ""
+					},
+					"location": {
+						"exactLocation": "",
+						"premises": "",
+						"insideBox": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				}
+			},
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnHistory": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnState": "",
+					"trnType": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				},
+				"astData": {
+					"astNo": "",
+					"astState": "",
+					"astCartegory": "",
+					"seal": {
+						"type": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"cb": {
+						"size": "",
+						"code": "",
+						"type": ""
+					}
+				},
+				"id": "",
+				"sealInstallation": {
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				},
+				"cbCommissioning": {
+					"cbMeterLinkVerified": "",
+					"cbSizeVerified": "",
+					"photos": ["", ""],
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				}
+			},
+			{
+				"trnMetaData": {
+					"trnType": "",
+					"updatedByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnHistory": "",
+					"trnNo": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdByUser": ""
+				},
+				"astData": {
+					"astNo": "",
+					"seal": {
+						"no": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astCartegory": "",
+					"astState": ""
+				},
+				"sealInstallation": {
+					"photos": ["", ""],
+					"linkedMeterNo": "",
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				},
+				"id": ""
+			},
+			{
+				"sealCommissioning": {
+					"sealNoVerified": "",
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"sealMeterLinkVerified": "",
+					"photos": ["", ""],
+					"sealLocked": ""
+				},
+				"id": "",
+				"astData": {
+					"astSerialNo": "",
+					"astState": "",
+					"astNo": "",
+					"seal": {
+						"code": "",
+						"no": ""
+					},
+					"astCartegory": ""
+				},
+				"trnMetaData": {
+					"trnType": "",
+					"createdByUser": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnState": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnHistory": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				}
+			}
+		]
+	},
+	{
+		"address": {
+			"country": "South Africa",
+			"town": "Marblehall",
+			"gps": {
+				"longitude": 29.28228,
+				"latitude": -24.965923
+			},
+			"street": "",
+			"province": "Limpopo",
+			"dm": "Sekhukhune",
+			"systemAdr": "",
+			"lmMetro": "Ephraim Mogale",
+			"suburbTownship": "",
+			"ward": ""
+		},
+		"billing": {
+			"tariff": "",
+			"indigent": "",
+			"accountNo": [
+				{
+					"AccountNo": ""
+				},
+				{
+					"AccountNo": ""
+				}
+			]
+		},
+		"customer": {
+			"warmBody": {
+				"idNo": "",
+				"gender": "",
+				"surname": "",
+				"name": ""
+			},
+			"cartegory": "",
+			"type": "",
+			"contactPerson": {
+				"whatsApp": "",
+				"name": "",
+				"landLine": "",
+				"email": "",
+				"surname": "",
+				"cellNo": "",
+				"emailAdr": ""
+			},
+			"juristicPerson": {
+				"name": "",
+				"registeredName": "",
+				"tradingName": "",
+				"registeredNo": ""
+			}
+		},
+		"erfNo": "380",
+		"metaData": {
+			"createdAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			},
+			"erfHistory": "",
+			"erfType": "",
+			"createdByUser": "fikile kentane",
+			"updatedByUser": "fikile kentane",
+			"updatedAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			}
+		},
+		"standUse": "",
+		"asts": [
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnType": "",
+					"trnHistory": "",
+					"trnNo": "",
+					"updatedByUser": ""
+				},
+				"id": "",
+				"astData": {
+					"cb": {
+						"type": "",
+						"size": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astNo": "",
+					"astState": "",
+					"astCartegory": ""
+				},
+				"cbInstallation": {
+					"linkedMeter": {
+						"meterNo": "",
+						"isLinkedToMeter": ""
+					},
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"astAdr": {
+						"gps": {
+							"lat": "",
+							"lng": ""
+						},
+						"adr": ""
+					},
+					"location": {
+						"exactLocation": "",
+						"premises": "",
+						"insideBox": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				}
+			},
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnHistory": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnState": "",
+					"trnType": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				},
+				"astData": {
+					"astNo": "",
+					"astState": "",
+					"astCartegory": "",
+					"seal": {
+						"type": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"cb": {
+						"size": "",
+						"code": "",
+						"type": ""
+					}
+				},
+				"id": "",
+				"sealInstallation": {
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				},
+				"cbCommissioning": {
+					"cbMeterLinkVerified": "",
+					"cbSizeVerified": "",
+					"photos": ["", ""],
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				}
+			},
+			{
+				"trnMetaData": {
+					"trnType": "",
+					"updatedByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnHistory": "",
+					"trnNo": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdByUser": ""
+				},
+				"astData": {
+					"astNo": "",
+					"seal": {
+						"no": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astCartegory": "",
+					"astState": ""
+				},
+				"sealInstallation": {
+					"photos": ["", ""],
+					"linkedMeterNo": "",
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				},
+				"id": ""
+			},
+			{
+				"sealCommissioning": {
+					"sealNoVerified": "",
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"sealMeterLinkVerified": "",
+					"photos": ["", ""],
+					"sealLocked": ""
+				},
+				"id": "",
+				"astData": {
+					"astSerialNo": "",
+					"astState": "",
+					"astNo": "",
+					"seal": {
+						"code": "",
+						"no": ""
+					},
+					"astCartegory": ""
+				},
+				"trnMetaData": {
+					"trnType": "",
+					"createdByUser": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnState": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnHistory": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				}
+			}
+		]
+	},
+	{
+		"address": {
+			"country": "South Africa",
+			"town": "Marblehall",
+			"gps": {
+				"longitude": 29.282636,
+				"latitude": -24.965453
+			},
+			"street": "",
+			"province": "Limpopo",
+			"dm": "Sekhukhune",
+			"systemAdr": "",
+			"lmMetro": "Ephraim Mogale",
+			"suburbTownship": "",
+			"ward": ""
+		},
+		"billing": {
+			"tariff": "",
+			"indigent": "",
+			"accountNo": [
+				{
+					"AccountNo": ""
+				},
+				{
+					"AccountNo": ""
+				}
+			]
+		},
+		"customer": {
+			"warmBody": {
+				"idNo": "",
+				"gender": "",
+				"surname": "",
+				"name": ""
+			},
+			"cartegory": "",
+			"type": "",
+			"contactPerson": {
+				"whatsApp": "",
+				"name": "",
+				"landLine": "",
+				"email": "",
+				"surname": "",
+				"cellNo": "",
+				"emailAdr": ""
+			},
+			"juristicPerson": {
+				"name": "",
+				"registeredName": "",
+				"tradingName": "",
+				"registeredNo": ""
+			}
+		},
+		"erfNo": "378",
+		"metaData": {
+			"createdAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			},
+			"erfHistory": "",
+			"erfType": "",
+			"createdByUser": "fikile kentane",
+			"updatedByUser": "fikile kentane",
+			"updatedAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			}
+		},
+		"standUse": "",
+		"asts": [
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnType": "",
+					"trnHistory": "",
+					"trnNo": "",
+					"updatedByUser": ""
+				},
+				"id": "",
+				"astData": {
+					"cb": {
+						"type": "",
+						"size": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astNo": "",
+					"astState": "",
+					"astCartegory": ""
+				},
+				"cbInstallation": {
+					"linkedMeter": {
+						"meterNo": "",
+						"isLinkedToMeter": ""
+					},
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"astAdr": {
+						"gps": {
+							"lat": "",
+							"lng": ""
+						},
+						"adr": ""
+					},
+					"location": {
+						"exactLocation": "",
+						"premises": "",
+						"insideBox": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				}
+			},
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnHistory": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnState": "",
+					"trnType": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				},
+				"astData": {
+					"astNo": "",
+					"astState": "",
+					"astCartegory": "",
+					"seal": {
+						"type": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"cb": {
+						"size": "",
+						"code": "",
+						"type": ""
+					}
+				},
+				"id": "",
+				"sealInstallation": {
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				},
+				"cbCommissioning": {
+					"cbMeterLinkVerified": "",
+					"cbSizeVerified": "",
+					"photos": ["", ""],
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				}
+			},
+			{
+				"trnMetaData": {
+					"trnType": "",
+					"updatedByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnHistory": "",
+					"trnNo": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdByUser": ""
+				},
+				"astData": {
+					"astNo": "",
+					"seal": {
+						"no": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astCartegory": "",
+					"astState": ""
+				},
+				"sealInstallation": {
+					"photos": ["", ""],
+					"linkedMeterNo": "",
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				},
+				"id": ""
+			},
+			{
+				"sealCommissioning": {
+					"sealNoVerified": "",
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"sealMeterLinkVerified": "",
+					"photos": ["", ""],
+					"sealLocked": ""
+				},
+				"id": "",
+				"astData": {
+					"astSerialNo": "",
+					"astState": "",
+					"astNo": "",
+					"seal": {
+						"code": "",
+						"no": ""
+					},
+					"astCartegory": ""
+				},
+				"trnMetaData": {
+					"trnType": "",
+					"createdByUser": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnState": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnHistory": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				}
+			}
+		]
+	},
+	{
+		"address": {
+			"country": "South Africa",
+			"town": "Marblehall",
+			"gps": {
+				"longitude": 29.282102,
+				"latitude": -24.966157
+			},
+			"street": "",
+			"province": "Limpopo",
+			"dm": "Sekhukhune",
+			"systemAdr": "",
+			"lmMetro": "Ephraim Mogale",
+			"suburbTownship": "",
+			"ward": ""
+		},
+		"billing": {
+			"tariff": "",
+			"indigent": "",
+			"accountNo": [
+				{
+					"AccountNo": ""
+				},
+				{
+					"AccountNo": ""
+				}
+			]
+		},
+		"customer": {
+			"warmBody": {
+				"idNo": "",
+				"gender": "",
+				"surname": "",
+				"name": ""
+			},
+			"cartegory": "",
+			"type": "",
+			"contactPerson": {
+				"whatsApp": "",
+				"name": "",
+				"landLine": "",
+				"email": "",
+				"surname": "",
+				"cellNo": "",
+				"emailAdr": ""
+			},
+			"juristicPerson": {
+				"name": "",
+				"registeredName": "",
+				"tradingName": "",
+				"registeredNo": ""
+			}
+		},
+		"erfNo": 381,
+		"metaData": {
+			"createdAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			},
+			"erfHistory": "",
+			"erfType": "",
+			"createdByUser": "fikile kentane",
+			"updatedByUser": "fikile kentane",
+			"updatedAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			}
+		},
+		"standUse": "",
+		"asts": [
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnType": "",
+					"trnHistory": "",
+					"trnNo": "",
+					"updatedByUser": ""
+				},
+				"id": "",
+				"astData": {
+					"cb": {
+						"type": "",
+						"size": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astNo": "",
+					"astState": "",
+					"astCartegory": ""
+				},
+				"cbInstallation": {
+					"linkedMeter": {
+						"meterNo": "",
+						"isLinkedToMeter": ""
+					},
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"astAdr": {
+						"gps": {
+							"lat": "",
+							"lng": ""
+						},
+						"adr": ""
+					},
+					"location": {
+						"exactLocation": "",
+						"premises": "",
+						"insideBox": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				}
+			},
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnHistory": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnState": "",
+					"trnType": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				},
+				"astData": {
+					"astNo": "",
+					"astState": "",
+					"astCartegory": "",
+					"seal": {
+						"type": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"cb": {
+						"size": "",
+						"code": "",
+						"type": ""
+					}
+				},
+				"id": "",
+				"sealInstallation": {
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				},
+				"cbCommissioning": {
+					"cbMeterLinkVerified": "",
+					"cbSizeVerified": "",
+					"photos": ["", ""],
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				}
+			},
+			{
+				"trnMetaData": {
+					"trnType": "",
+					"updatedByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnHistory": "",
+					"trnNo": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdByUser": ""
+				},
+				"astData": {
+					"astNo": "",
+					"seal": {
+						"no": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astCartegory": "",
+					"astState": ""
+				},
+				"sealInstallation": {
+					"photos": ["", ""],
+					"linkedMeterNo": "",
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				},
+				"id": ""
+			},
+			{
+				"sealCommissioning": {
+					"sealNoVerified": "",
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"sealMeterLinkVerified": "",
+					"photos": ["", ""],
+					"sealLocked": ""
+				},
+				"id": "",
+				"astData": {
+					"astSerialNo": "",
+					"astState": "",
+					"astNo": "",
+					"seal": {
+						"code": "",
+						"no": ""
+					},
+					"astCartegory": ""
+				},
+				"trnMetaData": {
+					"trnType": "",
+					"createdByUser": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnState": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnHistory": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				}
+			}
+		]
+	},
+	{
+		"address": {
+			"country": "South Africa",
+			"town": "Marblehall",
+			"gps": {
+				"longitude": 29.281734,
+				"latitude": -24.965919
+			},
+			"street": "",
+			"province": "Limpopo",
+			"dm": "Sekhukhune",
+			"systemAdr": "",
+			"lmMetro": "Ephraim Mogale",
+			"suburbTownship": "",
+			"ward": ""
+		},
+		"billing": {
+			"tariff": "",
+			"indigent": "",
+			"accountNo": [
+				{
+					"AccountNo": ""
+				},
+				{
+					"AccountNo": ""
+				}
+			]
+		},
+		"customer": {
+			"warmBody": {
+				"idNo": "",
+				"gender": "",
+				"surname": "",
+				"name": ""
+			},
+			"cartegory": "",
+			"type": "",
+			"contactPerson": {
+				"whatsApp": "",
+				"name": "",
+				"landLine": "",
+				"email": "",
+				"surname": "",
+				"cellNo": "",
+				"emailAdr": ""
+			},
+			"juristicPerson": {
+				"name": "",
+				"registeredName": "",
+				"tradingName": "",
+				"registeredNo": ""
+			}
+		},
+		"erfNo": "382",
+		"metaData": {
+			"createdAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			},
+			"erfHistory": "",
+			"erfType": "",
+			"createdByUser": "fikile kentane",
+			"updatedByUser": "fikile kentane",
+			"updatedAtDatetime": {
+				"seconds": 1687546747,
+				"nanoseconds": 67000000
+			}
+		},
+		"standUse": "",
+		"asts": [
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnType": "",
+					"trnHistory": "",
+					"trnNo": "",
+					"updatedByUser": ""
+				},
+				"id": "",
+				"astData": {
+					"cb": {
+						"type": "",
+						"size": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astNo": "",
+					"astState": "",
+					"astCartegory": ""
+				},
+				"cbInstallation": {
+					"linkedMeter": {
+						"meterNo": "",
+						"isLinkedToMeter": ""
+					},
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"astAdr": {
+						"gps": {
+							"lat": "",
+							"lng": ""
+						},
+						"adr": ""
+					},
+					"location": {
+						"exactLocation": "",
+						"premises": "",
+						"insideBox": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				}
+			},
+			{
+				"trnMetaData": {
+					"createdByUser": "",
+					"trnHistory": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnState": "",
+					"trnType": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				},
+				"astData": {
+					"astNo": "",
+					"astState": "",
+					"astCartegory": "",
+					"seal": {
+						"type": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"cb": {
+						"size": "",
+						"code": "",
+						"type": ""
+					}
+				},
+				"id": "",
+				"sealInstallation": {
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"linkedMeterNo": "",
+					"photos": ["", ""]
+				},
+				"cbCommissioning": {
+					"cbMeterLinkVerified": "",
+					"cbSizeVerified": "",
+					"photos": ["", ""],
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				}
+			},
+			{
+				"trnMetaData": {
+					"trnType": "",
+					"updatedByUser": "",
+					"trnState": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnHistory": "",
+					"trnNo": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"createdByUser": ""
+				},
+				"astData": {
+					"astNo": "",
+					"seal": {
+						"no": "",
+						"code": ""
+					},
+					"astSerialNo": "",
+					"astCartegory": "",
+					"astState": ""
+				},
+				"sealInstallation": {
+					"photos": ["", ""],
+					"linkedMeterNo": "",
+					"confirmations": {
+						"confirmTrn": ""
+					}
+				},
+				"id": ""
+			},
+			{
+				"sealCommissioning": {
+					"sealNoVerified": "",
+					"confirmations": {
+						"confirmTrn": ""
+					},
+					"sealMeterLinkVerified": "",
+					"photos": ["", ""],
+					"sealLocked": ""
+				},
+				"id": "",
+				"astData": {
+					"astSerialNo": "",
+					"astState": "",
+					"astNo": "",
+					"seal": {
+						"code": "",
+						"no": ""
+					},
+					"astCartegory": ""
+				},
+				"trnMetaData": {
+					"trnType": "",
+					"createdByUser": "",
+					"updatedAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					},
+					"trnState": "",
+					"updatedByUser": "",
+					"trnNo": "",
+					"trnHistory": "",
+					"createdAtDatetime": {
+						"seconds": "",
+						"nanoseconds": ""
+					}
+				}
+			}
+		]
+	}
+]

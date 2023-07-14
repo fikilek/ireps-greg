@@ -1,0 +1,37 @@
+
+:root {
+	--logo-height: 5rem;
+	--logo-width: 5rem;
+	--logo-priamry-color: rgb(196, 195, 195) ;
+	--header-height: 6rem;
+
+	/* forms */
+	--form-background: rgb(245, 255, 250);
+	--form-label-color: rgba(150, 149, 149, 0.539);
+
+	/* form header  */
+	--form-header-padding: 1rem;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: "Robonto", sans-serif;
+	font-size: 62.5%;
+}
+
+body {
+	overflow-x: hidden;
+	width: 100vw;
+	height: 100vh;
+}
+
+
+
+

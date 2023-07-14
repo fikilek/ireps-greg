@@ -1,0 +1,294 @@
+header nav {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	gap: 1rem;
+	margin: 0 1rem;
+}
+
+header nav .nav-list {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	visibility: visible;
+	list-style: none;
+}
+
+header nav .nav-list li {
+	position: relative;
+	margin: 0.5rem;
+}
+
+header nav .nav-list a {
+	display: block;
+	padding: 1rem;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	transition: color 650ms;
+	border-radius: 1rem;
+	text-decoration: none;
+}
+
+header nav .nav-list .nav-list-left,
+header nav .nav-list .nav-list-right {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+header nav .nav-list .nav-list-left {
+	justify-content: flex-start;
+}
+
+header nav .nav-list .nav-list-left li {
+	/* width: 8rem; */
+}
+
+header nav .nav-list .nav-list-left>li {
+	width: 8rem;
+}
+
+header nav .nav-list .nav-list-right {
+	justify-content: flex-end;
+}
+
+header nav .nav-list .nav-list-right>li {
+	/* width: 12rem; */
+}
+
+header nav .nav-list .nav-list-right li a {
+	text-align: end;
+	/* width: 10rem; */
+}
+
+header nav .nav-list a:hover {
+	color: #363636;
+	background-color: rgb(232, 249, 255);
+}
+
+header nav .nav-list li:hover>.sub-menu {
+	top: 5rem;
+	opacity: 1;
+	visibility: visible;
+}
+
+header nav .nav-list-btn a {
+	display: inline-block;
+	outline: 1px solid grey;
+	transition: background-color 650ms;
+}
+
+header nav .nav-list-right li.nav-list-btn-signedin-user div a {
+	display: inline-block;
+	outline: 1px solid grey;
+	transition: background-color 650ms;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+}
+
+header nav .nav-list-right li.nav-list-btn-signedin-user div {
+	text-align: end;
+}
+
+.menuAddPoBtn {
+	position: fixed;
+	bottom: 40px;
+	right: 20px;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	background-color: aquamarine;
+	font-size: 3rem;
+}
+
+/* all sub-menus   */
+
+header nav .sub-menu {
+	width: 10rem;
+	display: block;
+	position: absolute;
+	border-top: 3px solid#eb3007;
+	background-color: #f4f4fee1;
+	z-index: 100;
+	top: 8rem;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 650ms ease;
+}
+
+header nav .nav-list-right li>.sub-menu {
+	right: 0;
+	width: 12rem;
+}
+
+header nav .nav-list-left .sub-menu::before {
+	/* arrow on the sub menu right (ml2). Itd points upwards. */
+	content: "";
+	position: absolute;
+	top: -2.5rem;
+	left: 1.5rem;
+	border: 1.2rem solid transparent;
+	border-bottom-color: #eb3007;
+}
+
+header nav .nav-list-right .sub-menu::before {
+	/* arrow on the sub menu right (ml2). Itd points upwards. */
+	content: "";
+	position: absolute;
+	top: -2.5rem;
+	left: 8.5rem;
+	border: 1.2rem solid transparent;
+	border-bottom-color: #eb3007;
+}
+
+/* BOTH sub-menu sub-menu-left and sub-menu sub-menu-right  */
+
+/* ONLY sub-menu sub-menu-left */
+
+header nav .nav-list-left .sub-menu .sub-menu {
+	/* red line on sub sub menu on the left */
+	border-top: none;
+	border-left: 3px solid #eb3007;
+	top: 0;
+	left: 160%;
+	width: 40rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+header nav .sub-menu .sub-menu::before {
+	/* arrow on sub sub-menu. It points to the right. Used in Trn sub sub menu */
+	top: 0.9rem;
+	left: -2.5rem;
+	border: 1.2rem solid transparent;
+	border-right-color: #eb3007;
+}
+
+header nav .sub-menu li:hover>.sub-menu {
+	top: 0;
+	left: 100%;
+}
+
+header nav .sub-menu .sub-menu a {
+	width: 15rem;
+}
+
+header nav .nav-list-left .sub-menu .sub-menu a {
+	width: 18.5rem;
+}
+
+/* ONLY sub-menu sub-menu-right */
+header nav .nav-list-right li>.sub-menu li .sub-menu {
+	top: 0;
+	left: -34rem;
+	width: 17rem;
+	border-left: none;
+	border-right: 3px solid #eb3007;
+	border-top: none;
+	display: block;
+}
+
+header nav .nav-list-right li>.sub-menu li:hover .sub-menu {
+	left: -17rem;
+}
+
+header nav .nav-list-right li>.sub-menu li .sub-menu::before {
+	top: 1rem;
+	left: 17rem;
+	border: 1.2rem solid transparent;
+	border-left-color: #eb3007;
+}
+
+/* media qeuries */
+
+@media screen and (max-width: 850px) {
+	header nav .nav-list {
+		position: fixed;
+		top: var(--header-height);
+		left: 0;
+		height: 100vh;
+		/* flex-direction: column; */
+		/* align-items: initial; */
+		background-color: #e3e3e3ca;
+		z-index: 1000;
+		color: rgb(18, 18, 18);
+		visibility: hidden;
+		overflow-y: scroll;
+	}
+
+	header nav .nav-list .nav-list-left,
+	header nav .nav-list .nav-list-right {
+		flex-direction: column;
+	}
+
+	header nav .nav-list a {
+		width: 15rem;
+		font-size: 1.2rem;
+		font-weight: 700;
+	}
+
+	header nav .nav-list-btn-signedin-user a {
+		width: 7rem;
+	}
+
+	header nav .nav-list-btn-signedin-user li a {
+		outline: none;
+		width: 15rem;
+	}
+
+	header nav .nav-list.show-nav-list {
+		display: block;
+		visibility: visible;
+	}
+
+	header nav .nav-list.hide-nav-list {
+		display: none;
+		visibility: hidden;
+	}
+
+	header nav .nav-list li {
+		margin: 0 3rem;
+		width: 15rem;
+	}
+
+	header nav .nav-list .nav-list-right li a {
+		text-align: left;
+	}
+
+	header nav .nav-list-left .sub-menu .sub-menu a {
+		width: 15rem;
+	}
+
+	/* sub-menu media queries */
+	header nav .sub-menu {
+		position: initial;
+		border: 3px solid transparent;
+		border-left-color: #eb3007;
+		max-height: 0;
+		width: 18.5rem;
+	}
+
+	header nav .nav-list-right li .sub-menu {
+		right: 0;
+		width: 18.5rem;
+	}
+
+	header nav .nav-list-right li>ul.sub-menu li ul.sub-menu {
+		top: 0;
+		left: -34rem;
+		width: 18.5rem;
+		border-left: 3px solid #eb3007;
+		border-right: none;
+	}
+
+	header nav .nav-list li:hover>.sub-menu {
+		opacity: 1;
+		visibility: visible;
+		max-height: initial;
+	}
+
+	header nav .sub-menu::before {
+		display: none;
+	}
+}
