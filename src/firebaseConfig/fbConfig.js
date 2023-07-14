@@ -10,13 +10,12 @@ import { getFunctions } from "firebase/functions";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyBrhOJvgya120Iv8-0fkn22kTjaDlTq2B0",
-	authDomain: "fkproj1-8415a.firebaseapp.com",
-	databaseURL: "https://fkproj1-8415a.firebaseio.com",
-	projectId: "fkproj1-8415a",
-	storageBucket: "fkproj1-8415a.appspot.com",
-	messagingSenderId: "108173435093",
-	appId: "1:108173435093:web:f3d561077c79fa6ddc425c",
+	apiKey: "AIzaSyDwIRfGdgV6-gfxI0F45wmJzfaxBJUy8Rc",
+	authDomain: "ireps-development.firebaseapp.com",
+	projectId: "ireps-development",
+	storageBucket: "ireps-development.appspot.com",
+	messagingSenderId: "989928358059",
+	appId: "1:989928358059:web:214a06ee55f8488662f7ee",
 };
 
 // Initialize Firebase
@@ -24,8 +23,6 @@ const app = initializeApp(firebaseConfig);
 
 // Initialise firestore
 export const db = getFirestore(app);
-
-
 
 // Iniitialise firebase auth
 export const auth = getAuth(app);
