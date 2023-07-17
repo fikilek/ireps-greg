@@ -38,17 +38,17 @@ const SignedInMenu = () => {
 		>
 			<div className="nav-list-left">
 				{/* Dashboard */}
-				<MenuBlock menuData={dataDbd} />
+				{/* <MenuBlock menuData={dataDbd} /> */}
 				{/* Assets */}
 				<MenuBlock menuData={dataAsts} />
 				{/* Transactions */}
 				<MenuBlock menuData={dataTrns} />
 				{/* Supply Chain */}
-				<MenuBlock menuData={dataSch} />
+				{/* <MenuBlock menuData={dataSch} /> */}
 				{/* Erfs */}
 				<MenuBlock menuData={dataErfs} />
 				{/* Body of Knowledge (Bok) */}
-				<MenuBlock menuData={dataBok} />
+				{/* <MenuBlock menuData={dataBok} /> */}
 			</div>
 
 			<div className="nav-list-right">

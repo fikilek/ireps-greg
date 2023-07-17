@@ -30,9 +30,9 @@ const SignedOutMenu = () => {
 		>
 			<div className="nav-list-left">
 				{/* Erfs */}
-				<MenuBlock menuData={dataErfs} />
+				{/* <MenuBlock menuData={dataErfs} /> */}
 				{/* Body of Knowledge (Bok) */}
-				<MenuBlock menuData={dataBok} classes={"expand"} />
+				{/* <MenuBlock menuData={dataBok} classes={"expand"} /> */}
 			</div>
 
 			<div className="nav-list-right">

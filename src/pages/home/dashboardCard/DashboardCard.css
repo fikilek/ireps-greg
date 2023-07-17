@@ -1,0 +1,67 @@
+.dashboard-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 9fr;
+  border: 0.1rem solid;
+  border-radius: 1%;
+  height: 100%;
+  background-color: aliceblue;
+}
+
+.dashboard-card .header {
+  border-bottom: 0.1rem solid;
+}
+
+.dashboard-card .header .name {
+  margin-left: 2rem;
+}
+
+.dashboard-card .body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.dashboard-card .body .line1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dashboard-card .body .line1 div {
+
+}
+
+.dashboard-card .body .line1 .total {  border: 0.1rem solid;
+  border-radius: 5%;
+  font-size: 1.3rem;
+  margin: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card .body .line1 .total .title {
+  font-size: 3rem;
+}
+
+.dashboard-card .body .line1 .total .number {
+  font-size: 4rem
+}
+
+.dashboard-card .body .line1 .chart {
+    width: 14em;
+}
+
+.dashboard-card .body .line2 {
+  display: grid;
+}
+
+.dashboard-card .body .cols2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.dashboard-card .body .cols3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}

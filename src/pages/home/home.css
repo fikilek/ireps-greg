@@ -1,4 +1,39 @@
 .home {
-	font-size: 20rem;
-	color: rgb(95, 165, 42);
+	font-size: 2rem;
+	/* color: rgb(95, 165, 42); */
+	height:	calc(100vh - var(--header-height));
+}
+
+.home .home-section {
+	border: 0.2rem solid red
+	
+}
+
+.home .home-body {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+	height: 100%;
+	/* gap: 0.5rem; */
+}
+
+.home .home-section .home-body__filters {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	outline: 0.1rem solid blue;
+}
+
+.home .home-section .home-body__filters select {
+margin: 1rem;
+height: 2rem;
+margin: 0.5rem;
+}
+
+.home .home-section .home-body__data {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	height: 100%;
+	border: 0.2rem solid green;
+	padding: 0.3rem;
 }
