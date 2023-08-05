@@ -4,6 +4,7 @@
   border: 0.1rem solid;
   padding: 1rem;
   border-radius: 1rem;
+  position: relative;
 }
 
 
@@ -17,7 +18,7 @@
   /* justify-content: space-between; */
   align-items: center;
   font-size: 1.3rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1.5rem;
   background-color: lightcyan;
 }
 
@@ -548,6 +549,8 @@
   opacity: 0;
 }
 
+.form-container form .form-control button:focus~label,
+.form-container form .form-control button:not(:placeholder-shown)~label,
 .form-container form .form-control input:focus~label,
 .form-container form .form-control input:not(:placeholder-shown)~label,
 .form-container form .form-control .react-datepicker-wrapper~label,
@@ -595,4 +598,21 @@
 
 .ast-checkout-form .ast-field-pannel {
   grid-area: ast-field-pannel;
+}
+
+.form-container .form-control button {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 0.1rem solid;
+  height: 4rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.form-container .form-control .enableField {
+  display: block;
+}
+
+.form-container .form-control .disableField {
+  display: none;
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./TableBtnTrnSelect.css";
 import useAuthContext from "../../hooks/useAuthContext";
 import useModal from "../../hooks/useModal";
 import { newTrnData } from "../../data/adminData/adminData.js";
@@ -112,6 +113,8 @@ const TableBtnTrnSelect = params => {
 
 	const { getAstData } = useErf();
 
+	const [choosenTrnType, setChoosenTrnType] = useState("choose")
+
 	// ------------------------------------------------
 	// console.log(`params.data.erfData.id`, params.data?.erfData?.id);
 
@@ -182,11 +185,13 @@ const TableBtnTrnSelect = params => {
 	}, [params, user]);
 
 	const handleChange = e => {
-		// console.log(`e.target.value`, e.target.value);
+		console.log(`e.target.value`, e.target.value);
+
+		setChoosenTrnType(e.target.value);
 
 		// getAstData
 		const astData = getAstData(erf);
-		// console.log(`astData`, astData);
+		console.log(`astData`, astData);
 
 		setNewTrn(prev => {
 			// console.log(`prev`, prev);
@@ -217,9 +222,15 @@ const TableBtnTrnSelect = params => {
 		});
 	};
 
+	const newTrnAllowed = newTrn.metaData.trnType && newTrn.astData && choosenTrnType !== 'choose';
+	const hideShowBtn =
+		(choosenTrnType === "choose" || !(newTrn.astData)) ? "hide-new-trn-btn" : "";
+	// const hideShowBtn = true ? "" : "hide-new-trn-btn";
+
 	const openNewTrn = () => {
-		console.log(`newTrn`, newTrn);
-		if (newTrn.metaData.trnType) {
+		console.log(`newTrn.astData`, newTrn.astData);
+		if (newTrnAllowed) {
+			console.log(`newTrn`, newTrn);
 			openModal({
 				modalName: "trnDataForm",
 				payload: newTrn,
@@ -229,7 +240,7 @@ const TableBtnTrnSelect = params => {
 
 	return (
 		<>
-			<button className="table-row-btn" onClick={openNewTrn}>
+			<button className={`table-row-btn ${hideShowBtn} `} onClick={openNewTrn}>
 				NT
 			</button>
 			<select

@@ -129,6 +129,20 @@ export const capitalize = string => {
 // ******************************************************
 
 export const formSelectOptions = {
+	keyPadNoAccessOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "gate locked", value: "gate locked" },
+		{ key: "occupant refused", value: "occupant refused" },
+		{ key: "dogs danger", value: "dogs danger" },
+	],
+
+	erfStatusOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "not known", value: "not known" },
+		{ key: "developed", value: "developed" },
+		{ key: "not developed", value: "not developed" },
+		{ key: "delapidated", value: "delapidated" },
+	],
 	disconnectionLevelOptions: [
 		{ key: "choose", value: "choose" },
 		{ key: "Level 1", value: "Level 1" },
@@ -181,6 +195,7 @@ export const formSelectOptions = {
 		{ key: "Queenstown", value: "Queenstown" },
 		{ key: "Tarkastad", value: "Tarkastad" },
 		{ key: "Hofmeyer", value: "Hofmeyer" },
+		{ key: "Paulpietersburg", value: "Paulpietersburg" },
 		{ key: "", value: "" },
 	],
 

@@ -10,13 +10,40 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormHeader5 from "../../formComponents/formHeaders/FormHeader5";
 import { useTrnForm } from "../../../../hooks/useTrnForm.js";
+import PhotoApp from "../../../mediaApp/PhotoApp";
+import { useDocumentSync } from "../../../../hooks/useDocumentSync";
+import GeocodingApp from "../../../mediaApp copy/GeocodingApp";
+
+// TODO: TrnDataForm - Make the trn form responsive
+// TODO: astNoMedia - hide the media btn if there is not astNo
+// TODO: insideBoxMedia - hide the media btn if the 'insideBox' selection is NOT yes
+// TODO: keyPadMedia - hide the keyPadMedia btn if the input to both 'is there keyPap' and 'keyPadAccess' is not 'yes'.
+// TODO: astadr.adr - enable field to be populated from google address API.
+// TODO: astadr.gps - enable field to be populated from google address API.
+// TODO: meter.manufaturer - enable a select dropdown wit option to complete manually if manufacture is not in the select drop down list
+// TODO: linkedCb.isThereCb - enable the field to control CB audit form.
+// TODO: linkedSeal.isThereSeal - enable the field to control Seal audit form.
+// TODO: Keep list of asts in the meter audit form consistent from top to bottom. It must always follosw the following order: meter, cb, sel, box, and pole
+// TODO: astNoMedia, insideBoxMedia, keyPadMedia - when taking media, always attach geo location where the media was taken. For this, use javascript geolocation api.
+// TODO: Hide box and pole sections on the meter audit form
 
 const validationSchema = object({});
 
 const TrnDataForm = props => {
-	const { formData } = props;
+	// const { formData } = props;
 	// formData is trn row data from ag grid table opbained from params.data
 	// console.log(`props`, props);
+
+	const [formData, setFormData] = useState(props.formData);
+	// console.log(`formData`, formData);
+
+	// get meter doc id
+	const { id } = props.formData;
+	// console.log(`id`, id);
+
+	// call useDocument to get realtime meter data
+	const { error, document } = useDocumentSync("trns", id);
+	// console.log(`document`, document);
 
 	// get currnet user data
 	const { user } = useAuthContext();
@@ -42,25 +69,24 @@ const TrnDataForm = props => {
 	// close the modal
 	const { closeModal } = useModal();
 
-	const { formState, fieldValidation, formSections } = useTrnForm(
-		trn,
-		setTrn
-	);
+	const { formState, fieldValidation, formSections } = useTrnForm(trn, setTrn);
 	// console.log(`formSections`, formSections);
 	// console.log(`formState`, formState);
 
 	const onSubmit = values => {
 		// console.log(`values`, values);
 		// console.log(`formState`, formState)
-		
+
 		const newValues = {
 			...values,
 			metaData: {
 				...values.metaData,
 				trnState: formState.state,
+				updatedAtDatetime: timestamp.fromDate(new Date()),
+				updatedByUser: user.displayName,
 			},
 		};
-		// console.log(`newValues`, newValues);
+		console.log(`newValues`, newValues);
 
 		if (newValues.id) {
 			// console.log(`newValues id : [${newValues?.id}]`);
@@ -87,9 +113,15 @@ const TrnDataForm = props => {
 		}
 	}, [response, closeModal]);
 
+	useEffect(() => {
+		if (document) {
+			setTrn(document);
+		}
+	}, [document]);
+
 	const handleOnChange = e => {
 		const { name, value } = e.target;
-		// console.log(`name`, name);
+		console.log(`name`, name);
 		fieldValidation(name, value);
 	};
 
@@ -103,13 +135,14 @@ const TrnDataForm = props => {
 					closeModal={closeModal}
 				/>
 				<Formik
+					// enableReinitialize
 					initialValues={trn}
 					onSubmit={onSubmit}
 					validationSchema={validationSchema}
 				>
 					{formik => {
-						// console.log(`formik form values: `, formik.values.astData.meter[0].trnData.meterInstallation.location.exactLocation);
-						const disabled = !(formik.isValid && formik.dirty);
+						// console.log(`formik form values: `, formik);
+						// const disabled = !formik.dirty;
 						// console.log(`formik.dirty`, formik.dirty);
 						// console.log(`formik.isValid`, formik.isValid);
 						// console.log(`formState`, disable);
@@ -133,11 +166,18 @@ const TrnDataForm = props => {
 									<div className="form-btns">
 										{!(trnState === "submited") ? (
 											<>
-												<FormBtn isPending={false} btnName="reset" />
+												{/* <FormBtn isPending={false} btnName="reset" /> */}
+												<button
+													type="reset"
+													className="form-btn"
+													onClick={() => closeModal()}
+												>
+													Close Form
+												</button>
 												<FormBtn
 													isPending={response.isPending}
 													btnName="submit"
-													disabled={disabled}
+													disabled={false}
 												/>
 											</>
 										) : (
@@ -149,6 +189,8 @@ const TrnDataForm = props => {
 						);
 					}}
 				</Formik>
+				<PhotoApp />
+				<GeocodingApp />
 			</div>
 		</div>
 	);

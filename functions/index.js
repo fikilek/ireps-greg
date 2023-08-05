@@ -301,8 +301,12 @@ const updateAstsInTrn = (trn, newAstsState) => {
 };
 
 const updateErf = (trnAfter, ast, updatingObj) => {
+	console.log(`ast - line 304`, ast);
+	console.log(`updatingObj - line 305`, updatingObj);
+	console.log(`trnAfter - line 306`, trnAfter);
 	// get id of the erf attached to the trn
 	const erfId = trnAfter.erfData.id;
+	console.log(`erfId - line 309`, erfId);
 	// console.log(`erfId`, erfId);
 
 	// use erfId to get reference to the erf document that the ast is attached to
@@ -318,7 +322,10 @@ const updateErf = (trnAfter, ast, updatingObj) => {
 		.then(result => {
 			console.log(`result of updatedErfDocWithAstsData `, result);
 			return `result of updatedErfDocWithAstsData: ${result}`;
-		});
+		})
+		.catch(err => {
+			console.log(`error updating Erf`, err)
+		})
 };
 
 const updateTrnWithNextState = (trnAfter, nextTrnState, nextAstsState) => {
@@ -360,7 +367,10 @@ const getNewTrnCommissioning = trnAfter => {
 
 const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	// get reference to the ast to update
+	console.log(`ast`, ast)
+	console.log(`ast.astid`, ast.astid)
 	const astDocRef = db.collection("asts").doc(ast.astId);
+	console.log(`astDocRef`, astDocRef);
 
 	// check if the ast docuement exist
 	astDocRef.get().then(docSnapShot => {
@@ -412,6 +422,7 @@ const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 				}
 			} else {
 				// ast is NOT a meter  - update the ast state
+				console.log(`Update ast `, ast)
 				astDocRef
 					.update({
 						"astData.astState": nextState,
@@ -432,7 +443,9 @@ const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	// get the ast from ast
 	const { astData } = ast.trnObject;
-	console.log(`astData`, astData);
+	// console.log(`ast - line 439`, ast);
+	// console.log(`ast.astId - line 440`, ast.astId);
+	// console.log(`ast.trnObject.id - line 441`, ast.trnObject.id);
 
 	// create a new ast object
 	const newAst = {
@@ -458,9 +471,7 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	console.log(`newAst`, newAst);
 
 	// add the new ast to the asts collection
-	const astsRef = db.collection("asts");
-	astsRef
-		.add(newAst)
+	db.collection("asts").doc(ast.astId).set(newAst)
 		.then(docRef => {
 			console.log("Document added with ID: ", docRef.id);
 			return `Document added with ID: ${docRef.id}`;
@@ -500,7 +511,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 		// trn data from the chenge parameter
 		// const trn = change.after.data();
 		let trnAfter = change.after.data();
-		console.log(`trnAfter 451`, trnAfter);
+		console.log(`trnAfter line 507`, trnAfter);
 
 		if (!trnAfter.id) {
 			// insert trn id into trn
@@ -509,7 +520,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 				id: change.after.id,
 			};
 		}
-		console.log(`trnAfter 460`, trnAfter);
+		console.log(`trnAfter line 516`, trnAfter);
 
 		// Retrieve the current, previous states and trnType
 		const currentTrnState = trnAfter.metaData.trnState;
@@ -526,7 +537,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 		// 3. Update all the trnAfterrn asts that are on 'field' state. This will be done by iterating though each of the ids (trnAfter.astData[astCat][index].astData.id).
 		const astsInTrn = getAstsInTrn(trnAfter);
-		// console.log(`astsInTrn`, astsInTrn);
+		console.log(`astsInTrn`, astsInTrn);
 		// All asts in astInTrn are confirmations.conformTrn 'done'. Others are filtered out.
 
 		if (
@@ -551,7 +562,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 			// iterate through astsInTrn, on each ast id, update ast to a 'field' state.
 			astsInTrn &&
 				astsInTrn.forEach(ast => {
-					// console.log(`ast`, ast);
+					console.log(`ast`, ast);
 					// For each ast installed do the following:
 					// (1). update the ast itself,
 					// (2). update erf where ast is installed
@@ -673,6 +684,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 			// iterate through astsInTrn, create new asts and update each to a 'field' state.
 			astsInTrn &&
 				astsInTrn.forEach(ast => {
+					console.log(`ast - line 679`, ast)
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
 

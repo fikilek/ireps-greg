@@ -1,13 +1,13 @@
 import { flatten, unflatten } from "flat";
 import { useContext, useEffect, useReducer, useRef, useState } from "react";
-import FormikControl from "../components/forms/formComponents/formik/FormikControl";
-import FormSectionTrn from "../components/forms/formComponents/formSection/FormSectionTrn";
-import FormSectionTrnAudit from "../components/forms/formComponents/formSection/FormSectionTrnScns";
+// import FormikControl from "../components/forms/formComponents/formik/FormikControl";
+// import FormSectionTrn from "../components/forms/formComponents/formSection/FormSectionTrn";
+// import FormSectionTrnAudit from "../components/forms/formComponents/formSection/FormSectionTrnScns";
 import { FormStateContext } from "../contexts/FormStateContextProvider";
-import { formSelectOptions } from "../utils/utils";
+// import { formSelectOptions } from "../utils/utils";
 import { formSects } from "../components/forms/formComponents/formSections/formSects";
-import FormSectionTrnScns from "../components/forms/formComponents/formSection/FormSectionTrnScns";
-import FormSectionTrnAsts from "../components/forms/formComponents/formSection/FormSectionTrnAst";
+// import FormSectionTrnScns from "../components/forms/formComponents/formSection/FormSectionTrnScns";
+// import FormSectionTrnAsts from "../components/forms/formComponents/formSection/FormSectionTrnAst";
 
 const getKey = (path, cat) => {
 	// console.log(`path`, path);
@@ -185,7 +185,6 @@ const trnFormValidationReducer = (state, action) => {
 
 export const useTrnForm = (trn, setTrn) => {
 	console.log(`trn`, trn);
-	// console.log(`active`, active);
 	const alreadyRun = useRef(false);
 	// console.log(`alreadyRun`, alreadyRun);
 
@@ -197,7 +196,7 @@ export const useTrnForm = (trn, setTrn) => {
 	const [validationObject, dispatch] = useReducer(trnFormValidationReducer, {
 		astData: {},
 	});
-	console.log(`validationObject`, validationObject);
+	// console.log(`validationObject`, validationObject);
 
 	const [formSections, setFormSections] = useState([]);
 	// console.log(`formSections`, formSections);
@@ -747,7 +746,7 @@ export const useTrnForm = (trn, setTrn) => {
 	};
 
 	const fieldValidation = (validationPath, value) => {
-		console.log(`fieldValidation method-------------------------`);
+		// console.log(`fieldValidation method-------------------------`);
 		// console.log(`validationPath`, validationPath);
 		// console.log(`value`, value);
 		// console.log( `validationObject`, validationObject);
@@ -775,7 +774,7 @@ export const useTrnForm = (trn, setTrn) => {
 		// console.log(`flattenedTvd`, flattenedTvd);
 
 		// get index of trnData
-		const indexOfTrnData = validationPath.indexOf("trnData");
+		// const indexOfTrnData = validationPath.indexOf("trnData");
 		// console.log(`indexOfTrnData`, indexOfTrnData);
 
 		// extract the key to locate constraint from validation path

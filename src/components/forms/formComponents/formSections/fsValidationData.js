@@ -170,9 +170,14 @@ export const fsValidationData = {
 					verdict: "",
 				},
 				insideBox: {
-					//inside/outside
-					constraints: [{ required: "yes", condition: "" }],
-					verdict: "",
+					astInsideBox: {
+						constraints: [{ required: "yes", condition: "" }],
+						verdict: "",
+					},
+					insideBoxMedia: {
+						constraints: [{ required: "no", condition: "" }],
+						verdict: "",
+					},
 				},
 				exactLocation: {
 					//['pole top', pole bottom', 'stand alone', 'other']
@@ -191,10 +196,14 @@ export const fsValidationData = {
 					constraints: [{ required: "yes", condition: "" }],
 					verdict: "",
 				},
-				serialNo: {
+				keyPadAccess: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
+				kyPadMedia: {
 					constraints: [
 						{
-							required: "condition",
+							required: "conditional",
 							condition: {
 								isThereKeyPad: "yes",
 							},
@@ -202,48 +211,37 @@ export const fsValidationData = {
 					],
 					verdict: "",
 				},
-				kyPadPhotos: {
-					constraints: [
-						{
-							required: "condition",
-							condition: {
-								isThereKeyPad: "yes",
-							},
-						},
-					],
+				noAccessReasons: {
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 			},
 			astAdr: {
 				adr: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 				gps: {
 					Latitude: {
-						constraints: [{ required: "yes", condition: "" }],
+						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
 					Longitude: {
-						constraints: [{ required: "yes", condition: "" }],
+						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
 				},
 			},
 			voltageReading: {
 				phase1: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 				phase2: {
-					constraints: [{ required: "condition", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 				phase3: {
-					constraints: [{ required: "condition", condition: "" }],
-					verdict: "",
-				},
-				voltageReadingPhotos: {
 					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
@@ -253,32 +251,10 @@ export const fsValidationData = {
 					constraints: [{ required: "yes", condition: "" }],
 					verdict: "",
 				},
-				cbSize: {
-					constraints: [
-						{
-							required: "condition",
-							condition: {
-								isThereCb: "yes",
-							},
-						},
-					],
-					verdict: "",
-				},
 			},
 			linkedSeal: {
 				isThereSeal: {
 					constraints: [{ required: "yes", condition: "" }],
-					verdict: "",
-				},
-				sealNo: {
-					constraints: [
-						{
-							required: "condition",
-							condition: {
-								isThereSeal: "yes",
-							},
-						},
-					],
 					verdict: "",
 				},
 			},
@@ -287,10 +263,6 @@ export const fsValidationData = {
 					constraints: [{ required: "yes", condition: "" }],
 					verdict: "",
 				},
-			},
-			photos: {
-				constraints: [{ required: "no", condition: "" }],
-				verdict: "",
 			},
 
 			// astData

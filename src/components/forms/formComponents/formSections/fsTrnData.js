@@ -36,7 +36,7 @@ export const fsTrnData = {
 				sealNo: "",
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1", "Photo 2"],
 		},
@@ -47,7 +47,7 @@ export const fsTrnData = {
 			confirmInstallationData: "",
 			comments: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -55,7 +55,10 @@ export const fsTrnData = {
 		auditData: {
 			location: {
 				premises: "", //inside/outside
-				insideBox: "", //yes/no
+				insideBox: {
+					astInsideBox: "",
+					insideBoxMedia: [],
+				}, //yes/no
 				exactLocation: "", //['pole top', pole bottom', 'stand alone', 'other']
 			},
 			serviceConnection: {
@@ -63,8 +66,9 @@ export const fsTrnData = {
 			},
 			keyPad: {
 				isThereKeyPad: "",
-				serialNo: "",
-				kyPadPhotos: ["Photo 1 url", "Photo 2 url"],
+				keyPadAccess: "",
+				keyPadMedia: [],
+				noAccessReasons: "",
 			},
 			astAdr: {
 				adr: "",
@@ -77,20 +81,16 @@ export const fsTrnData = {
 				phase1: "",
 				phase2: "",
 				phase3: "",
-				voltageReadingPhotos: ["Photo 1 url", "Photo 2 url"],
 			},
 			linkedCb: {
 				isThereCb: "",
-				cbSize: "",
 			},
 			linkedSeal: {
 				isThereSeal: "",
-				sealNo: "",
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
-			photos: ["Photo 1", "Photo 2"],
 		},
 
 		inspectionData: {
@@ -109,12 +109,12 @@ export const fsTrnData = {
 
 			seal: {
 				sealed: "",
-				sealNo: "",
+				// sealNo: "",
 			},
 
 			cb: {
 				haveCb: "",
-				size: "",
+				// size: "",
 			},
 
 			location: {
@@ -148,7 +148,7 @@ export const fsTrnData = {
 				size: "",
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["photo1", "photo2"],
 		},
@@ -171,7 +171,7 @@ export const fsTrnData = {
 				size: "",
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["photo1", "photo2"],
 		},
@@ -196,7 +196,7 @@ export const fsTrnData = {
 				meterNo: "",
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -205,7 +205,7 @@ export const fsTrnData = {
 			cbSizeVerified: "",
 			cbMeterLinkVerified: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -228,7 +228,7 @@ export const fsTrnData = {
 				meterNo: "",
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -238,7 +238,7 @@ export const fsTrnData = {
 			visibleDamage: "",
 			sameCircuitAsMeter: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 		},
 	},
@@ -247,7 +247,7 @@ export const fsTrnData = {
 		installationData: {
 			linkedMeterNo: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -257,7 +257,7 @@ export const fsTrnData = {
 			sealMeterLinkVerified: "",
 			sealLocked: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -275,7 +275,7 @@ export const fsTrnData = {
 			sealCut: "",
 			sealRemoved: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -300,7 +300,7 @@ export const fsTrnData = {
 			},
 			scns: [{ meter: "", cb: "", erfNo: "" }],
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Box Photo 1", "Box Photo 2", "Box Photo 3"],
 		},
@@ -308,7 +308,7 @@ export const fsTrnData = {
 		commissioningData: {
 			installationDataVerified: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -331,7 +331,7 @@ export const fsTrnData = {
 			},
 			scns: [{ meter: "", cb: "", erfNo: "" }],
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Box Photo 1", "Box Photo 2", "Box Photo 3"],
 		},
@@ -353,7 +353,7 @@ export const fsTrnData = {
 			},
 			scns: [{ meter: "", cb: "", erfNo: "" }],
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["photo1", "photo2", "photo3"],
 		},
@@ -372,7 +372,7 @@ export const fsTrnData = {
 				},
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -380,7 +380,7 @@ export const fsTrnData = {
 		commissioningData: {
 			installationDataVerified: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -397,7 +397,7 @@ export const fsTrnData = {
 				},
 			},
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["Photo 1 url", "Photo 2 url"],
 		},
@@ -407,7 +407,7 @@ export const fsTrnData = {
 			poleIntact: "",
 			poleDamaged: "",
 			confirmations: {
-				confirmTrn: "choose",
+				confirmTrn: "not done",
 			},
 			photos: ["photos3", "photos2", "photos1"],
 		},

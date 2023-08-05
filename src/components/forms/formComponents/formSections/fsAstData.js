@@ -3,6 +3,7 @@ export const fsAstData = {
 		astData: {
 			astCartegory: "meter",
 			astNo: "", // required
+			astNoMedia: [], // media including photos, voice clips and videos
 			astSerialNo: "",
 			astState: "service",
 			meter: {

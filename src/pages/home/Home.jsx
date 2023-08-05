@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./home.css";
 import { municipalData } from "../../data/municipalData/municipalData";
 import DashboardCard from "./dashboardCard/DashboardCard";
+import useCollection from "../../hooks/useCollection";
+import DashboardCardMeters from "./dashboardCard/DashboardCardMeters";
 
 const selectData = {
 	country: "choose",
@@ -11,43 +13,199 @@ const selectData = {
 	town: "choose",
 	ward: "choose",
 };
+// update meter data
+const updateMetersData = asts => {
+	// console.log(`asts`, asts);
+
+	// filter out only meters from the asts array
+	let metersArray = [];
+	asts &&
+		asts.forEach(astCat => {
+			metersArray =
+				asts && asts.filter(obj => obj.astData.astCartegory === "meter");
+		});
+	// console.log(`metersArray`, metersArray);
+
+	// meters data
+	let metersData = {
+		total: metersArray.length,
+		type: [{ conventional: 0 }, { "pre-paid": 0 }],
+		phase: [{ single: 0 }, { three: 0 }],
+	};
+
+	// get an array of all meter phases
+	const metersPhasesArray = [
+		...new Set(metersArray.map(item => item.astData.meter.phase)),
+	];
+	console.log(`metersPhasesArray`, metersPhasesArray);
+
+	// count phase occurance of each item in the array
+	const meterPhasesArray = [];
+	metersPhasesArray &&
+		metersPhasesArray.forEach(phase => {
+			const meterPhaseCount =
+				metersArray &&
+				metersArray.filter(obj => obj.astData.meter.phase === phase).length;
+			meterPhasesArray.push({
+				[phase]: meterPhaseCount,
+			});
+		});
+	// console.log(`meterPhasesArray`, meterPhasesArray);
+
+	// get an array of all meter phases
+	const metersTypeArray = [
+		...new Set(metersArray.map(item => item.astData.meter.type)),
+	];
+	// console.log(`metersTypeArray`, metersTypeArray);
+
+	// count type occurance of each item in the array
+	const meterTypesArray = [];
+	metersTypeArray &&
+		metersTypeArray.forEach(type => {
+			const meterTypesCount =
+				metersArray &&
+				metersArray.filter(obj => obj.astData.meter.type === type).length;
+			meterTypesArray.push({
+				[type]: meterTypesCount,
+			});
+		});
+	// console.log(`meterPhasesArray`, meterPhasesArray);
+
+	// work out the phases  and update metersData
+	metersData = {
+		...metersData,
+		phase: meterPhasesArray,
+		type: meterTypesArray,
+	};
+	// console.log(`metersData`, metersData);
+
+	return { total: metersArray.length, metersData };
+};
+
+// update asts data
+const updateAstsData = asts => {
+	// console.log(`asts`, asts);
+
+	// get an array of all existing cats
+	const catsInAsts = [...new Set(asts.map(item => item.astData.astCartegory))];
+	// console.log(`catsInAsts`, catsInAsts);
+
+	// count occurance of each item in the array
+	const astsArray = [];
+	catsInAsts &&
+		catsInAsts.forEach(astCat => {
+			const astCount =
+				asts && asts.filter(obj => obj.astData.astCartegory === astCat).length;
+			astsArray.push({
+				[astCat]: astCount,
+			});
+		});
+	// console.log(`astsArray`, astsArray);
+
+	return { total: asts.length, items: astsArray };
+};
+
+// update erfs data
+const updateErfsData = erfs => {
+	// console.log(`erfs`, erfs);
+
+	// get an array of existing erf statuses
+	const erfStatuses = [...new Set(erfs.map(item => item.erfStatus))];
+	// console.log(`erfStatuses`, erfStatuses);
+
+	// count occurance of each item in the array
+	const erfsArray = [];
+	erfStatuses &&
+		erfStatuses.forEach(erfStatus => {
+			const erfStatusCount =
+				erfs && erfs.filter(erf => erf.erfStatus === erfStatus).length;
+			erfsArray.push({
+				[erfStatus]: erfStatusCount,
+			});
+		});
+	// console.log(`erfsArray`, erfsArray);
+
+	return { total: erfs.length, items: erfsArray };
+};
+
+// update trns data
+const updateTrnsData = trns => {
+	// console.log(`trns`, trns);
+
+	// get an array of existing erf statuses
+	const trnTypes = [...new Set(trns.map(trn => trn.metaData.trnType))];
+	// console.log(`trnTypes`, trnTypes);
+
+	// count occurance of each trnTypes in the array
+	const trnTypesArray = [];
+	trnTypes &&
+		trnTypes.forEach(trnType => {
+			const trnTypeCount =
+				trns && trns.filter(trn => trn.metaData.trnType === trnType).length;
+			trnTypesArray.push({
+				[trnType]: trnTypeCount,
+			});
+		});
+	// console.log(`trnTypesArray`, trnTypesArray);
+
+	return { total: trns.length, items: trnTypesArray };
+};
+
+// asts data
+// const astsData_ = {
+// 	total: 0,
+// 	items: [{ Meters: 0 }, { Cbs: 0 }, { Seals: 0 }],
+// };
+
+// erfs data
+// const erfsData_ = {
+// 	total: 0,
+// 	items: [{ "Not Known": 0 }, { Developed: 0 }, { "Not Developed": 0 }],
+// };
+
+// trns data
+// const trnsData_ = {
+// 	total: 0,
+// 	items: [{ Audits: 0 }, { Inspections: 0 }, { TID: 0 }],
+// };
 
 const Home = () => {
 	const [data, setData] = useState(selectData);
 	// console.log(`data`, data);
 
-	// erfs data
-	const erfsData = {
-		total: 200,
-		items: [
-			{developedStands: 155},
-			{nonDevelopedStand: 45},
-			],
-	};
+	// get useCollection for collection of collection stats
+	const {
+		data: asts,
+		// error: astsError,
+		// isPending: astsPending,
+		// success: astsSuccess,
+	} = useCollection("asts");
+	// console.log(`asts`, asts);
+	const updatedAstsData = updateAstsData(asts);
+	const updatedMetersData = updateMetersData(asts);
 
-	// asts data
-	const astsData = {
-		total: 900,
-		items: [
-			{ meters: 300 },
-			{ cbs: 300 },
-			{ seals: 300 },
-		],
-	};
+	const {
+		data: erfs,
+		// error: erfsError,
+		// isPending: erfsPending,
+		// success: erfsSuccess,
+	} = useCollection("erfs");
+	// console.log(`erfs`, erfs);
+	const updatedErfsData = updateErfsData(erfs);
 
-	// trns data
-	const trnsData = {
-		total: 1600,
-		items: [
-			{audits: 900},
-			{inspections: 300},
-			{tid: 400},
-		],
-	};
+	const {
+		data: trns,
+		// error: trnsError,
+		// isPending: trnsPEnding,
+		// success: trnsSuccess,
+	} = useCollection("trns");
+	// console.log(`trns`, trns);
+	const updatedTrnsData = updateTrnsData(trns);
+
 	const handleChange = e => {
 		e.preventDefault();
-		console.log(`selected country value :`, e.target.value);
-		console.log(`selected country id :`, e.target.id);
+		// console.log(`selected country value :`, e.target.value);
+		// console.log(`selected country id :`, e.target.id);
 		setData(prev => ({
 			...prev,
 			[e.target.id]: e.target.value,
@@ -139,10 +297,13 @@ const Home = () => {
 					</select>
 				</div>
 				<div className="home-body-section home-body__data">
-					<DashboardCard dcData={erfsData} name={"erfs"} />
-					<DashboardCard dcData={astsData} name={"asts"} />
-					<DashboardCard dcData={trnsData} name={"trns"} />
-					{/* <DashboardCard name={"other"} /> */}
+					<DashboardCard
+						dcData={updatedErfsData}
+						name={"Erfs / Stands / Land Parcels"}
+					/>
+					<DashboardCard dcData={updatedAstsData} name={"Assets"} />
+					<DashboardCard dcData={updatedTrnsData} name={"Transactions"} />
+					<DashboardCardMeters dcData={updatedMetersData} name={"Meters"} />
 				</div>
 			</div>
 		</div>

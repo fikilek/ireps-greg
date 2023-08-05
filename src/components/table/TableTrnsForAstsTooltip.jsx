@@ -24,7 +24,9 @@ const TableTrnsForAstsTooltip = props => {
 		});
 	// console.log(`rowData`, rowData);
   
-  let rowNo = 1;
+	let rowNo = 1;
+	
+	if (asts.length === 0) return null;
 
 	return (
 		<div className="table tableTrnsForAstsTooltip">

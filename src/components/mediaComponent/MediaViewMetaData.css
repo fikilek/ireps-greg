@@ -1,0 +1,16 @@
+
+
+.media-view-metadata {
+  position: absolute;
+  top: 5%;
+  background-color: aliceblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1rem;
+}
+
+.media-view-metadata p {
+  padding: 0.2rem;
+  outline: 0.1rem solid;
+  margin: 0.2rem;
+}

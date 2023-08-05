@@ -1,0 +1,39 @@
+.dashboard-card-meters {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 9fr;
+  border: 0.1rem solid;
+  border-radius: 1%;
+  max-height: 30rem;
+  background-color: aliceblue;
+  height: 30rem;
+}
+
+.dashboard-card-meters .header {
+  border-bottom: 0.1rem solid;
+  max-height: 3rem;
+  background: gainsboro;
+}
+
+.dashboard-card-meters .header .name {
+  margin-left: 2rem;
+}
+
+.dashboard-card-meters .body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  max-height: 27rem;
+}
+
+.dashboard-card-meters .body .line1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  outline: 0.1rem solid;
+}
+
+.dashboard-card-meters .body .line1 div {}
+
+
+.dashboard-card-meters .body .line1 .chart {
+}

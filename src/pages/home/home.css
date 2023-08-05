@@ -1,12 +1,10 @@
 .home {
 	font-size: 2rem;
-	/* color: rgb(95, 165, 42); */
-	height:	calc(100vh - var(--header-height));
+	height: calc(100vh - var(--header-height));
 }
 
 .home .home-section {
 	border: 0.2rem solid red
-	
 }
 
 .home .home-body {
@@ -24,9 +22,9 @@
 }
 
 .home .home-section .home-body__filters select {
-margin: 1rem;
-height: 2rem;
-margin: 0.5rem;
+	margin: 1rem;
+	height: 2rem;
+	margin: 0.5rem;
 }
 
 .home .home-section .home-body__data {
@@ -36,4 +34,8 @@ margin: 0.5rem;
 	height: 100%;
 	border: 0.2rem solid green;
 	padding: 0.3rem;
+	justify-content: center;
+	align-items: center;
+	/* margin: 0 1rem; */
+	padding: 1rem;
 }

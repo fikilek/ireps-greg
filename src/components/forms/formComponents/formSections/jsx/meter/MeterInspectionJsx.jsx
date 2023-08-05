@@ -40,7 +40,10 @@ const MeterInspectionJsx = props => {
 						<p>
 							Location - inside box? :
 							<span>
-								{trn.astData[astCat][astCatIndex].meterInstallation.location.insideBox}
+								{
+									trn.astData[astCat][astCatIndex].meterInstallation.location.insideBox
+										.astInsideBox
+								}
 							</span>
 						</p>
 						<p>
@@ -61,7 +64,13 @@ const MeterInspectionJsx = props => {
 						<p>
 							Is there a Key Pad? :
 							<span>
-								{trn.astData[astCat][astCatIndex].meterInstallation.isThereKeyPad}
+								{trn.astData[astCat][astCatIndex].meterInstallation.keyPad.isThereKeyPad}
+							</span>
+						</p>
+						<p>
+							Key Pad Access? :
+							<span>
+								{trn.astData[astCat][astCatIndex].meterInstallation.keyPad.keyPadAccess}
 							</span>
 						</p>
 						<p>
@@ -108,10 +117,10 @@ const MeterInspectionJsx = props => {
 							<span>
 								{trn.astData[astCat][astCatIndex].meterInstallation.linkedCb.isThereCb}
 							</span>
-							{"  | "}
+							{/* {"  | "}
 							<span>
 								{trn.astData[astCat][astCatIndex].meterInstallation.linkedCb.cbSize}
-							</span>
+							</span> */}
 						</p>
 						<p>
 							Linked Seal? :
@@ -121,10 +130,10 @@ const MeterInspectionJsx = props => {
 										.isThereSeal
 								}
 							</span>
-							{"  | "}
+							{/* {"  | "}
 							<span>
 								{trn.astData[astCat][astCatIndex].meterInstallation.linkedSeal.sealSize}
-							</span>
+							</span> */}
 						</p>
 					</div>
 					<div className="photos"></div>

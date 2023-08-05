@@ -10,6 +10,7 @@ export const useErf = () => {
 		// console.log(`asts`, asts);
 
 		if (!asts) return null;
+		if (asts.lenght === 0) return null;
 
 		// create astData object. THis will go into trn inspection object
 		const astData = {};

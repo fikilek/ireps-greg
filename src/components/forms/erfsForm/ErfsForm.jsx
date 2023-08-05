@@ -117,6 +117,14 @@ const ErfsForm = props => {
 															name="erfNo"
 															placeholder="Erf No"
 														/>
+														<FormikControl
+															control="select"
+															type="text"
+															label="erf status"
+															name="erfStatus"
+															placeholder="Erf Status"
+															options={formSelectOptions.erfStatusOptions}
+														/>
 													</div>
 													<div className="half-row-50-50">
 														<FormikControl

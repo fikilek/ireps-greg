@@ -9,15 +9,15 @@ import { memo } from "react";
 import FormEditBtn from "../components/forms/formComponents/formEditBtn/FormEditBtn";
 import FormStatusBtn from "../components/forms/formComponents/formStatusBtn/FormStatusBtn";
 import TableBoxDimensions from "../components/tableBtns/TableBoxDimensions";
-import TrnState from "../pages/trns/TrnState";
-import TrnHistory from "../pages/trns/TrnHistory";
-import TrnApprove from "../pages/trns/TrnApprove";
+// import TrnState from "../pages/trns/TrnState";
+// import TrnHistory from "../pages/trns/TrnHistory";
+// import TrnApprove from "../pages/trns/TrnApprove";
 import TrnAstCheckoutFormBtn from "../components/forms/trnAstCheckoutForm/TrnAstCheckoutFormBtn";
 import TableCellStyleAstState from "../components/table/TableCellStyleAstState";
 import TrnDataFormBtn from "../components/forms/trnForms/trnDataForms/TrnDataFormBtn";
 import TableTnsForAstBtn from "../components/table/tableBtns/TableTnsForAstBtn";
 import TableAstsInErfBtn from "../components/table/tableBtns/TableAstsInErfBtn";
-import TableTrnsInErfBtn from "../components/table/tableBtns/TableTrnsInErfBtn";
+// import TableTrnsInErfBtn from "../components/table/tableBtns/TableTrnsInErfBtn";
 import TableTrnsForAstsTooltip from "../components/table/TableTrnsForAstsTooltip";
 
 export const useColumnDefs = props => {
@@ -108,6 +108,11 @@ export const useColumnDefs = props => {
 			headerCheckboxSelection: true,
 			headerCheckboxSelectionFilteredOnly: true,
 			// cellRenderer: memo(ErfBtn),
+		},
+		{
+			field: "erfStatus",
+			headerName: "Status",
+			width: 150,
 		},
 		{
 			field: "asts",
@@ -340,8 +345,9 @@ export const useColumnDefs = props => {
 			headerName: "Updated At Datetime",
 			width: 190,
 			cellRenderer: params => {
+				// console.log(`params`, params);
 				return (
-					<p>{moment(params.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
+					<p>{moment(params?.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
 				);
 			},
 			flex: 1.5,
@@ -1597,7 +1603,7 @@ export const useColumnDefs = props => {
 		{
 			field: "id",
 			headerName: "Ast Id",
-			width: 220,
+			width: 100,
 			// hide: true,
 		},
 		{
@@ -1692,7 +1698,7 @@ export const useColumnDefs = props => {
 		{
 			field: "metaData.trnCount",
 			headerName: "Ast Trn(s)",
-			width: 140,
+			width: 120,
 			cellRenderer: memo(TableTnsForAstBtn), //These are all transactions that happen on an ast
 		},
 		{
@@ -2275,7 +2281,7 @@ export const useColumnDefs = props => {
 					// columnGroupShow: "closed",
 					headerName: "Tariff",
 					width: 130,
-				},
+				}
 			],
 		},
 	];
@@ -2297,9 +2303,9 @@ export const useColumnDefs = props => {
 			sortable: true,
 			sortingOrder: ["desc"],
 			cellRenderer: params => {
-				// console.log(`params.data`, params.data)
+				// console.log(`params`, params.value)
 				return (
-					<p>{moment(params.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
+					<p>{moment(params?.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
 				);
 			},
 			flex: 1,

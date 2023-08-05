@@ -536,8 +536,8 @@ const newErfsFormData = {
 		province: "EC",
 		country: "",
 		gps: {
-			latitude: "",
-			longitude: "",
+			lat: "",
+			lng: "",
 		},
 	},
 	customer: {
@@ -688,9 +688,9 @@ const newPoFormData = {
 	},
 	poNo: 0,
 	metaData: {
-		updatedAtDatetime: Timestamp.now(),
+		updatedAtDatetime: timestamp.fromDate(new Date()),
 		updatedByUser: "",
-		createdAtDatetime: Timestamp.now(),
+		createdAtDatetime: timestamp.fromDate(new Date()),
 		createdByUser: "",
 	},
 	poData: {

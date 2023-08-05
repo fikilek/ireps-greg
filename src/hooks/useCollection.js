@@ -16,6 +16,7 @@ const useCollection = (ml1, ml2, ml3) => {
 	const [error, setError] = useState("");
 	const [isPending, setIsPending] = useState(false);
 	const [success, setSuccess] = useState(false);
+	// console.log(`data`, data)
 
 	useEffect(() => {
 		let q = null;

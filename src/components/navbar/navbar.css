@@ -154,7 +154,7 @@ header nav .nav-list-left .sub-menu .sub-menu {
 	left: 160%;
 	width: 40rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 }
 
 header nav .sub-menu .sub-menu::before {

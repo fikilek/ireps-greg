@@ -18,7 +18,7 @@ const FormSectionCreated = ({
 	setSectionStates,
 }) => {
 	const { user } = useAuthContext();
-	// console.log(`po`, po);
+	console.log(`po`, po);
 
 	
 	useEffect(() => {

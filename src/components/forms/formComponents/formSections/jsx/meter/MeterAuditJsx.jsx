@@ -20,10 +20,19 @@ const MeterAuditJsx = props => {
 							<FormikControl
 								control="input"
 								type="text"
-								label="Meter No?"
+								label="Meter No"
 								name={`astData[${astCat}][${astCatIndex}].astData.astNo`}
 								placeholder="Meter No"
 							/>
+							<FormikControl
+								control="button"
+								type="button"
+								label="Mn Media"
+								name={`astData[${astCat}][${astCatIndex}].astData.astNoMedia`}
+								placeholder="Mn Media"
+							/>
+						</div>
+						<div className="half-row-50-50">
 							<FormikControl
 								control="select"
 								type="text"
@@ -32,8 +41,6 @@ const MeterAuditJsx = props => {
 								placeholder="Meter Phase"
 								options={formSelectOptions.meterPhaseOptions}
 							/>
-						</div>
-						<div className="half-row-50-50">
 							<FormikControl
 								control="select"
 								type="text"
@@ -42,37 +49,40 @@ const MeterAuditJsx = props => {
 								placeholder="Meter Type"
 								options={formSelectOptions.meterTypeOptions}
 							/>
-							<FormikControl
-								control="input"
-								type="text"
-								label="manufaturer?"
-								name={`astData[${astCat}][${astCatIndex}].astData.meter.manufaturer`}
-								placeholder="Manufaturer"
-							/>
-						</div>
-					</div>
-					<div className="row-1 ast-row">
-						<div className="meter-adr">
-							<FormikControl
-								control="input"
-								type="text"
-								label="meter address"
-								name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.adr`}
-								placeholder="Meter Adr"
-							/>
-						</div>
-						<div className="meter-gps">
-							<FormikControl
-								// readOnly={true}
-								control="input"
-								type="text"
-								label="meter gps(lat/lon)"
-								name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps`}
-								placeholder="Meter Gps"
-							/>
 						</div>
 					</div>
 					<div className="row-2 ast-row">
+						<div className="meter-adr">
+							<FormikControl
+								control="reverseGeocodeButton"
+								type="button"
+								label="click for meter address"
+								name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.adr`}
+								placeholder="Meter Address"
+							/>
+						</div>
+						<div className="meter-gps">
+							<div className="half-row-50-50">
+								<FormikControl
+									readOnly={true}
+									control="input"
+									type="text"
+									label="gps(lat)"
+									name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps.lat`}
+									placeholder="Meter Gps"
+								/>
+								<FormikControl
+									readOnly={true}
+									control="input"
+									type="text"
+									label="gps(lng)"
+									name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps.lng`}
+									placeholder="Meter Gps"
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="row-3 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
 								control="select"
@@ -86,10 +96,125 @@ const MeterAuditJsx = props => {
 								control="select"
 								type="text"
 								label="inside box?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.location.insideBox`}
+								name={`astData[${astCat}][${astCatIndex}].trnData.location.insideBox.astInsideBox`}
 								placeholder="Inside Box"
 								options={formSelectOptions.yesNoOptions}
 							/>
+						</div>
+						<div className="half-row-50-50">
+							<FormikControl
+								control="button"
+								type="button"
+								label="inside box media"
+								name={`astData[${astCat}][${astCatIndex}].trnData.location.insideBox.insideBoxMedia`}
+								placeholder="Insie Box Media"
+							/>
+						</div>
+					</div>
+					<div className="row-4 ast-row">
+						<div className="half-row-50-50">
+							<FormikControl
+								control="input"
+								type="text"
+								label="manufaturer"
+								name={`astData[${astCat}][${astCatIndex}].astData.meter.manufacturer`}
+								placeholder="Manufaturer"
+							/>
+							<FormikControl
+								control="input"
+								type="text"
+								label="phase 1 voltage"
+								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.phase1`}
+								placeholder="Volatage Phase 1"
+							/>
+						</div>
+						<div className="half-row-50-50">
+							<FormikControl
+								control="input"
+								type="text"
+								label="phase 2 voltage"
+								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.phase2`}
+								placeholder="Volatage Phase 2"
+							/>
+							<FormikControl
+								control="input"
+								type="text"
+								label="phase 3 voltage"
+								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.phase3`}
+								placeholder="Volatage Phase 3"
+							/>
+						</div>
+					</div>
+					<div className="row-5 ast-row">
+						<div className="half-row-50-50">
+							<FormikControl
+								control="select"
+								type="text"
+								label="is there keypad?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.isThereKeyPad`}
+								placeholder="Is There Keypad?"
+								options={formSelectOptions.yesNoOptions}
+							/>
+							<FormikControl
+								control="select"
+								type="text"
+								label="keypad access?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.keyPadAccess`}
+								placeholder="Keypad Access?"
+								options={formSelectOptions.yesNoOptions}
+							/>
+							{/* <FormikControl
+								control="input"
+								type="text"
+								label="keypad serial no"
+								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.serialNo`}
+								placeholder="Keypad Serial No"
+							/> */}
+						</div>
+						<div className="half-row-50-50">
+							<FormikControl
+								control="button"
+								type="button"
+								label="keypad media"
+								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.keyPadMedia`}
+								placeholder="Keypad Media"
+							/>
+							<FormikControl
+								control="select"
+								type="text"
+								label="no access reasons"
+								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.noAccessReasons`}
+								placeholder="No Access Reasons"
+								options={formSelectOptions.keyPadNoAccessOptions}
+							/>
+						</div>
+						{/* TODO: come back to include control for the installation group photos */}
+					</div>
+					<div className="row-6 ast-row">
+						<div className="half-row-50-50">
+							<FormikControl
+								control="select"
+								type="text"
+								label="is there cb?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.linkedCb.isThereCb`}
+								placeholder="Is There Cb?"
+								options={formSelectOptions.yesNoOptions}
+							/>
+							<FormikControl
+								control="select"
+								type="text"
+								label="is there seal?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.linkedSeal.isThereSeal`}
+								placeholder="Is There Cb?"
+								options={formSelectOptions.yesNoOptions}
+							/>
+							{/* <FormikControl
+								control="input"
+								type="text"
+								label="cb size"
+								name={`astData[${astCat}][${astCatIndex}].trnData.linkedCb.cbSize`}
+								placeholder="Cb Size"
+							/> */}
 						</div>
 						<div className="half-row-50-50">
 							<FormikControl
@@ -108,105 +233,13 @@ const MeterAuditJsx = props => {
 								placeholder="Service Connection"
 								options={formSelectOptions.serviceConnectionEntryOptions}
 							/>
-						</div>
-					</div>
-					<div className="row-3 ast-row">
-						<div className="half-row-50-50">
-							<FormikControl
-								control="input"
-								type="text"
-								label="phase 1"
-								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.phase1`}
-								placeholder="Volatage Phase 1"
-							/>
-							<FormikControl
-								control="input"
-								type="text"
-								label="phase 2"
-								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.phase2`}
-								placeholder="Volatage Phase 2"
-							/>
-						</div>
-						<div className="half-row-50-50">
-							<FormikControl
-								control="input"
-								type="text"
-								label="phase 3"
-								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.phase3`}
-								placeholder="Volatage Phase 3"
-							/>
-							<FormikControl
-								control="input"
-								type="text"
-								label="photos"
-								name={`astData[${astCat}][${astCatIndex}].trnData.voltageReading.photos`}
-								placeholder="Volatage Photos"
-							/>
-						</div>
-					</div>
-					<div className="row-4 ast-row">
-						<div className="half-row-50-50">
-							<FormikControl
-								control="select"
-								type="text"
-								label="is there keypad?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.isThereKeyPad`}
-								placeholder="Is There Keypad?"
-								options={formSelectOptions.yesNoOptions}
-							/>
-							<FormikControl
-								control="input"
-								type="text"
-								label="keypad serial no"
-								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.serialNo`}
-								placeholder="Keypad Serial No"
-							/>
-						</div>
-						<div>
-							<FormikControl
-								control="input"
-								type="text"
-								label="keypad photos"
-								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.photos`}
-								placeholder="Keypad Photos"
-							/>
-						</div>
-						{/* TODO: come back to include control for the installation group photos */}
-					</div>
-					<div className="row-5 ast-row">
-						<div className="half-row-50-50">
-							<FormikControl
-								control="select"
-								type="text"
-								label="is there cb?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedCb.isThereCb`}
-								placeholder="Is There Cb?"
-								options={formSelectOptions.yesNoOptions}
-							/>
-							<FormikControl
-								control="input"
-								type="text"
-								label="cb size"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedCb.cbSize`}
-								placeholder="Cb Size"
-							/>
-						</div>
-						<div className="half-row-50-50">
-							<FormikControl
-								control="select"
-								type="text"
-								label="is there seal?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedSeal.isThereSeal`}
-								placeholder="Is There Cb?"
-								options={formSelectOptions.yesNoOptions}
-							/>
-							<FormikControl
+							{/* <FormikControl
 								control="input"
 								type="text"
 								label="seal size"
 								name={`astData[${astCat}][${astCatIndex}].trnData.linkedSeal.sealSize`}
 								placeholder="Seal Size"
-							/>
+							/> */}
 						</div>
 						{/* TODO: come back to include control for the installation group photos */}
 					</div>

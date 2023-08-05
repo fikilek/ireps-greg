@@ -190,8 +190,7 @@ const TabsErfs = (props) => {
 		if (trnType) {
 			// open a modal to preview the new trns only of there is trnType. The new trn btn is diabled if no trn type is selected
 			const newTrnsArray = getNewTrnsArray(selectedRows, trnType, user);
-			console.log(`newTrnsArray`, newTrnsArray);
-			console.log(`newTrnsArray`, newTrnsArray);
+			// console.log(`newTrnsArray`, newTrnsArray);
 			// step 2: open the modal. It wil be from the modal that the new trns will be sent to firebase
 			if (newTrnsArray.length > 0) {
 				openModal({

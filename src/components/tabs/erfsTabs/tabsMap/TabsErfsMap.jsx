@@ -33,8 +33,8 @@ const TabsErfsMap = props => {
 	});
 
 	const handleErfClick = e => {
-		console.log(`erf no`, e.feature.getProperty("TAG_VALUE"))
-	}
+		console.log(`erf no`, e.feature.getProperty("TAG_VALUE"));
+	};
 
 	useEffect(() => {
 		// setCenter({
@@ -49,7 +49,7 @@ const TabsErfsMap = props => {
 			// console.log(`longitude`, erf.gps.longitude);
 			const lat = erf.address.gps.latitude;
 			const lng = erf.address.gps.longitude;
-			bounds.extend({ lat, lng });
+			bounds?.extend({ lat, lng });
 		});
 		if (mapRef) {
 			mapRef.fitBounds(bounds);
