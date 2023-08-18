@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
-import { ClipLoader } from "react-spinners";
-import { flatten, unflatten } from "flat";
+import { ClipLoader, PropagateLoader } from "react-spinners";
 
 import Webcam from "react-webcam";
 import { PhotoAppContext } from "../../contexts/PhotoAppContext";
@@ -15,7 +14,7 @@ import {
 } from "react-icons/md";
 import { BsCameraFill, BsImage } from "react-icons/bs";
 import { TfiSave } from "react-icons/tfi";
-import { storage, timestamp } from "../../firebaseConfig/fbConfig";
+import { storage } from "../../firebaseConfig/fbConfig";
 import { format } from "date-fns";
 import MediaComponent from "../mediaComponent/MediaComponent";
 import MediaView from "../mediaComponent/MediaView";
@@ -24,71 +23,8 @@ import useAuthContext from "../../hooks/useAuthContext";
 import { useDocumentSync } from "../../hooks/useDocumentSync";
 import { ref } from "firebase/storage";
 import useStoreMedia from "../../hooks/useStoreMedia";
-import cloneDeep from "lodash.clonedeep";
 import useGeoLocation from "../../hooks/useGeolocation";
-
-const updateDoc = (data, imgData, trnDoc) => {
-	// console.log(`data`, data);
-	// console.log(`imgData`, imgData);
-
-	return url => {
-		const keys = data?.field?.name
-			.replaceAll("[", ".")
-			.replaceAll("]", ".")
-			.replaceAll("..", ".");
-		// console.log(`keys`, keys);
-
-		const keysArray = keys.split(".");
-		// console.log(`keysArray`, keysArray);
-		
-		// destructure mediaCat
-		const { mediaCategory } = imgData.metaData;
-		// console.log(`mediaCategory`, mediaCategory);
-
-		// deep clone trnDoc to prevent mutation
-		const trnDocClone = cloneDeep(trnDoc);
-		// console.log(`trnDocClone BEFORE`, trnDocClone);
-
-		// get the media category array
-		let mediaCatArray = trnDocClone;
-		keysArray.forEach(key => {
-			// console.log(`key`, key);
-			mediaCatArray = mediaCatArray[key];
-		});
-		// console.log(`mediaCatArray BEFORE`, mediaCatArray);
-
-		// push the new imgData into the media cat
-		mediaCatArray.push({
-			...imgData,
-			url,
-		});
-		// console.log(`mediaCatArray AFTER`, mediaCatArray);
-
-		// update trnDocClone with updated mediaCatArray. This will depend on the media cat
-		switch (mediaCategory) {
-			case "astNoMedia":
-				trnDocClone[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]][
-					keysArray[4]
-				] = mediaCatArray;
-				break;
-			case "keyPadMedia":
-				trnDocClone[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]][
-					keysArray[4]
-				][keysArray[5]] = mediaCatArray;
-				break;
-			case "insideBoxMedia":
-				trnDocClone[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]][
-					keysArray[4]
-				][keysArray[5]][keysArray[6]] = mediaCatArray;
-				break;
-			default:
-				throw new Error("Error updating ast media category");
-		}
-		// console.log(`trnDocClone AFTER`, trnDocClone);
-
-		return trnDocClone;
-	};
-};
+import useStorage from "../../hooks/useStorage";
 
 const PhotoApp = () => {
 	const { photoAppData, setPhotoAppData } = useContext(PhotoAppContext);
@@ -98,6 +34,22 @@ const PhotoApp = () => {
 	const { response, storeMedia } = useStoreMedia();
 	// console.log(`storeMedia`, storeMedia)
 	// console.log(`response`, response);
+
+	// create a state to hold all avaiable cameras in the device
+	const [devices, setDevices] = useState([]);
+	// console.log(`devices`, devices);
+
+	// create a state or the choosen camera.
+	const [cameraChoice, setCameraChoice] = useState(null);
+	// console.log(`cameraChoice`, cameraChoice);
+
+	// create a state for cameraFacing mode
+	const [facingMode, setFacingMode] = useState({ exact: "environment" });
+	console.log(`facingMode`, facingMode);
+
+	// get methods from useStorage
+	const { isPending, mediaList, getMediaList } = useStorage();
+	// console.log(`mediaList`, mediaList);
 
 	// get geolocation
 	const [location, setLocation] = useState(null);
@@ -116,9 +68,13 @@ const PhotoApp = () => {
 	const { user } = useAuthContext();
 	// console.log(`user`, user)
 
-	// get id of the asset
+	// get id of the trn
 	const trnId = photoAppData?.data?.form?.values?.id;
 	// console.log(`trnId`, trnId);
+
+	// get trnType
+	const trnType = photoAppData?.data?.form?.values?.metaData?.trnType;
+	// console.log(`trnType`, trnType);
 
 	// call useDocument to get realtime meter data
 	const { error, document: trnDoc } = useDocumentSync("trns", trnId);
@@ -137,7 +93,7 @@ const PhotoApp = () => {
 	let mediaData = null;
 	let astId = null;
 	let astNo = null;
-	if (trnDoc) {
+	if (trnDoc && data) {
 		// break key apart
 		const keys = data?.field?.name
 			.replaceAll("[", ".")
@@ -150,18 +106,28 @@ const PhotoApp = () => {
 		// extract mediaCat array
 		// get the media category array
 		mediaData = trnDoc;
-		keysArray.forEach(key => {
-			// console.log(`key`, key);
-			mediaData = mediaData[key];
-		});
-		// console.log(`mediaData`, mediaData);
+		if (keysArray && keysArray?.length > 0) {
+			keysArray.forEach(key => {
+				// console.log(`key`, key);
+				if (key) {
+					mediaData = mediaData[key];
+				}
+			});
+		}
 
 		// get ast id
 		// TODO: find a generic way to get id and not the hard wired one as  below
-		astId = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]].id;
-		astNo = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]].astNo;
+		astId = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]]?.id;
+		astNo = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astNo;
 		// console.log(`astId`, astId);
+		// console.log(`trnId`, trnId);
+
+		// get all media for the astId
+		getMediaList(`asts/${astId}`);
+	
 	}
+
+
 
 	// create a capture function
 	const capture = data => {
@@ -175,11 +141,11 @@ const PhotoApp = () => {
 				mediaCategory: imageCategory, // eg meter no photo, meter serail no photo , etc
 				createdByUser: user.displayName,
 				createdAtDatetime: format(new Date(), "yyyy-MMM-dd_HH:mm:ss"),
-				// createdAtDatetime: timestamp.fromDate(new Date()),
 				createdAtLocation: {
-					lat: location.coordinates.lat,
-					lng: location.coordinates.lng,
+					lat: location?.coordinates?.lat,
+					lng: location?.coordinates?.lng,
 				},
+				trnId,
 			},
 		});
 	};
@@ -202,15 +168,13 @@ const PhotoApp = () => {
 		// console.log(`fileName`, fileName);
 
 		// get the path to firebase storage
-		const filePath = `asts/${astId}/${imageCategory}/${fileName}`;
+		const filePath = `asts/${astId}/${fileName}`;
 		// console.log(`filePath`, filePath);
 
 		const storageRef = ref(storage, filePath);
 
-		const update = updateDoc(data, imgData, trnDoc);
-
 		// save image to storage
-		storeMedia(storageRef, imgData, update, trnId)
+		storeMedia(storageRef, imgData)
 			.then(() => {
 				// console.log(`Media stored succesfully at firebase storge and firestore`);
 				setImgData(null);
@@ -225,6 +189,49 @@ const PhotoApp = () => {
 			setImgData(null);
 		};
 	}, []);
+
+	useEffect(() => {
+		if (devices && devices.length > 0) {
+			setCameraChoice(devices[0].deviceId);
+		}
+	}, [devices]);
+
+	const videoConstraints = {
+		facingMode: facingMode,
+		deviceId: cameraChoice,
+	};
+
+	const handleDevices = React.useCallback(
+		mediaDevices => {
+			// mediaDevices.forEach(device => {
+			// 				console.log(`${device.kind}: ${device.label} id = ${device.deviceId}`);
+			// 			});
+			setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput"));
+		},
+
+		[setDevices]
+	);
+
+	React.useEffect(() => {
+		navigator.mediaDevices.enumerateDevices().then(handleDevices);
+	}, [handleDevices]);
+
+	useEffect(() => {}, [facingMode]);
+
+	const handleFacingModeChoice = e => {
+		e.preventDefault();
+		// console.log(`handleFacingModeChoice`, e.currentTarget.id);
+		switch (e.currentTarget.id) {
+			case "selfie":
+				setFacingMode("user");
+				break;
+			case "front":
+				setFacingMode({ exact: "environment" });
+				break;
+			default:
+				setFacingMode({ exact: "environment" });
+		}
+	};
 
 	return (
 		<div className={`photo-app ${openPhotoApp}`}>
@@ -280,10 +287,20 @@ const PhotoApp = () => {
 					</button>
 				</div>
 				<div className="header-subsection cameras">
-					<button>
+					<button
+						className="selfie"
+						id="selfie"
+						data-id="selfie"
+						onClick={handleFacingModeChoice}
+					>
 						<MdOutlineCameraAlt />
 					</button>
-					<button>
+					<button
+						className="front"
+						id="front"
+						data-id="front"
+						onClick={handleFacingModeChoice}
+					>
 						<BsCameraFill />
 					</button>
 				</div>
@@ -297,15 +314,36 @@ const PhotoApp = () => {
 						</>
 					) : (
 						<>
-							<Webcam width={500} height={250} ref={webcamRef} />
-							<div className="media-cat">{imageCategory}</div>
+							<Webcam
+								className="media"
+								width={434}
+								height={217}
+								ref={webcamRef}
+								videoConstraints={videoConstraints}
+								screenshotFormat="image/jpeg"
+							/>
+								<div className="media-cat">{imageCategory}</div>
 						</>
 					)}
 				</div>
 			</div>
 			<div className="footer">
-				<MediaComponent mediaData={mediaData} />
-				<MediaView />;
+				{mediaList?.length > 0 && (
+					<>
+						<MediaComponent mediaData={mediaList} />
+						<MediaView />
+					</>
+				)}
+				{isPending && (
+					<PropagateLoader
+						color="lightblue"
+						loading={isPending}
+						size={13}
+						aria-label="Loading Spinner"
+						data-testid="loader"
+					/>
+				)}
+				{mediaList === 0 && <p className="no-photos">No Photos to show</p>}
 			</div>
 		</div>
 	);
