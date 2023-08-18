@@ -182,7 +182,7 @@ const Home = () => {
 	} = useCollection("asts");
 	// console.log(`asts`, asts);
 	const updatedAstsData = updateAstsData(asts);
-	console.log(`updatedAstsData`, updatedAstsData);
+	// console.log(`updatedAstsData`, updatedAstsData);
 	const updatedMetersData = updateMetersData(asts);
 	// console.log(`updatedMetersData`, updatedMetersData);
 

@@ -14,7 +14,8 @@ const SealAuditJsx = props => {
 				astCatIndex={astCatIndex}
 			>
 				<div className="ast">
-						<div className="row-1 ast-row">
+					<div className="row-1 ast-row">
+						<div className="half-row-50-50">
 							<FormikControl
 								control="input"
 								type="text"
@@ -23,12 +24,22 @@ const SealAuditJsx = props => {
 								placeholder="Seal No"
 							/>
 							<FormikControl
+								control="button"
+								type="button"
+								label="seal no media"
+								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.astNoMedia`}
+								placeholder="Seal No Media"
+							/>
+						</div>
+						<div className="row-1 ast-row">
+							<FormikControl
 								control="input"
 								type="text"
 								label="linked meter no"
 								name={`astData[${astCat}][${astCatIndex}].trnData.linkedMeterNo`}
 								placeholder="Linked Meter No"
 							/>
+						</div>
 					</div>
 				</div>
 			</FormSectionTrnAst>

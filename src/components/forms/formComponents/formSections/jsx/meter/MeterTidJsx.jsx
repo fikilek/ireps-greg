@@ -22,7 +22,7 @@ const MeterTidJsx = props => {
 								control="select"
 								type="text"
 								label="access to keypad"
-								name={`astData[${astCat}][${astCatIndex}].trnData.accessToKeyPad.access`}
+								name={`astData[${astCat}][${astCatIndex}].trnData.accessToKeyPad`}
 								placeholder="Access To KeyPad"
 								options={formSelectOptions.yesNoOptions}
 							/>

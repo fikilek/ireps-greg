@@ -93,6 +93,7 @@ const PhotoApp = () => {
 	let mediaData = null;
 	let astId = null;
 	let astNo = null;
+	let astCat = null;
 	if (trnDoc && data) {
 		// break key apart
 		const keys = data?.field?.name
@@ -119,8 +120,10 @@ const PhotoApp = () => {
 		// TODO: find a generic way to get id and not the hard wired one as  below
 		astId = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]]?.id;
 		astNo = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astNo;
+		astCat = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astCartegory;
 		// console.log(`astId`, astId);
 		// console.log(`trnId`, trnId);
+		// console.log(`astCat`, astCat);
 
 		// get all media for the astId
 		getMediaList(`asts/${astId}`);
@@ -146,6 +149,7 @@ const PhotoApp = () => {
 					lng: location?.coordinates?.lng,
 				},
 				trnId,
+				astCat,
 			},
 		});
 	};
@@ -288,20 +292,24 @@ const PhotoApp = () => {
 				</div>
 				<div className="header-subsection cameras">
 					<button
-						className="selfie"
+						className={`selfie ${facingMode === "user" ? "active-camera" : ""}`}
 						id="selfie"
 						data-id="selfie"
 						onClick={handleFacingModeChoice}
 					>
 						<MdOutlineCameraAlt />
+						<span>Selfie</span>
 					</button>
 					<button
-						className="front"
+						className={`front ${
+							facingMode.exact === "environment" ? "active-camera" : ""
+						}`}
 						id="front"
 						data-id="front"
 						onClick={handleFacingModeChoice}
 					>
 						<BsCameraFill />
+						<span>front</span>
 					</button>
 				</div>
 			</div>
@@ -322,7 +330,7 @@ const PhotoApp = () => {
 								videoConstraints={videoConstraints}
 								screenshotFormat="image/jpeg"
 							/>
-								<div className="media-cat">{imageCategory}</div>
+							<div className="media-cat">{imageCategory}</div>
 						</>
 					)}
 				</div>
@@ -330,11 +338,11 @@ const PhotoApp = () => {
 			<div className="footer">
 				{mediaList?.length > 0 && (
 					<>
-						<MediaComponent mediaData={mediaList} />
+						<MediaComponent astId={astId} mediaData={mediaList} />
 						<MediaView />
 					</>
 				)}
-				{isPending && (
+				{/* {isPending && (
 					<PropagateLoader
 						color="lightblue"
 						loading={isPending}
@@ -342,7 +350,7 @@ const PhotoApp = () => {
 						aria-label="Loading Spinner"
 						data-testid="loader"
 					/>
-				)}
+				)} */}
 				{mediaList === 0 && <p className="no-photos">No Photos to show</p>}
 			</div>
 		</div>

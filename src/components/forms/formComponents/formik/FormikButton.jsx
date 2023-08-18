@@ -4,24 +4,9 @@ import "./FormikButton.css";
 import React, { useContext, useEffect } from "react";
 // import useModal from "../../../modals/useModal";
 import { PhotoAppContext } from "../../../../contexts/PhotoAppContext";
-import { irepsDictionary } from "../../../../utils/utils";
+import { getAstCatMediaCat, irepsDictionary } from "../../../../utils/utils";
 
-const getMediaCatName = namePath => {
-	// namePath = namePath
-	// 	.replaceAll("[", ".")
-	// 	.replaceAll("]", ".")
-	// 	.replaceAll("..", ".");
-	namePath = namePath
-		.replaceAll("[", ".")
-		.replaceAll("]", ".")
-		.replaceAll("..", ".")
-		.split(".")
-		.pop();
-	// console.log(`namePath`, namePath);
-	const mediaCatName = namePath.substring(0, namePath.lastIndexOf("Media"));
-	// console.log(`mediaCatName`,mediaCatName)
-	return mediaCatName;
-};
+
 
 const FormikButton = props => {
 	// console.log(`props`, props);
@@ -58,14 +43,13 @@ const FormikButton = props => {
 				{btnProps => {
 					// console.log(`btnProps`, btnProps);
 					const { field, meta, form } = btnProps;
-					const mediaCat = getMediaCatName(field.name);
-					// console.log(`madiaCat`, mediaCat, field.value.length)
-					// console.log(`form.values`, form.values)
+					const mediaObj = getAstCatMediaCat(field.name);
+					// console.log(`mediaObj`, mediaObj);
 					return (
 						<button className="media-cat-btn" onClick={e => handleClick(e, btnProps)}>
 							<p className="media-cat-name">{`${irepsDictionary.get(
-								mediaCat
-							)} Photos `}</p>
+								mediaObj.astCat
+							)} ${irepsDictionary.get(mediaObj.mediaCatName)} Photos `}</p>
 						</button>
 					);
 				}}

@@ -4,8 +4,8 @@ import FormikControl from "../../../formik/FormikControl";
 import FormSectionTrnAst from "../../../formSection/FormSectionTrnAst";
 
 const CbAuditJsx = props => {
-  const { ast, trn, astCat, astCatIndex } = props;
-  
+	const { ast, trn, astCat, astCatIndex } = props;
+
 	return (
 		<div>
 			{" "}
@@ -26,22 +26,31 @@ const CbAuditJsx = props => {
 								placeholder="Cb Size"
 							/>
 							<FormikControl
-								control="select"
-								type="text"
-								label="single/double pole"
-								name={`astData[${astCat}][${astCatIndex}].astData.cb.type`}
-								placeholder="Cb Type"
-								options={formSelectOptions.cbPoleOtions}
+								control="button"
+								type="button"
+								label="cb size media"
+								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.sizeMedia`}
+								placeholder="Cb Size Media"
 							/>
 						</div>
 						<div>
-							<FormikControl
-								control="input"
-								type="text"
-								label="linked meter no"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedMeter.meterNo`}
-								placeholder="Lnked Meter No"
-							/>
+							<div className="half-row-50-50">
+								<FormikControl
+									control="input"
+									type="text"
+									label="linked meter no"
+									name={`astData[${astCat}][${astCatIndex}].trnData.linkedMeter.meterNo`}
+									placeholder="Lnked Meter No"
+								/>
+								<FormikControl
+									control="select"
+									type="text"
+									label="single/double pole"
+									name={`astData[${astCat}][${astCatIndex}].astData.cb.type`}
+									placeholder="Cb Type"
+									options={formSelectOptions.cbPoleOtions}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

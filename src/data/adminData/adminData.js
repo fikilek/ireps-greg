@@ -1,6 +1,4 @@
-import { format } from "date-fns";
 import { nanoid } from "@reduxjs/toolkit";
-import { Timestamp } from "firebase/firestore";
 import { timestamp, db } from "../../firebaseConfig/fbConfig";
 
 const astNextState = {
@@ -602,8 +600,8 @@ const unpData = [
 		password: "pwd",
 		role: "superuser", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
 		state: "advance", // ['trial', 'basic', 'advance', 'guest']
-		dateCreated: format(new Date(), "yyyy-MMMM-dd HH:MM"),
-		dateUpdate: format(new Date(), "yyyy-MMMM-dd HH:MM"),
+		dateCreated: timestamp.fromDate(new Date()),
+		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,
 	},
 	{
@@ -614,8 +612,8 @@ const unpData = [
 		password: "pwd",
 		role: "manager", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
 		state: "basic", // ['trial', 'basic', 'advance', 'guest']
-		dateCreated: format(new Date(), "yyyy-MMMM-dd HH:MM"),
-		dateUpdate: format(new Date(), "yyyy-MMMM-dd HH:MM"),
+		dateCreated: timestamp.fromDate(new Date()),
+		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,
 	},
 	{
@@ -626,8 +624,8 @@ const unpData = [
 		password: "pwd",
 		role: "supervisor", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
 		state: "advance", // ['trial', 'basic', 'advance', 'guest']
-		dateCreated: format(new Date(), "yyyy-MMMM-dd HH:MM"),
-		dateUpdate: format(new Date(), "yyyy-MMMM-dd HH:MM"),
+		dateCreated: timestamp.fromDate(new Date()),
+		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,
 	},
 	{
@@ -638,8 +636,8 @@ const unpData = [
 		password: "pwd",
 		role: "fieldWorker", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
 		state: "guest", // ['trial', 'basic', 'advance', 'guest']
-		dateCreated: format(new Date(), "yyyy-MMMM-dd HH:MM"),
-		dateUpdate: format(new Date(), "yyyy-MMMM-dd HH:MM"),
+		dateCreated: timestamp.fromDate(new Date()),
+		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,
 	},
 	{
@@ -650,8 +648,8 @@ const unpData = [
 		password: "pwd",
 		role: "manager", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
 		state: "guest", // ['trial', 'basic', 'advance', 'guest']
-		dateCreated: format(new Date(), "yyyy-MMMM-dd HH:MM"),
-		dateUpdate: format(new Date(), "yyyy-MMMM-dd HH:MM"),
+		dateCreated: timestamp.fromDate(new Date()),
+		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,
 	},
 	{
@@ -662,8 +660,8 @@ const unpData = [
 		password: "pwd",
 		role: "supervisor", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
 		state: "advance", // ['trial', 'basic', 'advance', 'guest']
-		dateCreated: format(new Date("01-05-22"), "yyyy-MMMM-dd HH:MM"),
-		dateUpdate: format(new Date(), "yyyy-MMMM-dd HH:MM"),
+		dateCreated: timestamp.fromDate(new Date()),
+		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,
 	},
 ];

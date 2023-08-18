@@ -54,8 +54,7 @@
 		},
 		"erfNo": "379",
 		"metaData": {
-			"createdAtDatetime": {
-				"seconds": 1687546747,
+			"createdAtDatetime": {"seconds": 1687546747,
 				"nanoseconds": 67000000
 			},
 			"erfHistory": "",

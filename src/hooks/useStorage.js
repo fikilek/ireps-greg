@@ -164,7 +164,7 @@ const useStorage = () => {
 			if (mediaList?.length === 0) {
 				// console.log(`mediaList length zero (0)`);
 				setMediaList(list);
-				setIsPending(false)
+				// setIsPending(false)
 			} else {
 				// setMediaList([]);
 				// console.log(`mediaList length NOT zero (0)`);

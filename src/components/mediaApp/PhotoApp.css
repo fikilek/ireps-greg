@@ -61,7 +61,7 @@
 .photo-app .header .header-subsection button:hover {
   outline: 0.1rem solid rgb(121, 255, 121);
   cursor: pointer;
-  background-color: #d5ffd5b5;
+  /* background-color: #d5ffd5b5; */
 }
 
 .photo-app .body {
@@ -110,6 +110,10 @@
   /* justify-content: center; */
   align-items: center;
   padding: 2rem;
+}
+
+.photo-app .header .active-camera {
+  background-color: chartreuse;
 }
 
 

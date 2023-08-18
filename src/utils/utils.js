@@ -361,11 +361,39 @@ export const formSelectOptions = {
 	],
 };
 
+export const getAstCatMediaCat = namePath => {
+	// namePath = namePath
+	// 	.replaceAll("[", ".")
+	// 	.replaceAll("]", ".")
+	// 	.replaceAll("..", ".");
+	const astCat = namePath
+		.replaceAll("[", ".")
+		.replaceAll("]", ".")
+		.replaceAll("..", ".")
+		.split(".");
+	// .pop();
+
+	const mediaCatStr = namePath
+		.replaceAll("[", ".")
+		.replaceAll("]", ".")
+		.replaceAll("..", ".")
+		.split(".")
+		.pop();
+	// console.log(`mediaCatStr`, mediaCatStr);
+	const mediaCatName = mediaCatStr.substring(0, namePath.lastIndexOf("Media"));
+	// console.log(`mediaCatName`, mediaCatName);
+
+	const astCatMediaCat = `${astCat[1]} ${mediaCatName}`;
+	// return mediaCatName;
+	return { astCat: astCat[1], mediaCatName, astCatMediaCat };
+};
+
 export const irepsDictionary = new Map()
 
-irepsDictionary.set('astNo', 'Meter No')
-irepsDictionary.set('astNoMedia', 'Meter No')
+irepsDictionary.set('astNo', 'Ast No')
+irepsDictionary.set('astNoMedia', 'No')
 
+irepsDictionary.set('sizeMedia', "Size")
 irepsDictionary.set('insideBox', "Inside Box")
 irepsDictionary.set('insideBoxMedia', "Inside Box")
 irepsDictionary.set('keyPadMedia', 'Key Pad')
@@ -373,3 +401,6 @@ irepsDictionary.set('keyPad', 'Key Pad')
 irepsDictionary.set('asts', 'Assets')
 irepsDictionary.set('trns', 'Trsnsactions')
 irepsDictionary.set('admin', 'Users')
+irepsDictionary.set('meter', 'Meter')
+irepsDictionary.set('seal', 'Seal')
+irepsDictionary.set('cb', 'Cb')
