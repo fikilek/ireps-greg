@@ -105,7 +105,17 @@
 }
 
 .photo-app .footer {
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
+}
+
+
+@media (max-width: 700px) {
+  .photo-app .body .container video {
+    width: 400px;
+    height: 200px;
+  }
 }

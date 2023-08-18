@@ -37,7 +37,7 @@ const updateMetersData = asts => {
 	const metersPhasesArray = [
 		...new Set(metersArray.map(item => item.astData.meter.phase)),
 	];
-	console.log(`metersPhasesArray`, metersPhasesArray);
+	// console.log(`metersPhasesArray`, metersPhasesArray);
 
 	// count phase occurance of each item in the array
 	const meterPhasesArray = [];
@@ -182,7 +182,25 @@ const Home = () => {
 	} = useCollection("asts");
 	// console.log(`asts`, asts);
 	const updatedAstsData = updateAstsData(asts);
+	console.log(`updatedAstsData`, updatedAstsData);
 	const updatedMetersData = updateMetersData(asts);
+	// console.log(`updatedMetersData`, updatedMetersData);
+
+	const updatedMeterPhasesData = {
+		items: updatedMetersData.metersData.phase,
+		total: updatedMetersData.total,
+	};
+	// console.log(`updatedMeterPhasesData`, updatedMeterPhasesData);
+
+	const updatedMeterTypesData = {
+		items: updatedMetersData.metersData.type,
+		total: updatedMetersData.total,
+	};
+	// console.log(`updatedMeterTypesData`, updatedMeterTypesData);
+
+	// const { name, dcData } = updatedMetersData;
+	// const { metersData } = dcData;
+	// const { phase, type, total } = metersData;
 
 	const {
 		data: erfs,
@@ -216,7 +234,7 @@ const Home = () => {
 		<div className="home">
 			{/* <div className="home-section home-header"></div> */}
 			<div className="home-section home-body">
-				<div className="home-body-section home-body__filters">
+				{/* <div className="home-body-section home-body__filters">
 					<select id="country" onChange={handleChange} value={data.country}>
 						{municipalData.countryOptions.map(item => {
 							return (
@@ -295,7 +313,7 @@ const Home = () => {
 							}
 						})}
 					</select>
-				</div>
+				</div> */}
 				<div className="home-body-section home-body__data">
 					<DashboardCard
 						dcData={updatedErfsData}
@@ -303,7 +321,8 @@ const Home = () => {
 					/>
 					<DashboardCard dcData={updatedAstsData} name={"Assets"} />
 					<DashboardCard dcData={updatedTrnsData} name={"Transactions"} />
-					<DashboardCardMeters dcData={updatedMetersData} name={"Meters"} />
+					<DashboardCard dcData={updatedMeterPhasesData} name={"Meters - Phases"} />
+					<DashboardCard dcData={updatedMeterTypesData} name={"Meters - Types"} />
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,8 @@
+.datetime-filter {
+  display: grid;
+  font-size: 1.6rem;
+  gap: 1rem;
+  outline: 0.1rem solid;
+  padding: 1rem;
+}
+

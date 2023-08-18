@@ -86,7 +86,7 @@ const TrnDataForm = props => {
 				updatedByUser: user.displayName,
 			},
 		};
-		console.log(`newValues`, newValues);
+		// console.log(`newValues`, newValues);
 
 		if (newValues.id) {
 			// console.log(`newValues id : [${newValues?.id}]`);
@@ -121,7 +121,7 @@ const TrnDataForm = props => {
 
 	const handleOnChange = e => {
 		const { name, value } = e.target;
-		console.log(`name`, name);
+		// console.log(`name`, name);
 		fieldValidation(name, value);
 	};
 

@@ -95,7 +95,7 @@ const FormikGeoButton = props => {
 					// console.log(`form.values`, form.values)
 					return (
 						<button className="geo-btn" onClick={e => handleClick(e, props)}>
-							<p className="geo-btn-p">{field?.value}</p>
+							<p className="geo-btn-p">{field?.value} 11</p>
 						</button>
 					);
 				}}

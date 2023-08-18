@@ -32,3 +32,10 @@
 .modal-body {}
 
 .modal-footer {}
+
+@media (max-width: 700px) {
+	.modal-container {
+		position: relative;
+		min-height: 100vh;
+	}
+}

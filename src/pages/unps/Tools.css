@@ -1,0 +1,10 @@
+
+
+.tools table {
+  table-layout:fixed;
+  width: 100%;
+}
+
+.tools table th {
+  width: 33%;
+}

@@ -12,7 +12,7 @@ export const fsTrnData = {
 			keyPad: {
 				isThereKeyPad: "",
 				serialNo: "",
-				kyPadPhotos: ["Photo 1 url", "Photo 2 url"],
+				kyPadPhotos: [],
 			},
 			astAdr: {
 				adr: "",
@@ -25,7 +25,7 @@ export const fsTrnData = {
 				phase1: "",
 				phase2: "",
 				phase3: "",
-				voltageReadingPhotos: ["Photo 1 url", "Photo 2 url"],
+				voltageReadingPhotos: [],
 			},
 			linkedCb: {
 				isThereCb: "",
@@ -38,7 +38,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1", "Photo 2"],
+			photos: [],
 		},
 
 		commissioningData: {
@@ -49,25 +49,21 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		auditData: {
 			location: {
 				premises: "", //inside/outside
-				insideBox: {
-					astInsideBox: "",
-					insideBoxMedia: [],
-				}, //yes/no
+				insideBox: '', //yes/no, photo needed
 				exactLocation: "", //['pole top', pole bottom', 'stand alone', 'other']
 			},
 			serviceConnection: {
 				connection: "",
 			},
 			keyPad: {
-				isThereKeyPad: "",
+				isThereKeyPad: "", //photo needed
 				keyPadAccess: "",
-				keyPadMedia: [],
 				noAccessReasons: "",
 			},
 			astAdr: {
@@ -127,7 +123,7 @@ export const fsTrnData = {
 				confirmTrn: "not done",
 			},
 
-			photos: ["photo1", "photo2"],
+			photos: [],
 		},
 
 		disconnectionData: {
@@ -150,7 +146,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["photo1", "photo2"],
+			photos: [],
 		},
 
 		reconnectionData: {
@@ -173,7 +169,26 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["photo1", "photo2"],
+			photos: [],
+		},
+
+		tidData: {
+			accessToKeyPad: '', //photo needed
+			rolloverDone: {
+				done: "",
+				comments: "",
+			},
+			beforeTidRollover: {
+				status: "",
+				krn: "",
+			},
+			afterTidRollover: {
+				status: "",
+				krn: "",
+			},
+			confirmations: {
+				confirmTrn: "not done",
+			},
 		},
 	},
 
@@ -198,7 +213,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		commissioningData: {
@@ -207,7 +222,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		auditData: {
@@ -230,7 +245,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		inspectionData: {
@@ -249,7 +264,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		commissioningData: {
@@ -259,7 +274,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		auditData: {
@@ -267,7 +282,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		inspectionData: {
@@ -277,7 +292,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 	},
 
@@ -302,7 +317,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Box Photo 1", "Box Photo 2", "Box Photo 3"],
+			photos: [],
 		},
 
 		commissioningData: {
@@ -310,7 +325,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		auditData: {
@@ -333,7 +348,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Box Photo 1", "Box Photo 2", "Box Photo 3"],
+			photos: [],
 		},
 
 		inspectionData: {
@@ -355,7 +370,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["photo1", "photo2", "photo3"],
+			photos: [],
 		},
 	},
 
@@ -374,7 +389,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		commissioningData: {
@@ -382,7 +397,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		auditData: {
@@ -399,7 +414,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["Photo 1 url", "Photo 2 url"],
+			photos: [],
 		},
 
 		inspectionData: {
@@ -409,7 +424,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
-			photos: ["photos3", "photos2", "photos1"],
+			photos: [],
 		},
 	},
 };

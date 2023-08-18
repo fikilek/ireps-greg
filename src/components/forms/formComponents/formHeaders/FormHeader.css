@@ -1,11 +1,9 @@
 .form-container .form-header {
   display: grid;
-  grid-template-columns: 90% 10%;
+  grid-template-columns: 1fr 1fr;
   margin-bottom: 2rem;
   font-size: 1.3rem;
-  padding: 1rem;
-  border-radius: 0.6rem;
-  border: 1px solid lightgray;
+  gap: 1rem;
 }
 
 .form-container .form-header span {
@@ -15,14 +13,19 @@
 
 .form-container .form-header .header-line1,
 .form-container .form-header .header-line2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-container .form-header .header-left,
+.form-container .form-header .header-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 2rem;
-  /* height: 2rem; */
+  border-radius: 0.6rem;
+  border: 1px solid lightgray;
+  padding: 1rem;
 }
-
-
 
 .form-container .form-header button {
   background-color: #dae4fa99;
@@ -98,4 +101,10 @@
   justify-content: center;
   align-items: center;
   height: 3rem;
+}
+
+@media (max-width: 700px) {
+  .form-container .form-header {
+    grid-template-columns: 1fr;
+  }
 }

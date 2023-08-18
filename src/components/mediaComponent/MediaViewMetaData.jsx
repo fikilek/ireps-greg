@@ -2,7 +2,7 @@ import React from "react";
 import "./MediaViewMetaData.css";
 
 const MediaViewMetaData = (props) => {
-  console.log(`props`, props);
+  // console.log(`props`, props);
   const { mediaViewData } = props
 	return (
 		<div className="media-view-metadata">

@@ -8,6 +8,8 @@
 
 .media-component img {
   margin: 1rem;
+  width: 7rem;
+  height: 7rem;
 }
 
 .media-component .media-name {

@@ -43,6 +43,7 @@ const Table = ({ rowData, columnDefs, setSelectedRows }) => {
 				onSelectionChanged={onSelectionChanged}
 				tooltipShowDelay={0}
 				tooltipHideDelay={90000}
+				pagination={true}
 			></AgGridReact>
 		</div>
 	);

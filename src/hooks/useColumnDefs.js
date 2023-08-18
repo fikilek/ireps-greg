@@ -2030,7 +2030,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Transactions form Erfs table fields
+	// Trns form Erfs table fields
 	const trnsFromErfsTableFields = [
 		{
 			field: "erfData.erfNo",
@@ -2091,7 +2091,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Transactions form fields
+	// Trns form fields
 	const trnsTableFields = [
 		{
 			field: "id",
@@ -2286,7 +2286,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Transactions form fields
+	// Trns form fields
 	const trnsForAstTableFields = [
 		{
 			field: "trnMetaData.updatedByUser",
@@ -2318,7 +2318,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// feeder form fields
+	// Feeder form fields
 	const trnsFeederInstallationFields = [
 		{
 			headerName: "Feeder Installation",

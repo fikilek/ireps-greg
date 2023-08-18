@@ -103,7 +103,7 @@ export const getPoStatus = po => {
 	const poReceived = po.poData.poGrv.grvReceiver.grvReceiverUid;
 	const poWitnessed = po.poData.poGrv.grvWitness.grvWitnessUid;
 	if (!poApproved && !poReceived && !poWitnessed) return "created";
-	if (poApproved && !poReceived &&  !poWitnessed) return "approved";
+	if (poApproved && !poReceived && !poWitnessed) return "approved";
 	if (poApproved && poReceived && !poWitnessed) return "received";
 	if (poApproved && poReceived && poWitnessed) return "witnessed";
 	return null;
@@ -129,6 +129,30 @@ export const capitalize = string => {
 // ******************************************************
 
 export const formSelectOptions = {
+
+	tidRolloverStatusOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "status1", value: "status1" },
+		{ key: "status2", value: "status2" },
+		{ key: "status3", value: "status3" },
+		{ key: "status4", value: "status4" },
+	],
+	tidRolloverKrnOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "krn1", value: "krn1" },
+		{ key: "krn2", value: "krn2" },
+		{ key: "krn3", value: "krn3" },
+		{ key: "krn4", value: "krn4" },
+	],
+
+	rolloverDoneCommentOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "comment1", value: "comment1" },
+		{ key: "comment2", value: "comment2" },
+		{ key: "comment3", value: "comment3" },
+		{ key: "comment4", value: "comment4" },
+	],
+
 	keyPadNoAccessOptions: [
 		{ key: "choose", value: "choose" },
 		{ key: "gate locked", value: "gate locked" },
@@ -336,3 +360,16 @@ export const formSelectOptions = {
 		{ key: "stand alone", value: "stand alone" },
 	],
 };
+
+export const irepsDictionary = new Map()
+
+irepsDictionary.set('astNo', 'Meter No')
+irepsDictionary.set('astNoMedia', 'Meter No')
+
+irepsDictionary.set('insideBox', "Inside Box")
+irepsDictionary.set('insideBoxMedia', "Inside Box")
+irepsDictionary.set('keyPadMedia', 'Key Pad')
+irepsDictionary.set('keyPad', 'Key Pad')
+irepsDictionary.set('asts', 'Assets')
+irepsDictionary.set('trns', 'Trsnsactions')
+irepsDictionary.set('admin', 'Users')

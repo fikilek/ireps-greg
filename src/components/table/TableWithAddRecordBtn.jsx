@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
 import useCollection from "../../hooks/useCollection";
 import { useColumnDefs } from "../../hooks/useColumnDefs";
+import { irepsDictionary } from "../../utils/utils";
 import Table from "./Table";
 import "./Table.css";
 import TableAddRecordBtn from "./tableBtns/TableAddRecordBtn";
@@ -12,6 +13,7 @@ const showTableAddRecordBtn = (ml1, ml2, ml3, nfd, fn) => {
 
 // Suppliers is a page component
 const TableWithAddRecordBtn = props => {
+	// console.log(`props`, props)
 	const { ml1, tn, ml3, nfd, fn } = props;
 
 	const {
@@ -38,13 +40,14 @@ const TableWithAddRecordBtn = props => {
 		<div className={`table ${tn}`}>
 			<div className="table-header">
 				<div className="th-menu-levels">
-					<p>{`${ml1} : ${tn} : ${ml3}`}</p>
+					{/* <p>{`${ml1} : ${tn} : ${ml3}`}</p> */}
+					<p>{`${irepsDictionary.get(ml1)} `}</p>
 				</div>
-				<div className="views">
+				{/* <div className="views">
 					<button className="views-btn table-views">Table Views</button>
 					<button className="views-btn views map-view">Map Views</button>
 					<button className="views-btn views tree-view">Tree Views</button>
-				</div>
+				</div> */}
 				{/* <div className="trn-selection">
 					<button>NT</button>
 					<select></select>

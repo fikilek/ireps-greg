@@ -3,7 +3,7 @@ header nav {
 	align-items: center;
 	height: 100%;
 	gap: 1rem;
-	margin: 0 1rem;
+	/* margin: 0 1rem; */
 }
 
 header nav .nav-list {
@@ -25,7 +25,7 @@ header nav .nav-list a {
 	font-size: 1.4rem;
 	text-transform: uppercase;
 	transition: color 650ms;
-	border-radius: 1rem;
+	/* border-radius: 1rem; */
 	text-decoration: none;
 }
 
@@ -67,7 +67,7 @@ header nav .nav-list a:hover {
 }
 
 header nav .nav-list li:hover>.sub-menu {
-	top: 5rem;
+	top: 3.75rem;
 	opacity: 1;
 	visibility: visible;
 }
@@ -83,8 +83,8 @@ header nav .nav-list-right li.nav-list-btn-signedin-user div a {
 	outline: 1px solid grey;
 	transition: background-color 650ms;
 	width: 4rem;
-	height: 4rem;
-	border-radius: 50%;
+	/* height: 4rem; */
+	/* border-radius: 50%; */
 }
 
 header nav .nav-list-right li.nav-list-btn-signedin-user div {

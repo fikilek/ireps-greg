@@ -30,7 +30,8 @@ import CbInspectionJsx from "./jsx/cb/CbInspectionJsx";
 import MeterInspectionJsx from "./jsx/meter/MeterInspectionJsx";
 import BoxInspectionJsx from "./jsx/box/BoxInspectionJsx";
 import PoleInspectionJsx from "./jsx/pole/PoleInspectionJsx";
-import FormikControl from "../formik/FormikControl";
+// import FormikControl from "../formik/FormikControl";
+import MeterTidJsx from "./jsx/meter/MeterTidJsx";
 
 
 export const formSects = {
@@ -142,6 +143,22 @@ export const formSects = {
 			jsx: (ast, trn, astCat, astCatIndex, trnType) => {
 				return (
 					<MeterVendingJsx
+						ast={ast}
+						astCat={astCat}
+						astCatIndex={astCatIndex}
+						trn={trn}
+						trnType={trnType}
+					/>
+				);
+			},
+		},
+
+		tid: {
+			trnData: fsTrnData.meter.tidData,
+			trnValidationData: fsValidationData.meter.tidValidationData,
+			jsx: (ast, trn, astCat, astCatIndex, trnType) => {
+				return (
+					<MeterTidJsx
 						ast={ast}
 						astCat={astCat}
 						astCatIndex={astCatIndex}

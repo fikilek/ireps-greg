@@ -14,10 +14,15 @@ import {
 	DataF,
 } from "@react-google-maps/api";
 import Geocode from "react-geocode";
+import { ErfsContext } from "../../contexts/ErfsContext";
+import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
 
 const GeocodingApp = () => {
 	const { gcData, setGcData } = useContext(GeocodingContext);
 	// console.log(`gcData`, gcData);
+
+	const { erfs } = useContext(ErfsContext);
+	// console.log(`erfs`, erfs);
 
 	// console.log(
 	// 	`lat`,
@@ -65,6 +70,8 @@ const GeocodingApp = () => {
 	// console.log(`data`, data);
 	const openGeocodingApp = isOpened ? "show-gc-app" : "hide-gc-app";
 
+	// useEffect(() => {}, []);
+
 	const closeGeocodingApp = e => {
 		e.preventDefault();
 		setGcData({
@@ -102,7 +109,7 @@ const GeocodingApp = () => {
 		setMeterGps(newMeterGps);
 
 		if (Geocode) {
-			console.log(`Geocode`, Geocode);
+			// console.log(`Geocode`, Geocode);
 			// Geocode.setApiKey("AIzaSyCj8IfmDEGxDWEXesDKBanx6HDp_1jxluI");
 			Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
@@ -137,9 +144,9 @@ const GeocodingApp = () => {
 				// Geocode.fromLatLng(e.latLng.lat(), e.latLng.lng()).then(
 				// Geocode.fromLatLng(e.latLng.lat(), e.latLng.lat()).then(
 				response => {
-					console.log(`response`, response);
+					// console.log(`response`, response);
 					const address = response.results[0].formatted_address;
-					console.log(address);
+					// console.log(address);
 					setSetAddress(address);
 					gcData.data.form.setFieldValue(
 						"astData[meter][0].trnData.astAdr.adr",
@@ -173,34 +180,44 @@ const GeocodingApp = () => {
 	}, [gcData]);
 
 	useEffect(() => {
+		// console.log(`userGps`, userGps);
 		gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lat
 			? setMeterGps({
 					lat: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lat,
 					lng: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lng,
 			  })
 			: setMeterGps({
-					// lat: userGps?.coordinates.lat,
-					// lat: userGps?.coordinates.lng,
-					lat: -27.42526206328501,
-					lng: 30.81783694804052,
+					lat: userGps?.coordinates?.lat,
+					lng: userGps?.coordinates?.lng,
+					// lat: -27.42526206328501,
+					// lng: 30.81783694804052,
 			  });
-	}, [userGps]);
+	}, [userGps, gcData]);
+
+	useEffect(() => {
+		if (map) {
+			map.data.loadGeoJson(edumbe);
+			map.data.setStyle({
+				fillOpacity: 0.0,
+			});
+		}
+	}, [map]);
 
 	return (
 		<div className={`geocoding-app ${openGeocodingApp}`}>
 			<div className="header">
-				<div className="header-subsection name">
+				<div className="header-subsection header-name">
 					<h3 className="data-emphasis">Meter Address</h3>
 				</div>
-				<div className="header-subsection name">
-					<button>{address}</button>
+				<div className="header-subsection address">
+					<button>{address ? address : "No Address"}</button>
 				</div>
-				<div className="header-subsection id">
+				<div className="header-subsection ast-no">
 					<h3 className="data-emphasis">
 						{gcData?.data?.form?.values?.astData?.meter[0].astData.astNo}{" "}
 					</h3>
 				</div>
-				<div className="header-subsection close">
+				<div className="header-subsection geocoding-app-close-btn">
 					<button onClick={closeGeocodingApp}>X</button>
 				</div>
 			</div>
@@ -217,8 +234,25 @@ const GeocodingApp = () => {
 							zoom={18}
 							onUnmount={onUnmount}
 						>
+							{erfs &&
+								erfs.map(erf => {
+									// console.log(`erf`, erf)
+									const { erfNo, address, id } = erf;
+									const { gps } = address;
+									const { latitude, longitude } = gps;
+									const lat = latitude ? latitude : 0;
+									const lng = longitude ? longitude : 0;
+									return (
+										<MarkerF
+											key={id}
+											position={{ lat, lng }}
+											label={`${erfNo}`}
+										></MarkerF>
+									);
+								})}
+
 							<MarkerF
-								position={ meterGps }
+								position={meterGps}
 								// label={`${center.lat} ${center.lng}`}
 								icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
 								draggable={true}

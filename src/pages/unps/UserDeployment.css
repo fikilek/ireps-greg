@@ -1,0 +1,14 @@
+
+
+.user-deployment .user-deployment-body {
+  display: grid;
+  font-size: 1.6rem;
+  gap: 1rem;
+  outline: 0.1rem solid;
+  padding: 1rem;
+}
+
+.user-deployment .user-deployment-body .deployment-item {
+  outline: 0.1rem solid;
+  padding: 1rem;
+}

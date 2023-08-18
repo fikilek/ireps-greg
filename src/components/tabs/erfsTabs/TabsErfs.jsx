@@ -3,7 +3,7 @@ import { timestamp } from "../../../firebaseConfig/fbConfig";
 import useAuthContext from "../../../hooks/useAuthContext";
 import useModal from "../../../hooks/useModal";
 import { formSects } from "../../forms/formComponents/formSections/formSects";
-import "./tabsErfs.css";
+import "./TabsErfs.css";
 import TabsErfsMap from "./tabsMap/TabsErfsMap";
 import TabsErfsTable from "./tabsTable/TabsErfsTable";
 import TabsErfsTree from "./tabsTree/TabsErfsTree";
@@ -163,10 +163,10 @@ const trnOptions = [
 	{ key: "choose", value: "choose" },
 	{ key: "audit", value: "audit" },
 	{ key: "inspection", value: "inspection" },
-	{ key: "installation", value: "installation" },
+	// { key: "installation", value: "installation" },
 ];
 
-const TabsErfs = (props) => {
+const TabsErfs = props => {
 	// console.log(`props`, props)
 
 	const [trnType, setTrnType] = useState("");
@@ -209,18 +209,22 @@ const TabsErfs = (props) => {
 		<div className="tabs">
 			<div className="tabs-header">
 				<div className="tab-title">
-					<p>Erfs</p>
+					<p>Erfs / Stands Table</p>
 				</div>
 
-				<div>
+				<div className="new-trn-div">
 					{" "}
 					<button
-						disabled={trnType === "choose" ? true : false}
+						className="new-trn new-trn-btn"
+						disabled={
+							trnType === "choose" || selectedRows.length === 0 ? true : false
+						}
 						onClick={createNewTrns}
 					>
 						New Transaction
 					</button>{" "}
 					<select
+						className="new-trn new-trn-select"
 						value={trnType}
 						onChange={e => setTrnType(e.target.value)}
 						placeholder="Store Name"
@@ -256,7 +260,7 @@ const TabsErfs = (props) => {
 					>
 						Map
 					</div>
-					<div
+					{/* <div
 						className={`tabs-header-tree ${
 							active === "tabs-tree" ? "tab-active" : ""
 						} tabs-tab`}
@@ -264,7 +268,7 @@ const TabsErfs = (props) => {
 						onClick={handleTabClick}
 					>
 						Tree
-					</div>
+					</div> */}
 				</div>
 
 				{/* <div className="tab-name">{ml1}</div> */}
@@ -292,7 +296,7 @@ const TabsErfs = (props) => {
 					} `}
 					id="tabs-tree"
 				>
-					<TabsErfsTree {...props} />
+					{/* <TabsErfsTree {...props} /> */}
 				</div>
 			</div>
 		</div>

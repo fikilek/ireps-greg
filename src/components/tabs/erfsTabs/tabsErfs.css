@@ -19,15 +19,23 @@
 .tabs .tabs-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
   row-gap: 2rem;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  background-color: khaki;
+  height: 3rem;
+  padding: 0 1rem;
 }
 
 .tabs .tabs-header .tabs-btns {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   row-gap: 2rem;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.tabs .new-trn {
+  font-size: 1.6rem;
 }
 
 .tabs .tabs-body {

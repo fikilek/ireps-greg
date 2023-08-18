@@ -28,7 +28,7 @@ const MeterAuditJsx = props => {
 								control="button"
 								type="button"
 								label="Mn Media"
-								name={`astData[${astCat}][${astCatIndex}].astData.astNoMedia`}
+								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.astNoMedia`}
 								placeholder="Mn Media"
 							/>
 						</div>
@@ -96,7 +96,7 @@ const MeterAuditJsx = props => {
 								control="select"
 								type="text"
 								label="inside box?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.location.insideBox.astInsideBox`}
+								name={`astData[${astCat}][${astCatIndex}].trnData.location.insideBox`}
 								placeholder="Inside Box"
 								options={formSelectOptions.yesNoOptions}
 							/>
@@ -106,7 +106,7 @@ const MeterAuditJsx = props => {
 								control="button"
 								type="button"
 								label="inside box media"
-								name={`astData[${astCat}][${astCatIndex}].trnData.location.insideBox.insideBoxMedia`}
+								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.insideBoxMedia`}
 								placeholder="Insie Box Media"
 							/>
 						</div>
@@ -176,7 +176,7 @@ const MeterAuditJsx = props => {
 								control="button"
 								type="button"
 								label="keypad media"
-								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.keyPadMedia`}
+								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.keyPadMedia`}
 								placeholder="Keypad Media"
 							/>
 							<FormikControl

@@ -7,10 +7,17 @@ import { ClipLoader, PropagateLoader } from "react-spinners";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import useModal from "../../hooks/useModal";
 import { deleteObject, ref } from "firebase/storage";
+import { irepsDictionary } from "../../utils/utils";
 
 const MediaView = () => {
 	const { mediaViewData, setMediaViewData } = useContext(MediaViewContext);
 	// console.log(`mediaViewData`, mediaViewData);
+
+	// get date cteated
+	const name = mediaViewData?.metaData?.name;
+	// console.log(`name`, name)
+	const nameArray = name?.split("_");
+	// console.log(`nameArray`, nameArray);
 
 	const { closeModal } = useModal();
 
@@ -102,13 +109,13 @@ const MediaView = () => {
 			<div className="media-view-img">
 				<img src={mediaViewData?.url} alt="media view" />
 				<div className="media-view-metadata">
-					<p>{mediaViewData?.metaData.mediaCategory}</p>
-					<p>{mediaViewData?.metaData.createdAtDatetime}</p>
+					<p>{irepsDictionary.get(mediaViewData?.metaData.customMetadata.mediaCategory)}</p>
+					<p>{nameArray && `${nameArray[1]} : ${nameArray[2]} `}</p>
 					<p>
-						{mediaViewData?.metaData.createdAtLocation.lat} /{" "}
-						{mediaViewData?.metaData.createdAtLocation.lng}
+						{mediaViewData?.metaData.customMetadata.lat} /{" "}
+						{mediaViewData?.metaData.customMetadata.lng}
 					</p>
-					<p>{mediaViewData?.metaData.createdByUser}</p>
+					<p>{mediaViewData?.metaData.customMetadata.createdByUser}</p>
 				</div>
 			</div>
 		</div>

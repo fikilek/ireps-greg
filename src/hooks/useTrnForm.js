@@ -184,7 +184,7 @@ const trnFormValidationReducer = (state, action) => {
 };
 
 export const useTrnForm = (trn, setTrn) => {
-	console.log(`trn`, trn);
+	// console.log(`trn`, trn);
 	const alreadyRun = useRef(false);
 	// console.log(`alreadyRun`, alreadyRun);
 
@@ -342,6 +342,21 @@ export const useTrnForm = (trn, setTrn) => {
 							trnData: formSects.meter.reconnection.trnData,
 							trnValidationData: formSects.meter.disconnection.trnValidationData,
 							jsx: formSects.meter.reconnection.jsx(
+								ast,
+								trn,
+								astCat,
+								astCatIndex,
+								trnType
+							),
+						};
+
+					case "tid":
+						return {
+							astCat,
+							astCatIndex,
+							trnData: formSects.meter.tid.trnData,
+							trnValidationData: formSects.meter.tid.trnValidationData,
+							jsx: formSects.meter.tid.jsx(
 								ast,
 								trn,
 								astCat,

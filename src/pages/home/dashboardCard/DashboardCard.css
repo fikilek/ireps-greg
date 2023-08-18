@@ -21,7 +21,7 @@
 .dashboard-card .body {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   max-height: 27rem;
 }
 
@@ -35,7 +35,7 @@
 
 .dashboard-card .body .line1 .total {
   border: 0.1rem solid;
-  border-radius: 5%;
+  /* border-radius: 5%; */
   font-size: 1.3rem;
   margin: 1rem;
   text-align: center;
@@ -50,11 +50,11 @@
 }
 
 .dashboard-card .body .line1 .total .number {
-  font-size: 4rem
+  font-size: 10rem
 }
 
 .dashboard-card .body .line1 .chart {
-  width: 14em;
+  /* width: 14em; */
 }
 
 .dashboard-card .body .line2 {

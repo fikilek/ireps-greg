@@ -2,8 +2,6 @@
 
 const trnComObj = require("./trnComObj");
 
-require("firebase-functions/logger/compat");
-
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { getFirestore, Timestamp } = require("firebase-admin/firestore");
@@ -19,25 +17,25 @@ const db = getFirestore();
 // 	return collectionCount;
 // };
 
-exports.createSpl = functions.firestore
-	.document("suppliers/{userId}")
-	.onCreate((snap, context) => {
-		const splRef = admin.firestore().collection("suppliers");
-		splRef
-			.get()
-			.then(async querySnapshot => {
-				const collectionSize = querySnapshot.size;
-				// functions.logger.log(`collectionSize:`, collectionSize);
-				// TODO: fix the bug so that the Po invoice number counting srarts from 1 and not 2
-				const docRef = snap.ref;
-				await docRef.update({ splNo: collectionSize });
-				// console.log(`docRef`, docRef)
-				// console.log(`updatedPoDoc`, updatedPoDoc);
-			})
-			.catch(err => {
-				console.log("Error getting documents:", err);
-			});
-	});
+// exports.createSpl = functions.firestore
+// 	.document("suppliers/{userId}")
+// 	.onCreate((snap, context) => {
+// 		const splRef = admin.firestore().collection("suppliers");
+// 		splRef
+// 			.get()
+// 			.then(async querySnapshot => {
+// 				const collectionSize = querySnapshot.size;
+// 				// functions.logger.log(`collectionSize:`, collectionSize);
+// 				// TODO: fix the bug so that the Po invoice number counting srarts from 1 and not 2
+// 				const docRef = snap.ref;
+// 				await docRef.update({ splNo: collectionSize });
+// 				// console.log(`docRef`, docRef)
+// 				// console.log(`updatedPoDoc`, updatedPoDoc);
+// 			})
+// 			.catch(err => {
+// 				console.log("Error getting documents:", err);
+// 			});
+// 	});
 
 exports.createPo = functions.firestore
 	.document("pos/{userId}")
@@ -324,8 +322,8 @@ const updateErf = (trnAfter, ast, updatingObj) => {
 			return `result of updatedErfDocWithAstsData: ${result}`;
 		})
 		.catch(err => {
-			console.log(`error updating Erf`, err)
-		})
+			console.log(`error updating Erf`, err);
+		});
 };
 
 const updateTrnWithNextState = (trnAfter, nextTrnState, nextAstsState) => {
@@ -367,8 +365,8 @@ const getNewTrnCommissioning = trnAfter => {
 
 const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	// get reference to the ast to update
-	console.log(`ast`, ast)
-	console.log(`ast.astid`, ast.astid)
+	console.log(`ast`, ast);
+	console.log(`ast.astid`, ast.astid);
 	const astDocRef = db.collection("asts").doc(ast.astId);
 	console.log(`astDocRef`, astDocRef);
 
@@ -390,7 +388,7 @@ const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 			console.log(`nextState`, nextState);
 			console.log(`trnAfter.metaData.trnType`, trnAfter.metaData.trnType);
 
-			if (astCartegory === "meter" && astState === "disconnected" ) {
+			if (astCartegory === "meter" && astState === "disconnected") {
 				if (trnAfter.metaData.trnType === "reconnection") {
 					astDocRef
 						.update({
@@ -422,7 +420,7 @@ const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 				}
 			} else {
 				// ast is NOT a meter  - update the ast state
-				console.log(`Update ast `, ast)
+				console.log(`Update ast `, ast);
 				astDocRef
 					.update({
 						"astData.astState": nextState,
@@ -471,7 +469,10 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	console.log(`newAst`, newAst);
 
 	// add the new ast to the asts collection
-	db.collection("asts").doc(ast.astId).set(newAst)
+	db
+		.collection("asts")
+		.doc(ast.astId)
+		.set(newAst)
 		.then(docRef => {
 			console.log("Document added with ID: ", docRef.id);
 			return `Document added with ID: ${docRef.id}`;
@@ -684,7 +685,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 			// iterate through astsInTrn, create new asts and update each to a 'field' state.
 			astsInTrn &&
 				astsInTrn.forEach(ast => {
-					console.log(`ast - line 679`, ast)
+					console.log(`ast - line 679`, ast);
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
 
@@ -702,12 +703,12 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 		if (
 			// previousTrnState === "draft" &&
 			currentTrnState === "valid" &&
-			trnType === "inspection"
+			(trnType === "inspection" || trnType === "tid")
 		) {
 			console.log(`trns ${trnType} update`);
 			// 1. Send notifications to all who should receive notificatons on the state transition of trn
 
-			// Step 2. update all asts in the trn document to the the 'service' state as they fall in that state after valid submsion of inspection trn
+			// Step 2. update all asts in the trn document to the the 'service' state as they fall in that state after valid submsion of inspection or tid trn
 			// - next trnState is 'submited
 			// - next state of eash ast is 'service'
 			updateTrnWithNextState(trnAfter, "submited", "service");
@@ -809,6 +810,41 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 				})
 			);
 		}
+
+		// if (
+		// 	// previousTrnState === "draft" &&
+		// 	currentTrnState === "valid" &&
+		// 	trnType === "tid"
+		// ) {
+		// 	console.log(`trns ${trnType} update`);
+		// 	// 1. Send notifications to all who should receive notificatons on the state transition of trn
+
+		// 	// Step 2. update all asts in the trn document to the the 'service' state as they fall in that state after valid submsion of inspection trn
+		// 	// - next trnState is 'submited
+		// 	// - next state of eash ast is 'service'
+		// 	updateTrnWithNextState(trnAfter, "submited", "service");
+
+		// 	// iterate through astsInTrn, on each ast id, update ast to a 'field' state.
+		// 	return (
+		// 		astsInTrn &&
+		// 		astsInTrn.forEach(ast => {
+		// 			// console.log(`ast`, ast);
+
+		// 			// get updating object
+		// 			const updatingObj = getUpdatingObj(trnAfter, ast);
+		// 			console.log(`updatingObj`, updatingObj);
+
+		// 			// update ast
+		// 			updateAst(trnAfter, ast, "service", updatingObj);
+
+		// 			// update erf
+		// 			updateErf(trnAfter, ast, {
+		// 				...updatingObj,
+		// 				astData: ast.trnObject.astData,
+		// 			});
+		// 		})
+		// 	);
+		// }
 
 		if (
 			// previousTrnState === "draft" &&

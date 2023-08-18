@@ -18,7 +18,7 @@ const SignedOutMenu = () => {
 		// console.log(`nav-list clicked : menuStatus : ${menuStatus}` )
 		if (menuStatus) {
 			// console.log(`about to change menyStatus`)
-			setMenuStatus(false);
+			setMenuStatus(true);
 			// console.log(`menuStatus changed to : ${menuStatus}`)
 		}
 	};

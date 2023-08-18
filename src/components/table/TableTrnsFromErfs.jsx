@@ -11,42 +11,44 @@ import TableTrns from "./TableTrns";
 import { formSects } from "../forms/formComponents/formSections/formSects";
 import { nanoid } from "@reduxjs/toolkit";
 
-const trnAstsObjects = {
-	meter: [
-		{
-			astData: { ...formSects.meter.audit.astData },
-			id: nanoid(),
-			trnData: { ...formSects.meter.audit.trnData },
-		},
-	],
-	cb: [
-		{
-			astData: { ...formSects.cb.audit.astData },
-			id: nanoid(),
-			trnData: { ...formSects.cb.audit.trnData },
-		},
-	],
-	seal: [
-		{
-			astData: { ...formSects.seal.audit.astData },
-			id: nanoid(),
-			trnData: { ...formSects.seal.audit.trnData },
-		},
-	],
-	box: [
-		{
-			astData: { ...formSects.box.audit.astData },
-			id: nanoid(),
-			trnData: { ...formSects.box.audit.trnData },
-		},
-	],
-	pole: [
-		{
-			astData: { ...formSects.pole.audit.astData },
-			id: nanoid(),
-			trnData: { ...formSects.pole.audit.trnData },
-		},
-	],
+const createNewTrnObj = () => {
+	return {
+		meter: [
+			{
+				astData: { ...formSects.meter.audit.astData },
+				id: nanoid(),
+				trnData: { ...formSects.meter.audit.trnData },
+			},
+		],
+		cb: [
+			{
+				astData: { ...formSects.cb.audit.astData },
+				id: nanoid(),
+				trnData: { ...formSects.cb.audit.trnData },
+			},
+		],
+		seal: [
+			{
+				astData: { ...formSects.seal.audit.astData },
+				id: nanoid(),
+				trnData: { ...formSects.seal.audit.trnData },
+			},
+		],
+		// box: [
+		// 	{
+		// 		astData: { ...formSects.box.audit.astData },
+		// 		id: nanoid(),
+		// 		trnData: { ...formSects.box.audit.trnData },
+		// 	},
+		// ],
+		// pole: [
+		// 	{
+		// 		astData: { ...formSects.pole.audit.astData },
+		// 		id: nanoid(),
+		// 		trnData: { ...formSects.pole.audit.trnData },
+		// 	},
+		// ],
+	};
 };
 
 // Suppliers is a page component
@@ -64,7 +66,7 @@ const TableTrnsFromErfs = props => {
 			newTrnsArray.map(trn => {
 				return {
 					...trn,
-					astData: trnAstsObjects,
+					astData: createNewTrnObj(),
 				};
 			});
 	}
@@ -96,19 +98,19 @@ const TableTrnsFromErfs = props => {
 		<div className={`table new-trns-from-erfs`}>
 			<div className="table-header">
 				<div className="th-menu-levels">
-					<p>New Transactions from Erfs</p>
+					<p>
+						New <span className="data-emphasis">{trnType}</span> Transaction(s) from
+						Erfs
+					</p>
 				</div>
-				<div className="trns-name">
-					<p>{trnType}</p>
+				<div className="new-trns-btn-wrapper">
+					<button onClick={handleSubmit}>submit</button>
 				</div>
-				<button onClick={() => closeModal()}>
+				<button onClick={() => closeModal()} className="close-modal-btn">
 					<MdClose />
 				</button>
 			</div>
 			<TableTrns rowData={newTrnsArray} columnDefs={columnDefs} />
-			<div className="new-trns-btn-wrapper">
-				<button onClick={handleSubmit}>submit</button>
-			</div>
 		</div>
 	);
 };

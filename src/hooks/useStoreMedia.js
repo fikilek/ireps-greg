@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { getDownloadURL, uploadString } from "firebase/storage";
-import { useFirestore } from "./useFirestore";
 
 const useStoreMedia = () => {
 	// console.log(`store media running`);
@@ -8,22 +7,37 @@ const useStoreMedia = () => {
 		error: null,
 		success: null,
 		isPending: null,
-		url: null,
+		// url: null,
 		mediaUploading: null,
 	});
 
-	// get furestroe hook to add, edit and delete meter
-	const { response: fireStoreResponse, updateDocument } = useFirestore("trns");
+	const storeMedia = async (storageRef, imgData) => {
 
-	const storeMedia = async (storageRef, imgData, update, trnId) => {
+		// console.log(`imgData`, imgData);
 		setResp(prev => {
 			return {
 				...prev,
 				isPending: true,
 			};
 		});
+
+		const metadata = {
+			customMetadata: {
+				mediaType: imgData.metaData.mediaType,
+				mediaCategory: imgData.metaData.mediaCategory,
+				createdByUser: imgData.metaData.createdByUser,
+				lat: imgData.metaData.createdAtLocation.lat,
+				lng: imgData.metaData.createdAtLocation.lng,
+			},
+		};
+
 		try {
-			const snapshot = await uploadString(storageRef, imgData.url, "data_url");
+			const snapshot = await uploadString(
+				storageRef,
+				imgData.url,
+				"data_url",
+				metadata
+			);
 			// console.log(`snapshot`, snapshot);
 
 			setResp(prev => {
@@ -32,6 +46,8 @@ const useStoreMedia = () => {
 					mediaUploading: "succesfull",
 				};
 			});
+
+			// get image url
 			const url = await getDownloadURL(snapshot.ref);
 			// console.log(`url`, url);
 
@@ -41,10 +57,7 @@ const useStoreMedia = () => {
 					url,
 				};
 			});
-			const updatedTrnDoc = await update(url);
-			// console.log(`updatedTrnDoc`, updatedTrnDoc);
 
-			updateDocument(updatedTrnDoc);
 			setResp(prev => {
 				return {
 					...prev,
@@ -53,7 +66,7 @@ const useStoreMedia = () => {
 				};
 			});
 		} catch (error) {
-			console.log(`Error in storeMedia`, error);
+			// console.log(`Error in storeMedia`, error);
 			setResp({
 				...response,
 				error: error,

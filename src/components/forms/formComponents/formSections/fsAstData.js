@@ -3,9 +3,13 @@ export const fsAstData = {
 		astData: {
 			astCartegory: "meter",
 			astNo: "", // required
-			astNoMedia: [], // media including photos, voice clips and videos
 			astSerialNo: "",
 			astState: "service",
+			astMedia: {
+				astNoMedia: [], // photo to show meter number
+				insideBoxMedia: [], // photo to show meter isdie a box
+				keyPadMedia: [], // photo to show evidance of a keypad existance
+			},
 			meter: {
 				code: "",
 				type: "", // required
@@ -21,6 +25,9 @@ export const fsAstData = {
 			astNo: "",
 			astSerialNo: "",
 			astState: "service",
+			astMedia: {
+				sizeMedia: []
+			},
 			cb: {
 				code: "",
 				type: "",
@@ -35,6 +42,9 @@ export const fsAstData = {
 			astNo: "", // required
 			astSerialNo: "",
 			astState: "service",
+			astMedia: {
+				astNoMedia: []
+			},
 			seal: {
 				code: "",
 				type: "",
@@ -48,6 +58,9 @@ export const fsAstData = {
 			astNo: "",
 			astSerialNo: "",
 			astState: "service",
+			astMedia: {
+				astoMedia: []
+			},
 			box: {
 				dimensions: {
 					lenght: "",
@@ -67,6 +80,9 @@ export const fsAstData = {
 			astNo: "",
 			astSerialNo: "",
 			astState: "service",
+			astMedia: {
+				astPoleMedia: [],
+			},
 			pole: {
 				code: "",
 				type: "", // required

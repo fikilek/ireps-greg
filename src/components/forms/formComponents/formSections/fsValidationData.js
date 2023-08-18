@@ -174,10 +174,6 @@ export const fsValidationData = {
 						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
-					insideBoxMedia: {
-						constraints: [{ required: "no", condition: "" }],
-						verdict: "",
-					},
 				},
 				exactLocation: {
 					//['pole top', pole bottom', 'stand alone', 'other']
@@ -198,17 +194,6 @@ export const fsValidationData = {
 				},
 				keyPadAccess: {
 					constraints: [{ required: "yes", condition: "" }],
-					verdict: "",
-				},
-				kyPadMedia: {
-					constraints: [
-						{
-							required: "conditional",
-							condition: {
-								isThereKeyPad: "yes",
-							},
-						},
-					],
 					verdict: "",
 				},
 				noAccessReasons: {
@@ -487,6 +472,49 @@ export const fsValidationData = {
 			photos: {
 				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
+			},
+		},
+
+		tidValidationData: {
+			accessToKeyPad: {
+				constraints: [{ required: "yes", condition: "" }],
+				verdict: "",
+			},
+			rolloverDone: {
+				done: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
+				comments: {
+					constraints: [{ required: "no", condition: "" }],
+					verdict: "",
+				},
+			},
+			beforeTidRollover: {
+				status: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
+				krn: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
+			},
+			afterTidRollover: {
+				status: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
+				krn: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
+			},
+			confirmations: {
+				confirmTrn: {
+					constraints: [{ required: "yes", condition: "" }],
+					verdict: "",
+				},
 			},
 		},
 	},
@@ -1163,7 +1191,7 @@ export const fsValidationData = {
 				},
 			},
 			photos: {
-				constraints: [{ required: "yes", condition: "" }],
+				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
 			},
 

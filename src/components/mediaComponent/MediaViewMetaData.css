@@ -2,7 +2,7 @@
 
 .media-view-metadata {
   position: absolute;
-  top: 5%;
+  /* top: 5%; */
   background-color: aliceblue;
   display: grid;
   grid-template-columns: 1fr 1fr;

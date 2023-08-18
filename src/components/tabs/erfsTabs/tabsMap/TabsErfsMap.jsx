@@ -33,7 +33,7 @@ const TabsErfsMap = props => {
 	});
 
 	const handleErfClick = e => {
-		console.log(`erf no`, e.feature.getProperty("TAG_VALUE"));
+		// console.log(`erf no`, e.feature.getProperty("TAG_VALUE"));
 	};
 
 	useEffect(() => {
@@ -117,7 +117,13 @@ const TabsErfsMap = props => {
 									key={id}
 									position={{ lat, lng }}
 									label={`${erfNo}`}
-									icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
+									// icon={"http://maps.google.com/mapfiles/kml/pal3/icon48.png"}
+									// icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
+									// icon={"http://maps.google.com/mapfiles/kml/pal3/icon56.png"}
+									// icon={"http://maps.google.com/mapfiles/kml/paddle/wht-blank-lv.png"}
+									// icon={
+									// "http://maps.google.com/mapfiles/kml/shapes/placemark_square.png"
+									// }
 									onClick={() => {
 										handleMarkerClick(id, lat, lng, erfNo);
 									}}
@@ -132,10 +138,8 @@ const TabsErfsMap = props => {
 										>
 											<div>
 												<h2>
-													iREPS Form : <span>{infoWindowData.erfNo}</span>
+													iREPS - Erf No : <span>{infoWindowData.erfNo}</span>
 												</h2>
-												<p>form data</p>
-												<button>Submit</button>
 											</div>
 										</InfoWindowF>
 									)}

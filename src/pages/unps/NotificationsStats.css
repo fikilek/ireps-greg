@@ -1,0 +1,11 @@
+
+.notification-stats .notification-method span, .notification-stats .notification-method button {
+display: inline-block;
+}
+
+.notifications-stats .notification-method {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: space-around;
+  align-items: center;
+}

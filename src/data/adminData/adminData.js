@@ -20,11 +20,12 @@ const astNextState = {
 			checkIn: "stores",
 		},
 		service: {
-			missing: "lost",
-			vending: "service",
+			// missing: "lost",
+			// vending: "service",
 			disconnection: "disconnected",
 			inspection: "service",
-			decommissioning: "stores",
+			// decommissioning: "stores",
+			tid: "service",
 		},
 		disconnected: {
 			reconnection: "service",
@@ -56,9 +57,9 @@ const astNextState = {
 			checkIn: "stores",
 		},
 		service: {
-			missing: "lost",
+			// missing: "lost",
 			inspection: "service",
-			decommissioning: "stores",
+			// decommissioning: "stores",
 		},
 		lost: {
 			found: "stores",
@@ -86,9 +87,9 @@ const astNextState = {
 			checkIn: "stores",
 		},
 		service: {
-			missing: "lost",
+			// missing: "lost",
 			inspection: "service",
-			decommissioning: "stores",
+			// decommissioning: "stores",
 		},
 		lost: {
 			found: "stores",
@@ -467,6 +468,7 @@ const newTrnData = {
 		astNo: "", // for meters-meter no
 		astCartegory: "", // ['vt/ct', 'transformer', 'feereder', 'pole', 'box', 'meter', 'curcuit breaker', 'seal'],
 		astState: "",
+		astTidMedia: "",
 	},
 	customerAdr: {
 		streetAdr: "",

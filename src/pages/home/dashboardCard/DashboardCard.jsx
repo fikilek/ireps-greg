@@ -7,11 +7,7 @@ const DashboardCard = props => {
 	// console.log(`props`, props)
 	const { name, dcData } = props;
 	const { total, items } = dcData;
-	let frs = "";
-	items?.forEach(item => {
-		frs = frs + ' 1fr'
-	});
-	// console.log(`frs`, frs);
+
 	return (
 		<div className="dashboard-card">
 			<div className="header">
@@ -19,25 +15,15 @@ const DashboardCard = props => {
 					{name}
 				</h3>
 			</div>
+
 			<div className="body">
 				<div className="line1">
 					<div className="total">
-						<h3 className="title">Total</h3>
 						<h3 className="number">{total}</h3>
 					</div>
-					<div className="chart" items={items}>
+					<div className="total">
 						<DashboardCardChart items={items} name={name} />
 					</div>
-				</div>
-				<div
-					className={`line2 cols${items.length}`}
-					style={{ color: "blue", "gridTemplateColumns": frs }}
-				>
-					{items &&
-						items.map((item, index) => {
-							// console.log(`item`, item)
-							return <DashboardCardItem index={index} item={item} />;
-						})}
 				</div>
 			</div>
 		</div>

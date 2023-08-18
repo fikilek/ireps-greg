@@ -8,112 +8,24 @@ import { astNextState } from "../../data/adminData/adminData.js";
 import { formSects } from "../forms/formComponents/formSections/formSects";
 import { useErf } from "../../hooks/useErf";
 import { useDocument } from "../../hooks/useDocument";
-
-const getAstData = erf => {
-	// an erf already has an array of all asts in it. They are in asts property. Go inside asts property and extract needed astData as well as catInstallation ( and catCommissining data if it there).
-
-	// step 1: destructire asts array
-	const { asts } = erf;
-	// console.log(`asts`, asts);
-
-	if (!asts) return null;
-
-	// create astData object. THis will go into trn inspection object
-	const astData = {};
-
-	// step 2: iterate through asts to get each ast
-	asts &&
-		asts.forEach(ast => {
-			// console.log(`ast---------------------------------`, ast);
-
-			// destructure astId
-			const { astId } = ast;
-			// console.log(`astId`, astId);
-
-			// get astCat from ast
-			const astCat = ast.astData.astCartegory;
-			// console.log(`astCat`, astCat);
-
-			// get trnData from formSects and insert into ast
-			const { trnData } = formSects[astCat].inspection;
-			// console.log(`trnData`, trnData);
-
-			// insrt into ast
-			ast = {
-				...ast,
-				trnData,
-			};
-
-			if (astCat) {
-				if (!astData[astCat]) {
-					// we dont have astData[astCat], create it
-					astData[astCat] = [];
-					// console.log(`astData[astCat]`, astData[astCat]);
-
-					// remove trnMetaData rom ast
-					delete ast.trnMetaData;
-					// console.log(`ast`, ast);
-
-					// push trnObject into astData[astCat]
-					astData[astCat].push(ast);
-				} else {
-					// console.log(`astCat [${astCat}] alrerady EXIST in the mix`);
-
-					// we already have astData[astCat]. Check is astId is already present in astData[astCat].
-					const astIdExist = astData[astCat].some(ast => ast.astId === astId);
-					if (astIdExist) {
-						// There already is astId in the mix
-						// console.log(`There is astId`, astId);
-
-						// removeastData and trnMetaData rom ast
-						delete ast.trnMetaData;
-						delete ast.astData;
-						delete ast.astId;
-						// console.log(`ast`, ast);
-
-						// extract data
-						const astTrnName = Object.entries(ast)[0][0];
-						// console.log(`astTrnName`, astTrnName);
-
-						// fint the index of the existing astId
-						const astIdIndex = astData[astCat].findIndex(ast => ast.astId === astId);
-						// console.log(`astIdIndex`, astIdIndex);
-
-						// insert ast into astData.[astCat][index]
-						astData[astCat][astIdIndex] = {
-							...astData[astCat][astIdIndex],
-							[astTrnName]: ast[astTrnName],
-							// trnData
-						};
-						// astData[astCat].with(Number(astIdIndex), ast[`${astCat}Commissioning`] );
-						// console.log(`astData[astCat][astIdIndex]`, astData[astCat][astIdIndex]);
-						// console.log(`astData[${astCat}]`, astData[astCat]);
-					} else {
-						// there is no astId yet
-						// console.log(`There is NO astId`, astId);
-						// push trnObject into astData[astCat]
-						astData[astCat].push(ast);
-						// console.log(`astData[astCat]`, astData[astCat]);
-					}
-				}
-			}
-		});
-
-	// console.log(`astData`, astData);
-
-	// return astData;
-};
+import { useFirestore } from "../../hooks/useFirestore";
+import { toast } from "react-toastify";
 
 const TableBtnTrnSelect = params => {
 	// console.log(`params.data`, params.data);
 	const { user } = useAuthContext();
+
+	const { response, addDocument } = useFirestore("trns");
 
 	// const [erf, setErf] = useState({});
 	let erf = {};
 
 	const { getAstData } = useErf();
 
-	const [choosenTrnType, setChoosenTrnType] = useState("choose")
+	const [choosenTrnType, setChoosenTrnType] = useState("choose");
+	// console.log(`choosenTrnType`, choosenTrnType);
+
+	const [hideShowBtn, setHideShowBtn] = useState(true);
 
 	// ------------------------------------------------
 	// console.log(`params.data.erfData.id`, params.data?.erfData?.id);
@@ -185,13 +97,13 @@ const TableBtnTrnSelect = params => {
 	}, [params, user]);
 
 	const handleChange = e => {
-		console.log(`e.target.value`, e.target.value);
+		// console.log(`e.target.value`, e.target.value);
 
 		setChoosenTrnType(e.target.value);
 
 		// getAstData
 		const astData = getAstData(erf);
-		console.log(`astData`, astData);
+		// console.log(`astData`, astData);
 
 		setNewTrn(prev => {
 			// console.log(`prev`, prev);
@@ -199,6 +111,36 @@ const TableBtnTrnSelect = params => {
 			// select the appropriate trnData from formSects
 			const astCat = params.data?.astData?.astCartegory;
 			// console.log(`astCat`, astCat);
+
+			// use a switch statement ot decide on trn astData
+			// let newTrnAstData = {};
+			// switch (e.target.value) {
+			// 	case "inspection":
+			// 		newTrnAstData = astData;
+			// 		break;
+			// 	// case "tid":
+			// 	// 	newTrnAstData = {
+			// 	// 		[astCat]: [
+			// 	// 			{
+			// 	// 				astData: params.data.astData,
+			// 	// 				id: params.data.id,
+			// 	// 				trnData: formSects[astCat][e.target.value]?.trnData,
+			// 	// 			},
+			// 	// 		],
+			// 	// 	};
+			// 	// 	break;
+			// 	default:
+			// 		newTrnAstData = {
+			// 			[astCat]: [
+			// 				{
+			// 					astData: params.data.astData,
+			// 					id: params.data.id,
+			// 					trnData: formSects[astCat][e.target.value]?.trnData,
+			// 				},
+			// 			],
+			// 		};
+			// 		break;
+			// }
 
 			return {
 				...prev,
@@ -222,29 +164,70 @@ const TableBtnTrnSelect = params => {
 		});
 	};
 
-	const newTrnAllowed = newTrn.metaData.trnType && newTrn.astData && choosenTrnType !== 'choose';
-	const hideShowBtn =
-		(choosenTrnType === "choose" || !(newTrn.astData)) ? "hide-new-trn-btn" : "";
-	// const hideShowBtn = true ? "" : "hide-new-trn-btn";
+	const newTrnAllowed =
+		newTrn?.metaData?.trnType && newTrn?.astData && choosenTrnType !== "choose";
+	// const hideShowBtn =
+	// 	choosenTrnType === "choose" || !newTrn?.astData || response?.isPending
+	// 		? "hide-new-trn-btn" : "";
+	useEffect(() => {
+		if (
+			choosenTrnType === "choose" ||
+			!newTrn?.astData ||
+			response?.isPending 
+		) {
+			setHideShowBtn(true);
+		} else {
+			setHideShowBtn(false);
+		}
+	}, [choosenTrnType, newTrn?.astData, response?.isPending]);
 
 	const openNewTrn = () => {
-		console.log(`newTrn.astData`, newTrn.astData);
+		console.log(`newTrn`, newTrn);
 		if (newTrnAllowed) {
 			console.log(`newTrn`, newTrn);
-			openModal({
-				modalName: "trnDataForm",
-				payload: newTrn,
-			});
+			addDocument(newTrn);
+			// 	openModal({
+			// 		modalName: "trnDataForm",
+			// 		payload: newTrn,
+			// 	});
 		}
 	};
 
+	useEffect(() => {
+		// console.log(`response`, response)
+		if (response.success) {
+			setHideShowBtn(true);
+			setChoosenTrnType('choose')
+			console.log(
+				`new trn [${response.document.id}] SUCCESFULLY created`,
+				response
+			);
+			toast(
+				`new trn [${response.document.id}] SUCCESFULLY created!`,
+				{
+					position: "bottom-left",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				}
+			);
+		}
+	}, [response]);
+
 	return (
 		<>
-			<button className={`table-row-btn ${hideShowBtn} `} onClick={openNewTrn}>
+			<button
+				className={`table-row-btn ${hideShowBtn ? "hide-new-trn-btn" : ""} `}
+				onClick={openNewTrn}
+			>
 				NT
 			</button>
 			<select
-				value={newTrn.metaData.trnType}
+				value={hideShowBtn ? "choose" : newTrn.metaData.trnType}
 				onChange={handleChange}
 				placeholder=""
 			>

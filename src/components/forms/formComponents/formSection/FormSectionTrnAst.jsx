@@ -73,10 +73,10 @@ const FormSectionTrnAst = props => {
 				</div>
 
 				<div className="fsh-sub fsh-right">
-					<div>
+					{/* <div>
 						<button>+</button>
 						<button>-</button>
-					</div>
+					</div> */}
 					<div>
 						<span>{ast.astData.astCartegory} done?: </span>
 						<FormikSelectConfirmInstallation

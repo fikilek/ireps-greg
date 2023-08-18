@@ -7,19 +7,21 @@ const FormHeader5 = props => {
 	const { formName, trnState, erfNo, closeModal } = props;
 	return (
 		<div className="form-header">
-			<div className="header-line1">
+			<div className="header-left">
 				<p className="form-header-paragraph data-emphasis">{formName}</p>
+
+				<p className="form-header-paragraph">
+					Erf No: <span className="data-emphasis">{erfNo}</span>
+				</p>
+			</div>
+			<div className="header-right">
 				<p className="form-header-paragraph">
 					Form State: <span className="data-emphasis">{trnState}</span>
 				</p>
-				<p className="form-header-paragraph">
-					Erf No:{" "}
-					<span className="data-emphasis">{erfNo}</span>
-				</p>
+				<button onClick={() => closeModal()}>
+					<MdClose />
+				</button>
 			</div>
-			<button onClick={() => closeModal()}>
-				<MdClose />
-			</button>
 		</div>
 	);
 };
