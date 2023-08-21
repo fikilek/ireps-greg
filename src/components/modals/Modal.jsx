@@ -27,11 +27,13 @@ import TrnDataForm from "../forms/trnForms/trnDataForms/TrnDataForm";
 import TableTrnsForAst from "../table/TableTnsForAst";
 import TableTrnsInErf from "../table/TableTrnsInErf";
 import TableAstsInErf from "../table/TableAstsInErf";
+import AstMedia from "../astMedia/AstMedia";
 
 const Modal = () => {
 	const { componentToOpen, setComponentToOpen, modalOpened, setModalOpened } =
 		useContext(ModalContext);
 	// console.log(`modalOpened`, modalOpened);
+	// console.log(`componentToOpen`, componentToOpen);
 
 	const { modalName, payload } = componentToOpen;
 	// console.log(`modalName`, modalName)
@@ -88,6 +90,7 @@ const Modal = () => {
 						{/* asts */}
 						{modalName === "astsForm" && <AstsForm formData={payload} />}
 						{modalName === "tableTrnsForAst" && <TableTrnsForAst astData={payload} />}
+						{modalName === "astMedia" && <AstMedia astData={payload} />}
 
 						{/* sch */}
 						{modalName === "poForm" && <PoForm formData={payload} />}

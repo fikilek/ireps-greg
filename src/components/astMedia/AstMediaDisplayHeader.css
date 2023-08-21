@@ -1,0 +1,37 @@
+.ast-media-display-header {
+  font-size: 1.5rem;
+}
+
+
+.ast-media-display-header .header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-color: bisque;
+  margin: 0.4rem 0;
+}
+
+.ast-media-display-header .header-wrapper .header-btns {}
+
+.ast-media-display-header .header-wrapper .media-type {
+  padding-right: 1rem;
+}
+
+
+
+.ast-media-display-header .header-wrapper .show-btn {
+  display: block;
+}
+
+.ast-media-display-header .header-wrapper .show-btn {
+  display: none;
+}
+
+.ast-media-display-header .header-wrapper button {
+  background-color: #dae4fa99;
+  border-radius: 0.6rem;
+  text-align: center;
+  width: 5rem;
+
+}
+
+@media (max-width: 700px) {}

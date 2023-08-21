@@ -19,6 +19,7 @@ import TableTnsForAstBtn from "../components/table/tableBtns/TableTnsForAstBtn";
 import TableAstsInErfBtn from "../components/table/tableBtns/TableAstsInErfBtn";
 // import TableTrnsInErfBtn from "../components/table/tableBtns/TableTrnsInErfBtn";
 import TableTrnsForAstsTooltip from "../components/table/TableTrnsForAstsTooltip";
+import AstMediaBtn from "../components/astMedia/AstMediaBtn";
 
 export const useColumnDefs = props => {
 	// console.log(`props`, props);
@@ -1718,28 +1719,7 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: `Asset No`,
 					width: 180,
-					// cellRenderer: p => {
-					// 	console.log(`p.value`, p.value);
-					// 	return p.value ? (
-					// 		<button className="table-row-btn btn-serial-no">{p.value}</button>
-					// 	) : (
-					// 		""
-					// 	);
-					// },
-
-					cellRenderer: params => {
-						// console.log(`params.data.astData.astCartegory`, params.data.astData.astCartegory);
-						const displayValue =
-							params.data.astData.astCartegory === "cb"
-								? params.data.astData.cb.size
-								: params.data.astData.astNo;
-						// console.log(`str`, str);
-						return (
-							<button className="table-row-btn table-row-btn-ast-no btn-serial-no">
-								{displayValue}
-							</button>
-						);
-					},
+					cellRenderer: AstMediaBtn
 				},
 				{
 					field: "astData.astSerialNo",

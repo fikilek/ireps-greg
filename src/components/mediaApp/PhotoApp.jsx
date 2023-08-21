@@ -45,7 +45,7 @@ const PhotoApp = () => {
 
 	// create a state for cameraFacing mode
 	const [facingMode, setFacingMode] = useState({ exact: "environment" });
-	console.log(`facingMode`, facingMode);
+	// console.log(`facingMode`, facingMode);
 
 	// get methods from useStorage
 	const { isPending, mediaList, getMediaList } = useStorage();

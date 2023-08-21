@@ -12,17 +12,6 @@ const MediaComponent = props => {
 	// console.log(`mediaData`, mediaData);
 	// console.log(`mediaData?.length`, mediaData?.length);
 
-	// get methods from useStorage
-	const { isPending, mediaList, getMediaList } = useStorage();
-	console.log(`mediaList`, mediaList);
-	console.log(`isPending`, isPending);
-
-	getMediaList(`asts/${astId}`);
-
-	useEffect(() => {
-		console.log(`mediaList updated`, mediaList)
-	},[mediaList])
-
 	// consume media view context
 	const { setMediaViewData } = useContext(MediaViewContext);
 
