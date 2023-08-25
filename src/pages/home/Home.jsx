@@ -35,7 +35,7 @@ const updateMetersData = asts => {
 
 	// get an array of all meter phases
 	const metersPhasesArray = [
-		...new Set(metersArray.map(item => item.astData.meter.phase)),
+		// ...new Set(metersArray.map(item => item.astData.meter.phase)),
 	];
 	// console.log(`metersPhasesArray`, metersPhasesArray);
 
@@ -52,7 +52,7 @@ const updateMetersData = asts => {
 		});
 	// console.log(`meterPhasesArray`, meterPhasesArray);
 
-	// get an array of all meter phases
+	// get an array of all meter types
 	const metersTypeArray = [
 		...new Set(metersArray.map(item => item.astData.meter.type)),
 	];
@@ -69,13 +69,39 @@ const updateMetersData = asts => {
 				[type]: meterTypesCount,
 			});
 		});
-	// console.log(`meterPhasesArray`, meterPhasesArray);
+	// console.log(`meterTypesArray`, meterTypesArray);
+
+	//from meters array, count ocuureance of each meter state
+	const meterStatesArray = [
+		{ "stores": 0 },
+		{ "chechekOut": 0 },
+		{ "field": 0 },
+		{ "service": 0 },
+		{ "disconnected": 0 },
+	];
+
+	// iterate though metersStatesArray and get total count of each state from metersArray
+	meterStatesArray?.forEach((state, index) => {
+		// console.log(`state`, state);
+		
+		const objKey = Object.keys(state)[0]
+		// console.log(`objKey`, objKey);
+
+		const metersOnState = metersArray?.filter(
+			meter => meter.astData.astState === objKey
+		);
+		meterStatesArray[index] = {
+			[objKey]: metersOnState.length,
+		};
+	});
+	// console.log(`meterStatesArray`, meterStatesArray);
 
 	// work out the phases  and update metersData
 	metersData = {
 		...metersData,
 		phase: meterPhasesArray,
 		type: meterTypesArray,
+		states: meterStatesArray,
 	};
 	// console.log(`metersData`, metersData);
 
@@ -194,6 +220,12 @@ const Home = () => {
 
 	const updatedMeterTypesData = {
 		items: updatedMetersData.metersData.type,
+		total: updatedMetersData.total,
+	};
+	// console.log(`updatedMeterTypesData`, updatedMeterTypesData);
+
+	const updatedMeterStatesData = {
+		items: updatedMetersData.metersData.states,
 		total: updatedMetersData.total,
 	};
 	// console.log(`updatedMeterTypesData`, updatedMeterTypesData);
@@ -323,6 +355,7 @@ const Home = () => {
 					<DashboardCard dcData={updatedTrnsData} name={"Transactions"} />
 					<DashboardCard dcData={updatedMeterPhasesData} name={"Meters - Phases"} />
 					<DashboardCard dcData={updatedMeterTypesData} name={"Meters - Types"} />
+					<DashboardCard dcData={updatedMeterStatesData} name={"Meters - States"} />
 				</div>
 			</div>
 		</div>

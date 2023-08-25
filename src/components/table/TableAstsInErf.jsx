@@ -7,11 +7,11 @@ import TableTrns from "./TableTrns";
 
 // This component show all transactions for a particular ast
 const TableAstsInErf = props => {
-	// console.log(`props`, props);
+	console.log(`TableAstsInErf props`, props);
 
 	// get asts from props astsData
-	const astsArray = props.astsData?.asts;
-	// console.log(`astsArray`, astsArray);
+	const astsArray = props?.astsData?.asts;
+	console.log(`astsArray`, astsArray);
 
 	// get erfNo
 	const erfNo = props.astsData?.erfNo;

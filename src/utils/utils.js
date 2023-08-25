@@ -129,20 +129,24 @@ export const capitalize = string => {
 // ******************************************************
 
 export const formSelectOptions = {
-
+	anomaliesOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "Meter damaged", value: "Meter damaged" },
+		{ key: "Meter faulty", value: "Meter faulty" },
+		{ key: "Illegal Connection", value: "Illegal Connection" },
+		{ key: "Meter Ok", value: "Meter Ok" },
+	],
 	tidRolloverStatusOptions: [
 		{ key: "choose", value: "choose" },
-		{ key: "status1", value: "status1" },
-		{ key: "status2", value: "status2" },
-		{ key: "status3", value: "status3" },
-		{ key: "status4", value: "status4" },
+		{ key: "tariff1", value: "tariff1" },
+		{ key: "tariff2", value: "tariff2" },
+		{ key: "tariff3", value: "tariff3" },
+		{ key: "tariff4", value: "tariff4" },
 	],
 	tidRolloverKrnOptions: [
 		{ key: "choose", value: "choose" },
 		{ key: "krn1", value: "krn1" },
 		{ key: "krn2", value: "krn2" },
-		{ key: "krn3", value: "krn3" },
-		{ key: "krn4", value: "krn4" },
 	],
 
 	rolloverDoneCommentOptions: [

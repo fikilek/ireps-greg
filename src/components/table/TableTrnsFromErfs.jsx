@@ -10,6 +10,7 @@ import TableAddRecordBtn from "./tableBtns/TableAddRecordBtn";
 import TableTrns from "./TableTrns";
 import { formSects } from "../forms/formComponents/formSections/formSects";
 import { nanoid } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const createNewTrnObj = () => {
 	return {
@@ -90,9 +91,26 @@ const TableTrnsFromErfs = props => {
 		closeModal();
 	};
 
-	// useEffect(() => {
-	// 	console.log(`response`, response)
-	// },[response])
+	useEffect(() => {
+		console.log(`response`, response);
+		// TODO: Come back and fix the response problem here. Got ot do with useFirestore addDcocument async
+		// if (response.success) {
+		// 	console.log(
+		// 		`new trn [${response.document.id}] SUCCESFULLY created`,
+		// 		response
+		// 	);
+		// 	toast(`new trn [${response.document.id}] SUCCESFULLY created!`, {
+		// 		position: "bottom-left",
+		// 		autoClose: 3000,
+		// 		hideProgressBar: false,
+		// 		closeOnClick: true,
+		// 		pauseOnHover: true,
+		// 		draggable: true,
+		// 		progress: undefined,
+		// 		theme: "light",
+		// 	});
+		// }
+	}, [response]);
 
 	return (
 		<div className={`table new-trns-from-erfs`}>

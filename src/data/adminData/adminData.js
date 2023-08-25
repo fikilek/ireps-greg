@@ -27,6 +27,7 @@ const astNextState = {
 		},
 		disconnected: {
 			reconnection: "service",
+			inspection: "service",
 			missing: "stores",
 		},
 		lost: {

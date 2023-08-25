@@ -177,13 +177,13 @@ export const fsValidationData = {
 				},
 				exactLocation: {
 					//['pole top', pole bottom', 'stand alone', 'other']
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 			},
 			serviceConnection: {
 				connection: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 			},
@@ -233,15 +233,19 @@ export const fsValidationData = {
 			},
 			linkedCb: {
 				isThereCb: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 			},
 			linkedSeal: {
 				isThereSeal: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
+			},
+			anomalies: {
+				constraints: [{ required: "yes", condition: "" }],
+				verdict: "",
 			},
 			confirmations: {
 				confirmTrn: {

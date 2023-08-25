@@ -208,8 +208,9 @@ const TabsErfs = props => {
 	return (
 		<div className="tabs">
 			<div className="tabs-header">
+
 				<div className="tab-title">
-					<p>Erfs / Stands Table</p>
+					<p>Erfs Table</p>
 				</div>
 
 				<div className="new-trn-div">
@@ -221,7 +222,7 @@ const TabsErfs = props => {
 						}
 						onClick={createNewTrns}
 					>
-						New Transaction
+						NT
 					</button>{" "}
 					<select
 						className="new-trn new-trn-select"
@@ -302,5 +303,6 @@ const TabsErfs = props => {
 		</div>
 	);
 };
+
 
 export default TabsErfs;

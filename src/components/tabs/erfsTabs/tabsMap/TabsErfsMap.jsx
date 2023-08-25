@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import "./tabsErfsMap.css";
 import marblehall from "../../../../data/cadastral/marblehall/marblehall.geojson";
 import edumbe from "../../../../data/cadastral/edumbe/edumbe.geojson";
+import ErfMapInfo from "./TabsErfMapInfo";
+import TabsErfMapInfo from "./TabsErfMapInfo";
 
 const TabsErfsMap = props => {
 	// console.log(`props`, props);
@@ -138,7 +140,7 @@ const TabsErfsMap = props => {
 										>
 											<div>
 												<h2>
-													iREPS - Erf No : <span>{infoWindowData.erfNo}</span>
+													<TabsErfMapInfo erf={erf} />
 												</h2>
 											</div>
 										</InfoWindowF>

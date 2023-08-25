@@ -42,7 +42,7 @@ const AstMedia = props => {
 
 				<div className="ast-media-body">
 
-					{mediaList.length === 0 ? (
+					{mediaList?.length === 0 ? (
 						<div className="loader" >
 							<PropagateLoader
 								color="orange"

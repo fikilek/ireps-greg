@@ -20,6 +20,7 @@ import TableAstsInErfBtn from "../components/table/tableBtns/TableAstsInErfBtn";
 // import TableTrnsInErfBtn from "../components/table/tableBtns/TableTrnsInErfBtn";
 import TableTrnsForAstsTooltip from "../components/table/TableTrnsForAstsTooltip";
 import AstMediaBtn from "../components/astMedia/AstMediaBtn";
+import TableCellStyleAstStateMap from "../components/table/TableCellStyleAstStateMap";
 
 export const useColumnDefs = props => {
 	// console.log(`props`, props);
@@ -98,6 +99,7 @@ export const useColumnDefs = props => {
 			cellRendererParams: {
 				fn: "erfsForm",
 				disabled: false,
+				hideHeader: false,
 			},
 			floatingFilter: false,
 		},
@@ -351,7 +353,7 @@ export const useColumnDefs = props => {
 					<p>{moment(params?.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
 				);
 			},
-			flex: 1.5,
+			flex: 1.3,
 		},
 		{
 			field: "astData.astCartegory",
@@ -380,19 +382,167 @@ export const useColumnDefs = props => {
 						return null;
 				}
 			},
-			flex: 1,
+			flex: 1.1,
 		},
 		{
 			field: "trnMetaData.trnNo",
 			headerName: "Trn No",
 			width: 100,
-			flex: 0.8,
+			flex: 0.6,
 		},
 		{
 			field: "trnMetaData.trnType",
-			headerName: "Trn Type",
+			headerName: "Trn Name",
 			width: 150,
+			flex: 0.7,
+		},
+	];
+
+	// asts in erf on map
+	const astsInErfMapTableFields = [
+		// TODO: get updated data from the trn that worked on the ast
+		// {
+		// 	field: "trnMetaData.updatedByUser",
+		// 	headerName: "Updated By",
+		// 	width: 130,
+		// 	flex: 0.6,
+		// 	// hide: true,
+		// },
+		// {
+		// 	field: "trnMetaData.updatedAtDatetime",
+		// 	columnGroupShow: "open",
+		// 	headerName: "Updated At Datetime",
+		// 	width: 190,
+		// 	cellRenderer: params => {
+		// 		// console.log(`params`, params);
+		// 		return (
+		// 			<p>{moment(params?.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
+		// 		);
+		// 	},
+		// 	flex: 0.9,
+		// 	// hide: true,
+		// },
+		{
+			field: "astData.astCartegory",
+			headerName: "Ast Cat",
+			width: 150,
+			cellStyle: TableCellStyleAstStateMap,
+			flex: 0.7,
+		},
+		{
+			field: "astData.astState",
+			headerName: "Ast State",
+			width: 150,
+			flex: 0.8,
+		},
+		{
+			field: "astData.astNo",
+			headerName: "Ast No",
+			width: 150,
+			cellRenderer: params => {
+				// console.log(`params.data`, params.data)
+				switch (params.data.astData.astCartegory) {
+					case "meter":
+						return params.data.astData.astNo;
+					case "cb":
+						return params.data.astData.cb.size;
+					case "seal":
+						return params.data.astData.astNo;
+					case "box":
+						return params.data.astData.astNo;
+					case "pole":
+						return params.data.astData.astNo;
+					default:
+						return null;
+				}
+			},
 			flex: 1,
+		},
+		// {
+		// 	field: "trnMetaData.trnNo",
+		// 	headerName: "Trn No",
+		// 	width: 100,
+		// 	flex: 0.6,
+		// },
+		{
+			field: "trnMetaData.trnType",
+			headerName: "Creater",
+			width: 150,
+			flex: 0.7,
+		},
+		{
+			field: "",
+			headerName: "New trn",
+			width: 150,
+			cellRenderer: TableBtnTrnSelect,
+			flex: 1,
+		},
+	];
+
+	// trns in erf on map
+	const trnsInErfMapTableFields = [
+		{
+			field: "trnMetaData.updatedByUser",
+			headerName: "Updated By",
+			width: 130,
+			flex: 0.55,
+			// hide: true,
+		},
+		{
+			field: "trnMetaData.updatedAtDatetime",
+			columnGroupShow: "open",
+			headerName: "Updated At Datetime",
+			width: 190,
+			cellRenderer: params => {
+				// console.log(`params`, params);
+				return (
+					<p>{moment(params?.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
+				);
+			},
+			flex: 0.85,
+			// hide: true,
+		},
+		{
+			field: "astData.astCartegory",
+			headerName: "Ast Cat",
+			width: 150,
+			flex: 0.6,
+			cellStyle: TableCellStyleAstStateMap,
+		},
+		{
+			field: "astData.astNo",
+			headerName: "Ast No",
+			width: 150,
+			cellRenderer: params => {
+				// console.log(`params.data`, params.data)
+				switch (params.data.astData.astCartegory) {
+					case "meter":
+						return params.data.astData.astNo;
+					case "cb":
+						return params.data.astData.cb.size;
+					case "seal":
+						return params.data.astData.astNo;
+					case "box":
+						return params.data.astData.astNo;
+					case "pole":
+						return params.data.astData.astNo;
+					default:
+						return null;
+				}
+			},
+			flex: 0.9,
+		},
+		// {
+		// 	field: "trnMetaData.trnNo",
+		// 	headerName: "Trn No",
+		// 	width: 100,
+		// 	flex: 0.6,
+		// },
+		{
+			field: "trnMetaData.trnType",
+			headerName: "Creater",
+			width: 150,
+			flex: 0.7,
 		},
 	];
 
@@ -1719,7 +1869,7 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: `Asset No`,
 					width: 180,
-					cellRenderer: AstMediaBtn
+					cellRenderer: AstMediaBtn,
 				},
 				{
 					field: "astData.astSerialNo",
@@ -2261,7 +2411,7 @@ export const useColumnDefs = props => {
 					// columnGroupShow: "closed",
 					headerName: "Tariff",
 					width: 130,
-				}
+				},
 			],
 		},
 	];
@@ -3626,6 +3776,22 @@ export const useColumnDefs = props => {
 	*/
 	if (ml1 === "astsInErf") {
 		fields = [...astsInErfTableFields];
+		return { tableFields: fields };
+	}
+
+	/*
+	asts in erf
+	*/
+	if (ml1 === "astsInErfMap") {
+		fields = [...astsInErfMapTableFields];
+		return { tableFields: fields };
+	}
+
+	/*
+	trns in erf
+	*/
+	if (ml1 === "trnsInErfMap") {
+		fields = [...trnsInErfMapTableFields];
 		return { tableFields: fields };
 	}
 

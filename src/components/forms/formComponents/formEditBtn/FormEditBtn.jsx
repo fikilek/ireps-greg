@@ -12,7 +12,7 @@ const FormEditBtn = params => {
 	const handleClick = e => {
 		e.preventDefault();
 		if (!disabled) {
-			openModal({ modalName: fn, payload: data });
+			openModal({ modalName: fn, payload: { data, disabled, hideHeader: false } });
 		}
 	};
 

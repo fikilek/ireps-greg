@@ -1,0 +1,53 @@
+.show-map {
+  display: block;
+}
+
+.hide-map {
+  display: none;
+}
+
+.ast-media-photo-on-map {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0.1rem;
+}
+
+.ast-media-photo-on-map .map {
+  position: relative;
+}
+
+.ast-media-photo-on-map .map .map-header {
+  position: absolute;
+  top: 2.5%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 30;
+  font-size: 1.3rem;
+}
+
+.ast-media-photo-on-map .map .map-header .mh {}
+
+.ast-media-photo-on-map .map .map-header .map-name {}
+
+.ast-media-photo-on-map .map .map-header .map-close-btn {
+  background-color: #dae4fa99;
+  border-radius: 0.6rem;
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+  z-index: 400;
+}
+
+.ast-media-photo-on-map .map .map-header .map-close-btn:hover {
+  cursor: pointer;
+}
+
+.ast-media-photo-on-map .map-container {
+  width: 53rem;
+  height: 41.5rem;
+}

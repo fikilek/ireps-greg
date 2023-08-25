@@ -53,7 +53,7 @@ const GeocodingApp = () => {
 	// const [infoWindowData, setInfoWindowData] = useState();
 	// const [center, setCenter] = useState(null);
 	// const [bounds, setBounds] = useState(null);
-	const [address, setSetAddress] = useState(
+	const [address, setAddress] = useState(
 		gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr
 	);
 
@@ -140,14 +140,12 @@ const GeocodingApp = () => {
 			// console.log(`latitude: `, -32.332396172986854);
 			// console.log(`longitude: `, 28.14446795090262);
 			// console.log(`--------------------`);
-			Geocode.fromLatLng(e.latLng.lat(), e.latLng.lng()).then(
-				// Geocode.fromLatLng(e.latLng.lat(), e.latLng.lng()).then(
-				// Geocode.fromLatLng(e.latLng.lat(), e.latLng.lat()).then(
-				response => {
+			Geocode.fromLatLng(e.latLng.lat(), e.latLng.lng())
+				.then(response => {
 					// console.log(`response`, response);
 					const address = response.results[0].formatted_address;
 					// console.log(address);
-					setSetAddress(address);
+					setAddress(address);
 					gcData.data.form.setFieldValue(
 						"astData[meter][0].trnData.astAdr.adr",
 						address
@@ -160,23 +158,28 @@ const GeocodingApp = () => {
 						"astData[meter][0].trnData.astAdr.gps.lng",
 						e.latLng.lng()
 					);
-				},
-				error => {
+				})
+				.catch(error => {
 					console.error(`Error reverse geocoding: `, error);
-					setSetAddress("address NOT avaiable");
-					// form.setFieldValue(
-					// 	"astData[meter][0].trnData.astAdr.adr",
-					// 	"address NOT avaiable - try manual"
-					// );
-				}
-			);
+					setAddress("address NOT avaiable");
+					gcData.data.form.setFieldValue(
+						"astData[meter][0].trnData.astAdr.adr",
+						"address NOT avaiable - try manual (GPS is Correct though)"
+					);
+					gcData.data.form.setFieldValue(
+						"astData[meter][0].trnData.astAdr.gps.lat",
+						e.latLng.lat()
+					);
+					gcData.data.form.setFieldValue(
+						"astData[meter][0].trnData.astAdr.gps.lng",
+						e.latLng.lng()
+					);
+				});
 		}
 	};
 
 	useEffect(() => {
-		setSetAddress(
-			gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr
-		);
+		setAddress(gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr);
 	}, [gcData]);
 
 	useEffect(() => {

@@ -11,6 +11,10 @@
       ]
     }
   ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "hosting": {
     "public": "build",
     "ignore": [
@@ -24,10 +28,6 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
   },
   "storage": {
     "rules": "storage.rules"

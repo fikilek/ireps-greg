@@ -84,6 +84,7 @@ export const fsTrnData = {
 			linkedSeal: {
 				isThereSeal: "",
 			},
+			anomalies: '',
 			confirmations: {
 				confirmTrn: "not done",
 			},

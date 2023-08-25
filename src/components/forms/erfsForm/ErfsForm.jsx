@@ -10,10 +10,12 @@ import FormBtn from "../formComponents/formBtn/FormBtn";
 import FormSection from "../formComponents/formSection/FormSection";
 import FormHeader4 from "../formComponents/formHeaders/FormHeader4";
 import { formSelectOptions } from "../../../utils/utils";
+import { useCallback } from "react";
+import { useMemo } from "react";
 
 const ErfsForm = props => {
-	console.log(`props`, props);
-	const { formData } = props;
+	// console.log(`props.formData`, props.formData);
+	const {data: formData, hideHeader, disabled}  = props?.formData;
 	const { closeModal } = useModal();
 	// console.log(`formData`, formData);
 
@@ -22,6 +24,8 @@ const ErfsForm = props => {
 	// const { getTrnFormSection, getTrnValidationSchema } = useTrnForm(trn);
 
 	const { response, updateDocument, addDocument } = useFirestore("erfs");
+
+	// const resp = useMemo(() => response, [response]);
 
 	const { user } = useAuthContext();
 	// console.log(`user`, user)
@@ -43,14 +47,17 @@ const ErfsForm = props => {
 	// 	trnData: trn.id ? trn.trnData : trnData,
 	// });
 
-	const onSubmit = values => {
-		// console.log(`formik submitted values`, values);
-		if (values.id) {
-			updateDocument(values);
-		} else {
-			addDocument(values);
-		}
-	};
+	const onSubmit = useCallback(
+		values => {
+			// console.log(`formik submitted values`, values);
+			if (values.id) {
+				updateDocument(values);
+			} else {
+				addDocument(values);
+			}
+		},
+		[addDocument, updateDocument]
+	);
 
 	// console.log(`response`, response);
 
@@ -71,16 +78,20 @@ const ErfsForm = props => {
 				}
 			);
 		}
-	}, [response, closeModal, formData.erfNo]);
+	}, [response]);
 
 	return (
 		<div className="form-wrapper">
 			<div className="form-container simcards-form-container">
-				<FormHeader4
-					formName={"Erf"}
-					formNo={formData.erfNo}
-					closeModal={closeModal}
-				/>
+				{hideHeader ? (
+					''
+				) : (
+					<FormHeader4
+						formName={"Erf"}
+						formNo={formData.erfNo}
+						closeModal={closeModal}
+					/>
+				)}
 				<Formik
 					initialValues={formData}
 					onSubmit={onSubmit}
@@ -111,6 +122,7 @@ const ErfsForm = props => {
 												<div className="ast-row">
 													<div className="half-row-50-50">
 														<FormikControl
+															readOnly={true}
 															control="input"
 															type="text"
 															label="erf no"
@@ -252,7 +264,7 @@ const ErfsForm = props => {
 												</div>{" "}
 												<div
 													className={`ast-row  customer-type-warm-body ${
-														formik.values.customer.type === "warm body"
+														formik?.values?.customer?.type === "warm body"
 															? "show-section"
 															: "hide-section"
 													}`}
@@ -293,7 +305,7 @@ const ErfsForm = props => {
 												</div>
 												<div
 													className={`ast-row customer-type-juristic-person ${
-														formik.values.customer.type === "juristic person"
+														formik?.values?.customer?.type === "juristic person"
 															? "show-section"
 															: "hide-section"
 													} `}

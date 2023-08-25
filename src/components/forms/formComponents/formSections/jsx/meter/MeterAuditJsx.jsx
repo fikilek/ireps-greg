@@ -108,6 +108,14 @@ const MeterAuditJsx = props => {
 								label="inside box media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.insideBoxMedia`}
 								placeholder="Insie Box Media"
+							/>{" "}
+							<FormikControl
+								control="select"
+								type="text"
+								label="anomalies?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.anomalies`}
+								placeholder="Anomalies"
+								options={formSelectOptions.anomaliesOptions}
 							/>
 						</div>
 					</div>
@@ -163,13 +171,6 @@ const MeterAuditJsx = props => {
 								placeholder="Keypad Access?"
 								options={formSelectOptions.yesNoOptions}
 							/>
-							{/* <FormikControl
-								control="input"
-								type="text"
-								label="keypad serial no"
-								name={`astData[${astCat}][${astCatIndex}].trnData.keyPad.serialNo`}
-								placeholder="Keypad Serial No"
-							/> */}
 						</div>
 						<div className="half-row-50-50">
 							<FormikControl
@@ -190,7 +191,7 @@ const MeterAuditJsx = props => {
 						</div>
 						{/* TODO: come back to include control for the installation group photos */}
 					</div>
-					<div className="row-6 ast-row">
+					{/* <div className="row-6 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
 								control="select"
@@ -208,13 +209,6 @@ const MeterAuditJsx = props => {
 								placeholder="Is There Cb?"
 								options={formSelectOptions.yesNoOptions}
 							/>
-							{/* <FormikControl
-								control="input"
-								type="text"
-								label="cb size"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedCb.cbSize`}
-								placeholder="Cb Size"
-							/> */}
 						</div>
 						<div className="half-row-50-50">
 							<FormikControl
@@ -233,16 +227,8 @@ const MeterAuditJsx = props => {
 								placeholder="Service Connection"
 								options={formSelectOptions.serviceConnectionEntryOptions}
 							/>
-							{/* <FormikControl
-								control="input"
-								type="text"
-								label="seal size"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedSeal.sealSize`}
-								placeholder="Seal Size"
-							/> */}
 						</div>
-						{/* TODO: come back to include control for the installation group photos */}
-					</div>
+					</div> */}
 				</div>
 			</FormSectionTrnAst>
 		</div>

@@ -16,6 +16,7 @@ const TableBtnTrnSelect = params => {
 	const { user } = useAuthContext();
 
 	const { response, addDocument } = useFirestore("trns");
+	// console.log(`response`, response)
 
 	// const [erf, setErf] = useState({});
 	let erf = {};
@@ -30,8 +31,8 @@ const TableBtnTrnSelect = params => {
 	// ------------------------------------------------
 	// console.log(`params.data.erfData.id`, params.data?.erfData?.id);
 
-	// get erf id from params.data?.erfData?.id
-	const erfId = params.data?.erfData?.id;
+	// get erf IF
+	const erfId = params?.data?.erfData?.id;
 	// console.log(`erfId`, erfId);
 
 	// get erf document from useFirestore
@@ -87,7 +88,7 @@ const TableBtnTrnSelect = params => {
 				updatedAtDatetime: timestamp.fromDate(new Date()),
 				updatedByUser: user.displayName,
 			},
-			erfData: params.data.erfData,
+			erfData: erf,
 		});
 
 		return () => {
@@ -101,67 +102,40 @@ const TableBtnTrnSelect = params => {
 
 		setChoosenTrnType(e.target.value);
 
-		// getAstData
-		const astData = getAstData(erf);
-		// console.log(`astData`, astData);
+		if (erf) {
+			// getAstData
+			const astData = getAstData(erf);
+			// console.log(`astData`, astData);
 
-		setNewTrn(prev => {
-			// console.log(`prev`, prev);
+			setNewTrn(prev => {
+				// console.log(`prev`, prev);
 
-			// select the appropriate trnData from formSects
-			const astCat = params.data?.astData?.astCartegory;
-			// console.log(`astCat`, astCat);
+				// select the appropriate trnData from formSects
+				const astCat = params.data?.astData?.astCartegory;
+				// console.log(`astCat`, astCat);
 
-			// use a switch statement ot decide on trn astData
-			// let newTrnAstData = {};
-			// switch (e.target.value) {
-			// 	case "inspection":
-			// 		newTrnAstData = astData;
-			// 		break;
-			// 	// case "tid":
-			// 	// 	newTrnAstData = {
-			// 	// 		[astCat]: [
-			// 	// 			{
-			// 	// 				astData: params.data.astData,
-			// 	// 				id: params.data.id,
-			// 	// 				trnData: formSects[astCat][e.target.value]?.trnData,
-			// 	// 			},
-			// 	// 		],
-			// 	// 	};
-			// 	// 	break;
-			// 	default:
-			// 		newTrnAstData = {
-			// 			[astCat]: [
-			// 				{
-			// 					astData: params.data.astData,
-			// 					id: params.data.id,
-			// 					trnData: formSects[astCat][e.target.value]?.trnData,
-			// 				},
-			// 			],
-			// 		};
-			// 		break;
-			// }
-
-			return {
-				...prev,
-				metaData: {
-					...prev.metaData,
-					trnType: e.target.value,
-				},
-				astData:
-					e.target.value === "inspection"
-						? astData
-						: {
-								[astCat]: [
-									{
-										astData: params.data.astData,
-										id: params.data.id,
-										trnData: formSects[astCat][e.target.value]?.trnData,
-									},
-								],
-						  },
-			};
-		});
+				return {
+					...prev,
+					metaData: {
+						...prev.metaData,
+						trnType: e.target.value,
+					},
+					erfData: erf,
+					astData:
+						e.target.value === "inspection"
+							? astData
+							: {
+									[astCat]: [
+										{
+											astData: params.data.astData,
+											id: params.data.id,
+											trnData: formSects[astCat][e.target.value]?.trnData,
+										},
+									],
+							  },
+				};
+			});
+		}
 	};
 
 	const newTrnAllowed =
@@ -170,11 +144,7 @@ const TableBtnTrnSelect = params => {
 	// 	choosenTrnType === "choose" || !newTrn?.astData || response?.isPending
 	// 		? "hide-new-trn-btn" : "";
 	useEffect(() => {
-		if (
-			choosenTrnType === "choose" ||
-			!newTrn?.astData ||
-			response?.isPending 
-		) {
+		if (choosenTrnType === "choose" || !newTrn?.astData || response?.isPending) {
 			setHideShowBtn(true);
 		} else {
 			setHideShowBtn(false);
@@ -182,7 +152,7 @@ const TableBtnTrnSelect = params => {
 	}, [choosenTrnType, newTrn?.astData, response?.isPending]);
 
 	const openNewTrn = () => {
-		console.log(`newTrn`, newTrn);
+		// console.log(`newTrn`, newTrn);
 		if (newTrnAllowed) {
 			console.log(`newTrn`, newTrn);
 			addDocument(newTrn);
@@ -197,24 +167,21 @@ const TableBtnTrnSelect = params => {
 		// console.log(`response`, response)
 		if (response.success) {
 			setHideShowBtn(true);
-			setChoosenTrnType('choose')
+			setChoosenTrnType("choose");
 			console.log(
 				`new trn [${response.document.id}] SUCCESFULLY created`,
 				response
 			);
-			toast(
-				`new trn [${response.document.id}] SUCCESFULLY created!`,
-				{
-					position: "bottom-left",
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: "light",
-				}
-			);
+			toast(`new trn [${response.document.id}] SUCCESFULLY created!`, {
+				position: "bottom-left",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
 		}
 	}, [response]);
 

@@ -17,25 +17,25 @@ const db = getFirestore();
 // 	return collectionCount;
 // };
 
-// exports.createSpl = functions.firestore
-// 	.document("suppliers/{userId}")
-// 	.onCreate((snap, context) => {
-// 		const splRef = admin.firestore().collection("suppliers");
-// 		splRef
-// 			.get()
-// 			.then(async querySnapshot => {
-// 				const collectionSize = querySnapshot.size;
-// 				// functions.logger.log(`collectionSize:`, collectionSize);
-// 				// TODO: fix the bug so that the Po invoice number counting srarts from 1 and not 2
-// 				const docRef = snap.ref;
-// 				await docRef.update({ splNo: collectionSize });
-// 				// console.log(`docRef`, docRef)
-// 				// console.log(`updatedPoDoc`, updatedPoDoc);
-// 			})
-// 			.catch(err => {
-// 				console.log("Error getting documents:", err);
-// 			});
-// 	});
+exports.createSpl = functions.firestore
+	.document("suppliers/{userId}")
+	.onCreate((snap, context) => {
+		const splRef = admin.firestore().collection("suppliers");
+		splRef
+			.get()
+			.then(async querySnapshot => {
+				const collectionSize = querySnapshot.size;
+				// functions.logger.log(`collectionSize:`, collectionSize);
+				// TODO: fix the bug so that the Po invoice number counting srarts from 1 and not 2
+				const docRef = snap.ref;
+				await docRef.update({ splNo: collectionSize });
+				// console.log(`docRef`, docRef)
+				// console.log(`updatedPoDoc`, updatedPoDoc);
+			})
+			.catch(err => {
+				console.log("Error getting documents:", err);
+			});
+	});
 
 exports.createPo = functions.firestore
 	.document("pos/{userId}")

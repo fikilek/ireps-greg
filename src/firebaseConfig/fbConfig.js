@@ -13,16 +13,18 @@ import { getStorage } from "firebase/storage";
 import { Timestamp } from "firebase/firestore";
 import { getFunctions } from "firebase/functions";
 
-// Your web app's Firebase configuration
+// ireps1
 // const firebaseConfig = {
-// 	apiKey: "AIzaSyDwIRfGdgV6-gfxI0F45wmJzfaxBJUy8Rc",
-// 	authDomain: "ireps-development.firebaseapp.com",
-// 	projectId: "ireps-development",
-// 	storageBucket: "ireps-development.appspot.com",
-// 	messagingSenderId: "989928358059",
-// 	appId: "1:989928358059:web:214a06ee55f8488662f7ee",
+// 	apiKey: "AIzaSyCOQVahRlwZ5Cdzg2RYncp670QAJYlTqfY",
+// 	authDomain: "ireps-cl1-live.firebaseapp.com",
+// 	projectId: "ireps-cl1-live",
+// 	storageBucket: "ireps-cl1-live.appspot.com",
+// 	messagingSenderId: "491234061072",
+// 	appId: "1:491234061072:web:508639236ca7be86af9395",
+// 	measurementId: "G-GBSSXQ5GS5",
 // };
 
+// ireps-development
 const firebaseConfig = {
 	apiKey: "AIzaSyCj8IfmDEGxDWEXesDKBanx6HDp_1jxluI",
 	authDomain: "ireps-development.firebaseapp.com",
@@ -31,17 +33,6 @@ const firebaseConfig = {
 	messagingSenderId: "989928358059",
 	appId: "1:989928358059:web:7c6c6b936c4efc4562f7ee",
 };
-
-
-// const firebaseConfig = {
-// 	apiKey: "AIzaSyBrhOJvgya120Iv8-0fkn22kTjaDlTq2B0",
-// 	authDomain: "fkproj1-8415a.firebaseapp.com",
-// 	// databaseURL: "https://fkproj1-8415a.firebaseio.com",
-// 	projectId: "fkproj1-8415a",
-// 	storageBucket: "fkproj1-8415a.appspot.com",
-// 	messagingSenderId: "108173435093",
-// 	appId: "1:108173435093:web:f3d561077c79fa6ddc425c",
-// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

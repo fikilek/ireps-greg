@@ -44,7 +44,7 @@ const MeterTidJsx = props => {
 								options={formSelectOptions.yesNoOptions}
 							/>
 							<FormikControl
-								control="select"
+								control="input"
 								type="text"
 								label="comments"
 								name={`astData[${astCat}][${astCatIndex}].trnData.rolloverDone.comments`}
@@ -59,9 +59,9 @@ const MeterTidJsx = props => {
 							<FormikControl
 								control="select"
 								type="text"
-								label="status before"
+								label="tariff before"
 								name={`astData[${astCat}][${astCatIndex}].trnData.beforeTidRollover.status`}
-								placeholder="Status Before"
+								placeholder="tariff Before"
 								options={formSelectOptions.tidRolloverStatusOptions}
 							/>
 							<FormikControl
@@ -78,9 +78,9 @@ const MeterTidJsx = props => {
 							<FormikControl
 								control="select"
 								type="text"
-								label="status after"
+								label="tariff after"
 								name={`astData[${astCat}][${astCatIndex}].trnData.afterTidRollover.status`}
-								placeholder="Status after"
+								placeholder="tariff after"
 								options={formSelectOptions.tidRolloverStatusOptions}
 							/>
 							<FormikControl
