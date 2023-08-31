@@ -93,7 +93,6 @@ export const fsTrnData = {
 		inspectionData: {
 			meterPresent: "",
 			meterTempered: "",
-			meterInUse: "",
 
 			readings: {
 				meterReading: "",

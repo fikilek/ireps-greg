@@ -1,5 +1,9 @@
 
 
+.table-btn-trn-select .trn-select {
+  width: 10rem;
+}
+
 .hide-new-trn-btn {
   display: none;
 }

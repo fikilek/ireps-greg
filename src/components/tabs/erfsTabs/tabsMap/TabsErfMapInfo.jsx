@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { timestamp } from "../../../../firebaseConfig/fbConfig";
 import useAuthContext from "../../../../hooks/useAuthContext";
-import { useColumnDefs } from "../../../../hooks/useColumnDefs";
+// import { useColumnDefs } from "../../../../hooks/useColumnDefs";
 import useModal from "../../../../hooks/useModal";
 import ErfsForm from "../../../forms/erfsForm/ErfsForm";
 import { formSects } from "../../../forms/formComponents/formSections/formSects";
-import TableAstsInErfMap from "../../../table/TableTrnsForAstsOnMap";
-import TableTrns from "../../../table/TableTrns";
-import TableTrnsForAstsOnMap from "../../../table/TableAstsInErfMap";
+import TableTrnsForAstsOnMap from "../../../table/TableTrnsForAstsOnMap";
+// import TableTrns from "../../../table/TableTrns";
+import TableAstsInErfMap from "../../../table/TableAstsInErfMap";
 import "./TabsErfMapInfo.css";
 // import TabsErfsMap from "./tabsMap/TabsErfsMap";
 // import TabsErfsTable from "./tabsTable/TabsErfsTable";
@@ -164,13 +164,6 @@ const getNewTrnsArray = (selectedRows, trnType, user) => {
 	}
 };
 
-const trnOptions = [
-	{ key: "choose", value: "choose" },
-	{ key: "audit", value: "audit" },
-	{ key: "inspection", value: "inspection" },
-	// { key: "installation", value: "installation" },
-];
-
 const TabsErfMapInfo = props => {
 	// console.log(`TabsErfMapInfo props`, props);
 
@@ -222,7 +215,7 @@ const TabsErfMapInfo = props => {
 
 	return (
 		<div className="tabs-erf-map-info">
-			<div className="tabs-header">
+			<div className="temi-tabs-header">
 				<div className="tabs-btns">
 					{" "}
 					<div
@@ -261,7 +254,11 @@ const TabsErfMapInfo = props => {
 					}  `}
 					id="tab1"
 				>
-					<TableTrnsForAstsOnMap rowData={astsArray} />
+					{astsArray?.length > 0 ? (
+						<TableAstsInErfMap rowData={astsArray} />
+					) : (
+						<p className="no-data">"No data to show"</p>
+					)}
 				</div>
 				<div
 					className={`tabs-body-content tab2 ${
@@ -269,7 +266,11 @@ const TabsErfMapInfo = props => {
 					} `}
 					id="tab2"
 				>
-					<TableAstsInErfMap rowData={astsArray} />
+					{astsArray?.length > 0 ? (
+						<TableTrnsForAstsOnMap rowData={astsArray} />
+					) : (
+						<p className="no-data">"No data to show"</p>
+					)}
 				</div>
 				<div
 					className={`tabs-body-content tab3 ${

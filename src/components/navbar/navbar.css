@@ -45,7 +45,7 @@ header nav .nav-list .nav-list-left li {
 }
 
 header nav .nav-list .nav-list-left>li {
-	width: 8rem;
+	width: 10rem;
 }
 
 header nav .nav-list .nav-list-right {
@@ -67,7 +67,7 @@ header nav .nav-list a:hover {
 }
 
 header nav .nav-list li:hover>.sub-menu {
-	top: 3.75rem;
+	top: 4.2rem;
 	opacity: 1;
 	visibility: visible;
 }
@@ -129,7 +129,7 @@ header nav .nav-list-left .sub-menu::before {
 	top: -2.5rem;
 	left: 1.5rem;
 	border: 1.2rem solid transparent;
-	border-bottom-color: #eb3007;
+	/* border-bottom-color: #eb3007; */
 }
 
 header nav .nav-list-right .sub-menu::before {

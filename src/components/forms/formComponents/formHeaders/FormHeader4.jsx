@@ -6,15 +6,19 @@ const FormHeader4 = props => {
 	const { formName, closeModal, formNo } = props;
 	return (
 		<div className="form-header">
-			<div className="header-line1">
+			<div className="header-left">
 				<p className="data-emphasis">{formName} form</p>
 				<p>
 					Erf No: {formNo ? <span className="data-emphasis">{formNo}</span> : ""}
 				</p>
 			</div>
-			<button onClick={() => closeModal()}>
-				<MdClose />
-			</button>
+
+			<div className="header-right">
+				<p></p>
+				<button onClick={() => closeModal()}>
+					<MdClose />
+				</button>
+			</div>
 		</div>
 	);
 };

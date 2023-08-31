@@ -1,0 +1,8 @@
+.tabs-erf-map-info-wrapper {
+  width: 62rem;
+  background-color: var(--form-background);
+  border: 0.1rem solid;
+  padding: 1rem;
+  border-radius: 1rem;
+  position: relative;
+}

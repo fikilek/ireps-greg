@@ -7,10 +7,9 @@ import useStorage from "../../hooks/useStorage";
 
 const MediaComponent = props => {
 	// console.log(`props`, props);
-	const { mediaData, id, astId } = props;
-	console.log(`astId`, astId);
+	const { mediaData, id } = props;
+	// console.log(`id`, id);
 	// console.log(`mediaData`, mediaData);
-	// console.log(`mediaData?.length`, mediaData?.length);
 
 	// consume media view context
 	const { setMediaViewData } = useContext(MediaViewContext);
@@ -19,18 +18,34 @@ const MediaComponent = props => {
 		<div className="media-component">
 			{mediaData?.length !== 0 ? (
 				mediaData?.map((data, index) => {
+					// console.log(`data`, data);
 					const name = data?.metaData?.name;
+					// console.log(`name`, name);
+
+					// get ml1
+					const ml1 = data?.metaData?.customMetadata?.ml1;
+					// console.log(`ml1`, ml1);
+
+					let mediaString = "";
+					if (ml1 === "asts") {
+						const astCat = irepsDictionary.get(
+							data?.metaData?.customMetadata?.astCat
+						);
+						const mediaCat = irepsDictionary.get(
+							data?.metaData?.customMetadata?.mediaCategory
+						);
+						mediaString = `${astCat} ${mediaCat} Photo`;
+					}
+					if (ml1 === "erfs") {
+						mediaString = `Erf Photo`;
+					}
+
 					return (
 						<button
 							key={data.url}
-							onClick={() => setMediaViewData({ ...data, id, index })}
+							onClick={() => setMediaViewData({ ...data, id, index, photoName: mediaString })}
 						>
-							<p className="media-name">
-								{`${irepsDictionary.get(data?.metaData?.customMetadata?.astCat)}`}{" "}
-								{`${irepsDictionary.get(
-									data?.metaData?.customMetadata?.mediaCategory
-								)}`}
-							</p>
+							<p className="media-name">{mediaString}</p>
 							<img src={data.url} alt={index} width="100px" height={"100px"} />
 							<p className="media-name">{`${name?.split("_")[1]}`}</p>
 							<p className="media-name">{`${name?.split("_")[2]}`}</p>

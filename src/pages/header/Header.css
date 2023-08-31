@@ -43,11 +43,7 @@ header .menu-icons {
 	display: none;
 }
 
-@media screen and (max-width: 850px) {
-	header .menu-icons {
-		display: block;
-	}
-}
+
 
 header .menu-icons svg {
 	/* this stles the open and close menu icons */
@@ -74,4 +70,19 @@ header .menu-icons svg {
 
 .loading-spinner span {
 	transform: translateY(-10px);
+}
+
+@media screen and (max-width: 850px) {
+	header .menu-icons {
+		display: block;
+	}
+}
+
+@media (max-width: 640px) {
+
+	/* .pages {
+		width: 64rem;
+		display: flex;
+	} */
+
 }

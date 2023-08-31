@@ -34,7 +34,7 @@ const TableTrnsForAstsTooltip = props => {
 				<thead>
 					<tr>
 						<th className="ast-#">#</th>
-						<th className="ast-id">Ast id</th>
+						{/* <th className="ast-id">Ast id</th> */}
 						<th className="ast-cat">Ast Category</th>
 						<th className="ast-no">Ast No</th>
 					</tr>
@@ -44,7 +44,7 @@ const TableTrnsForAstsTooltip = props => {
 						return (
 							<tr key={ast.id} >
                 <td className="ast-#" >{ rowNo++ }</td>
-                <td className="ast-id" >{ ast.id }</td>
+                {/* <td className="ast-id" >{ ast.id }</td> */}
                 <td className="ast-cat" >{ ast.astCartegory}</td>
 								<td className="ast-no" >{ast.astCartegory === 'cb' ? `${ast.cb.size} (amps)` : ast.astNo}</td>
 							</tr>

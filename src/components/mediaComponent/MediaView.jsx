@@ -9,13 +9,17 @@ import { irepsDictionary } from "../../utils/utils";
 
 const MediaView = () => {
 	const { mediaViewData, setMediaViewData } = useContext(MediaViewContext);
-	console.log(`mediaViewData`, mediaViewData);
+	// console.log(`mediaViewData`, mediaViewData);
 
 	// get date cteated
 	const name = mediaViewData?.metaData?.name;
 	// console.log(`name`, name)
 	const nameArray = name?.split("_");
 	// console.log(`nameArray`, nameArray);
+
+	// destructure photoname
+	const photoName = mediaViewData?.photoName;
+	// console.log(`photoName`, photoName)
 
 	const { closeModal } = useModal();
 
@@ -77,12 +81,7 @@ const MediaView = () => {
 			<div className="media-view-img">
 				<img src={mediaViewData?.url} alt="media view" />
 				<div className="media-view-metadata">
-					<p>
-						{irepsDictionary.get(mediaViewData?.metaData.customMetadata.astCat)}{" "}
-						{irepsDictionary.get(
-							mediaViewData?.metaData.customMetadata.mediaCategory
-						)}
-					</p>
+					<p> {photoName}</p>
 					<p>{nameArray && `${nameArray[1]} : ${nameArray[2]} `}</p>
 					<p>
 						{mediaViewData?.metaData.customMetadata.lat} /{" "}

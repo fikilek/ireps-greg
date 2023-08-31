@@ -25,11 +25,12 @@ const MeterAuditJsx = props => {
 								placeholder="Meter No"
 							/>
 							<FormikControl
-								control="button"
+								control="mediaButton"
 								type="button"
 								label="Mn Media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.astNoMedia`}
 								placeholder="Mn Media"
+								ml1="asts"
 							/>
 						</div>
 						<div className="half-row-50-50">
@@ -54,7 +55,7 @@ const MeterAuditJsx = props => {
 					<div className="row-2 ast-row">
 						<div className="meter-adr">
 							<FormikControl
-								control="reverseGeocodeButton"
+								control="gcButton"
 								type="button"
 								label="click for meter address"
 								name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.adr`}
@@ -103,11 +104,12 @@ const MeterAuditJsx = props => {
 						</div>
 						<div className="half-row-50-50">
 							<FormikControl
-								control="button"
+								control="mediaButton"
 								type="button"
 								label="inside box media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.insideBoxMedia`}
 								placeholder="Insie Box Media"
+								ml1="asts"
 							/>{" "}
 							<FormikControl
 								control="select"
@@ -174,11 +176,12 @@ const MeterAuditJsx = props => {
 						</div>
 						<div className="half-row-50-50">
 							<FormikControl
-								control="button"
+								control="mediaButton"
 								type="button"
 								label="keypad media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.keyPadMedia`}
 								placeholder="Keypad Media"
+								ml1="asts"
 							/>
 							<FormikControl
 								control="select"

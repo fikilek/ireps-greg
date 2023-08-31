@@ -29,13 +29,14 @@ const AstsForm = ({ formData }) => {
 	// console.log(`user`, user)
 
 	const [ast] = useState({
-		...formData,
+		...formData.data,
 		metaData: {
-			...formData.metaData,
+			...formData.data.metaData,
 			updatedAtDatetime: timestamp.fromDate(new Date()),
 			updatedByUser: user.displayName,
 		},
 	});
+	console.log(`ast`, ast)
 
 	const onSubmit = values => {
 		// console.log(`values`, values);
@@ -46,7 +47,8 @@ const AstsForm = ({ formData }) => {
 	useEffect(() => {
 		if (response.success) {
 			closeModal();
-			toast(`Asset ${ast.astData.astNo} data UPDATED" succeesfully!`, {
+			console.log(`ast`, ast);
+			toast(`Asset ${ast?.astData?.astNo} data UPDATED" succeesfully!`, {
 				position: "bottom-left",
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -57,23 +59,21 @@ const AstsForm = ({ formData }) => {
 				theme: "light",
 			});
 		}
-	}, [response, closeModal, ast.astData.astNo]);
+	}, [response, closeModal, ast?.astData?.astNo, ast]);
 
 	return (
 		<div className="form-wrapper">
 			<div className="form-container simcards-form-container">
 				<FormHeader2
-					formName={`${capitalizeFirstLetter(ast.astData.astCartegory)} Form`}
-					astState={ast.astData.astState}
-					astCartegory={ast.astData.astCartegory}
+					formName={`${capitalizeFirstLetter(ast?.astData?.astCartegory)} Form`}
+					astState={ast?.astData?.astState}
+					astCartegory={ast?.astData?.astCartegory}
 					closeModal={closeModal}
 				/>
 				<Formik
 					initialValues={ast}
 					onSubmit={onSubmit}
-					validationSchema={getValidationSchema(
-						ast.astData.astCartegory
-					)}
+					validationSchema={getValidationSchema(ast?.astData?.astCartegory)}
 				>
 					{formik => {
 						const disabled = !(formik.isValid && formik.dirty);
@@ -107,15 +107,14 @@ const AstsForm = ({ formData }) => {
 									{/* specific data */}
 									<div className="specific-data">
 										{ast &&
-											ast.astData.astCartegory &&
-											getFormSection(ast.astData.astCartegory)}
+											ast?.astData?.astCartegory &&
+											getFormSection(ast?.astData?.astCartegory)}
 									</div>
-
 								</div>
 								<div className="form-btns">
 									<FormBtn isPending={false} btnName="reset" />
 									<FormBtn
-										isPending={response.isPending}
+										isPending={response?.isPending}
 										btnName="submit"
 										disabled={disabled}
 									/>
@@ -127,7 +126,6 @@ const AstsForm = ({ formData }) => {
 			</div>
 		</div>
 	);
-
 };
 
 export default AstsForm;

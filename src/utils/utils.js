@@ -115,7 +115,7 @@ export const getPoStatus = po => {
 
 // capilalize first letter of a string and the rest small letters
 export const capitalizeFirstLetter = string => {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+	return string?.charAt(0)?.toUpperCase() + string?.slice(1);
 };
 
 export const capitalize = string => {
@@ -396,6 +396,8 @@ export const irepsDictionary = new Map()
 
 irepsDictionary.set('astNo', 'Ast No')
 irepsDictionary.set('astNoMedia', 'No')
+irepsDictionary.set('temperMedia', 'Temper')
+irepsDictionary.set('meterReadingMedia', 'Reading')
 
 irepsDictionary.set('sizeMedia', "Size")
 irepsDictionary.set('insideBox', "Inside Box")

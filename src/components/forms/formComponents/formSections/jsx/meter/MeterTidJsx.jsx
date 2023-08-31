@@ -27,11 +27,12 @@ const MeterTidJsx = props => {
 								options={formSelectOptions.yesNoOptions}
 							/>
 							<FormikControl
-								control="button"
+								control="mediaButton"
 								type="button"
 								label="keypad media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.keyPadMedia`}
 								placeholder="KeyPad Media"
+								ml1='asts'
 							/>
 						</div>
 						<div className="half-row-50-50">

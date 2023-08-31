@@ -21,6 +21,7 @@ import TableAstsInErfBtn from "../components/table/tableBtns/TableAstsInErfBtn";
 import TableTrnsForAstsTooltip from "../components/table/TableTrnsForAstsTooltip";
 import AstMediaBtn from "../components/astMedia/AstMediaBtn";
 import TableCellStyleAstStateMap from "../components/table/TableCellStyleAstStateMap";
+import TableAstsTrnsErfBtn from "../components/table/tableBtns/TableAstsTrnsErfBtn";
 
 export const useColumnDefs = props => {
 	// console.log(`props`, props);
@@ -1750,12 +1751,15 @@ export const useColumnDefs = props => {
 	];
 
 	// Assets
-	const astTableFields = [
+	const astTableFieldsLeft = [
 		{
 			field: "id",
 			headerName: "Ast Id",
 			width: 100,
 			// hide: true,
+			cellRendererParams: {
+				breakpoint: "sm",
+			},
 		},
 		{
 			headerName: "Updated",
@@ -1765,14 +1769,19 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: "Updated By",
 					width: 130,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
-				{
-					field: "metaData.updatedByUser",
-					columnGroupShow: "open",
-					headerName: "Updated By",
-					width: 130,
-				},
-				// 3
+				// {
+				// 	field: "metaData.updatedByUser",
+				// 	columnGroupShow: "open",
+				// 	headerName: "Updated By",
+				// 	width: 130,
+				// 	cellRendererParams: {
+				// 		breakpoint: "lg",
+				// 	},
+				// },
 				{
 					field: "metaData.updatedAtDatetime",
 					columnGroupShow: "open",
@@ -1782,6 +1791,9 @@ export const useColumnDefs = props => {
 						return (
 							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
 						);
+					},
+					cellRendererParams: {
+						breakpoint: "lg",
 					},
 				},
 			],
@@ -1794,13 +1806,19 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: "Created By",
 					width: 130,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
-				{
-					field: "metaData.createdByUser",
-					columnGroupShow: "open",
-					headerName: "Created By",
-					width: 130,
-				},
+				// {
+				// 	field: "metaData.createdByUser",
+				// 	columnGroupShow: "open",
+				// 	headerName: "Created By",
+				// 	width: 130,
+				// 	cellRendererParams: {
+				// 		breakpoint: "lg",
+				// 	},
+				// },
 				{
 					field: "metaData.createdAtDatetime",
 					columnGroupShow: "open",
@@ -1811,18 +1829,22 @@ export const useColumnDefs = props => {
 							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
 						);
 					},
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 			],
 		},
 		{
 			field: "edit",
 			headerName: "Edit",
-			width: 80,
+			width: 90,
 			floatingFilter: false,
 			cellRenderer: memo(FormEditBtn),
 			cellRendererParams: {
 				fn: "astsForm",
 				disabled: false,
+				// breakpoint: "lg",
 			},
 		},
 		{
@@ -1845,20 +1867,27 @@ export const useColumnDefs = props => {
 					<button className="table-row-btn table-row-btn-creator ">{`${createdThrough.creator} : ${createdThrough.creatorNo}`}</button>
 				);
 			},
+			cellRendererParams: {
+				breakpoint: "lg",
+			},
 		},
 		{
 			field: "metaData.trnCount",
 			headerName: "Ast Trn(s)",
 			width: 120,
 			cellRenderer: memo(TableTnsForAstBtn), //These are all transactions that happen on an ast
+			cellRendererParams: {
+				breakpoint: "lg",
+			},
 		},
 		{
 			field: "newTrn",
 			headerName: "New Trn",
-			width: 230,
+			width: 160,
 			cellRenderer: memo(TableBtnTrnSelect),
 			cellRendererParams: {
 				ml2,
+				breakpoint: "xm",
 			},
 		},
 		{
@@ -1868,38 +1897,57 @@ export const useColumnDefs = props => {
 					field: "astData.astNo",
 					columnGroupShow: "closed",
 					headerName: `Asset No`,
-					width: 180,
+					width: 170,
 					cellRenderer: AstMediaBtn,
+					cellRendererParams: {
+						breakpoint: "xm",
+					},
 				},
 				{
 					field: "astData.astSerialNo",
 					columnGroupShow: "open",
 					headerName: "Ast Serial No",
 					width: 140,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "astData.astCartegory",
 					columnGroupShow: "closed",
-					headerName: "Ast Cartegory",
-					width: 140,
+					headerName: "Ast Cat",
+					width: 90,
+					cellRendererParams: {
+						breakpoint: "sm",
+					},
 				},
 				{
 					field: "astData.astState",
 					columnGroupShow: "closed",
 					headerName: "Ast State",
-					width: 150,
+					width: 130,
 					cellStyle: TableCellStyleAstState,
+					cellRendererParams: {
+						breakpoint: "sm",
+					},
 				},
 			],
 		},
+	];
+
+	const astTableFieldsRight = [
 		{
 			headerName: "Erf/Gps",
 			children: [
 				{
 					field: "erfData.erfNo",
 					headerName: "Erf No",
-					width: 120,
+					width: 90,
 					columnGroupShow: "close",
+					cellRenderer: TableAstsTrnsErfBtn,
+					cellRendererParams: {
+						breakpoint: "sm",
+					},
 				},
 				{
 					field: "erfData.gps.latitude",
@@ -1907,6 +1955,9 @@ export const useColumnDefs = props => {
 					headerName: "Latitude",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.gps.longitude",
@@ -1914,6 +1965,9 @@ export const useColumnDefs = props => {
 					headerName: "Longitude",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 			],
 		},
@@ -1925,45 +1979,69 @@ export const useColumnDefs = props => {
 					headerName: "Country",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.province",
 					headerName: "Province",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.dm",
 					headerName: "DM",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.lmMetro",
 					headerName: "LM or Metro",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.town",
 					headerName: "Towm",
 					width: 120,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.ward",
 					headerName: "Ward",
 					width: 120,
 					columnGroupShow: "open",
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.suburbTownship",
 					headerName: "Suburb/Township",
 					width: 170,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 				{
 					field: "erfData.address.street",
 					headerName: "Street",
 					width: 170,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
 			],
 		},
@@ -1980,6 +2058,7 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "Ast Id",
 			width: 100,
+			hide: true,
 		},
 		{
 			field: "astData.astCartegory",
@@ -1997,9 +2076,23 @@ export const useColumnDefs = props => {
 		{
 			headerName: "Meters",
 			children: [
-				{ field: "astData.meter.phase", headerName: "Phase", initialWidth: 120 },
-				{ field: "astData.meter.type", headerName: "Type", initialWidth: 120 },
-				{ field: "astData.meter.code", headerName: "Code", initialWidth: 120 },
+				{
+					field: "astData.meter.phase",
+					headerName: "Phase",
+					initialWidth: 120,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
+				},
+				{
+					field: "astData.meter.type",
+					headerName: "Type",
+					initialWidth: 120,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
+				},
+				// { field: "astData.meter.code", headerName: "Code", initialWidth: 120 },
 			],
 		},
 	];
@@ -2079,8 +2172,18 @@ export const useColumnDefs = props => {
 					field: "astData.cb.size",
 					headerName: "size",
 					initialWidth: 90,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
-				{ field: "astData.cb.code", headerName: "Code", initialWidth: 120 },
+				{
+					field: "astData.cb.code",
+					headerName: "Code",
+					initialWidth: 120,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
+				},
 			],
 		},
 	];
@@ -2093,8 +2196,18 @@ export const useColumnDefs = props => {
 					field: "astData.seal.no",
 					headerName: "Seal No",
 					initialWidth: 120,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
 				},
-				{ field: "astData.cb.code", headerName: "Code", initialWidth: 120 },
+				{
+					field: "astData.cb.code",
+					headerName: "Code",
+					initialWidth: 120,
+					cellRendererParams: {
+						breakpoint: "lg",
+					},
+				},
 			],
 		},
 	];
@@ -2325,7 +2438,7 @@ export const useColumnDefs = props => {
 		{
 			field: "astData",
 			headerName: "Asset Checkout/in",
-			width: 250,
+			width: 260,
 			cellRenderer: memo(TrnAstCheckoutFormBtn),
 		},
 
@@ -2345,7 +2458,7 @@ export const useColumnDefs = props => {
 			},
 		},
 
-		...mediaFields,
+		// ...mediaFields,
 
 		// erfs
 
@@ -2356,9 +2469,11 @@ export const useColumnDefs = props => {
 					field: "erfData.erfNo",
 					headerName: "Erf No",
 					width: 130,
-					cellRenderer: params => {
-						return <button className="table-row-btn">{params.value}</button>;
-					},
+					cellRenderer: TableAstsTrnsErfBtn,
+					// cellRenderer: params => {
+					// 	console.log(`params`, params)
+					// 	return <button className="table-row-btn">{params.value}</button>;
+					// },
 				},
 			],
 		},
@@ -3859,31 +3974,31 @@ export const useColumnDefs = props => {
 	Assets
 	*/
 	if (ml1 === "asts") {
-		fields = [...astTableFields];
+		fields = [...astTableFieldsLeft, ...astTableFieldsRight];
 		if (ml2) {
 			if (ml2 === "feeder") {
-				fields = [...fields, ...astFeeder];
+				fields = [...astTableFieldsLeft, ...astFeeder, ...astTableFieldsRight];
 			}
 			if (ml2 === "pole") {
-				fields = [...fields, ...astPole];
+				fields = [...astTableFieldsLeft, ...astPole, ...astTableFieldsRight];
 			}
 			if (ml2 === "box") {
-				fields = [...fields, ...astBox];
+				fields = [...astTableFieldsLeft, ...astBox, ...astTableFieldsRight];
 			}
 			if (ml2 === "meter") {
-				fields = [...fields, ...astMeter];
+				fields = [...astTableFieldsLeft, ...astMeter, ...astTableFieldsRight];
 			}
 			if (ml2 === "cb") {
-				fields = [...fields, ...astCb];
+				fields = [...astTableFieldsLeft, ...astCb, ...astTableFieldsRight];
 			}
 			if (ml2 === "seal") {
-				fields = [...fields, ...astSeal];
+				fields = [...astTableFieldsLeft, ...astSeal, ...astTableFieldsRight];
 			}
 			if (ml2 === "vtct") {
-				fields = [...fields, ...astVtct];
+				fields = [...astTableFieldsLeft, ...astVtct, ...astTableFieldsRight];
 			}
 			if (ml2 === "transformer") {
-				fields = [...fields, ...astTransformer];
+				fields = [...astTableFieldsLeft, ...astTransformer, ...astTableFieldsRight];
 			}
 		}
 	}

@@ -64,7 +64,9 @@ const MeterInspectionJsx = props => {
 						<p>
 							Is there a Key Pad? :
 							<span>
-								{trn.astData[astCat][astCatIndex].meterInstallation.keyPad.isThereKeyPad}
+								{
+									trn.astData[astCat][astCatIndex].meterInstallation.keyPad.isThereKeyPad
+								}
 							</span>
 						</p>
 						<p>
@@ -85,7 +87,8 @@ const MeterInspectionJsx = props => {
 								{trn.astData[astCat][astCatIndex].meterInstallation.astAdr.adr}
 							</span>{" "}
 							<span>
-								{trn.astData[astCat][astCatIndex].meterInstallation.astAdr.gps.lat}{" / "}
+								{trn.astData[astCat][astCatIndex].meterInstallation.astAdr.gps.lat}
+								{" / "}
 								{trn.astData[astCat][astCatIndex].meterInstallation.astAdr.gps.lng}
 							</span>
 						</p>
@@ -138,7 +141,7 @@ const MeterInspectionJsx = props => {
 					</div>
 					<div className="photos"></div>
 				</div>
-				<div className="row-2 ast-row">
+				<div className="row-1 ast-row">
 					<div className="half-row-50-50">
 						<FormikControl
 							control="select"
@@ -149,6 +152,15 @@ const MeterInspectionJsx = props => {
 							options={formSelectOptions.yesNoOptions}
 						/>
 						<FormikControl
+							control="button"
+							type="button"
+							label="Mn Media"
+							name={`astData[${astCat}][${astCatIndex}].astData.astMedia.astNoMedia`}
+							placeholder="Mn Media"
+						/>
+					</div>
+					<div className="half-row-50-50">
+						<FormikControl
 							control="select"
 							type="text"
 							label="meter tempered?"
@@ -156,27 +168,17 @@ const MeterInspectionJsx = props => {
 							placeholder="Meter Tempered?"
 							options={formSelectOptions.yesNoOptions}
 						/>
-					</div>
-					<div className="half-row-50-50">
 						<FormikControl
-							control="select"
-							type="text"
-							label="meter in use?"
-							name={`astData[${astCat}][${astCatIndex}].trnData.meterInUse`}
-							placeholder="Meter in use?"
-							options={formSelectOptions.yesNoOptions}
+							control="button"
+							type="button"
+							label="temper Media"
+							name={`astData[${astCat}][${astCatIndex}].astData.astMedia.temperMedia`}
+							placeholder="Temper Media"
 						/>
 					</div>
 				</div>
-				<div className="row-3 ast-row">
-					<div className="half-row-50-50">
-						<FormikControl
-							control="input"
-							type="text"
-							label="meter reading"
-							name={`astData[${astCat}][${astCatIndex}].trnData.readings.meterReading`}
-							placeholder="Meter reading?"
-						/>
+				<div className="row-2 ast-row">
+					<div className="row-1fr-1fr-1fr">
 						<FormikControl
 							control="input"
 							type="text"
@@ -184,8 +186,6 @@ const MeterInspectionJsx = props => {
 							name={`astData[${astCat}][${astCatIndex}].trnData.readings.voltageReadings.phase1`}
 							placeholder="phase 1"
 						/>
-					</div>
-					<div className="half-row-50-50">
 						<FormikControl
 							control="input"
 							type="text"
@@ -201,8 +201,24 @@ const MeterInspectionJsx = props => {
 							placeholder="phase 3"
 						/>
 					</div>
+					<div className="half-row-50-50">
+						<FormikControl
+							control="input"
+							type="text"
+							label="meter reading"
+							name={`astData[${astCat}][${astCatIndex}].trnData.readings.meterReading`}
+							placeholder="Meter reading?"
+						/>
+						<FormikControl
+							control="button"
+							type="button"
+							label="meter meading media"
+							name={`astData[${astCat}][${astCatIndex}].astData.astMedia.meterReadingMedia`}
+							placeholder="Meter Reading Media"
+						/>
+					</div>
 				</div>
-				<div className="row-4 ast-row">
+				<div className="row-3 ast-row">
 					<div className="half-row-50-50">
 						<FormikControl
 							control="select"
@@ -238,7 +254,7 @@ const MeterInspectionJsx = props => {
 						/>
 					</div>
 				</div>
-				<div className="row-5 ast-row">
+				<div className="row-4 ast-row">
 					<div className="half-row-50-50">
 						<FormikControl
 							control="select"

@@ -26,11 +26,12 @@ const CbAuditJsx = props => {
 								placeholder="Cb Size"
 							/>
 							<FormikControl
-								control="button"
+								control="mediaButton"
 								type="button"
 								label="cb size media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.sizeMedia`}
 								placeholder="Cb Size Media"
+								ml1='asts'
 							/>
 						</div>
 						<div>

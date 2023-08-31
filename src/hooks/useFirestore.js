@@ -48,20 +48,25 @@ const firestoreReducer = (state, action) => {
 			};
 		default:
 			// console.log(`DEFAULT`, action.payload);
-			return state;
+			throw new Error(`Error adding new doc [${action.payload}] to firestore`)
+			// return state;
 	}
 };
 
 export const useFirestore = fbCollection => {
+
 	const [response, dispatch] = useReducer(firestoreReducer, initData);
 	const [isCancelled, setIsCancelled] = useState(false);
 	// console.log(`isCancelled`, isCancelled);
 	// console.log(`response`, response);
+	// console.log(`myDoc`, myDoc);
 
 	const dispatchIfNotCancelled = action => {
 		if (!isCancelled) {
-			// console.log(`action`, action);
+			// console.log(`action NOT CANCELLED`, action);
 			dispatch(action);
+		} else {
+			// console.log(`action CANCELLED`, action);
 		}
 	};
 

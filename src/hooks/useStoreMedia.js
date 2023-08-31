@@ -29,6 +29,7 @@ const useStoreMedia = () => {
 				lat: imgData.metaData.createdAtLocation.lat,
 				lng: imgData.metaData.createdAtLocation.lng,
 				astCat: imgData.metaData.astCat,
+				ml1: imgData.metaData.ml1,
 			},
 		};
 

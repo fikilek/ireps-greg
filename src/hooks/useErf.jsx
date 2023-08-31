@@ -1,8 +1,53 @@
+import { useEffect, useState } from "react";
 import { formSects } from "../components/forms/formComponents/formSections/formSects";
 
-export const useErf = () => {
+const initErfData = {
+	asts: [],
+	trns: [],
+};
 
-	const getAstData = (erf) => {
+export const useErf = erf => {
+	// console.log(`erf`, erf);
+	const [erfData, setErfData] = useState(initErfData);
+	// console.log(`erfData`, erfData);
+
+	// const getNoOfAstsInErf = erf => {
+	// 	return erfData?.asts.length;
+	// }
+
+	const setAstsInErf = erf => {
+		// console.log(`erf`, erf);
+
+		const trns = erf.asts;
+		let asts = [];
+		let erfAstsIds = [];
+		trns &&
+			trns.forEach(trn => {
+				// console.log(`trn`, trn);
+				if (!erfAstsIds.includes(trn?.id)) {
+					const asset = {
+						astData: trn.astData,
+						id: trn.id,
+						erfData: { id: trn.erfId },
+					};
+					// console.log(`asset`, asset);
+					erfAstsIds.push(trn.id);
+					asts.push(asset);
+				}
+			});
+		// console.log(`asts`, asts)
+		setErfData(prev => {
+			return {
+				...prev,
+				asts: asts,
+			};
+		});
+	};
+
+	const getAstsInErf = () => erfData.asts;
+	const getNoOfAstsInErf = () => erfData.asts.length;
+
+	const getAstData = erf => {
 		// an erf already has an array of all asts in it. They are in asts property. Go inside asts property and extract needed astData as well as catInstallation ( and catCommissining data if it there).
 
 		// step 1: destructire asts array
@@ -98,5 +143,14 @@ export const useErf = () => {
 		return astData;
 	};
 
-	return { getAstData };
+	useEffect(() => {
+		if (erf) {
+			setAstsInErf(erf);
+		}
+		return () => {
+			setAstsInErf({});
+		};
+	}, [erf]);
+
+	return { getAstsInErf, getNoOfAstsInErf, getAstData };
 };

@@ -197,6 +197,7 @@ const TabsErfs = props => {
 					modalName: "tableTrnsFromErfs",
 					payload: { newTrnsArray, trnType },
 				});
+				setTrnType('choose');
 			}
 		}
 	};

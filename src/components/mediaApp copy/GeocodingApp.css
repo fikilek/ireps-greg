@@ -91,7 +91,7 @@
 
 .geocoding-app .body .geocoding-map .map-container {
   width: 60rem;
-  height: 60rem;
+  height: 50rem;
 }
 
 @media (max-width: 700px) {

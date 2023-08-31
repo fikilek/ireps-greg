@@ -24,11 +24,12 @@ const SealAuditJsx = props => {
 								placeholder="Seal No"
 							/>
 							<FormikControl
-								control="button"
+								control="mediaButton"
 								type="button"
 								label="seal no media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.astNoMedia`}
 								placeholder="Seal No Media"
+								ml1='asts'
 							/>
 						</div>
 						<div className="row-1 ast-row">

@@ -16,7 +16,7 @@ const TableBtnTrnSelect = params => {
 	const { user } = useAuthContext();
 
 	const { response, addDocument } = useFirestore("trns");
-	// console.log(`response`, response)
+	// console.log(`response`, response);
 
 	// const [erf, setErf] = useState({});
 	let erf = {};
@@ -27,6 +27,7 @@ const TableBtnTrnSelect = params => {
 	// console.log(`choosenTrnType`, choosenTrnType);
 
 	const [hideShowBtn, setHideShowBtn] = useState(true);
+	// console.log(`hideShowBtn`, hideShowBtn);
 
 	// ------------------------------------------------
 	// console.log(`params.data.erfData.id`, params.data?.erfData?.id);
@@ -156,15 +157,17 @@ const TableBtnTrnSelect = params => {
 		if (newTrnAllowed) {
 			console.log(`newTrn`, newTrn);
 			addDocument(newTrn);
-			// 	openModal({
-			// 		modalName: "trnDataForm",
-			// 		payload: newTrn,
-			// 	});
+			// openModal({
+			// 	modalName: "trnDataForm",
+			// 	payload: newTrn,
+			// });
+			setHideShowBtn(true);
+			setChoosenTrnType("choose");
 		}
 	};
 
 	useEffect(() => {
-		// console.log(`response`, response)
+		// console.log(`response`, response);
 		if (response.success) {
 			setHideShowBtn(true);
 			setChoosenTrnType("choose");
@@ -186,7 +189,7 @@ const TableBtnTrnSelect = params => {
 	}, [response]);
 
 	return (
-		<>
+		<div className="table-btn-trn-select">
 			<button
 				className={`table-row-btn ${hideShowBtn ? "hide-new-trn-btn" : ""} `}
 				onClick={openNewTrn}
@@ -197,6 +200,7 @@ const TableBtnTrnSelect = params => {
 				value={hideShowBtn ? "choose" : newTrn.metaData.trnType}
 				onChange={handleChange}
 				placeholder=""
+				className="trn-select"
 			>
 				<option key={-1} value={null}>
 					{"choose"}
@@ -210,7 +214,7 @@ const TableBtnTrnSelect = params => {
 						);
 					})}
 			</select>
-		</>
+		</div>
 	);
 };
 

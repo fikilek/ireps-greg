@@ -12,10 +12,12 @@ import FormHeader4 from "../formComponents/formHeaders/FormHeader4";
 import { formSelectOptions } from "../../../utils/utils";
 import { useCallback } from "react";
 import { useMemo } from "react";
+import ReverseGeocodingApp from "../../mediaApp copy/ReverseGeocodingApp";
+import PhotoAppErf from "../../mediaApp/PhotoAppErf";
 
 const ErfsForm = props => {
-	// console.log(`props.formData`, props.formData);
-	const {data: formData, hideHeader, disabled}  = props?.formData;
+	console.log(`ErfsForm props`, props);
+	const { data: formData, hideHeader, disabled } = props?.formData;
 	const { closeModal } = useModal();
 	// console.log(`formData`, formData);
 
@@ -84,7 +86,7 @@ const ErfsForm = props => {
 		<div className="form-wrapper">
 			<div className="form-container simcards-form-container">
 				{hideHeader ? (
-					''
+					""
 				) : (
 					<FormHeader4
 						formName={"Erf"}
@@ -215,21 +217,34 @@ const ErfsForm = props => {
 															options={formSelectOptions.provinceOptions}
 														/>
 													</div>
-													<FormikControl
-														control="select"
-														type="text"
-														label="country"
-														name="address.country"
-														placeholder="Country"
-														options={formSelectOptions.countryOptions}
-													/>
-													<FormikControl
-														control="input"
-														type="text"
-														label="system address"
-														name="address.systemAdr"
-														placeholder="system address"
-													/>
+													<div className="half-row-50-50">
+														<FormikControl
+															control="select"
+															type="text"
+															label="country"
+															name="address.country"
+															placeholder="Country"
+															options={formSelectOptions.countryOptions}
+														/>
+														
+														<FormikControl
+															control="mediaButton"
+															type="button"
+															label="Erf Media"
+															name={`erfMedia`}
+															placeholder="Erf Media"
+															ml1="erfs"
+														/>
+													</div>
+													<div>
+														<FormikControl
+															control="rgcButton"
+															type="button"
+															label="erf system address"
+															name={`address.systemAdr`}
+															placeholder="Erf System Address"
+														/>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -480,6 +495,8 @@ const ErfsForm = props => {
 						);
 					}}
 				</Formik>
+				<ReverseGeocodingApp />
+				<PhotoAppErf />
 			</div>
 		</div>
 	);

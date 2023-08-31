@@ -301,10 +301,6 @@ export const fsValidationData = {
 				constraints: [{ required: "yes", condition: "" }],
 				verdict: "",
 			},
-			meterInUse: {
-				constraints: [{ required: "yes", condition: "" }],
-				verdict: "",
-			},
 
 			readings: {
 				meterReading: {

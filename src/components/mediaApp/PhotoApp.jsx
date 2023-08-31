@@ -35,6 +35,10 @@ const PhotoApp = () => {
 	// console.log(`storeMedia`, storeMedia)
 	// console.log(`response`, response);
 
+	// get ml1
+	const ml1 = photoAppData?.ml1;
+	// console.log(`ml1`, ml1);
+
 	// create a state to hold all avaiable cameras in the device
 	const [devices, setDevices] = useState([]);
 	// console.log(`devices`, devices);
@@ -120,17 +124,15 @@ const PhotoApp = () => {
 		// TODO: find a generic way to get id and not the hard wired one as  below
 		astId = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]]?.id;
 		astNo = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astNo;
-		astCat = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astCartegory;
+		astCat =
+			trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astCartegory;
 		// console.log(`astId`, astId);
 		// console.log(`trnId`, trnId);
 		// console.log(`astCat`, astCat);
 
 		// get all media for the astId
 		getMediaList(`asts/${astId}`);
-	
 	}
-
-
 
 	// create a capture function
 	const capture = data => {
@@ -150,6 +152,7 @@ const PhotoApp = () => {
 				},
 				trnId,
 				astCat,
+				ml1,
 			},
 		});
 	};
@@ -338,7 +341,7 @@ const PhotoApp = () => {
 			<div className="footer">
 				{mediaList?.length > 0 && (
 					<>
-						<MediaComponent astId={astId} mediaData={mediaList} />
+						<MediaComponent id={astId} mediaData={mediaList} />
 						<MediaView />
 					</>
 				)}

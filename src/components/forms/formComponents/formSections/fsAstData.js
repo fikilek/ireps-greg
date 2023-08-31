@@ -9,6 +9,8 @@ export const fsAstData = {
 				astNoMedia: [], // photo to show meter number
 				insideBoxMedia: [], // photo to show meter isdie a box
 				keyPadMedia: [], // photo to show evidance of a keypad existance
+				temperMedia: [], // photo to show evidance of ast tempering
+				meterReadingMedia: [], // photo to show evidance of ast tempering
 			},
 			meter: {
 				code: "",

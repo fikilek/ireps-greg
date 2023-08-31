@@ -9,14 +9,20 @@ import {
 } from "firebase/firestore";
 
 const useCollection = (ml1, ml2, ml3) => {
-	// console.log(`inside useGetCollecion ml1:`, ml1);
-	// console.log(`inside useGetCollecion ml2:`, ml2);
-	// console.log(`inside useGetCollecion ml3:`, ml3);
+	// console.log(`inside useCollecion ml3:`, ml3);
 	const [data, setData] = useState([]);
 	const [error, setError] = useState("");
 	const [isPending, setIsPending] = useState(false);
 	const [success, setSuccess] = useState(false);
+
+	// console.log(`START useCollection  ---------------------------------------`);
+	// console.log(`inside useCollecion ml1:`, ml1);
+	// console.log(`inside useCollecion ml2:`, ml2);
 	// console.log(`data`, data)
+	// console.log(`error`, error)
+	// console.log(`isPending`, isPending);
+	// console.log(`success`, success);
+	// console.log(`useCollection  ---------------------------------------`);
 
 	useEffect(() => {
 		let q = null;
@@ -55,20 +61,22 @@ const useCollection = (ml1, ml2, ml3) => {
 			}
 		}
 		// assets
-		if (ml1 === "asts") {
-			if (ml2) {
-				q = query(
-					collection(db, ml1),
-					where("astData.astCartegory", "==", ml2),
-					orderBy("metaData.updatedAtDatetime", "desc")
-				);
-			} else {
-				q = query(
-					collection(db, ml1),
-					orderBy("metaData.updatedAtDatetime", "desc")
-				);
-			}
+		if (ml1 === "asts" & (ml2 == undefined || ml2 == null)) {
+			// console.log(`ONLY ${ml1}`);
+			q = query(
+				collection(db, ml1),
+				orderBy("metaData.updatedAtDatetime", "desc")
+			);
 		}
+		if (ml1 === "asts" & (ml2 != undefined || ml2 != null)) {
+			// console.log(`BOTH ${ml1} and ${ml2}`);
+			q = query(
+				collection(db, ml1),
+				orderBy("metaData.updatedAtDatetime", "desc"),
+				where("astData.astCartegory", "==", ml2),
+			);
+		}
+
 		// admin
 		if (ml1 === "admin") {
 			if (ml2 === "systt") {

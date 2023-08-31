@@ -85,8 +85,8 @@ const TableTrnsFromErfs = props => {
 		// console.log(`newTrnsArray`, newTrnsArray);
 		newAuditTrnsArray &&
 			newAuditTrnsArray.map(trn => {
-				// console.log(`trn`, trn);
-				return addDocument(trn);
+				console.log(`trn`, trn);
+				addDocument(trn);
 			});
 		closeModal();
 	};
@@ -94,22 +94,22 @@ const TableTrnsFromErfs = props => {
 	useEffect(() => {
 		console.log(`response`, response);
 		// TODO: Come back and fix the response problem here. Got ot do with useFirestore addDcocument async
-		// if (response.success) {
-		// 	console.log(
-		// 		`new trn [${response.document.id}] SUCCESFULLY created`,
-		// 		response
-		// 	);
-		// 	toast(`new trn [${response.document.id}] SUCCESFULLY created!`, {
-		// 		position: "bottom-left",
-		// 		autoClose: 3000,
-		// 		hideProgressBar: false,
-		// 		closeOnClick: true,
-		// 		pauseOnHover: true,
-		// 		draggable: true,
-		// 		progress: undefined,
-		// 		theme: "light",
-		// 	});
-		// }
+		if (response.success) {
+			console.log(
+				`new trn [${response.document.id}] SUCCESFULLY created`,
+				response
+			);
+			toast(`new trn [${response.document.id}] SUCCESFULLY created!`, {
+				position: "bottom-left",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
+		}
 	}, [response]);
 
 	return (

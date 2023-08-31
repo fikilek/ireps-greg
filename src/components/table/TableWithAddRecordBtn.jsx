@@ -40,18 +40,14 @@ const TableWithAddRecordBtn = props => {
 		<div className={`table ${tn}`}>
 			<div className="table-header">
 				<div className="th-menu-levels">
-					{/* <p>{`${ml1} : ${tn} : ${ml3}`}</p> */}
-					<p>{`${irepsDictionary.get(ml1)} `}</p>
+					<p>
+						{`
+							${irepsDictionary.get(ml1)}  
+							${tn ? `${irepsDictionary.get(tn)}s` : ""}
+							${ml3 ? `${irepsDictionary.get(ml3)}s` : ""} 
+						`}
+					</p>
 				</div>
-				{/* <div className="views">
-					<button className="views-btn table-views">Table Views</button>
-					<button className="views-btn views map-view">Map Views</button>
-					<button className="views-btn views tree-view">Tree Views</button>
-				</div> */}
-				{/* <div className="trn-selection">
-					<button>NT</button>
-					<select></select>
-				</div> */}
 			</div>
 			<Table rowData={rowData} columnDefs={columnDefs} />
 			{showTableAddRecordBtn(ml1, tn, ml3, nfd, fn)}

@@ -28,6 +28,7 @@ import TableTrnsForAst from "../table/TableTnsForAst";
 import TableTrnsInErf from "../table/TableTrnsInErf";
 import TableAstsInErf from "../table/TableAstsInErf";
 import AstMedia from "../astMedia/AstMedia";
+import TabsErfMapInfoWrapper from "../tabs/erfsTabs/tabsMap/TabsErfMapInfoWrapper";
 
 const Modal = () => {
 	const { componentToOpen, setComponentToOpen, modalOpened, setModalOpened } =
@@ -91,6 +92,9 @@ const Modal = () => {
 						{modalName === "astsForm" && <AstsForm formData={payload} />}
 						{modalName === "tableTrnsForAst" && <TableTrnsForAst astData={payload} />}
 						{modalName === "astMedia" && <AstMedia astData={payload} />}
+						{modalName === "tabsErfMapInfoWrapper" && (
+							<TabsErfMapInfoWrapper erf={payload} />
+						)}
 
 						{/* sch */}
 						{modalName === "poForm" && <PoForm formData={payload} />}

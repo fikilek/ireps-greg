@@ -98,6 +98,12 @@
   gap: 1rem;
 }
 
+.form-container form .fs .fsb .ast .ast-row .row-1fr-1fr-1fr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
 .form-container form .fs .fsb .ast .ast-row .half-row-20-50 {
   display: grid;
   grid-template-columns: 2fr 5fr;

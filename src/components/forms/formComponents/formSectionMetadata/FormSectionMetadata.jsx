@@ -1,6 +1,6 @@
 import React from "react";
-import FormSectionCreated from "../formSectionCreated/FormSectionCreated";
-import FormSectionUpdated from "../formSectionUpdated/FormSectionUpdated";
+// import FormSectionCreated from "../formSectionCreated/FormSectionCreated";
+// import FormSectionUpdated from "../formSectionUpdated/FormSectionUpdated";
 import FormShowHideSection from "../formShowHideSection/FormShowHideSection";
 
 const FormSectionMetadata = ({ po, setPo, active, setActive }) => {
@@ -26,7 +26,7 @@ const FormSectionMetadata = ({ po, setPo, active, setActive }) => {
 			<div
 				className={`fsb ${active === "metadata" ? "showSection" : "hideSection"}`}
 			>
-				<FormSectionUpdated
+				{/* <FormSectionUpdated
 					po={po}
 					setPo={setPo}
 					active={active}
@@ -37,7 +37,7 @@ const FormSectionMetadata = ({ po, setPo, active, setActive }) => {
 					setPo={setPo}
 					active={active}
 					setActive={setActive}
-				/>
+				/> */}
 			</div>
 		</div>
 	);

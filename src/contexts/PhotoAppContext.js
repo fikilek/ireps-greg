@@ -7,6 +7,7 @@ export const PhotoAppContext = createContext();
 const intiValue = {
 	data: "",
 	isPhotoAppOpened: false,
+	ml1: '',
 };
 
 // A "provider" is used to encapsulate only the components that needs the state in this context
