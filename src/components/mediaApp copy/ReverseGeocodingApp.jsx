@@ -101,8 +101,8 @@ const ReverseGeocodingApp = () => {
 					<button>{address ? address : "No Address"}</button>
 				</div>
 
-				<div className="header-subsection-right">
-					<div className="header-subsection ast-no">
+				<div className="header-subsection-right erf-no">
+					<div className="header-subsection">
 						<p>Erf No:</p>
 						<h3 className="data-emphasis">{erfNo} </h3>
 					</div>

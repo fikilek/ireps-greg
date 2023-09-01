@@ -8,6 +8,7 @@ import useOpenModal from "../../../hooks/useModal";
 const SignedOutMenu = () => {
 	const { openModal } = useOpenModal();
 	const { menuStatus, setMenuStatus } = useContext(MenuContext);
+	console.log(`menuStatus`, menuStatus);
 
 	const handleClick = e => {
 		// modalOpened a modal window
@@ -20,6 +21,8 @@ const SignedOutMenu = () => {
 			// console.log(`about to change menyStatus`)
 			setMenuStatus(true);
 			// console.log(`menuStatus changed to : ${menuStatus}`)
+		} else {
+			setMenuStatus(false);
 		}
 	};
 

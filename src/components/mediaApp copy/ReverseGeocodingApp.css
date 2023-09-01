@@ -116,7 +116,7 @@
   .reverse-geocoding-app .header {
     grid-template-columns: 5fr 5fr 1fr;
     grid-template-rows: 2fr;
-    gap: 0;
+    gap: 1rem;
   }
 
   .reverse-geocoding-app .header .address {
@@ -126,17 +126,17 @@
     grid-row: 2/3
   }
 
-  .reverse-geocoding-app .header .header-name {
-    /* grid-area: header-name; */
-    grid-column: 1/2;
+  .reverse-geocoding-app .header .erf-no {
+    display: flex;
+    grid-area: erf-no;
+    grid-column: 1/4;
     grid-row: 1/2
   }
 
-  .reverse-geocoding-app .header .ast-no {
-    /* grid-area: ast-no; */
-    grid-column: 2/3;
-    grid-row: 1/2
-  }
+    .reverse-geocoding-app .header .erf-no .header-subsection {
+      display: flex;
+      align-items: center;
+    }
 
   .reverse-geocoding-app .header .reverse-geocoding-app-close-btn {
     /* grid-area: reverse-geocoding-app-close-btn; */

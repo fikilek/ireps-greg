@@ -142,6 +142,7 @@ const ErfsForm = props => {
 													</div>
 													<div className="half-row-50-50">
 														<FormikControl
+															readOnly={true}
 															control="input"
 															type="number"
 															label="gps latitude"
@@ -149,6 +150,7 @@ const ErfsForm = props => {
 															placeholder="Gps lat"
 														/>
 														<FormikControl
+															readOnly={true}
 															control="input"
 															type="number"
 															label="gps longitude"
@@ -165,6 +167,7 @@ const ErfsForm = props => {
 													/>
 													<div className="half-row-50-50">
 														<FormikControl
+															readOnly={true}
 															control="input"
 															type="text"
 															label="suburd / tship"
@@ -172,36 +175,40 @@ const ErfsForm = props => {
 															placeholder="Suburb / Tship"
 														/>
 														<FormikControl
-															control="select"
+															readOnly={true}
+															control="input"
 															type="text"
 															label="towm"
 															name="address.town"
 															placeholder="Town"
-															options={formSelectOptions.townOptions}
+															// options={formSelectOptions.townOptions}
 														/>
 													</div>
 
 													<div className="half-row-50-50">
 														<FormikControl
-															control="select"
+															readOnly={true}
+															control="input"
 															type="text"
 															label="ml / metro"
 															name="address.lmMetro"
 															placeholder="municipality"
-															options={formSelectOptions.lmMetroOptions}
+															// options={formSelectOptions.lmMetroOptions}
 														/>
 														<FormikControl
-															control="select"
+															readOnly={true}
+															control="input"
 															type="text"
 															label="dm"
 															name="address.dm"
 															placeholder="municipality"
-															options={formSelectOptions.dmOptions}
+															// options={formSelectOptions.dmOptions}
 														/>
 													</div>
 													<div className="half-row-50-50">
 														{" "}
 														<FormikControl
+															readOnly={true}
 															control="input"
 															type="text"
 															label="ward no"
@@ -209,24 +216,26 @@ const ErfsForm = props => {
 															placeholder="Ward No"
 														/>
 														<FormikControl
-															control="select"
+															readOnly={true}
+															control="input"
 															type="text"
 															label="province"
 															name="address.province"
 															placeholder="province"
-															options={formSelectOptions.provinceOptions}
+															// options={formSelectOptions.provinceOptions}
 														/>
 													</div>
 													<div className="half-row-50-50">
 														<FormikControl
-															control="select"
+															readOnly={true}
+															control="input"
 															type="text"
 															label="country"
 															name="address.country"
 															placeholder="Country"
-															options={formSelectOptions.countryOptions}
+															// options={formSelectOptions.countryOptions}
 														/>
-														
+
 														<FormikControl
 															control="mediaButton"
 															type="button"

@@ -45,9 +45,8 @@
 }
 
 .media-view .media-view-img img {
-  /* width: 90%;
-  max-height: 60rem;
-  max-width: 80rem; */
+  width: 100%;
+  height: auto;
 }
 
 .media-view .media-view-metadata {
