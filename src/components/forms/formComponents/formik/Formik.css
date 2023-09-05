@@ -517,7 +517,7 @@
   border-radius: 0.6rem;
   /* box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff; */
   letter-spacing: 0.13rem;
-  width: 15rem;
+  /* width: 15rem; */
   height: 3rem;
   line-height: 3rem;
   text-align: center;
@@ -623,9 +623,14 @@
   display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1200px) {}
+
+
+@media (max-width: 1024px) {}
+
+@media (max-width: 768px) {
   .form-container {
-    width: 30rem;
+    width: 27.8rem;
     margin-top: 2rem;
   }
 
@@ -636,4 +641,11 @@
   .form-container form .fs .fsb .ast .ast-row {
     grid-template-columns: 1fr;
   }
+.form-container form .form-btns .form-btn {
+
+  width: 10rem;
 }
+
+}
+
+@media (max-width: 475px) {}

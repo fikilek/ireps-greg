@@ -1,19 +1,14 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import moment from "moment";
+import { Formik, Form } from "formik";
 import React, { useEffect, useState } from "react";
-import { MdLockClock, MdPerson } from "react-icons/md";
 import { timestamp } from "../../../firebaseConfig/fbConfig";
 import useAuthContext from "../../../hooks/useAuthContext";
 import FormBtn from "../formComponents/formBtn/FormBtn";
-import { object, string } from "yup";
-import TextError from "../formComponents/formError/TextError";
 import FormikControl from "../formComponents/formik/FormikControl";
-import FormHeader1 from "../formComponents/formHeaders/FormHeader1";
 import useModal from "../../../hooks/useModal";
 import { useFirestore } from "../../../hooks/useFirestore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FormHeader2 from "../formComponents/formHeaders/FormHeader2";
+import FormHeader8 from "../formComponents/formHeaders/FormHeader8";
 import { useAstsForm } from "../../../hooks/useAstsForm";
 import { capitalizeFirstLetter } from "../../../utils/utils";
 
@@ -36,7 +31,7 @@ const AstsForm = ({ formData }) => {
 			updatedByUser: user.displayName,
 		},
 	});
-	console.log(`ast`, ast)
+	console.log(`ast`, ast);
 
 	const onSubmit = values => {
 		// console.log(`values`, values);
@@ -61,13 +56,25 @@ const AstsForm = ({ formData }) => {
 		}
 	}, [response, closeModal, ast?.astData?.astNo, ast]);
 
+	const astState = `${capitalizeFirstLetter(ast?.astData?.astState)}`;
+	const astCat = `${capitalizeFirstLetter(ast?.astData?.astCartegory)}`;
+	const state = (
+		<>
+			State <span className="data-emphasis">{astState}</span>.
+		</>
+	);
+	const formName = ( <span className="data-emphasis">{`${astCat} Form`}</span>)
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container simcards-form-container">
-				<FormHeader2
-					formName={`${capitalizeFirstLetter(ast?.astData?.astCartegory)} Form`}
-					astState={ast?.astData?.astState}
-					astCartegory={ast?.astData?.astCartegory}
+				<FormHeader8
+					// form name - dataLl
+					dataLl={formName}
+					// state = dataLr
+					dataLr={state}
+					// entity no (eg astNo, trnNo, erfNo)
+					dataRl={""}
 					closeModal={closeModal}
 				/>
 				<Formik

@@ -139,12 +139,8 @@ const TabsErfsMap = props => {
 											onLoad={onInfoWindowLoad}
 											onDomReady={onDomReady}
 										>
-											<div>
-												<h2>
-													<TabsErfMapInfo erf={erf} />
-													{/* <TabsErfMapInfoWrapper erf={erf} /> */}
-												</h2>
-											</div>
+											{/* <TabsErfMapInfo erf={erf} /> */}
+											<TabsErfMapInfoWrapper erf={erf} />
 										</InfoWindowF>
 									)}
 								</MarkerF>

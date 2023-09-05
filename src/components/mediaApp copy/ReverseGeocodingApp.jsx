@@ -127,7 +127,8 @@ const ReverseGeocodingApp = () => {
 						>
 							<MarkerF
 								position={{ lat, lng }}
-								icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
+									icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
+									label={erfNo}
 							></MarkerF>
 						</GoogleMap>
 					)}

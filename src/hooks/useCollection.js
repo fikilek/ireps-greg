@@ -9,15 +9,15 @@ import {
 } from "firebase/firestore";
 
 const useCollection = (ml1, ml2, ml3) => {
-	// console.log(`inside useCollecion ml3:`, ml3);
 	const [data, setData] = useState([]);
 	const [error, setError] = useState("");
 	const [isPending, setIsPending] = useState(false);
 	const [success, setSuccess] = useState(false);
-
+	
 	// console.log(`START useCollection  ---------------------------------------`);
 	// console.log(`inside useCollecion ml1:`, ml1);
 	// console.log(`inside useCollecion ml2:`, ml2);
+	// console.log(`inside useCollecion ml3:`, ml3);
 	// console.log(`data`, data)
 	// console.log(`error`, error)
 	// console.log(`isPending`, isPending);
@@ -29,7 +29,7 @@ const useCollection = (ml1, ml2, ml3) => {
 
 		// transactions
 		if (ml1 === "erfs") {
-			// if (ml2) {
+			// console.log(`about to create a query with ml1 :`, ml1)
 
 			q = query(
 				collection(db, ml1),
@@ -116,7 +116,7 @@ const useCollection = (ml1, ml2, ml3) => {
 				setData(results);
 			},
 			err => {
-				// console.log(`firestore err`, err.message);
+				console.log(`firestore err`, err.message);
 				setIsPending(false);
 				setError(err.message);
 			}

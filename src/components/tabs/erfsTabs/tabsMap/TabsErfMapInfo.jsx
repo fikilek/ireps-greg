@@ -278,7 +278,9 @@ const TabsErfMapInfo = props => {
 					} `}
 					id="tab3"
 				>
-					<ErfsForm formData={{ data: erf, hideHeader: true }} />
+					<div className="taiem-wrapper">
+						<ErfsForm formData={{ data: erf, hideHeader: true }} />
+					</div>
 				</div>
 			</div>
 		</div>

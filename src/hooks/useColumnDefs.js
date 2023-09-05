@@ -5,7 +5,7 @@ import PoBtn from "../pages/sch/PoBtn";
 import UserSignatureBtn from "../components/userSignature/UserSignatureBtn";
 import { getPoStatus } from "../utils/utils";
 import PoInvPopBtn from "../pages/sch/PoInvPopBtn";
-import { memo } from "react";
+import { memo, useState } from "react";
 import FormEditBtn from "../components/forms/formComponents/formEditBtn/FormEditBtn";
 import FormStatusBtn from "../components/forms/formComponents/formStatusBtn/FormStatusBtn";
 import TableBoxDimensions from "../components/tableBtns/TableBoxDimensions";
@@ -34,6 +34,7 @@ export const useColumnDefs = props => {
 			headerName: "System Id",
 			width: 200,
 			// hide: true,
+			breakpoint: "md",
 		},
 		{
 			headerName: "Created",
@@ -43,12 +44,14 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: "Created By",
 					width: 130,
+					breakpoint: "md",
 				},
 				{
 					field: "metaData.createdByUser",
 					columnGroupShow: "open",
 					headerName: "Created By",
 					width: 130,
+					breakpoint: "",
 				},
 				{
 					field: "metaData.createdAtDatetime",
@@ -60,8 +63,10 @@ export const useColumnDefs = props => {
 							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
 						);
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Updated",
@@ -71,12 +76,14 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: "Updated By",
 					width: 130,
+					breakpoint: "md",
 				},
 				{
 					field: "metaData.updatedByUser",
 					columnGroupShow: "open",
 					headerName: "Updated By",
 					width: 130,
+					breakpoint: "md",
 				},
 				// 3
 				{
@@ -89,13 +96,15 @@ export const useColumnDefs = props => {
 							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
 						);
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			field: "edit",
 			headerName: "Edit",
-			width: 100,
+			width: 80,
 			cellRenderer: memo(FormEditBtn),
 			cellRendererParams: {
 				fn: "erfsForm",
@@ -103,25 +112,28 @@ export const useColumnDefs = props => {
 				hideHeader: false,
 			},
 			floatingFilter: false,
+			breakpoint: "xs",
 		},
 		{
 			field: "erfNo",
-			headerName: "Erf No",
-			width: 150,
+			headerName: "Erf",
+			width: 110,
 			checkboxSelection: true,
 			headerCheckboxSelection: true,
 			headerCheckboxSelectionFilteredOnly: true,
 			// cellRenderer: memo(ErfBtn),
+			breakpoint: "xs",
 		},
 		{
 			field: "erfStatus",
 			headerName: "Status",
 			width: 150,
+			breakpoint: "md",
 		},
 		{
 			field: "asts",
-			headerName: "Asts in Erf",
-			width: 150,
+			headerName: "Asts",
+			width: 90,
 			tooltipField: "asts",
 			tooltipComponent: TableTrnsForAstsTooltip,
 			// cellRenderer: params => {
@@ -129,6 +141,7 @@ export const useColumnDefs = props => {
 			// 	return params.data?.asts?.length;
 			// },
 			cellRenderer: memo(TableAstsInErfBtn),
+			breakpoint: "xs",
 		},
 		// {
 		// 	field: "trns",
@@ -145,20 +158,24 @@ export const useColumnDefs = props => {
 					// columnGroupShow: "closed",
 					headerName: "Latitude",
 					width: 170,
+					breakpoint: "md",
 				},
 				{
 					field: "address.gps.longitude",
 					// columnGroupShow: "closed",
 					headerName: "Longitude",
 					width: 170,
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			// A click displays a modal that shows the Purchase Order
 			field: "standUse",
 			headerName: "Stand Use", //[business, residentail-suburb, residential-township, church, government, school]
 			width: 160,
+			breakpoint: "md",
 		},
 		{
 			headerName: "Customer Address",
@@ -168,47 +185,57 @@ export const useColumnDefs = props => {
 					headerName: "Country",
 					width: 120,
 					columnGroupShow: "open",
+					breakpoint: "md",
 				},
 				{
 					field: "address.province",
 					headerName: "Province",
 					width: 120,
 					columnGroupShow: "open",
+					breakpoint: "md",
 				},
 				{
 					field: "address.dm",
 					headerName: "DM",
 					width: 120,
 					columnGroupShow: "open",
+					breakpoint: "",
 				},
 				{
 					field: "address.lmMetro",
 					headerName: "LM or Metro",
 					width: 120,
 					columnGroupShow: "open",
+					breakpoint: "md",
 				},
 				{
 					field: "address.town",
 					headerName: "Towm",
 					width: 120,
+					breakpoint: "sm",
 				},
 				{
 					field: "address.ward",
 					headerName: "Ward",
 					width: 120,
 					columnGroupShow: "open",
+					breakpoint: "md",
 				},
 				{
 					field: "address.suburbTownship",
 					headerName: "Suburb/Township",
 					width: 170,
+					columnGroupShow: "open",
+					breakpoint: "md",
 				},
 				{
 					field: "address.street",
 					headerName: "Street",
 					width: 170,
+					breakpoint: "sm",
 				},
 			],
+			breakpoint: "sm",
 		},
 		{
 			headerName: "Customer Warm Body",
@@ -218,26 +245,31 @@ export const useColumnDefs = props => {
 					// columnGroupShow: "closed",
 					headerName: "Surname",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.warmBody.name",
 					// columnGroupShow: "closed",
 					headerName: "Name",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.warmBody.idNo",
 					columnGroupShow: "open",
 					headerName: "Id No",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.warmBody.gender",
 					columnGroupShow: "open",
 					headerName: "Gender",
 					width: 120,
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Customer Juristic Person",
@@ -247,26 +279,31 @@ export const useColumnDefs = props => {
 					// columnGroupShow: "closed",
 					headerName: "Name",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.juristicPerson.tradingName",
 					columnGroupShow: "open",
 					headerName: "Trading Name",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.juristicPerson.registeredName",
 					columnGroupShow: "open",
 					headerName: "Registered Name",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.juristicPerson.registeredNo",
 					columnGroupShow: "open",
 					headerName: "Registered No",
 					width: 120,
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Customer Contact Person",
@@ -276,65 +313,75 @@ export const useColumnDefs = props => {
 					// columnGroupShow: "closed",
 					headerName: "Surname",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.contactPerson.name",
 					// columnGroupShow: "closed",
 					headerName: "Name",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.contactPerson.landLine",
 					columnGroupShow: "open",
 					headerName: "Land Line",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.contactPerson.emailAdr",
 					columnGroupShow: "open",
 					headerName: "Email Adr",
 					width: 150,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.contactPerson.whatsApp",
 					columnGroupShow: "open",
 					headerName: "WhatssApp No",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "customer.contactPerson.cellNo",
 					// columnGroupShow: "closed",
 					headerName: "Cell No",
 					width: 120,
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Billing",
 			children: [
 				{
 					field: "billing.accountNo.length",
-					columnGroupShow: "closed",
+					columnGroupShow: "open",
 					headerName: "Account No",
 					width: 150,
+					breakpoint: "md",
 				},
 				{
 					field: "billing.indigent",
-					columnGroupShow: "closed",
+					columnGroupShow: "open",
 					headerName: "Indigent",
 					width: 120,
+					breakpoint: "md",
 				},
 				{
 					field: "billing.tariff",
-					columnGroupShow: "closed",
+					columnGroupShow: "open",
 					headerName: "Tariff",
 					width: 120,
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 	];
-
-	// asts in erf
+	
 	const astsInErfTableFields = [
 		// TODO: get updated data from the trn that worked on the ast
 		{
@@ -342,6 +389,7 @@ export const useColumnDefs = props => {
 			headerName: "Updated By",
 			width: 130,
 			flex: 1,
+			breakpoint: "",
 		},
 		{
 			field: "trnMetaData.updatedAtDatetime",
@@ -355,12 +403,14 @@ export const useColumnDefs = props => {
 				);
 			},
 			flex: 1.3,
+			breakpoint: "",
 		},
 		{
 			field: "astData.astCartegory",
 			headerName: "Ast Cat",
 			width: 150,
 			flex: 0.8,
+			breakpoint: "xs",
 		},
 		{
 			field: "astData.astNo",
@@ -384,6 +434,7 @@ export const useColumnDefs = props => {
 				}
 			},
 			flex: 1.1,
+			breakpoint: "xs",
 		},
 		{
 			field: "trnMetaData.trnNo",
@@ -396,45 +447,27 @@ export const useColumnDefs = props => {
 			headerName: "Trn Name",
 			width: 150,
 			flex: 0.7,
+			breakpoint: "xs",
 		},
 	];
 
 	// asts in erf on map
 	const astsInErfMapTableFields = [
 		// TODO: get updated data from the trn that worked on the ast
-		// {
-		// 	field: "trnMetaData.updatedByUser",
-		// 	headerName: "Updated By",
-		// 	width: 130,
-		// 	flex: 0.6,
-		// 	// hide: true,
-		// },
-		// {
-		// 	field: "trnMetaData.updatedAtDatetime",
-		// 	columnGroupShow: "open",
-		// 	headerName: "Updated At Datetime",
-		// 	width: 190,
-		// 	cellRenderer: params => {
-		// 		// console.log(`params`, params);
-		// 		return (
-		// 			<p>{moment(params?.value?.toDate())?.format("YYYY-MM-DD HH:mm:ss")}</p>
-		// 		);
-		// 	},
-		// 	flex: 0.9,
-		// 	// hide: true,
-		// },
 		{
 			field: "astData.astCartegory",
 			headerName: "Ast Cat",
 			width: 150,
 			cellStyle: TableCellStyleAstStateMap,
-			flex: 0.7,
+			flex: 0.4,
+			breakpoint: "xs",
 		},
 		{
 			field: "astData.astState",
 			headerName: "Ast State",
 			width: 150,
 			flex: 0.8,
+			breakpoint: "md",
 		},
 		{
 			field: "astData.astNo",
@@ -458,18 +491,7 @@ export const useColumnDefs = props => {
 				}
 			},
 			flex: 1,
-		},
-		// {
-		// 	field: "trnMetaData.trnNo",
-		// 	headerName: "Trn No",
-		// 	width: 100,
-		// 	flex: 0.6,
-		// },
-		{
-			field: "trnMetaData.trnType",
-			headerName: "Creater",
-			width: 150,
-			flex: 0.7,
+			breakpoint: "xs",
 		},
 		{
 			field: "",
@@ -477,6 +499,14 @@ export const useColumnDefs = props => {
 			width: 150,
 			cellRenderer: TableBtnTrnSelect,
 			flex: 1,
+			breakpoint: "xs",
+		},
+		{
+			field: "trnMetaData.trnType",
+			headerName: "Creater",
+			width: 150,
+			flex: 0.7,
+			breakpoint: "lg",
 		},
 	];
 
@@ -509,6 +539,7 @@ export const useColumnDefs = props => {
 			width: 150,
 			flex: 0.6,
 			cellStyle: TableCellStyleAstStateMap,
+			breakpoint: "md",
 		},
 		{
 			field: "astData.astNo",
@@ -532,6 +563,7 @@ export const useColumnDefs = props => {
 				}
 			},
 			flex: 0.9,
+			breakpoint: "md",
 		},
 		// {
 		// 	field: "trnMetaData.trnNo",
@@ -544,6 +576,7 @@ export const useColumnDefs = props => {
 			headerName: "Creater",
 			width: 150,
 			flex: 0.7,
+			breakpoint: "md",
 		},
 	];
 
@@ -976,6 +1009,7 @@ export const useColumnDefs = props => {
 			headerName: "users Id",
 			width: 90,
 			hide: true,
+			breakpoint: "md",
 		},
 		{
 			field: "metaData.createdAtDatetime",
@@ -984,6 +1018,7 @@ export const useColumnDefs = props => {
 			cellRenderer: params => {
 				return <p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
 			},
+			breakpoint: "md",
 		},
 		{
 			field: "metaData.updatedAtDatetime",
@@ -997,26 +1032,31 @@ export const useColumnDefs = props => {
 			field: "displayName",
 			headerName: "display name",
 			width: 170,
+			breakpoint: "md",
 		},
 		{
 			field: "email",
 			headerName: "email adro",
 			width: 200,
+			breakpoint: "md",
 		},
 		{
 			field: "online",
 			headerName: "online",
 			width: 100,
+			breakpoint: "md",
 		},
 		{
 			field: "phoneNumber",
 			headerName: "phone number",
 			width: 150,
+			breakpoint: "md",
 		},
 		{
 			field: "photoUrl",
 			headerName: "photo",
 			width: 100,
+			breakpoint: "md",
 		},
 	];
 
@@ -1756,10 +1796,11 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "Ast Id",
 			width: 100,
-			// hide: true,
+			hide: true,
 			cellRendererParams: {
-				breakpoint: "sm",
+				breakpoint: "md",
 			},
+			breakpoint: "md",
 		},
 		{
 			headerName: "Updated",
@@ -1769,19 +1810,8 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: "Updated By",
 					width: 130,
-					cellRendererParams: {
-						breakpoint: "lg",
-					},
+					breakpoint: "md",
 				},
-				// {
-				// 	field: "metaData.updatedByUser",
-				// 	columnGroupShow: "open",
-				// 	headerName: "Updated By",
-				// 	width: 130,
-				// 	cellRendererParams: {
-				// 		breakpoint: "lg",
-				// 	},
-				// },
 				{
 					field: "metaData.updatedAtDatetime",
 					columnGroupShow: "open",
@@ -1793,10 +1823,12 @@ export const useColumnDefs = props => {
 						);
 					},
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Created",
@@ -1807,18 +1839,10 @@ export const useColumnDefs = props => {
 					headerName: "Created By",
 					width: 130,
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
-				// {
-				// 	field: "metaData.createdByUser",
-				// 	columnGroupShow: "open",
-				// 	headerName: "Created By",
-				// 	width: 130,
-				// 	cellRendererParams: {
-				// 		breakpoint: "lg",
-				// 	},
-				// },
 				{
 					field: "metaData.createdAtDatetime",
 					columnGroupShow: "open",
@@ -1830,10 +1854,12 @@ export const useColumnDefs = props => {
 						);
 					},
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			field: "edit",
@@ -1844,8 +1870,9 @@ export const useColumnDefs = props => {
 			cellRendererParams: {
 				fn: "astsForm",
 				disabled: false,
-				// breakpoint: "lg",
+				breakpoint: "md",
 			},
+			breakpoint: "md",
 		},
 		{
 			field: "metaData.createdThrough",
@@ -1868,8 +1895,9 @@ export const useColumnDefs = props => {
 				);
 			},
 			cellRendererParams: {
-				breakpoint: "lg",
+				breakpoint: "md",
 			},
+			breakpoint: "md",
 		},
 		{
 			field: "metaData.trnCount",
@@ -1877,18 +1905,20 @@ export const useColumnDefs = props => {
 			width: 120,
 			cellRenderer: memo(TableTnsForAstBtn), //These are all transactions that happen on an ast
 			cellRendererParams: {
-				breakpoint: "lg",
+				breakpoint: "md",
 			},
+			breakpoint: "md",
 		},
 		{
 			field: "newTrn",
 			headerName: "New Trn",
-			width: 160,
+			width: 170,
 			cellRenderer: memo(TableBtnTrnSelect),
 			cellRendererParams: {
 				ml2,
-				breakpoint: "xm",
+				breakpoint: "xs",
 			},
+			breakpoint: "xs",
 		},
 		{
 			headerName: "Asset Data",
@@ -1900,8 +1930,9 @@ export const useColumnDefs = props => {
 					width: 170,
 					cellRenderer: AstMediaBtn,
 					cellRendererParams: {
-						breakpoint: "xm",
+						breakpoint: "xs",
 					},
+					breakpoint: "xs",
 				},
 				{
 					field: "astData.astSerialNo",
@@ -1909,8 +1940,9 @@ export const useColumnDefs = props => {
 					headerName: "Ast Serial No",
 					width: 140,
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "xm",
 				},
 				{
 					field: "astData.astCartegory",
@@ -1918,8 +1950,9 @@ export const useColumnDefs = props => {
 					headerName: "Ast Cat",
 					width: 90,
 					cellRendererParams: {
-						breakpoint: "sm",
+						breakpoint: "xs",
 					},
+					breakpoint: "xs",
 				},
 				{
 					field: "astData.astState",
@@ -1928,10 +1961,12 @@ export const useColumnDefs = props => {
 					width: 130,
 					cellStyle: TableCellStyleAstState,
 					cellRendererParams: {
-						breakpoint: "sm",
+						breakpoint: "xs",
 					},
+					breakpoint: "xs",
 				},
 			],
+			breakpoint: "xs",
 		},
 	];
 
@@ -1948,6 +1983,7 @@ export const useColumnDefs = props => {
 					cellRendererParams: {
 						breakpoint: "sm",
 					},
+					breakpoint: "sm",
 				},
 				{
 					field: "erfData.gps.latitude",
@@ -1956,8 +1992,9 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.gps.longitude",
@@ -1966,10 +2003,11 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
 				},
 			],
+			breakpoint: "sm",
 		},
 		{
 			headerName: "Customer Address",
@@ -1980,8 +2018,9 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.address.province",
@@ -1989,8 +2028,9 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.address.dm",
@@ -1998,8 +2038,9 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.address.lmMetro",
@@ -2007,7 +2048,7 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
 				},
 				{
@@ -2015,8 +2056,9 @@ export const useColumnDefs = props => {
 					headerName: "Towm",
 					width: 120,
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.address.ward",
@@ -2024,26 +2066,30 @@ export const useColumnDefs = props => {
 					width: 120,
 					columnGroupShow: "open",
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.address.suburbTownship",
 					headerName: "Suburb/Township",
 					width: 170,
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 				{
 					field: "erfData.address.street",
 					headerName: "Street",
 					width: 170,
 					cellRendererParams: {
-						breakpoint: "lg",
+						breakpoint: "md",
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 	];
 
@@ -2340,7 +2386,7 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "Trn Id",
 			width: 220,
-			// hide: true,
+			hide: true,
 		},
 		{
 			headerName: "Updated",
@@ -2370,6 +2416,7 @@ export const useColumnDefs = props => {
 					},
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Created",
@@ -2398,11 +2445,13 @@ export const useColumnDefs = props => {
 					},
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			field: "metaData.trnNo",
 			headerName: "Trn No",
 			width: 150,
+			breakpoint: "md",
 		},
 		// {
 		// 	field: "edit",
@@ -2418,6 +2467,7 @@ export const useColumnDefs = props => {
 			field: "metaData.trnState",
 			headerName: "Trn State",
 			width: 150,
+			breakpoint: "xs",
 			// cellRenderer: memo(TrnState),
 		},
 		// {
@@ -2440,6 +2490,7 @@ export const useColumnDefs = props => {
 			headerName: "Asset Checkout/in",
 			width: 260,
 			cellRenderer: memo(TrnAstCheckoutFormBtn),
+			breakpoint: "md",
 		},
 
 		// trn - Eddit transaction Assets
@@ -2456,6 +2507,7 @@ export const useColumnDefs = props => {
 					return trnType;
 				},
 			},
+			breakpoint: "xs",
 		},
 
 		// ...mediaFields,
@@ -2474,8 +2526,10 @@ export const useColumnDefs = props => {
 					// 	console.log(`params`, params)
 					// 	return <button className="table-row-btn">{params.value}</button>;
 					// },
+					breakpoint: "xs",
 				},
 			],
+			breakpoint: "xs",
 		},
 		{
 			headerName: " erf Address",
@@ -2511,6 +2565,7 @@ export const useColumnDefs = props => {
 					width: 130,
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "erf Biling",
@@ -2528,6 +2583,7 @@ export const useColumnDefs = props => {
 					width: 130,
 				},
 			],
+			breakpoint: "md",
 		},
 	];
 
@@ -2538,6 +2594,8 @@ export const useColumnDefs = props => {
 			headerName: "Updated By",
 			width: 130,
 			flex: 1,
+			hide: true,
+			breakpoint: "md",
 		},
 		// 3
 		{
@@ -2554,12 +2612,14 @@ export const useColumnDefs = props => {
 				);
 			},
 			flex: 1,
+			breakpoint: "md",
 		},
 		{
 			field: "trnMetaData.trnType",
 			headerName: "Trn Type",
 			width: 170,
 			flex: 1,
+			breakpoint: "md",
 		},
 	];
 
@@ -3917,6 +3977,10 @@ export const useColumnDefs = props => {
 		fields = [...erfsTableFields];
 	}
 
+	// if (ml1 === "erfsXm") {
+	// 	fields = [...erfsTableFieldsXm];
+	// }
+
 	/*
 	Supply Chain (Sch)
 	*/
@@ -4241,5 +4305,6 @@ export const useColumnDefs = props => {
 	}
 	fields = [...fields];
 	// console.log(`fields`, fields);
+
 	return { tableFields: fields };
 };

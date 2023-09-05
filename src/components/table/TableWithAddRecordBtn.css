@@ -1,0 +1,8 @@
+
+
+.table .table-header .th-menu-levels {
+  outline: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

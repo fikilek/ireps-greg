@@ -1,5 +1,6 @@
 .tabs {
   font-size: 2rem;
+  height: 100%;
   /* margin: 1rem; */
 }
 
@@ -19,25 +20,53 @@
 .tabs .tabs-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
   align-items: center;
   font-size: 1.7rem;
   background-color: khaki;
-  height: 3rem;
-  padding: 0 1rem;
+  height: 5%;
+  /* padding: 0 1rem; */
+  gap: 2rem;
+}
+
+.tabs .tabs-header .tab-title {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  outline: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tabs .tabs-header .new-trn-div {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  outline: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .tabs .tabs-header .tabs-btns {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  outline: auto;
+  width: 100%;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 }
+
+
 
 .tabs .new-trn {
   font-size: 1.6rem;
 }
 
 .tabs .tabs-body {
-  height: calc(100vh - 8rem);
+  /* height: calc(100vh - 8rem); */
+  height: 95%;
 }
 
 .tabs .tabs-tab {
@@ -55,7 +84,6 @@
 
 .tabs-body-content {
   height: 100%;
-  border: 1px solid;
 }
 
 .tabs .tab-name {
@@ -66,27 +94,14 @@
   font-weight: 700;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .tabs .tabs-header {
-    grid-template-columns: 1fr 1fr;
-    height: 100%;
-    padding: 0.5rem;
-    border: 0.1rem solid;
+    gap: 3rem;
   }
 
-  .tabs .tabs-header .tab-title {
-    grid-column: 1/2;
-    grid-row: 1/2;
-  }
 
-  .tabs .tabs-header .new-trn-div {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    justify-self: end;
-  }
-
-  .tabs .tabs-header .tabs-btns {
-    grid-column: 1/3;
-    grid-row: 2/3;
+  .tabs .new-trn,
+  .tabs .tabs-header {
+    font-size: 1.4rem;
   }
 }

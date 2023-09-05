@@ -1,8 +1,23 @@
 .tabs-erf-map-info-wrapper {
-  width: 62rem;
+  /* width: 62rem; */
   background-color: var(--form-background);
   border: 0.1rem solid;
   padding: 1rem;
   border-radius: 1rem;
   position: relative;
+  height: 100%;
 }
+
+@media (max-width: 1200px) {}
+
+
+@media (max-width: 1024px) {}
+
+@media (max-width: 768px) {
+  .tabs-erf-map-info-wrapper {
+    width: 30rem;
+
+  }
+}
+
+@media (max-width: 475px) {}

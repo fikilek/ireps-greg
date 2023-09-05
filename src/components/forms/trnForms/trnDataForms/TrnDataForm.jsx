@@ -8,11 +8,12 @@ import useModal from "../../../../hooks/useModal";
 import { useFirestore } from "../../../../hooks/useFirestore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FormHeader5 from "../../formComponents/formHeaders/FormHeader5";
+import FormHeader8 from "../../formComponents/formHeaders/FormHeader8";
 import { useTrnForm } from "../../../../hooks/useTrnForm.js";
 import PhotoApp from "../../../mediaApp/PhotoApp";
 import { useDocumentSync } from "../../../../hooks/useDocumentSync";
 import GeocodingApp from "../../../mediaApp copy/GeocodingApp";
+import { capitalizeFirstLetter } from "../../../../utils/utils";
 
 // TODO: TrnDataForm - Make the trn form responsive
 // TODO: astNoMedia - hide the media btn if there is not astNo
@@ -35,11 +36,15 @@ const TrnDataForm = props => {
 	// console.log(`props`, props);
 
 	const [formData, setFormData] = useState(props.formData);
-	// console.log(`formData`, formData);
+	console.log(`formData`, formData);
 
 	// get meter doc id
 	const { id } = props.formData;
 	// console.log(`id`, id);
+
+	// get trnType
+	let trnType = formData?.metaData?.trnType;
+	console.log(`trnType`, trnType);
 
 	// call useDocument to get realtime meter data
 	const { error, document } = useDocumentSync("trns", id);
@@ -100,7 +105,7 @@ const TrnDataForm = props => {
 	useEffect(() => {
 		if (response.success) {
 			closeModal();
-			toast(`Trn form data succeesfully!`, {
+			toast(`Trn form data succesfully!`, {
 				position: "bottom-left",
 				autoClose: 3000,
 				hideProgressBar: false,
@@ -125,13 +130,29 @@ const TrnDataForm = props => {
 		fieldValidation(name, value);
 	};
 
+	// const astNo = `${capitalizeFirstLetter(ast?.astData?.astNo)}`;
+
+	let trnState_ = trnState === "submited" ? trnState : formState.state;
+	trnState_ = `${capitalizeFirstLetter(trnState_)}`;
+	const state = (
+		<>
+			State <span className="data-emphasis">{trnState_}</span>.
+		</>
+	);
+
+	trnType = `${capitalizeFirstLetter(trnType)}`;
+	const formName = <span className="data-emphasis">{`${trnType} Form`}</span>
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container spl-form-container">
-				<FormHeader5
-					formName={formData.metaData.trnType}
-					trnState={trnState === "submited" ? trnState : formState.state}
-					erfNo={formData.erfData.erfNo}
+				<FormHeader8
+					// form name - dataLl
+					dataLl={formName}
+					// state = dataLr
+					dataLr={state}
+					// entity no (eg astNo, trnNo, erfNo)
+					dataRl={""}
 					closeModal={closeModal}
 				/>
 				<Formik

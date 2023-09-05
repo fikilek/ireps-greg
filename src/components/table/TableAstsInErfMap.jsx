@@ -1,8 +1,10 @@
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import React, { useCallback, useMemo, useState } from "react";
 import { db } from "../../firebaseConfig/fbConfig";
+import { useColDefs } from "../../hooks/useColDefs";
 import { useColumnDefs } from "../../hooks/useColumnDefs";
 import { useFirestore } from "../../hooks/useFirestore";
+import { useViewportDimensions } from "../../hooks/useViewportDimentions";
 import Table from "./Table";
 
 const getAstsInErf = trns => {
@@ -27,14 +29,22 @@ const getAstsInErf = trns => {
 };
 
 const TableAstsInErfMap = props => {
-	// console.log(`props`, props);
+	console.log(`props`, props);
 
 	// destructure asts from props.data
 	const trns = props.rowData;
 	// console.log(`trns`, trns);
 
-	const { tableFields: columnDefs } = useColumnDefs({ ml1: "astsInErfMap" });
-	// console.log(`columnDefs`, columnDefs);
+	const { getViewportDimensions } = useViewportDimensions();
+	const viewportDimesions = getViewportDimensions();
+	// console.log(`viewportDimesions`, viewportDimesions);
+
+	// const { tableFields: columnDefs } = useColumnDefs({ ml1: "astsInErfMap" });
+	const { tableFields: columnDefs } = useColDefs({
+		viewportDimesions,
+		ml1: "astsInErfMap",
+	});
+	console.log(`columnDefs`, columnDefs);
 
 	// destructure asts from props.data
 	// const columnDefs = props.columnDefs;
@@ -67,17 +77,17 @@ const TableAstsInErfMap = props => {
 					// };
 					// console.log(`made newAst`, newAst);
 					// console.log(`ast`, ast);
-					
+
 					const newAst = {
 						...ast,
 						trnMetaData: trn.trnMetaData,
 					};
 
 					// console.log(`newAst`, newAst);
-					
+
 					// console.log(`newRowData`, newRowData);
 
-					newRowData = [ ...newRowData, newAst]	
+					newRowData = [...newRowData, newAst];
 
 					// console.log(`newRowData`, newRowData);
 				} else {

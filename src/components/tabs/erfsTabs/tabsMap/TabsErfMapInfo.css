@@ -2,6 +2,7 @@
   font-size: 1rem;
   /* margin: 1rem; */
   width: 60rem;
+  height: 45rem;
 }
 
 .tabs-erf-map-info .tabs-show {
@@ -74,7 +75,12 @@
 
 .tabs-erf-map-info .tabs-body-content {
   height: 100%;
-  border: 1px solid;
+}
+
+.tabs-erf-map-info .tabs-body-content .taiem-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tabs-erf-map-info .tab-name {
@@ -85,12 +91,43 @@
   font-weight: 700;
 }
 
-@media (max-width: 700px) {
-  .tabs-erf-map-info .tabs-header .tabs-btns {
+.gm-style-iw {
+  height: 60rem;
+  /* width: 300px; */
+}
+
+
+@media (max-width: 1200px) {}
+
+
+@media (max-width: 1024px) {}
+
+@media (max-width: 768px) {
+
+  .tabs-erf-map-info {
+      width: 27.8rem;
+    }
+
+
+  .tabs-erf-map-info .temi-tabs-header .tabs-btns {
     font-size: 1.3rem;
+
   }
 
-  .tabs-erf-map-info .tabs-header .tabs-btns .th-btn {
-    margin: 0.2rem 1rem;
+  .tabs-erf-map-info .temi-tabs-header {
+    align-items: center;
+    row-gap: 2rem;
+    font-size: 1.7rem;
+    background-color: khaki;
+    height: 3rem;
+    padding: 0 1rem;
+    width: 27.8rem;
+  }
+
+  .tabs-erf-map-info .temi-tabs-header .tabs-btns .th-btn {
+    padding: 0.4rem 0;
+    margin: 0;
   }
 }
+
+@media (max-width: 475px) {}

@@ -1,8 +1,7 @@
-
 :root {
 	--logo-height: 5rem;
 	--logo-width: 5rem;
-	--logo-priamry-color: rgb(196, 195, 195) ;
+	--logo-priamry-color: rgb(196, 195, 195);
 	--header-height: 5rem;
 
 	/* forms */
@@ -36,6 +35,8 @@ li {
 	list-style-type: none;
 }
 
-
-
-
+#root, .app {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}

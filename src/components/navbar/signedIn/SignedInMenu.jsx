@@ -17,7 +17,7 @@ import useAuthContext from "../../../hooks/useAuthContext";
 import useOpenModal from "../../../hooks/useModal";
 
 const SignedInMenu = () => {
-	console.log(`SignedInMenu rendering`);
+	// console.log(`SignedInMenu rendering`);
 	const { openModal } = useOpenModal();
 	const { menuStatus, setMenuStatus } = useContext(MenuContext);
 	const { user } = useAuthContext();

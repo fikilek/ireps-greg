@@ -2,7 +2,7 @@
 	position: fixed;
 	margin: 0 auto;
 	padding: 0 0.5rem;
-	height: inherit;
+	height: 100%;
 	width: 100%;
 }
 
@@ -57,6 +57,9 @@ header .menu-icons svg {
 	left: 0;
 	/* outline: 1px solid #cfc5b1; */
 	overflow: auto;
+	/* height: 100%; */
+	padding: 0.3rem 0.4rem 0.8rem;
+	min-width: 46rem;
 }
 
 .loading-spinner,

@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import FormikControl from "../formComponents/formik/FormikControl";
 import FormBtn from "../formComponents/formBtn/FormBtn";
 import FormSection from "../formComponents/formSection/FormSection";
-import FormHeader4 from "../formComponents/formHeaders/FormHeader4";
+import FormHeader8 from "../formComponents/formHeaders/FormHeader8";
 import { formSelectOptions } from "../../../utils/utils";
 import { useCallback } from "react";
 import { useMemo } from "react";
@@ -82,17 +82,37 @@ const ErfsForm = props => {
 		}
 	}, [response]);
 
+	// form header dataL
+
+	// erf form
+	const formName = (
+		<>
+			<span className="data-emphasis">{'Erf Form'}</span>.
+		</>
+	);
+
+	// erf no
+	const erfNo = (
+		<>
+			Erf No <span className="data-emphasis">{formData.erfNo}</span>.
+		</>
+	);
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container simcards-form-container">
 				{hideHeader ? (
 					""
 				) : (
-					<FormHeader4
-						formName={"Erf"}
-						formNo={formData.erfNo}
-						closeModal={closeModal}
-					/>
+					<>
+						<FormHeader8
+							dataLl={formName}
+							dataLr={erfNo}
+							dataRl={''}
+							dataRr={""}
+							closeModal={closeModal}
+						/>
+					</>
 				)}
 				<Formik
 					initialValues={formData}

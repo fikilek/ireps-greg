@@ -11,6 +11,7 @@ import TableCheckedInAsts from "../../table/TableCheckedInAsts";
 import { useDocument } from "../../../hooks/useDocument";
 import { useTrnForm } from "../../../hooks/useTrnForm";
 import { useDocumentSync } from "../../../hooks/useDocumentSync";
+import FormHeader8 from '../../../components/forms/formComponents/formHeaders/FormHeader8'
 
 const getAstIdsInTrn = trn => {
 	if (!trn) return null;
@@ -306,10 +307,41 @@ const TrnAstCheckoutForm = props => {
 		// update trn in firestore using useFirestore.updateDoc. This should automatically update the ast state in the checkedin table
 	}, [selectedAstFromCheckedout]);
 
+	// form header datail
+
+	// form name
+	const formName = (
+		<>
+			<span className="data-emphasis">{"Ast Checkout"}</span>.
+		</>
+	);
+
+	// trn type
+	const trnType = (
+		<>
+			Trn Type <span className="data-emphasis">{data.metaData.trnType}</span>.
+		</>
+	);
+
+	// erf no
+	const erfNo = (
+		<>
+			Erf No <span className="data-emphasis">{data.erfData.erfNo}</span>.
+		</>
+	);
+
+	// trn state
+	const formState = (
+		<>
+			Trn State
+			<span className="data-emphasis">{props.data.metaData.trnState}</span>.
+		</>
+	);
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container ast-checkout-form-container">
-				<div className="form-header5">
+				{/* <div className="form-header5">
 					<div className="fh5-left">
 						<div className="form-name">
 							<p>{data.metaData.trnType}</p>
@@ -329,7 +361,20 @@ const TrnAstCheckoutForm = props => {
 							<p>Cancel</p>
 						</button>
 					</div>
-				</div>
+				</div> */}
+
+				<FormHeader8
+					// formName- dataLl
+					dataLl={formName}
+					// no of asts in erf = dataLr
+					dataLr={trnType}
+					// no of trns in erf
+					dataRl={erfNo}
+					// anomalies
+					dataRr={formState}
+					closeModal={closeModal}
+				/>
+
 				<div className="ast-checkout-form">
 					<div className="checkout-form ast-stores-pannel">
 						<p>ast-stores-pannel</p>

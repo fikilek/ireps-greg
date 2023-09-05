@@ -167,7 +167,7 @@ const trnOptions = [
 ];
 
 const TabsErfs = props => {
-	// console.log(`props`, props)
+	// console.log(`TabsErfs props`, props);
 
 	const [trnType, setTrnType] = useState("");
 	// console.log(`trnType`, trnType);

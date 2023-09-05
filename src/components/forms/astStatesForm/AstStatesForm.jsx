@@ -8,7 +8,7 @@ import FormBtn from "../formComponents/formBtn/FormBtn";
 import { object, string } from "yup";
 // import TextError from "../formComponents/formError/TextError";
 import FormikControl from "../formComponents/formik/FormikControl";
-import FormHeader1 from "../formComponents/formHeaders/FormHeader1";
+import FormHeader8 from "../formComponents/formHeaders/FormHeader8";
 import useModal from "../../../hooks/useModal";
 import { useFirestore } from "../../../hooks/useFirestore";
 import { toast } from "react-toastify";
@@ -63,10 +63,23 @@ const AstStatesForm = ({ formData }) => {
 		}
 	}, [response, closeModal]);
 
+	const formName = (
+		<span className="data-emphasis">{`Ast States Form`}</span>
+	);
+
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container user-roles-form-container">
-				<FormHeader1 formName="Ast States Form" closeModal={closeModal} />
+				<FormHeader8
+					// form name - dataLl
+					dataLl={formName}
+					// state = dataLr
+					dataLr={''}
+					// entity no (eg astNo, trnNo, erfNo)
+					dataRl={""}
+					closeModal={closeModal}
+				/>
 				<Formik
 					initialValues={userRoles}
 					onSubmit={onSubmit}

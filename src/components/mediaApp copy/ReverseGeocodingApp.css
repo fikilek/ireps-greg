@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 10;
-  outline: 0.5rem solid rgb(255, 77, 0);
+  border: 0.5rem solid rgb(255, 77, 0);
   border-radius: 1.5%;
   overflow: hidden;
 }
@@ -43,7 +43,7 @@
   border-radius: 1rem;
 }
 
-.reverse-geocoding-app .header .header-subsection-right .ast-no {
+.reverse-geocoding-app .header .header-subsection-right .header-subsection {
   display: flex;
   align-items: center;
 }
@@ -105,7 +105,7 @@
 
 @media (max-width: 700px) {
   .reverse-geocoding-app {
-    width: 30rem;
+    width: 27.8rem;
   }
 
   .reverse-geocoding-app .body .reverse-geocoding-map .map-container {
@@ -132,11 +132,6 @@
     grid-column: 1/4;
     grid-row: 1/2
   }
-
-    .reverse-geocoding-app .header .erf-no .header-subsection {
-      display: flex;
-      align-items: center;
-    }
 
   .reverse-geocoding-app .header .reverse-geocoding-app-close-btn {
     /* grid-area: reverse-geocoding-app-close-btn; */
