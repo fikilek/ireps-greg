@@ -10,6 +10,7 @@ import { useErf } from "../../hooks/useErf";
 import { useDocument } from "../../hooks/useDocument";
 import { useFirestore } from "../../hooks/useFirestore";
 import { toast } from "react-toastify";
+import { Timestamp } from "firebase/firestore";
 
 const TableBtnTrnSelect = params => {
 	// console.log(`params.data`, params.data);
@@ -84,9 +85,9 @@ const TableBtnTrnSelect = params => {
 			// ...newTrnData,
 			metaData: {
 				...newTrnData.metaData,
-				createdAtDatetime: timestamp.fromDate(new Date()),
+				createdAtDatetime: Timestamp.now(),
 				createdByUser: user.displayName,
-				updatedAtDatetime: timestamp.fromDate(new Date()),
+				updatedAtDatetime: Timestamp.now(),
 				updatedByUser: user.displayName,
 			},
 			erfData: erf,

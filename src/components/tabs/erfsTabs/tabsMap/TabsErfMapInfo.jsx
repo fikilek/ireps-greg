@@ -9,19 +9,20 @@ import TableTrnsForAstsOnMap from "../../../table/TableTrnsForAstsOnMap";
 // import TableTrns from "../../../table/TableTrns";
 import TableAstsInErfMap from "../../../table/TableAstsInErfMap";
 import "./TabsErfMapInfo.css";
+import { Timestamp } from "firebase/firestore";
 // import TabsErfsMap from "./tabsMap/TabsErfsMap";
 // import TabsErfsTable from "./tabsTable/TabsErfsTable";
 // import TabsErfsTree from "./tabsTree/TabsErfsTree";
 
 // prepare asts for trn by going to th erf and get each ast in the erf and prepare an array of all of them
 const getTrnObjectsArray = erf => {
-	console.log(`erf`, erf);
+	// console.log(`erf`, erf);
 
 	// an erf already has an array of all asts in it. They are in asts property. Go inside asts property and extract needed astData as well as catInstallation ( and catCommissining data if it there).
 
 	// step 1: destructire asts array
 	const { asts } = erf;
-	console.log(`asts`, asts);
+	// console.log(`asts`, asts);
 
 	if (!asts) return null;
 
@@ -35,7 +36,7 @@ const getTrnObjectsArray = erf => {
 
 			// destructure astId
 			const { astId } = ast;
-			console.log(`astId`, astId);
+			// console.log(`astId`, astId);
 
 			// get astCat from ast
 			const astCat = ast.astData.astCartegory;
@@ -127,7 +128,7 @@ const getNewTrnsArray = (selectedRows, trnType, user) => {
 			let astData = {};
 			if (trnType === "inspection") {
 				astData = getTrnObjectsArray(row);
-				console.log(`astData`, astData);
+				// console.log(`astData`, astData);
 				if (!astData) return null;
 			}
 
@@ -143,9 +144,9 @@ const getNewTrnsArray = (selectedRows, trnType, user) => {
 				// console.log(`push trn`);
 				const trn = {
 					metaData: {
-						createdAtDatetime: timestamp.fromDate(new Date()),
+						createdAtDatetime: Timestamp.now(),
 						createdByUser: user.displayName,
-						updatedAtDatetime: timestamp.fromDate(new Date()),
+						updatedAtDatetime: Timestamp.now(),
 						updatedByUser: user.displayName,
 						trnHistory: 0, // how many times transaction has been updated
 						trnType: trnType, //['installation', 'inspection', 'audit']

@@ -26,6 +26,7 @@ import FormBtn from "../formComponents/formBtn/FormBtn";
 import FormHeader3 from "../formComponents/formHeaders/FormHeader3";
 import { useTrnForm } from "../../../hooks/useTrnForm";
 import FormSection from "../formComponents/formSection/FormSection";
+import { Timestamp } from "firebase/firestore";
 
 const genderOptions = [
 	{ key: "choose", value: "choose" },
@@ -72,7 +73,7 @@ const TrnsForm = props => {
 		...trn,
 		metaData: {
 			...trn.metaData,
-			updatedAtDatetime: timestamp.fromDate(new Date()),
+			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
 		},
 		trnData: trn.id ? trn.trnData : trnData,

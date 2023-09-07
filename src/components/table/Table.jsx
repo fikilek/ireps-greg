@@ -57,7 +57,7 @@ const Table = (props) => {
 
 	return (
 		// <div style={{ height: "calc(100% - 25px)" }} className="ag-theme-alpine">
-		<div style={{ height: tableHeight }} className="ag-theme-alpine ireps-ag-table">
+		<div style={{ height: tableHeight }} className="ag-theme-alpine ireps-ag-table uplolad-table">
 			<AgGridReact
 				ref={gridRef} // Ref for accessing Grid's API
 				rowData={rowData} // Row Data for Rows

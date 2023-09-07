@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import moment from "moment";
 import React, { useEffect } from "react";
 import { MdLockClock, MdPerson } from "react-icons/md";
@@ -30,7 +31,7 @@ const FormSectionCreated = ({
 					...prev,
 					metaData: {
 						...prev.metaData,
-						createdAtDatetime: timestamp.fromDate(new Date()),
+						createdAtDatetime: Timestamp.now(),
 						createdByUser: user.displayName,
 					},
 				};

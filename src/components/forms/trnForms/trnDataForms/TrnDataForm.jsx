@@ -14,6 +14,7 @@ import PhotoApp from "../../../mediaApp/PhotoApp";
 import { useDocumentSync } from "../../../../hooks/useDocumentSync";
 import GeocodingApp from "../../../mediaApp copy/GeocodingApp";
 import { capitalizeFirstLetter } from "../../../../utils/utils";
+import { Timestamp } from "firebase/firestore";
 
 // TODO: TrnDataForm - Make the trn form responsive
 // TODO: astNoMedia - hide the media btn if there is not astNo
@@ -33,7 +34,7 @@ const validationSchema = object({});
 const TrnDataForm = props => {
 	// const { formData } = props;
 	// formData is trn row data from ag grid table opbained from params.data
-	// console.log(`props`, props);
+	console.log(`props`, props);
 
 	const [formData, setFormData] = useState(props.formData);
 	console.log(`formData`, formData);
@@ -41,6 +42,10 @@ const TrnDataForm = props => {
 	// get meter doc id
 	const { id } = props.formData;
 	// console.log(`id`, id);
+
+	// get meter doc id
+	const { erfNo} = props.formData.erfData;
+	console.log(`erfNo`, erfNo);
 
 	// get trnType
 	let trnType = formData?.metaData?.trnType;
@@ -58,7 +63,7 @@ const TrnDataForm = props => {
 		...formData,
 		metaData: {
 			...formData.metaData,
-			updatedAtDatetime: timestamp.fromDate(new Date()),
+			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
 		},
 	});
@@ -87,7 +92,7 @@ const TrnDataForm = props => {
 			metaData: {
 				...values.metaData,
 				trnState: formState.state,
-				updatedAtDatetime: timestamp.fromDate(new Date()),
+				updatedAtDatetime: Timestamp.now(),
 				updatedByUser: user.displayName,
 			},
 		};
@@ -132,6 +137,12 @@ const TrnDataForm = props => {
 
 	// const astNo = `${capitalizeFirstLetter(ast?.astData?.astNo)}`;
 
+	const erfNumber = (
+		<>
+			Erf No <span className="data-emphasis">{erfNo}</span>.
+		</>
+	);
+
 	let trnState_ = trnState === "submited" ? trnState : formState.state;
 	trnState_ = `${capitalizeFirstLetter(trnState_)}`;
 	const state = (
@@ -141,7 +152,7 @@ const TrnDataForm = props => {
 	);
 
 	trnType = `${capitalizeFirstLetter(trnType)}`;
-	const formName = <span className="data-emphasis">{`${trnType} Form`}</span>
+	const formName = <span className="data-emphasis">{`${trnType} Form`}</span>;
 
 	return (
 		<div className="form-wrapper">
@@ -152,7 +163,7 @@ const TrnDataForm = props => {
 					// state = dataLr
 					dataLr={state}
 					// entity no (eg astNo, trnNo, erfNo)
-					dataRl={""}
+					dataRl={erfNumber}
 					closeModal={closeModal}
 				/>
 				<Formik

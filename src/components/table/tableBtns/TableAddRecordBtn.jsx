@@ -4,6 +4,7 @@ import * as adminData from "../../../data/adminData/adminData";
 import useModal from "../../../hooks/useModal";
 import { timestamp } from "../../../firebaseConfig/fbConfig";
 import useAuthContext from "../../../hooks/useAuthContext";
+import { Timestamp } from "firebase/firestore";
 
 const TableAddRecordBtn = props => {
 	// console.log(`props`, props)
@@ -26,9 +27,9 @@ const TableAddRecordBtn = props => {
 				...newFormData,
 				metaData: {
 					...newFormData.metaData,
-					createdAtDatetime: timestamp.fromDate(new Date()),
+					createdAtDatetime: Timestamp.now(),
 					createdByUser: user.displayName,
-					updatedAtDatetime: timestamp.fromDate(new Date()),
+					updatedAtDatetime: Timestamp.now(),
 					updatedByUser: user.displayName,
 				},
 			},

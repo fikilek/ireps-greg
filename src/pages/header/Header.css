@@ -24,6 +24,7 @@ header .logo {
 	align-items: center;
 	justify-content: center;
 	/* border-radius: 100%; */
+	margin: 0.5rem;
 }
 
 header .logo svg {

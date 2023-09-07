@@ -3,6 +3,8 @@ import "./admin.css";
 import AdminSystTables from "./ml2/AdminSystTables";
 import { useParams } from "react-router-dom";
 import TableWithAddRecordBtn from "../../components/table/TableWithAddRecordBtn";
+import Downloads from '../../pages/downloads/Downloads';
+import Uploads from '../../pages/uploads/Uploads';
 
 const Admin = () => {
 	const { ml2, ml3 } = useParams();
@@ -11,6 +13,16 @@ const Admin = () => {
 			{/* users */}
 			{ml2 === "unps" && ml3 === undefined && (
 				<TableWithAddRecordBtn ml1="admin" tn="users" nfd="" fn="" />
+			)}
+
+			{/* downloads */}
+			{ml2 === "downloads" && ml3 === undefined && (
+				<Downloads ml1="admin" tn="downloads" nfd="" fn="" />
+			)}
+
+			{/* uploads */}
+			{ml2 === "uploads" && ml3 === undefined && (
+				<Uploads ml1="admin" tn="uploads" nfd="" fn="" />
 			)}
 
 			{ml2 === "syst" && ml3 === undefined ? <AdminSystTables /> : ""}

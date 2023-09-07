@@ -5,6 +5,10 @@
   min-width: 47rem;
 }
 
+.upload-table {
+  height: calc(100% - var(--header-height));;
+}
+
 .table .table-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

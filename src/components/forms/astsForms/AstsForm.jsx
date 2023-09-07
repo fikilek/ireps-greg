@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import FormHeader8 from "../formComponents/formHeaders/FormHeader8";
 import { useAstsForm } from "../../../hooks/useAstsForm";
 import { capitalizeFirstLetter } from "../../../utils/utils";
+import { Timestamp } from "firebase/firestore";
 
 const AstsForm = ({ formData }) => {
 	// console.log(`formData`, formData);
@@ -27,7 +28,7 @@ const AstsForm = ({ formData }) => {
 		...formData.data,
 		metaData: {
 			...formData.data.metaData,
-			updatedAtDatetime: timestamp.fromDate(new Date()),
+			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
 		},
 	});

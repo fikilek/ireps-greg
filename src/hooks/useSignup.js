@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { auth, db, timestamp } from "../firebaseConfig/fbConfig";
 import useAuthContext from "./useAuthContext";
@@ -31,7 +31,7 @@ export const useSignup = () => {
 
 			// TODO:create user profile in firestore using UID as the unique identifier
 			const docRef = doc(db, 'users', user.uid)
-			const datetime = timestamp.fromDate(new Date());
+			const datetime = Timestamp.now();
 			await setDoc(docRef, {
 				metaData: {
 					createdAtDatetime: datetime,

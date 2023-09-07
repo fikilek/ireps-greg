@@ -16,7 +16,7 @@ import ReverseGeocodingApp from "../../mediaApp copy/ReverseGeocodingApp";
 import PhotoAppErf from "../../mediaApp/PhotoAppErf";
 
 const ErfsForm = props => {
-	console.log(`ErfsForm props`, props);
+	// console.log(`ErfsForm props`, props);
 	const { data: formData, hideHeader, disabled } = props?.formData;
 	const { closeModal } = useModal();
 	// console.log(`formData`, formData);
@@ -32,26 +32,9 @@ const ErfsForm = props => {
 	const { user } = useAuthContext();
 	// console.log(`user`, user)
 
-	// const trnSpecificData = getTrnFormSection(
-	// 	trn.astData.astCartegory,
-	// 	trn.metaData.trnType
-	// );
-	// console.log(`trnSpecificData`, trnSpecificData)
-	// const { jsx, trnData } = trnSpecificData;
-
-	// const [_trn, set_trn] = useState({
-	// 	...trn,
-	// 	metaData: {
-	// 		...trn.metaData,
-	// 		updatedAtDatetime: timestamp.fromDate(new Date()),
-	// 		updatedByUser: user.displayName,
-	// 	},
-	// 	trnData: trn.id ? trn.trnData : trnData,
-	// });
-
 	const onSubmit = useCallback(
 		values => {
-			// console.log(`formik submitted values`, values);
+			console.log(`Erf Form formik submitted values`, values);
 			if (values.id) {
 				updateDocument(values);
 			} else {

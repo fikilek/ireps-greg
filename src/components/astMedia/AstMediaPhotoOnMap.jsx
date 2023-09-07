@@ -15,7 +15,7 @@ const AstMediaPhotoOnMap = props => {
 	});
 	// console.log(`isLoaded`, isLoaded);
 
-	const [center, setCenter] = useState(null);
+	const [center, setCenter] = useState({lat: 0, lng: 0});
 
 	useEffect(() => {
 		if (props?.mediaToShow?.media && isLoaded) {

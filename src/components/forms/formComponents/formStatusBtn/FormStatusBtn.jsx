@@ -8,6 +8,7 @@ import FormikControl from "../formik/FormikControl";
 import { useFirestore } from "../../../../hooks/useFirestore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Timestamp } from "firebase/firestore";
 
 const validationSchema = object({
 	status: string().required("required"),
@@ -31,7 +32,7 @@ const FormStatusBtn = params => {
 		...formData,
 		metaData: {
 			...formData.metaData,
-			updatedAtDatetime: timestamp.fromDate(new Date()),
+			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
 		},
 	});

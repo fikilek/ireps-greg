@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { timestamp } from "../../../firebaseConfig/fbConfig";
 import useAuthContext from "../../../hooks/useAuthContext";
@@ -138,9 +139,9 @@ const getNewTrnsArray = (selectedRows, trnType, user) => {
 				// console.log(`push trn`);
 				const trn = {
 					metaData: {
-						createdAtDatetime: timestamp.fromDate(new Date()),
+						createdAtDatetime: Timestamp.now(),
 						createdByUser: user.displayName,
-						updatedAtDatetime: timestamp.fromDate(new Date()),
+						updatedAtDatetime: Timestamp.now(),
 						updatedByUser: user.displayName,
 						trnHistory: 0, // how many times transaction has been updated
 						trnType: trnType, //['installation', 'inspection', 'audit']
@@ -172,6 +173,9 @@ const TabsErfs = props => {
 	const [trnType, setTrnType] = useState("");
 	// console.log(`trnType`, trnType);
 
+	const { purpose } = props;
+	// console.log(`purpose`, purpose);
+
 	const [active, setActive] = useState("tabs-table");
 
 	const [selectedRows, setSelectedRows] = useState([]);
@@ -197,7 +201,7 @@ const TabsErfs = props => {
 					modalName: "tableTrnsFromErfs",
 					payload: { newTrnsArray, trnType },
 				});
-				setTrnType('choose');
+				setTrnType("choose");
 			}
 		}
 	};
@@ -209,39 +213,44 @@ const TabsErfs = props => {
 	return (
 		<div className="tabs">
 			<div className="tabs-header">
-
 				<div className="tab-title">
 					<p>Erfs Table</p>
 				</div>
 
-				<div className="new-trn-div">
-					{" "}
-					<button
-						className="new-trn new-trn-btn"
-						disabled={
-							trnType === "choose" || selectedRows.length === 0 ? true : false
-						}
-						onClick={createNewTrns}
-					>
-						NT
-					</button>{" "}
-					<select
-						className="new-trn new-trn-select"
-						value={trnType}
-						onChange={e => setTrnType(e.target.value)}
-						placeholder="Store Name"
-					>
-						{trnOptions &&
-							trnOptions.map(trn => {
-								return (
-									<option key={trn.key} value={trn.value}>
-										{trn.value}
-									</option>
-								);
-							})}
-					</select>
-				</div>
+				{/* new trsnaction btn */}
+				{purpose === "firestoreErfs" ? (
+					<div className="new-trn-div">
+						{" "}
+						<button
+							className="new-trn new-trn-btn"
+							disabled={
+								trnType === "choose" || selectedRows.length === 0 ? true : false
+							}
+							onClick={createNewTrns}
+						>
+							NT
+						</button>{" "}
+						<select
+							className="new-trn new-trn-select"
+							value={trnType}
+							onChange={e => setTrnType(e.target.value)}
+							placeholder="Store Name"
+						>
+							{trnOptions &&
+								trnOptions.map(trn => {
+									return (
+										<option key={trn.key} value={trn.value}>
+											{trn.value}
+										</option>
+									);
+								})}
+						</select>
+					</div>
+				) : (
+					<div></div>
+				)}
 
+				{/* tabs */}
 				<div className="tabs-btns">
 					{" "}
 					<div
@@ -304,6 +313,5 @@ const TabsErfs = props => {
 		</div>
 	);
 };
-
 
 export default TabsErfs;

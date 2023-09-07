@@ -42,7 +42,7 @@ const TableErfs = props => {
 
 	return (
 		<div className={`table`}>
-			<TabsErfs {...props} rowData={rowData} columnDefs={tableFields} />
+			<TabsErfs {...props} rowData={rowData} columnDefs={tableFields} purpose={"firestoreErfs"} />
 		</div>
 	);
 };

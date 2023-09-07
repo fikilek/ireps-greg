@@ -18,8 +18,8 @@ const ReverseGeocodingApp = () => {
 	// console.log(`data`, data);
 	const openReverseGeocodingApp = isOpened ? "show-gc-app" : "hide-gc-app";
 
-	const lat = data?.form?.values?.address?.gps?.latitude;
-	const lng = data?.form?.values?.address?.gps?.longitude;
+	const lat = data?.form?.values?.address?.gps?.latitude || 0;
+	const lng = data?.form?.values?.address?.gps?.longitude || 0;
 	const erfNo = data?.form?.values?.erfNo;
 	// console.log(`lat`, lat);
 	// console.log(`lng`, lng);
@@ -122,7 +122,7 @@ const ReverseGeocodingApp = () => {
 							mapContainerClassName="map-container"
 							onLoad={onMapLoad}
 							center={{ lat, lng }}
-							zoom={18}
+							zoom={16}
 							onUnmount={onUnmount}
 						>
 							<MarkerF

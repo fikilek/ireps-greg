@@ -3,6 +3,7 @@ import { newAstFormData } from "../data/adminData/adminData";
 import { timestamp } from "../firebaseConfig/fbConfig";
 import useAuthContext from "./useAuthContext";
 import { useFirestore } from "../hooks/useFirestore";
+import { Timestamp } from "firebase/firestore";
 
 const initResponse = {
 	pending: null,
@@ -78,9 +79,9 @@ export const useCreateAsts = () => {
 				...newAstFormData,
 				metaData: {
 					...newAstFormData.metaData,
-					createdAtDatetime: timestamp.fromDate(new Date()),
+					createdAtDatetime: Timestamp.now(),
 					createdByUser: user.displayName,
-					updatedAtDatetime: timestamp.fromDate(new Date()),
+					updatedAtDatetime: Timestamp.now(),
 					updatedByUser: user.displayName,
 					createdThrough: { creator: "po", id: poData.id, creatorNo: poData.poNo },
 					trnCount: [],

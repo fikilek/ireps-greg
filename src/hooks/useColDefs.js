@@ -94,7 +94,7 @@ const viewportFilter = data => {
 };
 
 export const useColDefs = props => {
-	// console.log(`props`, props);
+	// console.log(`useColDefs props`, props);
 	// const [tableFields, setTableFields] = useState([]);
 	
 	const { tableFields } = useColumnDefs(props);

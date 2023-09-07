@@ -22,6 +22,7 @@ import TableTrnsForAstsTooltip from "../components/table/TableTrnsForAstsTooltip
 import AstMediaBtn from "../components/astMedia/AstMediaBtn";
 import TableCellStyleAstStateMap from "../components/table/TableCellStyleAstStateMap";
 import TableAstsTrnsErfBtn from "../components/table/tableBtns/TableAstsTrnsErfBtn";
+import { Timestamp } from "firebase/firestore";
 
 export const useColumnDefs = props => {
 	// console.log(`props`, props);
@@ -33,7 +34,7 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "System Id",
 			width: 200,
-			// hide: true,
+			hide: true,
 			breakpoint: "md",
 		},
 		{
@@ -41,27 +42,27 @@ export const useColumnDefs = props => {
 			children: [
 				{
 					field: "metaData.createdByUser",
-					columnGroupShow: "closed",
+					columnGroupShow: "open",
 					headerName: "Created By",
 					width: 130,
 					breakpoint: "md",
 				},
 				{
-					field: "metaData.createdByUser",
-					columnGroupShow: "open",
-					headerName: "Created By",
-					width: 130,
-					breakpoint: "",
-				},
-				{
 					field: "metaData.createdAtDatetime",
-					columnGroupShow: "open",
+					columnGroupShow: "closed",
 					headerName: "Date Created",
 					width: 180,
 					cellRenderer: params => {
-						return (
-							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
+						// console.log(`params.value`, params.value);
+
+						// create a firestore Timestamp
+						const timestamp = new Timestamp(
+							params.value.seconds,
+							params.value.nanoseconds
 						);
+
+						// console.log(`timestamp`, timestamp);
+						return <p>{moment(timestamp.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
 					},
 					breakpoint: "md",
 				},
@@ -79,22 +80,21 @@ export const useColumnDefs = props => {
 					breakpoint: "md",
 				},
 				{
-					field: "metaData.updatedByUser",
-					columnGroupShow: "open",
-					headerName: "Updated By",
-					width: 130,
-					breakpoint: "md",
-				},
-				// 3
-				{
 					field: "metaData.updatedAtDatetime",
 					columnGroupShow: "open",
 					headerName: "Updated At Datetime",
 					width: 190,
 					cellRenderer: params => {
-						return (
-							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
+						// console.log(`params.value`, params.value);
+
+						// create a firestore Timestamp
+						const timestamp = new Timestamp(
+							params.value.seconds,
+							params.value.nanoseconds
 						);
+
+						// console.log(`timestamp`, timestamp);
+						return <p>{moment(timestamp.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
 					},
 					breakpoint: "md",
 				},
@@ -169,6 +169,13 @@ export const useColumnDefs = props => {
 				},
 			],
 			breakpoint: "md",
+		},
+
+		{
+			field: "address.systemAdr",
+			headerName: "Street",
+			width: 300,
+			breakpoint: "sm",
 		},
 		{
 			// A click displays a modal that shows the Purchase Order
@@ -381,7 +388,178 @@ export const useColumnDefs = props => {
 			breakpoint: "md",
 		},
 	];
-	
+
+	// Erfs
+	const erfsUploadTableFields = [
+		{
+			headerName: "Created",
+			children: [
+				{
+					field: "metaData.createdByUser",
+					columnGroupShow: "open",
+					headerName: "Created By",
+					width: 130,
+					breakpoint: "md",
+				},
+				{
+					field: "metaData.createdAtDatetime",
+					columnGroupShow: "closed",
+					headerName: "Date Created",
+					width: 180,
+					cellRenderer: params => {
+						// console.log(`params.value`, params.value);
+
+						// create a firestore Timestamp
+						const timestamp = new Timestamp(
+							params.value.seconds,
+							params.value.nanoseconds
+						);
+
+						// console.log(`timestamp`, timestamp);
+						return <p>{moment(timestamp.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
+					},
+					breakpoint: "md",
+				},
+			],
+			breakpoint: "md",
+		},
+		{
+			headerName: "Updated",
+			children: [
+				{
+					field: "metaData.updatedByUser",
+					columnGroupShow: "closed",
+					headerName: "Updated By",
+					width: 130,
+					breakpoint: "md",
+				},
+				{
+					field: "metaData.updatedAtDatetime",
+					columnGroupShow: "open",
+					headerName: "Updated At Datetime",
+					width: 190,
+					cellRenderer: params => {
+						// console.log(`params.value`, params.value);
+
+						// create a firestore Timestamp
+						const timestamp = new Timestamp(
+							params.value.seconds,
+							params.value.nanoseconds
+						);
+
+						// console.log(`timestamp`, timestamp);
+						return <p>{moment(timestamp.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
+					},
+					breakpoint: "md",
+				},
+			],
+			breakpoint: "md",
+		},
+		{
+			field: "erfNo",
+			headerName: "Erf No",
+			width: 110,
+			// checkboxSelection: true,
+			// headerCheckboxSelection: true,
+			// headerCheckboxSelectionFilteredOnly: true,
+			// cellRenderer: memo(ErfBtn),
+			breakpoint: "xs",
+		},
+		{
+			field: "erfStatus",
+			headerName: "Status",
+			width: 150,
+			breakpoint: "md",
+		},
+		{
+			headerName: "GPS",
+			children: [
+				{
+					field: "address.gps.latitude",
+					// columnGroupShow: "closed",
+					headerName: "Latitude",
+					width: 170,
+					breakpoint: "md",
+				},
+				{
+					field: "address.gps.longitude",
+					// columnGroupShow: "closed",
+					headerName: "Longitude",
+					width: 170,
+					breakpoint: "md",
+				},
+			],
+			breakpoint: "md",
+		},
+		{
+			// A click displays a modal that shows the Purchase Order
+			field: "standUse",
+			headerName: "Stand Use", //[business, residentail-suburb, residential-township, church, government, school]
+			width: 160,
+			breakpoint: "md",
+		},
+		{
+			headerName: "Customer Address",
+			children: [
+				{
+					field: "address.country",
+					headerName: "Country",
+					width: 120,
+					columnGroupShow: "open",
+					breakpoint: "md",
+				},
+				{
+					field: "address.province",
+					headerName: "Province",
+					width: 120,
+					columnGroupShow: "open",
+					breakpoint: "md",
+				},
+				{
+					field: "address.dm",
+					headerName: "DM",
+					width: 120,
+					columnGroupShow: "open",
+					breakpoint: "",
+				},
+				{
+					field: "address.lmMetro",
+					headerName: "LM or Metro",
+					width: 120,
+					columnGroupShow: "open",
+					breakpoint: "md",
+				},
+				{
+					field: "address.town",
+					headerName: "Towm",
+					width: 120,
+					breakpoint: "sm",
+				},
+				{
+					field: "address.ward",
+					headerName: "Ward",
+					width: 120,
+					columnGroupShow: "open",
+					breakpoint: "md",
+				},
+				{
+					field: "address.suburbTownship",
+					headerName: "Suburb/Township",
+					width: 170,
+					columnGroupShow: "open",
+					breakpoint: "md",
+				},
+				{
+					field: "address.street",
+					headerName: "Street",
+					width: 170,
+					breakpoint: "sm",
+				},
+			],
+			breakpoint: "sm",
+		},
+	];
+
 	const astsInErfTableFields = [
 		// TODO: get updated data from the trn that worked on the ast
 		{
@@ -3973,13 +4151,13 @@ export const useColumnDefs = props => {
 	/*
 	Erfs
 	*/
+	if (ml1 === "erfsUpload") {
+		fields = [...erfsUploadTableFields];
+	}
+
 	if (ml1 === "erfs") {
 		fields = [...erfsTableFields];
 	}
-
-	// if (ml1 === "erfsXm") {
-	// 	fields = [...erfsTableFieldsXm];
-	// }
 
 	/*
 	Supply Chain (Sch)

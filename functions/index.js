@@ -348,7 +348,6 @@ const updateTrnWithNextState = (trnAfter, nextTrnState, nextAstsState) => {
 const getNewTrnCommissioning = trnAfter => {
 	return {
 		metaData: {
-			// createdAtDatetime: db.Timestamp.fromDate(new Date()),
 			createdAtDatetime: Timestamp.now(),
 			createdByUser: "admin",
 			updatedAtDatetime: Timestamp.now(),
@@ -448,7 +447,6 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	// create a new ast object
 	const newAst = {
 		metaData: {
-			// createdAtDatetime: db.Timestamp.fromDate(new Date()),
 			createdAtDatetime: Timestamp.now(),
 			createdByUser: "admin",
 			updatedAtDatetime: Timestamp.now(),

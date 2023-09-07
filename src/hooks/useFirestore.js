@@ -1,7 +1,15 @@
-import { collection, addDoc, updateDoc, doc, getDoc, arrayUnion } from "firebase/firestore";
+import {
+	collection,
+	addDoc,
+	updateDoc,
+	doc,
+	getDoc,
+	arrayUnion,
+	Timestamp,
+} from "firebase/firestore";
 import cloneDeep from "lodash.clonedeep";
 import { useEffect, useReducer, useState } from "react";
-import { db } from "../firebaseConfig/fbConfig";
+import { db, timestamp } from "../firebaseConfig/fbConfig";
 import useAuthContext from "./useAuthContext";
 
 const initData = {
@@ -48,12 +56,15 @@ const firestoreReducer = (state, action) => {
 			};
 		default:
 			// console.log(`DEFAULT`, action.payload);
-			throw new Error(`Error adding new doc [${action.payload}] to firestore`)
-			// return state;
+			throw new Error(`Error adding new doc [${action.payload}] to firestore`);
+		// return state;
 	}
 };
 
 export const useFirestore = fbCollection => {
+	// get currnet user data
+	const { user } = useAuthContext();
+	// console.log(`user`, user)
 
 	const [response, dispatch] = useReducer(firestoreReducer, initData);
 	const [isCancelled, setIsCancelled] = useState(false);
@@ -74,6 +85,16 @@ export const useFirestore = fbCollection => {
 
 	const addDocument = async doc => {
 		// console.log(`start adding doc`, doc)
+
+		doc = {
+			...doc,
+			metaData: {
+				...doc.metaData,
+				updatedAtDatetime: Timestamp.now(),
+				updatedByUser: user.displayName,
+			},
+		};
+
 		dispatch({ type: "IS_PENDING" });
 		try {
 			// console.log(`po`, po);
@@ -88,7 +109,17 @@ export const useFirestore = fbCollection => {
 	const deleteDocument = async id => {};
 
 	const updateDocument = async document => {
-		// console.log(`document`, document)
+		console.log(`Firestore updating document`, document);
+
+		document = {
+			...document,
+			metaData: {
+				...document.metaData,
+				updatedAtDatetime: Timestamp.now(),
+				updatedByUser: user.displayName,
+			},
+		};
+
 		const id = document.id;
 		const newObj = cloneDeep(document);
 		// delete newObj.id;
@@ -110,13 +141,24 @@ export const useFirestore = fbCollection => {
 	};
 
 	const updateDocument_ = async (id, update) => {
-		console.log(`id`,id)
-		console.log(`update`,update)
+		console.log(`Firestore updating document`, update);
+
+		update = {
+			...update,
+			metaData: {
+				...update.metaData,
+				updatedAtDatetime: Timestamp.now(),
+				updatedByUser: user.displayName,
+			},
+		};
+
+		// console.log(`id`,id)
+		// console.log(`update`,update)
 		dispatch({ type: "IS_PENDING", payload: update });
 		const docToUpdateRef = doc(db, fbCollection, id);
 		try {
 			const updatedDoc = await updateDoc(docToUpdateRef, update);
-			console.log(`updatedDoc`, updatedDoc);
+			// console.log(`updatedDoc`, updatedDoc);
 			dispatchIfNotCancelled({ type: "UPDATED_DOCUMENT", payload: updatedDoc });
 			return updatedDoc;
 		} catch (err) {
@@ -128,31 +170,31 @@ export const useFirestore = fbCollection => {
 		}
 	};
 
-		const updateDocumentArray = async (id, arrayData, arrayName) => {
-			console.log(`id`, id);
-			console.log(`arrayData`, arrayData);
-			console.log(`arrayName`, arrayName);
+	const updateDocumentArray = async (id, arrayData, arrayName) => {
+		// console.log(`id`, id);
+		// console.log(`arrayData`, arrayData);
+		// console.log(`arrayName`, arrayName);
 
-			dispatch({ type: "IS_PENDING", payload: arrayData });
-			const docToUpdateRef = doc(db, fbCollection, id);
-			try {
-				const updatedDoc = await updateDoc(docToUpdateRef, {
-					astNoMedia: arrayUnion(arrayData),
-				});
-				console.log(`updatedDoc`, updatedDoc);
-				dispatchIfNotCancelled({ type: "UPDATED_DOCUMENT", payload: updatedDoc });
-				return updatedDoc;
-			} catch (err) {
-				console.log(`err`, err.message);
-				dispatchIfNotCancelled({
-					type: "ERROR",
-					payload: err.message,
-				});
-			}
-		};
+		dispatch({ type: "IS_PENDING", payload: arrayData });
+		const docToUpdateRef = doc(db, fbCollection, id);
+		try {
+			const updatedDoc = await updateDoc(docToUpdateRef, {
+				astNoMedia: arrayUnion(arrayData),
+			});
+			// console.log(`updatedDoc`, updatedDoc);
+			dispatchIfNotCancelled({ type: "UPDATED_DOCUMENT", payload: updatedDoc });
+			return updatedDoc;
+		} catch (err) {
+			// console.log(`err`, err.message);
+			dispatchIfNotCancelled({
+				type: "ERROR",
+				payload: err.message,
+			});
+		}
+	};
 
 	const getDocument = async uid => {
-		console.log(`uid`, uid)
+		console.log(`uid`, uid);
 		const docRef = doc(db, fbCollection, uid);
 		// console.log(`docRef`, docRef);
 		dispatch({ type: "IS_PENDING" });

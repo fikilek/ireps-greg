@@ -1,4 +1,5 @@
 
+import { Timestamp } from "firebase/firestore";
 import cloneDeep from "lodash.clonedeep";
 import { timestamp } from "../firebaseConfig/fbConfig";
 import useAuthContext from "./useAuthContext";
@@ -47,7 +48,7 @@ const {response, updateDocument} = useFirestore('pos')
 	const addSignature = () => {};
 
 	const cancelSignature = () => {
-			newPo.metaData.updatedAtDatetime = timestamp.fromDate(new Date());
+			newPo.metaData.updatedAtDatetime = Timestamp.now();
 			newPo.metaData.updatedByUser = user.displayName;
 		if (signatureName === "poApprove") {
 			newPo.poApprove.approveUid = "";
