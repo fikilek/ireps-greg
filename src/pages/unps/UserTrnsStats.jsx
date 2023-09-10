@@ -1,6 +1,6 @@
 import React from "react";
 import DatetimeFilter from "./DatetimeFilter";
-import "./User.css";
+import "./UserProfile.css";
 import "./UserTrnsStats.css";
 import TrnsStats from './TrnsStats'
 import AreaFilter from "./AreaFilter";

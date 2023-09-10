@@ -17,6 +17,95 @@ const db = getFirestore();
 // 	return collectionCount;
 // };
 
+exports.updateUserRole = functions.https.onCall((data, context) => {
+	
+	// check if user is authenticated. This is done by checking if the token is valid
+	
+	return admin
+		.auth()
+		.setCustomUserClaims(uid, customClaims)
+		.then(() => {
+			//Interesting to note: we need to re-fetch the userRecord, as the user variable **does not** hold the claim
+			return admin.auth().getUser(uid);
+		})
+		.then(userRecord => {
+			console.log(`uid`, uid);
+			console.log(`userRecord.customClaims`, userRecord.customClaims);
+			return null;
+		})
+		.catch(err => {
+			console.log("Error setting custom claim:", err);
+		});
+});
+
+exports.listAllUsers = functions.https.onCall((data, context) => {
+	let users = [];
+	return admin
+		.auth()
+		.listUsers(1000)
+		.then(listUsersResult => {
+			console.log("listUsersResult", listUsersResult);
+
+			listUsersResult.users.forEach(userRecord => {
+				console.log("user", userRecord);
+				users.push(userRecord);
+			});
+			console.log("users", users);
+			return users;
+		})
+		.catch(error => {
+			console.log("Error listing users:", error);
+			return `Error listing users: ${error.meesage}`;
+		});
+});
+
+exports.addDefaultUserRole = functions.auth.user().onCreate(user => {
+	let uid = user.uid;
+
+	const customClaims = {
+		roles: {
+			guest: true,
+			fieldworker: false,
+			supervisor: false,
+			manager: false,
+			superuser: false,
+		},
+	};
+	//add custom claims
+	return admin
+		.auth()
+		.setCustomUserClaims(uid, customClaims)
+		.then(() => {
+			//Interesting to note: we need to re-fetch the userRecord, as the user variable **does not** hold the claim
+			return admin.auth().getUser(uid);
+		})
+		.then(userRecord => {
+			console.log(`uid`, uid);
+			console.log(`userRecord.customClaims`, userRecord.customClaims);
+			return null;
+		})
+		.catch(err => {
+			console.log("Error setting custom claim:", err);
+		});
+});
+
+exports.deleteUser = functions.auth.user().onDelete(user => {
+	let uid = user.uid;
+	return admin
+		.firestore()
+		.collection("users")
+		.doc(uid)
+		.update({
+			status: "deleted",
+		})
+		.then(() => {
+			console.log(`User ${uid} succesfully updated :`);
+		})
+		.catch(err => {
+			console.log(`Error updating user ${uid} :`, err);
+		});
+});
+
 exports.createSpl = functions.firestore
 	.document("suppliers/{userId}")
 	.onCreate((snap, context) => {

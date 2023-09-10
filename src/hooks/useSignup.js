@@ -21,7 +21,7 @@ export const useSignup = () => {
 				setIsPending(false);
 				throw new Error("User signup failed");
 			}
-			console.log(`result`, result.user);
+			// console.log(`result`, result.user);
 			const { user } = result;
 
 			// update dispalyName details at firebase auth user. Use first letter of surname and name as dispalyName
@@ -42,6 +42,7 @@ export const useSignup = () => {
 				phoneNumber,
 				online: true,
 				photoUrl: "",
+				status: 'active'
 			});
 
 			dispatch({ type: "SIGNIN", payload: user });

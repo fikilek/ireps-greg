@@ -1,4 +1,4 @@
-import { MdArrowDropDown, MdArrowRight } from "react-icons/md";
+import { MdArrowDropDown, MdArrowLeft } from "react-icons/md";
 
 export const dataAdmin = [
 	{
@@ -37,44 +37,43 @@ export const dataAdmin = [
 				icon: "",
 				children: null,
 			},
-		],
-		// 	{
-		// 		// System tables
-		// 		to: "/admin/syst",
-		// 		menu: "System Tables",
-		// 		"menu-level": "2",
-		// 		icon: <MdArrowRight />,
-		// 		children: [
-		// 			{
-		// 				to: "/admin/systt/user-roles",
-		// 				menu: "User Roles",
-		// 				"menu-level": "3",
-		// 				icon: "",
-		// 				children: null,
-		// 			},
-		// 			{
-		// 				to: "/admin/systt/ast-states",
-		// 				menu: "Asset states",
-		// 				"menu-level": "3",
-		// 				icon: null,
-		// 				children: null,
-		// 			},
-		// 			{
-		// 				to: "/admin/systt/trn-states",
-		// 				menu: "Transaction States",
-		// 				"menu-level": "3",
-		// 				icon: null,
-		// 				children: null,
-		// 			},
-		// 			{
-		// 				to: "/admin/systt/ast-cartegories",
-		// 				menu: "Asset Cartegories",
-		// 				"menu-level": "3",
-		// 				icon: null,
-		// 				children: null,
-		// 			},
-		// 		],
-		// 	},
+			{
+				// System tables
+				to: "/admin/syst",
+				menu: "System Tables",
+				"menu-level": "2",
+				icon: <MdArrowLeft />,
+				children: [
+					{
+						to: "/admin/systt/user-roles",
+						menu: "User Roles",
+						"menu-level": "3",
+						icon: "",
+						children: null,
+					},
+					{
+						to: "/admin/systt/ast-states",
+						menu: "Asset states",
+						"menu-level": "3",
+						icon: null,
+						children: null,
+					},
+					{
+						to: "/admin/systt/trn-states",
+						menu: "Transaction States",
+						"menu-level": "3",
+						icon: null,
+						children: null,
+					},
+					{
+						to: "/admin/systt/ast-cartegories",
+						menu: "Asset Cartegories",
+						"menu-level": "3",
+						icon: null,
+						children: null,
+					},
+				],
+			},
 		// ],
 		// 	// {
 		// 	// 	// Mobile devices
@@ -92,6 +91,6 @@ export const dataAdmin = [
 		// 	// 	icon: "",
 		// 	// 	children: null,
 		// 	// },
-		// ],
+		],
 	},
 ];

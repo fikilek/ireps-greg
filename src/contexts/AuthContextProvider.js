@@ -9,9 +9,9 @@ const authReducer = (state, action) => {
 			return { ...state, user: action.payload };
 		case "SIGNOUT":
 			return { ...state, user: null };
-		case "AUTH_IS_READY": 
+		case "AUTH_IS_READY":
 			// console.log(`AUTH_IS_READY updated with payload: `, action.payload);
-			return { ...state, user: action.payload, isAuthReady: true}
+			return { ...state, user: action.payload, isAuthReady: true };
 		default:
 			return state;
 	}
@@ -28,12 +28,20 @@ const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		// console.log(`AuthContext useEffect running`)
-		const unsub = onAuthStateChanged(auth, (user) => {
-			// console.log(`auth`, auth)
+		const unsub = onAuthStateChanged(auth, user => {
+			console.log(`user`, user);
+
+			auth.currentUser.getIdTokenResult().then(userIdToken => {
+				console.log(
+					`userIdToken.claims.roles`,
+					userIdToken.claims.roles
+				);
+			});
+
 			dispatch({ type: "AUTH_IS_READY", payload: auth.currentUser });
-			unsub()
-		} )
-	}, [])
+			unsub();
+		});
+	}, []);
 
 	return (
 		<AuthContext.Provider value={{ ...state, dispatch }}>
@@ -41,7 +49,5 @@ const AuthContextProvider = ({ children }) => {
 		</AuthContext.Provider>
 	);
 };
-
-
 
 export default AuthContextProvider;

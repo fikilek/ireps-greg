@@ -23,12 +23,17 @@ import AstMediaBtn from "../components/astMedia/AstMediaBtn";
 import TableCellStyleAstStateMap from "../components/table/TableCellStyleAstStateMap";
 import TableAstsTrnsErfBtn from "../components/table/tableBtns/TableAstsTrnsErfBtn";
 import { Timestamp } from "firebase/firestore";
+import UserRoleCheckboxes from "../pages/unps/UserRoleCheckboxes";
+import UserProfileBtn from "../pages/unps/UserProfileBtn";
 
 export const useColumnDefs = props => {
 	// console.log(`props`, props);
 	const { ml1, ml2, ml3 } = props;
 
-	// Erfs
+	// START: erfs table fields
+	// -----------------------------
+
+	// erfs
 	const erfsTableFields = [
 		{
 			field: "id",
@@ -389,7 +394,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Erfs
+	// erfs uploads
 	const erfsUploadTableFields = [
 		{
 			headerName: "Created",
@@ -560,6 +565,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// asts in erf
 	const astsInErfTableFields = [
 		// TODO: get updated data from the trn that worked on the ast
 		{
@@ -758,7 +764,10 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Admin
+	// START: Supply chain
+	// -----------------------
+
+	// po (purchase orders)
 	const poTableFields = [
 		{
 			field: "id",
@@ -921,6 +930,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// poi (purchase order items)
 	const poiTableFields = [
 		{
 			field: "itemName",
@@ -939,6 +949,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// suppier
 	const splTableFields = [
 		{
 			field: "id",
@@ -1060,6 +1071,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// stores
 	const storesTableFields = [
 		{
 			field: "id",
@@ -1180,32 +1192,39 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Admin
+	// START: Amin
+	// -----------------------
+
+	// users
 	const usersTableFields = [
 		{
-			field: "id",
+			field: "uid",
 			headerName: "users Id",
 			width: 90,
 			hide: true,
 			breakpoint: "md",
 		},
 		{
-			field: "metaData.createdAtDatetime",
+			field: "metadata.creationtime",
 			headerName: "Date Created",
 			width: 180,
 			cellRenderer: params => {
-				return <p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
+				// console.log(` params.data`, params?.data);
+				// console.log(` params.metadata.creationtime`, params?.data?.metadata?.creationTime);
+				const datetime = params?.data?.metadata?.creationTime;
+				// return params.value
+				return <p>{moment(datetime).format("YYYY-MM-DD HH:mm:ss")}</p>;
 			},
 			breakpoint: "md",
 		},
-		{
-			field: "metaData.updatedAtDatetime",
-			headerName: "Updated At Datetime",
-			width: 190,
-			cellRenderer: params => {
-				return <p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
-			},
-		},
+		// {
+		// 	field: "metaData.updatedAtDatetime",
+		// 	headerName: "Updated At Datetime",
+		// 	width: 190,
+		// 	cellRenderer: params => {
+		// 		return <p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
+		// 	},
+		// },
 		{
 			field: "displayName",
 			headerName: "display name",
@@ -1213,17 +1232,30 @@ export const useColumnDefs = props => {
 			breakpoint: "md",
 		},
 		{
-			field: "email",
-			headerName: "email adro",
-			width: 200,
-			breakpoint: "md",
-		},
-		{
-			field: "online",
-			headerName: "online",
+			field: "disabled",
+			headerName: "disabled",
 			width: 100,
 			breakpoint: "md",
 		},
+		{
+			field: "userRole",
+			headerName: "User Roles",
+			width: 300,
+			cellRenderer: UserRoleCheckboxes,
+			breakpoint: "md",
+		},
+		{
+			field: "email",
+			headerName: "email adr",
+			width: 200,
+			breakpoint: "md",
+		},
+		// {
+		// 	field: "online",
+		// 	headerName: "online",
+		// 	width: 100,
+		// 	breakpoint: "md",
+		// },
 		{
 			field: "phoneNumber",
 			headerName: "phone number",
@@ -1231,13 +1263,21 @@ export const useColumnDefs = props => {
 			breakpoint: "md",
 		},
 		{
-			field: "photoUrl",
+			field: "photoURL",
 			headerName: "photo",
 			width: 100,
 			breakpoint: "md",
 		},
+		{
+			field: "userProfile",
+			headerName: "User Profile",
+			width: 150,
+			cellRenderer: UserProfileBtn,
+			breakpoint: "md",
+		},
 	];
 
+	// mobile devices
 	const mobileDevicesTableFields = [
 		{
 			headerName: "Created",
@@ -1369,6 +1409,7 @@ export const useColumnDefs = props => {
 		// { field: "delete", headerName: "Delete", width: 100 },
 	];
 
+	// simcards (system table)
 	const simcardsTableFields = [
 		{
 			headerName: "Created",
@@ -1488,27 +1529,24 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// user roles (system table)
 	const userRolesTableFields = [
 		{
 			field: "id",
 			headerName: "User Roles Id",
 			width: 150,
 			hide: true,
+			breakpoint: "md",
 		},
 		{
 			headerName: "Created",
 			children: [
 				{
-					field: "+",
-					columnGroupShow: "",
-					headerName: "+",
-					width: 50,
-				},
-				{
 					field: "metaData.createdByUser",
-					columnGroupShow: "open",
+					columnGroupShow: "closed",
 					headerName: "Created By",
 					width: 130,
+					breakpoint: "md",
 				},
 				{
 					field: "metaData.createdAtDatetime",
@@ -1516,27 +1554,25 @@ export const useColumnDefs = props => {
 					headerName: "Date Created",
 					width: 180,
 					cellRenderer: params => {
+						console.log(`params`, params);
 						return (
 							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
 						);
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			headerName: "Updated",
 			children: [
 				{
-					field: "+",
-					columnGroupShow: "",
-					headerName: "+",
-					width: 50,
-				},
-				{
 					field: "metaData.updatedByUser",
-					columnGroupShow: "open",
+					columnGroupShow: "closed",
 					headerName: "Updated By",
 					width: 130,
+					breakpoint: "md",
 				},
 				{
 					field: "metaData.updatedAtDatetime",
@@ -1548,8 +1584,10 @@ export const useColumnDefs = props => {
 							<p>{moment(params.value.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>
 						);
 					},
+					breakpoint: "md",
 				},
 			],
+			breakpoint: "md",
 		},
 		{
 			field: "edit",
@@ -1559,20 +1597,30 @@ export const useColumnDefs = props => {
 			cellRendererParams: {
 				fn: "userRolesForm",
 			},
+			breakpoint: "md",
 		},
 		{
 			field: "userRoleName",
-			headerName: "User Role Name",
+			headerName: "Role Name",
 			width: 150,
+			breakpoint: "md",
+		},
+		{
+			field: "userRoleCode",
+			headerName: "Role Code",
+			width: 150,
+			breakpoint: "md",
 		},
 		{
 			field: "userRoleDescription",
-			headerName: "User Role Description",
+			headerName: "Role Description",
 			width: 350,
+			breakpoint: "md",
 		},
 		// { field: "delete", headerName: "Delete", width: 100 },
 	];
 
+	// ast states (system table)
 	const astStatesTableFields = [
 		{
 			field: "id",
@@ -1658,6 +1706,7 @@ export const useColumnDefs = props => {
 		// { field: "delete", headerName: "Delete", width: 100 },
 	];
 
+	// trn states (system table)
 	const trnStatesTableFields = [
 		{
 			field: "id",
@@ -1743,6 +1792,7 @@ export const useColumnDefs = props => {
 		// { field: "delete", headerName: "Delete", width: 100 },
 	];
 
+	// ast categories (system table)
 	const astCartegoriesTableFields = [
 		{
 			field: "id",
@@ -1828,7 +1878,7 @@ export const useColumnDefs = props => {
 		// { field: "delete", headerName: "Delete", width: 100, hide: true },
 	];
 
-	// asts sitting in 'asts' collection (left pannel of checkout form)
+	// asts checkout (all asts in collection -left pannel of checkout form)
 	const astCheckoutFields = [
 		{
 			field: "id",
@@ -1906,7 +1956,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// asts sittong in trn object  (right pannel of checkout form)
+	// asts checkout (asts on the trn object -right pannel of checkout form)
 	const astCheckinFields = [
 		// {
 		// 	field: "id",
@@ -1968,7 +2018,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Assets
+	// asts
 	const astTableFieldsLeft = [
 		{
 			field: "id",
@@ -2148,6 +2198,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// asts
 	const astTableFieldsRight = [
 		{
 			headerName: "Erf/Gps",
@@ -2271,7 +2322,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Assets in Erfs Tooltip Table fields
+	// asts in erf (Tooltip Table fields)
 	const astsInErfTooltipTableFields = [
 		{
 			field: "",
@@ -2296,6 +2347,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast meter (ast specific columns)
 	const astMeter = [
 		{
 			headerName: "Meters",
@@ -2321,6 +2373,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast feeder (ast specific columns)
 	const astFeeder = [
 		{
 			headerName: "feeders",
@@ -2331,6 +2384,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast pole (ast specific columns)
 	const astPole = [
 		{
 			headerName: "Poles",
@@ -2367,6 +2421,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast box (ast specific columns)
 	const astBox = [
 		{
 			headerName: "Boxes",
@@ -2388,6 +2443,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast cb (ast specific columns)
 	const astCb = [
 		{
 			headerName: "Circuit Breakers",
@@ -2412,6 +2468,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast seal (ast specific columns)
 	const astSeal = [
 		{
 			headerName: "Seals",
@@ -2436,15 +2493,17 @@ export const useColumnDefs = props => {
 		},
 	];
 
+	// ast vtct unit (ast specific columns)
 	const astVtct = [
 		{ field: "manufacture", headerName: "Manufacture", initialWidth: 120 },
 	];
 
+	// ast transformer (ast specific columns)
 	const astTransformer = [
 		{ field: "manufacture", headerName: "Manufacture", initialWidth: 120 },
 	];
 
-	// media fields
+	// media
 	const mediaFields = [
 		{
 			headerName: "Media",
@@ -2497,7 +2556,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Trns form Erfs table fields
+	// trns (trns created form Erfs table fields - new trn(s) review table)
 	const trnsFromErfsTableFields = [
 		{
 			field: "erfData.erfNo",
@@ -2558,7 +2617,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Trns form fields
+	// trns
 	const trnsTableFields = [
 		{
 			field: "id",
@@ -2765,7 +2824,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Trns form fields
+	// trns (al trns of an ast)
 	const trnsForAstTableFields = [
 		{
 			field: "trnMetaData.updatedByUser",
@@ -2801,7 +2860,7 @@ export const useColumnDefs = props => {
 		},
 	];
 
-	// Feeder form fields
+	// feeder
 	const trnsFeederInstallationFields = [
 		{
 			headerName: "Feeder Installation",
@@ -4093,7 +4152,7 @@ export const useColumnDefs = props => {
 	}
 
 	/*
-	Ast checkout / Checkin
+	Ast checkout / Checkout
 	*/
 	if (ml1 === "astCheckout") {
 		fields = [...astCheckoutFields];
@@ -4180,7 +4239,7 @@ export const useColumnDefs = props => {
 	}
 
 	/*
-	Admin
+	admin
 	*/
 	if (ml1 === "admin") {
 		if (ml2) {
@@ -4213,7 +4272,7 @@ export const useColumnDefs = props => {
 	}
 
 	/*
-	Assets
+	asts
 	*/
 	if (ml1 === "asts") {
 		fields = [...astTableFieldsLeft, ...astTableFieldsRight];
@@ -4245,7 +4304,7 @@ export const useColumnDefs = props => {
 		}
 	}
 	/*
-	Transactions
+	trns
 	*/
 	if (ml1 === "trns") {
 		fields = [...trnsTableFields];
@@ -4481,8 +4540,8 @@ export const useColumnDefs = props => {
 			}
 		}
 	}
-	fields = [...fields];
+	// fields = [...fields];
 	// console.log(`fields`, fields);
 
-	return { tableFields: fields };
+	return { tableFields: [...fields] };
 };

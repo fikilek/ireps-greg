@@ -29,6 +29,8 @@ import TableTrnsInErf from "../table/TableTrnsInErf";
 import TableAstsInErf from "../table/TableAstsInErf";
 import AstMedia from "../astMedia/AstMedia";
 import TabsErfMapInfoWrapper from "../tabs/erfsTabs/tabsMap/TabsErfMapInfoWrapper";
+import UserProfile from "../../pages/unps/UserProfile";
+import UserRoleSelection from "../../pages/unps/UserRoleSelection";
 
 const Modal = () => {
 	const { componentToOpen, setComponentToOpen, modalOpened, setModalOpened } =
@@ -72,6 +74,9 @@ const Modal = () => {
 						{modalName === "signout" && <Signout />}
 						{modalName === "signup" && <Signup />}
 						{modalName === "fpw" && <ForgottenPassword />}
+						{modalName === "userRoleSelection" && (
+							<UserRoleSelection data={payload} />
+						)}
 
 						{/* erfs */}
 						{modalName === "erfsForm" && <ErfsForm formData={payload} />}
@@ -119,6 +124,7 @@ const Modal = () => {
 						{modalName === "astCartegoriesForm" && (
 							<AstCartegoriesForm formData={payload} />
 						)}
+						{modalName === "userProfile" && <UserProfile formData={payload} />}
 					</div>
 
 					<div className="modal-footer"></div>

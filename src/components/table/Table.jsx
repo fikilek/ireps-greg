@@ -57,14 +57,17 @@ const Table = (props) => {
 
 	return (
 		// <div style={{ height: "calc(100% - 25px)" }} className="ag-theme-alpine">
-		<div style={{ height: tableHeight }} className="ag-theme-alpine ireps-ag-table uplolad-table">
+		<div
+			style={{ height: tableHeight }}
+			className="ag-theme-alpine ireps-ag-table uplolad-table"
+		>
 			<AgGridReact
 				ref={gridRef} // Ref for accessing Grid's API
 				rowData={rowData} // Row Data for Rows
 				columnDefs={columnDefs} // Column Defs for Columns
 				defaultColDef={defaultColDef} // Default Column Properties
 				animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-				rowSelection="multiple" // Options - allows click selection of rows
+				// rowSelection="multiple" // Options - allows click selection of rows
 				// enableBrowserTooltips={true}
 				// rowMultiSelectWithClick={true}
 				onSelectionChanged={onSelectionChanged}

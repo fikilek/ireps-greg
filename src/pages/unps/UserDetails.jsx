@@ -1,5 +1,5 @@
 import moment from "moment";
-import "./User.css";
+import "./UserProfile.css";
 import "./UserDetails.css";
 import React from "react";
 import useAuthContext from "../../hooks/useAuthContext";

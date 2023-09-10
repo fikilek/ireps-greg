@@ -1,0 +1,8 @@
+
+
+
+.user-roles-form .half-row-50-50 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}

@@ -1,0 +1,29 @@
+
+
+.user-role-selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.user-role-selection .urs {
+  border: 0.1rem solid;
+  border-radius: 0.6rem;
+  padding: 1rem;
+}
+
+.user-role-selection .urs p {
+  font-size: 1.4rem;
+}
+
+.user-role-selection .urs .role {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    gap: 1rem;
+  border: 0.1rem solid;
+  height: 7rem;
+  border-radius: 0.6rem;
+}

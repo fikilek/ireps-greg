@@ -10,7 +10,7 @@ import Dbd from "./pages/dbd/Dbd";
 import Erfs from "./pages/erfs/Erfs";
 import Bok from "./pages/bok/Bok";
 import Admin from "./pages/admin/Admin";
-import Unp from "./pages/unps/User";
+import Unp from "./pages/unps/UserProfile";
 import NoPageFound from "./pages/errors/NoPageFound";
 import Stores from "./pages/stores/Stores";
 

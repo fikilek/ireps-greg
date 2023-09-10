@@ -12,8 +12,8 @@ const MenuBlock = ({ menuData, classes }) => {
 		menuData.map(item => (
 			<li key={item.to} className={classes}>
 				<NavLink to={item.to}>
-					{item.menu}
 					{item.icon}
+					{item.menu}
 				</NavLink>
 				{item.children && (
 					<ul className="sub-menu">

@@ -1,0 +1,21 @@
+.user-role {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 0.5rem;
+}
+
+
+.user-role .role-btn {
+  background-color: #dae4fa99;
+  border: 1px solid lightgray;
+  text-align: center;
+  font-size: inherit;
+  height: 2.5rem;
+  padding: 0 1rem;
+  min-width: 4rem;
+}
+
+.user-role .user-has-role {
+  background-color: chartreuse;
+}
+

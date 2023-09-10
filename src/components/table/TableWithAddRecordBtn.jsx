@@ -44,10 +44,10 @@ const TableWithAddRecordBtn = props => {
 	// console.log(`tableFields`, tableFields);
 	// console.log(`isPending`, isPending);
 	// console.log(`success`, success);
-	// console.log(`error`, error);
+	// console.log(`tn`, tn);
 	const ml2 = (tn === 'undefined') ? "" :  tn
-	// console.log(`ml1`, ml1);
 	// console.log(`ml2`, ml2);
+	// console.log(`ml3`, ml3);
 	// console.log(`tn`, tn);
 
 	return (
@@ -57,7 +57,8 @@ const TableWithAddRecordBtn = props => {
 					<p>
 						{`
 							${ml1 ? `${irepsDictionary.get(ml1)}` : ""}
-							${ml2 ? `${irepsDictionary.get(ml2)}s` : ""}
+							${ml2 ? `/ ${irepsDictionary.get(ml2)}s` : ""} 
+							${ml3 ? `/ ${irepsDictionary.get(ml3)}s` : ""}
 						`}
 					</p>
 				</div>

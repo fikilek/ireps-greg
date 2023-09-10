@@ -411,3 +411,5 @@ irepsDictionary.set('meter', 'Meter')
 irepsDictionary.set('seal', 'Seal')
 irepsDictionary.set('cb', 'Cb')
 irepsDictionary.set('users', 'User')
+irepsDictionary.set("systt", "System");
+irepsDictionary.set("user-roles", "User Role");

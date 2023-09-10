@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import "./UserRolesForm.css";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { MdLockClock, MdPerson } from "react-icons/md";
@@ -8,7 +9,7 @@ import FormBtn from "../formComponents/formBtn/FormBtn";
 import { object, string } from "yup";
 // import TextError from "../formComponents/formError/TextError";
 import FormikControl from "../formComponents/formik/FormikControl";
-import FormHeader1 from "../formComponents/formHeaders/FormHeader1";
+import FormHeader8 from "../formComponents/formHeaders/FormHeader8";
 import useModal from "../../../hooks/useModal";
 import { useFirestore } from "../../../hooks/useFirestore";
 import { toast } from "react-toastify";
@@ -21,7 +22,7 @@ const validationSchema = object({
 });
 
 const UserRolesForm = ({ formData }) => {
-	// console.log(`formData`, formData);
+	console.log(`formData`, formData);
 
 	const { addDocument, response, updateDocument } = useFirestore("user-roles");
 	const { closeModal } = useModal();
@@ -30,26 +31,26 @@ const UserRolesForm = ({ formData }) => {
 	// console.log(`user`, user)
 
 	const [userRoles] = useState({
-		...formData,
+		...formData.data,
 		metaData: {
-			...formData.metaData,
+			...formData.data.metaData,
 			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
 		},
 	});
 
 	const onSubmit = values => {
-		// console.log(`values`, values);
+		console.log(`values`, values);
 		if (values.id) {
 			updateDocument(values);
 		} else {
 			addDocument(values);
 		}
 	};
-	// console.log(`response`, response);
 
 	useEffect(() => {
 		if (response.success) {
+			console.log(`response`, response);
 			closeModal();
 			toast(`New User Role  UPDATED/CREATED" succeesfully!`, {
 				position: "bottom-left",
@@ -64,10 +65,32 @@ const UserRolesForm = ({ formData }) => {
 		}
 	}, [response, closeModal]);
 
+	// form header datail
+
+	// erf form
+	const formName = (
+		<>
+			<span className="data-emphasis">{"User Roles Form"}</span>.
+		</>
+	);
+
+	// erf no
+	const erfNo = (
+		<>
+			Erf No <span className="data-emphasis">{formData.erfNo}</span>.
+		</>
+	);
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container user-roles-form-container">
-				<FormHeader1 formName="User Roles Form" closeModal={closeModal} />
+				<FormHeader8
+					dataLl={formName}
+					dataLr={""}
+					dataRl={""}
+					dataRr={""}
+					closeModal={closeModal}
+				/>
 				<Formik
 					initialValues={userRoles}
 					onSubmit={onSubmit}
@@ -75,26 +98,42 @@ const UserRolesForm = ({ formData }) => {
 				>
 					{formik => {
 						// console.log(`formik`, formik)
+						console.log(`formik.isValid`, formik.isValid);
+						console.log(`formik.dirty`, formik.dirty);
+
+						const disabled = !(formik.isValid && formik.dirty);
+
 						return (
 							<Form>
 								<div className="user-roles-form">
 									<div className="specific-data">
 										{/* userRoleName */}
-										<FormikControl
-											control="input"
-											type="text"
-											label="usere role name"
-											name="userRoleName"
-											placeholder="user role  name"
-										/>
-										{/* userRoleDescription */}
-										<FormikControl
-											control="input"
-											type="text"
-											label="User Role Description"
-											name="userRoleDescription"
-											placeholder="stores address"
-										/>
+										<div className="half-row-50-50">
+											<FormikControl
+												control="input"
+												type="text"
+												label="role name"
+												name="userRoleName"
+												placeholder="role  name"
+											/>
+											<FormikControl
+												control="input"
+												type="text"
+												label="role code"
+												name="userRoleCode"
+												placeholder="role name"
+											/>
+										</div>
+										<div>
+											{/* userRoleDescription */}
+											<FormikControl
+												control="input"
+												type="text"
+												label="description"
+												name="userRoleDescription"
+												placeholder="description"
+											/>
+										</div>
 									</div>
 
 									{/* updated */}
@@ -143,7 +182,7 @@ const UserRolesForm = ({ formData }) => {
 									<FormBtn
 										isPending={response.isPending}
 										btnName="submit"
-										disabled={!formik.isValid || formik.touched}
+										disabled={disabled}
 									/>
 								</div>
 							</Form>

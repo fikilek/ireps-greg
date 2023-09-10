@@ -33,14 +33,14 @@ import AuthFormHeader from "./AuthFormHeader";
 import useModal from "../../../hooks/useModal";
 
 export const userObj = {
-	surname: "",
-	name: "",
-	email: "",
+	surname: "kentane",
+	name: "fikile",
+	email: "fikile@gmail.com",
 	role: "guest",
-	password: "",
-	confirmPassword: "",
+	password: "fkpass123",
+	confirmPassword: "fkpass123",
 	signedon: false,
-	phoneNumber: "",
+	phoneNumber: "081 726 2352",
 };
 
 const Signup = () => {

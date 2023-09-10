@@ -4,7 +4,7 @@ import useModal from "../../../../hooks/useModal";
 
 const FormEditBtn = params => {
 	const { openModal } = useModal();
-	// console.log(`params`, params)
+	console.log(`FormEditBtn params`, params)
 	const { fn, data, disabled } = params;
 	const color = disabled ? "lightgrey" : `green`;
 	const iconStyles = { color, fontSize: "1.8rem" };

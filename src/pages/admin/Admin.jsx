@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import TableWithAddRecordBtn from "../../components/table/TableWithAddRecordBtn";
 import Downloads from '../../pages/downloads/Downloads';
 import Uploads from '../../pages/uploads/Uploads';
+import TableUsersList from "../../components/table/TableUsersList";
 
 const Admin = () => {
 	const { ml2, ml3 } = useParams();
@@ -12,7 +13,7 @@ const Admin = () => {
 		<>
 			{/* users */}
 			{ml2 === "unps" && ml3 === undefined && (
-				<TableWithAddRecordBtn ml1="admin" tn="users" nfd="" fn="" />
+				<TableUsersList ml1="admin" ml2="users"  />
 			)}
 
 			{/* downloads */}
