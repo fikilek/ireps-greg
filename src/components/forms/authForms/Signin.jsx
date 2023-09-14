@@ -17,7 +17,15 @@ const initSigninData = {
 	password: "",
 };
 
-const Signin = () => {
+const Signin = (props) => {
+	// console.log(`props`, props)
+
+	const pathname = props.location.pathname
+	// console.log(`pathname`, pathname)
+
+	// after authentication, navigate to destination if there is. otherwiese go to home, 
+	const destination = pathname ? pathname : './landing-page';
+
 	// user credentials comprise of user email and password
 	const [userCredentials, setUserCredentials] = useState(initSigninData);
 
@@ -74,7 +82,8 @@ const Signin = () => {
 			closeModal({ modalName: "signin" });
 			// setModalOpened(false);
 			setMenuStatus(false);
-			navigate(from, { replace: true });
+			// navigate(from, { replace: true });
+			navigate( destination, { replace: true });
 		}
 	}, [success, error, isPending]);
 

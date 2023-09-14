@@ -29,18 +29,27 @@ const AuthContextProvider = ({ children }) => {
 	useEffect(() => {
 		// console.log(`AuthContext useEffect running`)
 		const unsub = onAuthStateChanged(auth, user => {
-			console.log(`user`, user);
+			// console.log(`user`, user);
+			// console.log(`auth`, auth);
 
 			auth.currentUser.getIdTokenResult().then(userIdToken => {
-				console.log(
-					`userIdToken.claims.roles`,
-					userIdToken.claims.roles
-				);
+				// console.log(
+				// 	`userIdToken.claims.roles`,
+				// 	userIdToken.claims.roles
+				// 	);
+				dispatch({
+					type: "AUTH_IS_READY",
+					payload: {
+						...auth.currentUser,
+						claims: userIdToken.claims.roles,
+					},
+				});
 			});
 
-			dispatch({ type: "AUTH_IS_READY", payload: auth.currentUser });
 			unsub();
 		});
+
+		return unsub();
 	}, []);
 
 	return (

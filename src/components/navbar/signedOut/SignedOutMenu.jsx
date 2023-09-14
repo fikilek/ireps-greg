@@ -8,7 +8,7 @@ import useOpenModal from "../../../hooks/useModal";
 const SignedOutMenu = () => {
 	const { openModal } = useOpenModal();
 	const { menuStatus, setMenuStatus } = useContext(MenuContext);
-	console.log(`menuStatus`, menuStatus);
+	// console.log(`menuStatus`, menuStatus);
 
 	const handleClick = e => {
 		// modalOpened a modal window

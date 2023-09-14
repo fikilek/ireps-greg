@@ -35,6 +35,7 @@ const TableTrns = ({ rowData, columnDefs }) => {
 				defaultColDef={defaultColDef} // Default Column Properties
 				animateRows={true} // Optional - set to 'true' to have rows animate when sorted
 				suppressRowClickSelection={true}
+				// rowSelection="multiple" // Options - allows click selection of rows
 			/>
 		</div>
 	);

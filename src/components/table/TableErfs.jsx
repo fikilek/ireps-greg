@@ -16,8 +16,12 @@ import { useViewportDimensions } from "../../hooks/useViewportDimentions";
 import { useColDefs } from "../../hooks/useColDefs";
 
 const TableErfs = props => {
+	// console.log(`TableErfs rendering`)
 	// console.log(`TableErfs props`, props);
 	const { ml1, tn, ml3, nfd, fn } = props;
+
+	const { user } = useAuthContext()
+	// console.log(`user`, user)
 
 	const {
 		data: rowData,

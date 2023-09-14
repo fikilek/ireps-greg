@@ -11,6 +11,7 @@ import TableTrns from "./TableTrns";
 import { formSects } from "../forms/formComponents/formSections/formSects";
 import { nanoid } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import TableHeader from "./TableHeader";
 
 const createNewTrnObj = () => {
 	return {
@@ -112,22 +113,13 @@ const TableTrnsFromErfs = props => {
 		}
 	}, [response]);
 
+	// Table Header data
+
+
 	return (
 		<div className={`table new-trns-from-erfs`}>
-			<div className="table-header">
-				<div className="th-menu-levels">
-					<p>
-						New <span className="data-emphasis">{trnType}</span> Transaction(s) from
-						Erfs
-					</p>
-				</div>
-				<div className="new-trns-btn-wrapper">
-					<button onClick={handleSubmit}>submit</button>
-				</div>
-				<button onClick={() => closeModal()} className="close-modal-btn">
-					<MdClose />
-				</button>
-			</div>
+			<TableHeader trnType={trnType} handleSubmit={handleSubmit} />
+
 			<TableTrns rowData={newTrnsArray} columnDefs={columnDefs} />
 		</div>
 	);

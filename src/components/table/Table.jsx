@@ -7,11 +7,14 @@ import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 
 import "react-tippy/dist/tippy.css";
 import { useColumnDefs } from "../../hooks/useColumnDefs";
+import useAuthContext from "../../hooks/useAuthContext";
 // import PoTooltip from "./PoTooltip";
 
 const Table = (props) => {
 	// console.log(`Table props`, props);
 	const { rowData, columnDefs, setSelectedRows, ml1 } = props;
+
+
 
 	let tableHeight = ''
 	if (ml1 === 'erfs') {
@@ -54,6 +57,8 @@ const Table = (props) => {
 		const viewportWidth = columnApi.columnModel.viewportRight;
 		// console.log(`viewportWidth`, viewportWidth);
 	};
+
+
 
 	return (
 		// <div style={{ height: "calc(100% - 25px)" }} className="ag-theme-alpine">

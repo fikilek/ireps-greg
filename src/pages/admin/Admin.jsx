@@ -12,7 +12,7 @@ const Admin = () => {
 	return (
 		<>
 			{/* users */}
-			{ml2 === "unps" && ml3 === undefined && (
+			{ml2 === "users" && ml3 === undefined && (
 				<TableUsersList ml1="admin" ml2="users"  />
 			)}
 

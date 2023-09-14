@@ -70,9 +70,9 @@ const Modal = () => {
 				<div className="modal-payload">
 					<div className="modal-body">
 						{/* auth forms */}
-						{modalName === "signin" && <Signin />}
+						{modalName === "signin" && <Signin location={payload ? payload?.location : ''} />}
 						{modalName === "signout" && <Signout />}
-						{modalName === "signup" && <Signup />}
+						{modalName === "signup" && <Signup  />}
 						{modalName === "fpw" && <ForgottenPassword />}
 						{modalName === "userRoleSelection" && (
 							<UserRoleSelection data={payload} />

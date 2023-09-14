@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(5, auto);
   gap: 0.5rem;
+  place-content: center;
 }
 
 
@@ -19,3 +20,12 @@
   background-color: chartreuse;
 }
 
+.controller-row {
+  background-color: burlywood;
+
+}
+
+.user-role .u-role .controller-btn {
+  border: 0.3rem solid red;
+  height: 80%;
+}

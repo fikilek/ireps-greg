@@ -16,6 +16,7 @@ const Header = () => {
 	const { menuStatus, setMenuStatus } = useContext(MenuContext);
 	const { user, isAuthReady } = useAuthContext();
 	// console.log(`user`, user);
+	// console.log(`isAuthReady`, isAuthReady);
 
 	return (
 		<div className="header-container">
@@ -27,25 +28,13 @@ const Header = () => {
 							<FaRubleSign />
 						</NavLink>
 					</div>
-
-					{isAuthReady ? (
+					{
 						user ? (
-							<SignedInMenu />
-						) : (
-							<SignedOutMenu />
-						)
-					) : (
-						// <div className="test-nav">navbar</div>
-						<div className="loading-spinner">
-							<PropagateLoader
-								color="#36d7b7"
-								loading={!isAuthReady}
-								size={15}
-								aria-label="Loading Spinner"
-								data-testid="loader"
-							/>
-						</div>
-					)}
+								<SignedInMenu />
+							) : (
+								<SignedOutMenu />
+							)
+					}
 
 					<div className="menu-icons" onClick={() => setMenuStatus(!menuStatus)}>
 						{menuStatus ? <MdMenu /> : <MdClose />}
@@ -62,3 +51,25 @@ const Header = () => {
 export default Header;
 
 // TODO: Introduce React Router
+
+
+					// {
+					// 	isAuthReady && user ? (
+					// 		user ? (
+					// 			<SignedInMenu />
+					// 		) : (
+					// 			<SignedOutMenu />
+					// 		)
+					// 	) : (
+					// 		// <div className="test-nav">navbar</div>
+					// 		<div className="loading-spinner">
+					// 			<PropagateLoader
+					// 				color="#36d7b7"
+					// 				loading={!isAuthReady}
+					// 				size={15}
+					// 				aria-label="Loading Spinner"
+					// 				data-testid="loader"
+					// 			/>
+					// 		</div>
+					// 	);
+					// }

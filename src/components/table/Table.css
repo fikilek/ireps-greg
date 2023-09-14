@@ -6,7 +6,8 @@
 }
 
 .upload-table {
-  height: calc(100% - var(--header-height));;
+  height: calc(100% - var(--header-height));
+  ;
 }
 
 .table .table-header {
@@ -30,13 +31,29 @@
 }
 
 .table .table-header .new-trns-btn-wrapper button,
-.table .table-header .close-modal-btn {
+.table .table-header .close-modal-btn button,
+.table .table-header .new-trn-submit-btn {
   border: 1px solid lightgray;
   border-radius: 0.6rem;
   font-size: 1.7rem;
   display: flex;
   padding: 0.5rem;
 }
+
+.table .table-header .close-modal-btn {
+  display: flex;
+  justify-content: end;
+}
+
+.table .table-header .close-modal-btn button {
+  width: 3rem;
+}
+
+.table .table-header .new-trns-btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 
 .table .table-header .new-trns-btn-wrapper button:hover,
 .table .table-header .close-modal-btn:hover {

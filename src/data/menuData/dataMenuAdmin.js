@@ -17,7 +17,7 @@ export const dataAdmin = [
 		children: [
 			// The children is always a "Ul" element followed by 'li'
 			{
-				to: "/admin/unps",
+				to: "/admin/users",
 				menu: "Users",
 				"menu-level": "2",
 				icon: "",

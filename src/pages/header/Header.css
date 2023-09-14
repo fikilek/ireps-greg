@@ -76,6 +76,8 @@ header .menu-icons svg {
 	transform: translateY(-10px);
 }
 
+
+
 @media screen and (max-width: 850px) {
 	header .menu-icons {
 		display: block;

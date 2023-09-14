@@ -17,25 +17,194 @@ const db = getFirestore();
 // 	return collectionCount;
 // };
 
+// const permissions = {
+// 	guest: {
+// 		guest: false,
+// 		fieldworker: false,
+// 		supervisor: false,
+// 		manager: false,
+// 		superuser: false,
+// 	},
+// 	fieldworker: {
+// 		guest: false,
+// 		fieldworker: false,
+// 		supervisor: false,
+// 		manager: false,
+// 		superuser: false,
+// 	},
+// 	supervisor: {
+// 		guest: false,
+// 		fieldworker: false,
+// 		supervisor: false,
+// 		manager: false,
+// 		superuser: false,
+// 	},
+// 	manager: {
+// 		guest: true,
+// 		fieldworker: true,
+// 		supervisor: true,
+// 		manager: false,
+// 		superuser: false,
+// 	},
+// 	superuser: {
+// 		guest: true,
+// 		fieldworker: true,
+// 		supervisor: true,
+// 		manager: true,
+// 		superuser: false,
+// 	},
+// };
+
 exports.updateUserRole = functions.https.onCall((data, context) => {
-	
+	console.log(`data`, data);
+	// const data = {
+	// 	roles: {
+	// 		guest: true,
+	// 		fieldworker: false,
+	// 		supervisor: false,
+	// 		manager: false,
+	// 		superuser: false,
+	// 	},
+	// };
+	// console.log(`context`, context);
+	console.log(`-------------------------------`);
+	const changeSet = data.changeSet;
+	console.log(`changeSet`, changeSet);
+
+	// console.log(`-------------------------------`);
+	const customClaims = { roles: data.roles };
+	// console.log(`-------------------------------`);
+	// console.log(`customClaims or rolesControlledObj`, customClaims.roles);
+
+	// convert roles controlled object into an array
+	const rolesControlledArray = [];
+	for (const role in customClaims.roles) {
+		// console.log(`role`, role);
+		if (customClaims.roles[role]) {
+			rolesControlledArray.push(role);
+		}
+	}
+	// console.log(`-------------------------------`);
+	// console.log(`rolesControlledArray`, rolesControlledArray);
+
+	// console.log(`-------------------------------`);
+	const claimUid = data.uid;
+	// console.log(`claimUid`, claimUid);
+
+	// check if there is an auth object - if the user is authenticated
+	if (!context.auth) {
+		throw new functions.https.HttpsError("unauthenticated user");
+	}
+
+	// check if the user is permitted to modify claim
+
+	// get current user auth object
+	// console.log(`-------------------------------`);
+	const authObj = context.auth;
+	// console.log(`autObj`, authObj);
+
+	// get current user auth object
+	// console.log(`-------------------------------`);
+	const controllerUid = context.auth.uid;
+	console.log(`controllerUid`, controllerUid);
+
+	// get current user roles
+	const rolesControllerObj = authObj.token.roles;
+	// console.log(`-------------------------------`);
+	// console.log(`rolesControllerObj`, rolesControllerObj);
+
+	// convert roles controller object into an array
+	const rolesControllerArray = [];
+	for (const role in rolesControllerObj) {
+		if (rolesControllerObj[role]) {
+			rolesControllerArray.push(role);
+		}
+	}
+	console.log(`-------------------------------`);
+	console.log(`rolesControllerArray`, rolesControllerArray);
+
+	// validation 0: user cannot modify own roles
+	if (controllerUid === claimUid) {
+		// console.log(`-------------------------------`);
+		// console.log("PERMISSION DENIED - user CANNOT alter OWN roles");
+		return {
+			userRecord: "",
+			msg: "PERMISSION DENIED - user CANNOT alter OWN roles",
+		};
+	}
+
+	// validation 1: manager is not allowed to change manager or supervisor. he can change guest, fieldworker or supervisor
+	if (
+		rolesControllerArray.includes("manager") ||
+		rolesControllerArray.includes("superuser")
+	) {
+	}
+	else
+		return {
+			userRecord: "",
+			msg: "PERMISSION DENIED - only manager or superuser can modify roles",
+		};
+
+	// validation 1: user must have roles
+	if (rolesControllerArray.length === 0) {
+		// console.log(`-------------------------------`);
+		// console.log("PERMISSION DENIED - user has NO ROLE, CANNOT alter roles");
+		return {
+			userRecord: "",
+			msg: "PERMISSION DENIED - user has NO ROLE, CANNOT alter roles",
+		};
+	}
+
+	// validation 3: manager is not allowed to change manager or supervisor. he can change guest, fieldworker or supervisor
+	if (
+		(changeSet["manager"]["change"] === true ||
+			changeSet["superuser"]["change"] === true) &&
+		rolesControllerArray.includes("manager") &&
+		!rolesControllerArray.includes("superuser")
+	) {
+		// console.log(`------------------?r manager or superuser roles");
+		return {
+			userRecord: "",
+			msg: "PERMISSION DENIED - manager CANNOT alter manager or superuser roles",
+		};
+	}
+
+	// validation 4: superuser is not allowed to change supervisor. he can change guest, fieldworker, supervisor and manager
+	if (
+		changeSet["superuser"]["change"] === true &&
+		rolesControllerArray.includes("superuser")
+	) {
+		// console.log(`-------------------------------`);
+		// console.log("PERMISSION DENIED - manager CANNOT alter manager or superuser roles");
+		return {
+			userRecord: "",
+			msg: "PERMISSION DENIED - superuser CANNOT alter superuser roles",
+		};
+	}
+
 	// check if user is authenticated. This is done by checking if the token is valid
-	
 	return admin
 		.auth()
-		.setCustomUserClaims(uid, customClaims)
-		.then(() => {
-			//Interesting to note: we need to re-fetch the userRecord, as the user variable **does not** hold the claim
-			return admin.auth().getUser(uid);
+		.setCustomUserClaims(claimUid, customClaims)
+		.then(result => {
+			// console.log(`result after decoding idToken`, result);
+			return admin.auth().getUser(claimUid);
 		})
 		.then(userRecord => {
-			console.log(`uid`, uid);
-			console.log(`userRecord.customClaims`, userRecord.customClaims);
-			return null;
+			// console.log(`result after setting claims`, userRecord);
+			// return userRecord;
+			return {
+				userRecord,
+				msg: `roles [${JSON.stringify(customClaims.roles)}] for user [${
+					userRecord.displayName
+				}] updated succesfully`,
+			};
 		})
 		.catch(err => {
-			console.log("Error setting custom claim:", err);
+			console.log("Error updating custom claim:", err);
+			return `Error updating custom claim: ${err.message}`;
 		});
+	// return { data, token, auth, user};
 });
 
 exports.listAllUsers = functions.https.onCall((data, context) => {

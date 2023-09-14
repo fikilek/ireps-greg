@@ -39,7 +39,7 @@ const viewportFilter = data => {
 	}
 
 	if (viewportWidth >= 768 && viewportWidth < 1024) {
-		console.log(`viewport [768] > [${viewportWidth}] < [1024] - md`);
+		// console.log(`viewport [768] > [${viewportWidth}] < [1024] - md`);
 		tf = tableFields?.filter(
 			tf =>
 				tf.breakpoint === "xs" || tf.breakpoint === "sm" || tf.breakpoint === "md"

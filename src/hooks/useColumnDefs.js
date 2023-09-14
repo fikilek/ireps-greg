@@ -1200,7 +1200,7 @@ export const useColumnDefs = props => {
 		{
 			field: "uid",
 			headerName: "users Id",
-			width: 90,
+			width: 280,
 			hide: true,
 			breakpoint: "md",
 		},
@@ -1256,25 +1256,25 @@ export const useColumnDefs = props => {
 		// 	width: 100,
 		// 	breakpoint: "md",
 		// },
-		{
-			field: "phoneNumber",
-			headerName: "phone number",
-			width: 150,
-			breakpoint: "md",
-		},
-		{
-			field: "photoURL",
-			headerName: "photo",
-			width: 100,
-			breakpoint: "md",
-		},
-		{
-			field: "userProfile",
-			headerName: "User Profile",
-			width: 150,
-			cellRenderer: UserProfileBtn,
-			breakpoint: "md",
-		},
+		// {
+		// 	field: "phoneNumber",
+		// 	headerName: "phone number",
+		// 	width: 150,
+		// 	breakpoint: "md",
+		// },
+		// {
+		// 	field: "photoURL",
+		// 	headerName: "photo",
+		// 	width: 100,
+		// 	breakpoint: "md",
+		// },
+		// {
+		// 	field: "userProfile",
+		// 	headerName: "User Profile",
+		// 	width: 150,
+		// 	// cellRenderer: UserProfileBtn,
+		// 	breakpoint: "md",
+		// },
 	];
 
 	// mobile devices

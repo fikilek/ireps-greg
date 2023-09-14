@@ -1,24 +1,30 @@
 import React from "react";
 import useAuthContext from "../../hooks/useAuthContext";
-import { Navigate, useLocation, Outlet } from "react-router-dom";
-import useOpenModal from "../../hooks/useModal";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import useModal from "../../hooks/useModal";
+import { useEffect } from "react";
 
-const RequireAuth = () => {
-	const context = useAuthContext();
-	// console.log(`context`, context)
-	// const openModal = useOpenModal();
+const RequireAuth = ({ children }) => {
+	const { user, isAuthReady } = useAuthContext();
+	console.log(`user`, user);
+	console.log(`isAuthReady`, isAuthReady);
+
+	const { openModal, closeModal } = useModal();
+
 	const location = useLocation();
 	// console.log(`location`, location);
-	return context.isAuthReady ? (
-		context?.user ? (
-			<Outlet />
-		) : (
-			<Navigate to="/signinPage" state={{ from: location }} replace={true} />
-			// openModal({modalName:"signin", payload: {from: location}})
-		)
-	) : (
-		""
-	);
+
+	// const navigate = useNavigate();
+
+	useEffect(() => {
+		if (isAuthReady) {
+			if (!user) {
+				console.log(`user not signed in`);
+				openModal({ modalName: "signin", payload: { location } });
+			}
+		}
+	}, [user, isAuthReady]);
+	return <>{children}</>;
 };
 
 // TODO: See if only one signin page can be used. At the moment, its a modal and a page. Only one should be used

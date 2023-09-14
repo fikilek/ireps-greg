@@ -47,6 +47,9 @@ import PhotoAppContextProvider from "./contexts/PhotoAppContext";
 import GeocodingContextProvider from "./contexts/GeocodingContext";
 import ErfsContextProvider from "./contexts/ErfsContext";
 import ReverseGeocodingContextProvider from "./contexts/ReverseGeocodingContext";
+import CliamsContextProvider from "./contexts/ClaimsContext";
+import LandingPage from "./pages/home/LandingPage";
+import AdminMain from "./pages/admin/AdminMain";
 
 // console.log(`store`, store)
 // console.log(`UserContextProvider`, UserContextProvider)
@@ -54,125 +57,184 @@ import ReverseGeocodingContextProvider from "./contexts/ReverseGeocodingContext"
 function App() {
 	return (
 		<>
-			<ErfsContextProvider>
-				<ReverseGeocodingContextProvider>
-					<GeocodingContextProvider>
-						<PhotoAppContextProvider>
-							<MediaViewContextProvider>
-								<Provider store={store}>
-									<FormStateContextProvider>
-										<ModalContextProvider>
-											<AuthContextProvider>
-												<MenuContextProvider>
-													<PoContextProvider>
-														<div className="app">
-															<BrowserRouter>
-																{/* <Header /> */}
+			<CliamsContextProvider>
+				<ErfsContextProvider>
+					<ReverseGeocodingContextProvider>
+						<GeocodingContextProvider>
+							<PhotoAppContextProvider>
+								<MediaViewContextProvider>
+									<Provider store={store}>
+										<FormStateContextProvider>
+											<ModalContextProvider>
+												<AuthContextProvider>
+													<MenuContextProvider>
+														<PoContextProvider>
+															<div className="app">
+																<BrowserRouter>
+																	{/* <Header /> */}
 
-																{/* <div className="pages"> */}
-																{/* <div className="header-container"> */}
-																<Routes>
-																	<Route path="/" element={<Header />}>
-																		<Route index element={<Home />} />
+																	{/* <div className="pages"> */}
+																	{/* <div className="header-container"> */}
+																	<Routes>
+																		<Route path={"/"} element={<Header />}>
+																			<Route index element={<Home />} />
 
-																		<Route element={<RequireAuth />}>
-																			{/* dashboard section -----------------------------------------------------*/}
-																			{/* path to dashboard main page [ml1 = dbd] */}
-																			<Route path="/dbd">
-																				<Route index element={<Dbd />} />
-																				{/* ml2 = 'asts' or 'trns' or 'unps' */}
-																				{/* PgDbdMl2Meter - Page Dashboard Menu Lelel 2 Meter */}
-																				<Route path="meters" element={<DbdMeters />} />
-																				<Route path="boxs" element={<DbdBoxes />} />
-																				<Route path="poles" element={<DbdPoles />} />
-																				{/* <Route path="/dbd/meter" element={<PgDbdMl2Meter />} /> */}
-																				{/* <Route path="meter" element={<DbdSub />} /> */}
-																			</Route>
+																			<Route path="/landing-page" element={<LandingPage />} />
+
+																			{/* <Route
+																				element={
+																					<RequireAuth>
+																						<Trns />
+																					</RequireAuth>
+																				}
+																			> */}
 																			{/* assets section -----------------------------------------------------*/}
 																			{/* path to assets main page [ml1 = asts] */}
 																			<Route path="/asts">
-																				<Route index element={<Asts />} />
-																				<Route path=":ml2" element={<Asts />}>
-																					<Route path=":ml3" element={<Asts />} />
+																				<Route
+																					index
+																					element={
+																						<RequireAuth>
+																							<Asts />
+																						</RequireAuth>
+																					}
+																				/>
+																				<Route
+																					path=":ml2"
+																					element={
+																						<RequireAuth>
+																							<Asts />
+																						</RequireAuth>
+																					}
+																				>
+																					<Route
+																						path=":ml3"
+																						element={
+																							<RequireAuth>
+																								<Asts />
+																							</RequireAuth>
+																						}
+																					/>
 																				</Route>
 																			</Route>
 
 																			{/* transactions section -----------------------------------------------------*/}
 																			{/* path to assets main page [ml1 = trns] */}
 																			<Route path="/trns">
-																				<Route index element={<Trns />} />
-																				<Route path=":ml2" element={<Trns />}>
-																					<Route path=":ml3" element={<Trns />} />
+																				<Route
+																					index
+																					element={
+																						<RequireAuth>
+																							<Trns />
+																						</RequireAuth>
+																					}
+																				/>
+																				<Route
+																					path=":ml2"
+																					element={
+																						<RequireAuth>
+																							<Trns />
+																						</RequireAuth>
+																					}
+																				>
+																					<Route
+																						path=":ml3"
+																						element={
+																							<RequireAuth>
+																								<Trns />
+																							</RequireAuth>
+																						}
+																					/>
 																				</Route>
 																			</Route>
 
-																			{/* supply chain section -----------------------------------------------------*/}
+																			{/* erfs section -----------------------------------------------------*/}
 																			{/* path to assets main page [ml1 = erfs] */}
-																			<Route path="/sch">
-																				<Route index element={<Sch1 />} />
-																				<Route path=":ml2" element={<Sch1 />}>
-																					<Route path=":ml3" element={<Sch1 />} />
-																				</Route>
-																			</Route>
+																			<Route
+																				path="/erfs"
+																				element={
+																					<RequireAuth>
+																						<Erfs />
+																					</RequireAuth>
+																				}
+																			></Route>
 
+																			{/* admin section -----------------------------------------------------*/}
 																			<Route path="/admin">
-																				<Route index element={<Admin />} />
-																				<Route path=":ml2" element={<Admin />}>
-																					<Route path=":ml3" element={<Admin />} />
+																				<Route
+																					index
+																					element={
+																						<RequireAuth>
+																							<AdminMain />
+																						</RequireAuth>
+																					}
+																				/>
+																				<Route
+																					path=":ml2"
+																					element={
+																						<RequireAuth>
+																							<Admin />
+																						</RequireAuth>
+																					}
+																				>
+																					<Route
+																						path=":ml3"
+																						element={
+																							<RequireAuth>
+																								<Admin />
+																							</RequireAuth>
+																						}
+																					/>
 																				</Route>
 																			</Route>
+																			{/* </Route> */}
 
 																			{/* TODO: Attend to the issue of displaying Unp for a signedin user */}
 																			{/* unp section (signedin user)-----------------------------------------------------*/}
 																			{/* path to unp main page [ml1 = unp] */}
-																			<Route path="/unp" element={<Unp />}>
+																			<Route
+																				path="/unp"
+																				element={
+																					<RequireAuth>
+																						<Unp />
+																					</RequireAuth>
+																				}
+																			>
 																				{/* ml2 = ''[] or ''[] or ''[] or ''[] */}
-																				<Route path=":ml2" element={<Unp />} />
+																				<Route
+																					path=":ml2"
+																					element={
+																						<RequireAuth>
+																							<Unp />
+																						</RequireAuth>
+																					}
+																				/>
 																			</Route>
 
 																			{/* signout section -----------------------------------------------------*/}
 																			{/* path to signout main page [ml1 = signout] */}
 																			<Route path="/signout" element={<Signout />} />
+
+																			<Route path="*" element={<NoPageFound />} />
 																		</Route>
+																	</Routes>
 
-																		{/* erfs section -----------------------------------------------------*/}
-																		{/* path to assets main page [ml1 = erfs] */}
-																		<Route path="/erfs" element={<Erfs />}></Route>
-
-																		{/* body of knowledge section -----------------------------------------------------*/}
-																		{/* path to assets bok page [ml1 = bok] */}
-																		<Route path="/bok" element={<Bok />}></Route>
-
-																		{/* admin section -----------------------------------------------------*/}
-																		{/* path to admin main page [ml1 = admin] */}
-
-																		{/* signup section -----------------------------------------------------*/}
-																		{/* path to signup main page [ml1 = signup] */}
-																		{/* <Route path="/signup" element={<Signup />} /> */}
-
-																		{/* signin section -----------------------------------------------------*/}
-																		{/* path to signin main page [ml1 = signin] */}
-																		<Route path="/signinPage" element={<SigninPage />} />
-
-																		<Route path="*" element={<NoPageFound />} />
-																	</Route>
-																</Routes>
-
-																<Modal />
-																{/* </div> */}
-															</BrowserRouter>
-														</div>
-													</PoContextProvider>
-												</MenuContextProvider>
-											</AuthContextProvider>
-										</ModalContextProvider>
-									</FormStateContextProvider>
-								</Provider>
-							</MediaViewContextProvider>
-						</PhotoAppContextProvider>
-					</GeocodingContextProvider>
-				</ReverseGeocodingContextProvider>
-			</ErfsContextProvider>
+																	<Modal />
+																	{/* </div> */}
+																</BrowserRouter>
+															</div>
+														</PoContextProvider>
+													</MenuContextProvider>
+												</AuthContextProvider>
+											</ModalContextProvider>
+										</FormStateContextProvider>
+									</Provider>
+								</MediaViewContextProvider>
+							</PhotoAppContextProvider>
+						</GeocodingContextProvider>
+					</ReverseGeocodingContextProvider>
+				</ErfsContextProvider>
+			</CliamsContextProvider>
 			<ToastContainer />
 		</>
 	);

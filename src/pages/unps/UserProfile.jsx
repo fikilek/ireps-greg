@@ -1,35 +1,40 @@
 import React from "react";
-import "./UserProfile.css";
+// import "./UserProfile.css";
 import { useParams } from "react-router-dom";
 import UserDetails from "./UserDetails";
 import UserTrnsStats from "./UserTrnsStats";
 import UserNotifications from "./UserNotifications";
 import UserDeployment from "./UserDeployment";
 import UserTools from "./UserTools";
+import useAuthContext from "../../hooks/useAuthContext";
+import NotAuthenticated from "../auth/NotAuthenticated";
 
 const UserProfile = (props) => {
 	console.log(`props`, props)
 	const userId = useParams();
 
+	const { user } = useAuthContext()
+
 	// console.log(userId);
 	return (
+		user ?
 		<div className="user-profile">
-			<div className="UserProfile-section UserProfile-details">
+			<div className="user-section UserProfile-details">
 				<UserDetails />
 			</div>
-			<div className="UserProfile-section UserProfile-trns">
+			<div className="user-section UserProfile-trns">
 				<UserTrnsStats />
 			</div>
-			<div className="UserProfile-section UserProfile-notificatiions">
+			<div className="user-section UserProfile-notificatiions">
 				<UserNotifications />
 			</div>
-			<div className="UserProfile-section UserProfile-deployment">
+			<div className="user-section UserProfile-deployment">
 				<UserDeployment />
 			</div>
-			<div className="UserProfile-section UserProfile-tools">
+			<div className="user-section UserProfile-tools">
 				<UserTools />
 			</div>
-		</div>
+		</div> : <NotAuthenticated />
 	);
 };
 
