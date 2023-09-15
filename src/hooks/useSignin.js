@@ -19,10 +19,18 @@ export const useSignin = () => {
 			if (!result) {
 				throw new Error("User signin failed");
 			}
-			// console.log(`result`, result.user);
+			// console.log(`result`, result);
 			const { user } = result;
 
-			dispatch({ type: "SIGNIN", payload: user });
+			const idToken = await auth.currentUser.getIdTokenResult(true)
+			// console.log(`idToken.claims.roles`, idToken.claims.roles)
+
+			dispatch({
+				type: "SIGNIN", payload: {
+					...user,
+					claims: idToken.claims.roles,
+				}
+			});
 			setIsPending(false);
 			setError(null);
 			setSuccess(true);

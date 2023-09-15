@@ -24,15 +24,15 @@ const AuthContextProvider = ({ children }) => {
 		user: null,
 		isAuthReady: false,
 	});
-	// console.log(`state`, state);
+	console.log(`AuthContextProvider state`, state);
 
 	useEffect(() => {
-		// console.log(`AuthContext useEffect running`)
+		console.log(`AuthContext useEffect running`)
 		const unsub = onAuthStateChanged(auth, user => {
 			// console.log(`user`, user);
 			// console.log(`auth`, auth);
 
-			auth.currentUser.getIdTokenResult().then(userIdToken => {
+			auth.currentUser.getIdTokenResult(true).then(userIdToken => {
 				// console.log(
 				// 	`userIdToken.claims.roles`,
 				// 	userIdToken.claims.roles

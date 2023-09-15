@@ -21,14 +21,14 @@ const TableUsersList = props => {
 
 
 	const { user } = useAuthContext();
-	console.log(`user`, user);
+	// console.log(`user`, user);
 	
 	const [users, setUsers] = useState([]);
 	// console.log(`users`, users);
 
 	const listAllUsers = httpsCallable(functions, "listAllUsers");
 	listAllUsers().then(usersList => {
-		console.log(`usersList`, usersList);
+		// console.log(`usersList`, usersList);
 		if (users.length === 0) {
 			setUsers(usersList.data);
 		}

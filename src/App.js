@@ -50,6 +50,7 @@ import ReverseGeocodingContextProvider from "./contexts/ReverseGeocodingContext"
 import CliamsContextProvider from "./contexts/ClaimsContext";
 import LandingPage from "./pages/home/LandingPage";
 import AdminMain from "./pages/admin/AdminMain";
+import NotAuthenticated from "./pages/auth/NotAuthenticated";
 
 // console.log(`store`, store)
 // console.log(`UserContextProvider`, UserContextProvider)
@@ -164,7 +165,7 @@ function App() {
 																				<Route
 																					index
 																					element={
-																						<RequireAuth>
+																						<RequireAuth allowedRoles={["manager", "superuser"]}>
 																							<AdminMain />
 																						</RequireAuth>
 																					}
@@ -172,7 +173,7 @@ function App() {
 																				<Route
 																					path=":ml2"
 																					element={
-																						<RequireAuth>
+																						<RequireAuth allowedRoles={["manager", "superuser"]}>
 																							<Admin />
 																						</RequireAuth>
 																					}
@@ -180,7 +181,7 @@ function App() {
 																					<Route
 																						path=":ml3"
 																						element={
-																							<RequireAuth>
+																							<RequireAuth allowedRoles={["manager", "superuser"]}>
 																								<Admin />
 																							</RequireAuth>
 																						}
@@ -210,6 +211,10 @@ function App() {
 																					}
 																				/>
 																			</Route>
+
+																			{/* unauthorised section -----------------------------------------------------*/}
+																			{/* path to unauthhorised  */}
+																			<Route path="/unauthorised" element={<NotAuthenticated />} />
 
 																			{/* signout section -----------------------------------------------------*/}
 																			{/* path to signout main page [ml1 = signout] */}

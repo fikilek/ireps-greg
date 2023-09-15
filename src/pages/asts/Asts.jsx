@@ -10,7 +10,7 @@ const Asts = () => {
 	// console.log(`ml2`, ml2)
 	// console.log(`ml3`, ml3)
 		const { user } = useAuthContext();
-		console.log(`user`, user);
+		// console.log(`user`, user);
 	return (
 		user ?
 		<TableWithAddRecordBtn

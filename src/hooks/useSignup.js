@@ -15,7 +15,7 @@ export const useSignup = () => {
 		try {
 			setIsPending(true);
 			setError(null);
-			setSuccess(false)
+			setSuccess(false);
 			const result = await createUserWithEmailAndPassword(auth, email, password);
 			if (!result) {
 				setIsPending(false);
@@ -30,7 +30,7 @@ export const useSignup = () => {
 			});
 
 			// TODO:create user profile in firestore using UID as the unique identifier
-			const docRef = doc(db, 'users', user.uid)
+			const docRef = doc(db, "users", user.uid);
 			const datetime = Timestamp.now();
 			await setDoc(docRef, {
 				metaData: {
@@ -42,10 +42,19 @@ export const useSignup = () => {
 				phoneNumber,
 				online: true,
 				photoUrl: "",
-				status: 'active'
+				status: "active",
 			});
 
-			dispatch({ type: "SIGNIN", payload: user });
+			const idToken = await auth.currentUser.getIdTokenResult(true);
+			// console.log(`idToken.claims.roles`, idToken.claims.roles)
+
+			dispatch({
+				type: "SIGNIN",
+				payload: {
+					...user,
+					claims: idToken.claims.roles,
+				},
+			});
 			setIsPending(false);
 			setError(null);
 			setSuccess(true);
