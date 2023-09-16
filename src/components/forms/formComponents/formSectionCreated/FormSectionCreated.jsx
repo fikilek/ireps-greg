@@ -33,6 +33,7 @@ const FormSectionCreated = ({
 						...prev.metaData,
 						createdAtDatetime: Timestamp.now(),
 						createdByUser: user.displayName,
+						createdByUserId: user.uid,
 					},
 				};
 			} else {

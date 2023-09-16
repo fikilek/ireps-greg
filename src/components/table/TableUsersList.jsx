@@ -13,16 +13,16 @@ import { functions } from "../../firebaseConfig/fbConfig";
 import { httpsCallable } from "firebase/functions";
 import useAuthContext from "../../hooks/useAuthContext";
 import NotAuthenticated from "../../pages/auth/NotAuthenticated";
+import { PropagateLoader } from "react-spinners";
 
 // Suppliers is a page component
 const TableUsersList = props => {
 	// console.log(`props`, props);
 	const { ml1, ml2 } = props;
 
-
-	const { user } = useAuthContext();
+	const { user, isAuthReady } = useAuthContext();
 	// console.log(`user`, user);
-	
+
 	const [users, setUsers] = useState([]);
 	// console.log(`users`, users);
 
@@ -47,26 +47,38 @@ const TableUsersList = props => {
 	});
 	// console.log(`tableFields`, tableFields);
 
-	return (
-		user ?
-		<div className={`table `}>
-			<div className="table-header">
-				<div className="th-menu-levels">
-					<p>
-						{`
+	return isAuthReady ? (
+		user ? (
+			<div className={`table `}>
+				<div className="table-header">
+					<div className="th-menu-levels">
+						<p>
+							{`
 							${ml1 ? `${irepsDictionary.get(ml1)}` : ""}
 							${ml2 ? `/ ${irepsDictionary.get(ml2)}s` : ""} 
 						`}
-					</p>
+						</p>
+					</div>
+					<div></div>
+					<div></div>
 				</div>
-				<div></div>
-				<div></div>
+				<TableWrapper rowData={users} columnDefs={tableFields} ml1={ml1}>
+					<Table rowData={users} columnDefs={tableFields} ml1={ml1} />
+				</TableWrapper>
 			</div>
-			<TableWrapper rowData={users} columnDefs={tableFields} ml1={ml1}>
-				<Table rowData={users} columnDefs={tableFields} ml1={ml1} />
-			</TableWrapper>
-			</div>
-			: <NotAuthenticated />
+		) : (
+			<NotAuthenticated />
+		)
+	) : (
+		<div className="users-list-loader">
+			<PropagateLoader
+				color="orange"
+				loading={!isAuthReady}
+				size={13}
+				aria-label="Loading Spinner"
+				data-testid="loader"
+			/>
+		</div>
 	);
 };
 export default TableUsersList;

@@ -34,6 +34,7 @@ const FormStatusBtn = params => {
 			...formData.metaData,
 			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
+			updatedByUserId: user.uid,
 		},
 	});
 

@@ -34,10 +34,10 @@ const validationSchema = object({});
 const TrnDataForm = props => {
 	// const { formData } = props;
 	// formData is trn row data from ag grid table opbained from params.data
-	console.log(`props`, props);
+	// console.log(`props`, props);
 
 	const [formData, setFormData] = useState(props.formData);
-	console.log(`formData`, formData);
+	// console.log(`formData`, formData);
 
 	// get meter doc id
 	const { id } = props.formData;
@@ -45,11 +45,11 @@ const TrnDataForm = props => {
 
 	// get meter doc id
 	const { erfNo} = props.formData.erfData;
-	console.log(`erfNo`, erfNo);
+	// console.log(`erfNo`, erfNo);
 
 	// get trnType
 	let trnType = formData?.metaData?.trnType;
-	console.log(`trnType`, trnType);
+	// console.log(`trnType`, trnType);
 
 	// call useDocument to get realtime meter data
 	const { error, document } = useDocumentSync("trns", id);

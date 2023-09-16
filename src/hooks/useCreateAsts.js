@@ -81,6 +81,7 @@ export const useCreateAsts = () => {
 					...newAstFormData.metaData,
 					createdAtDatetime: Timestamp.now(),
 					createdByUser: user.displayName,
+					createdByUserId: user.uid,
 					updatedAtDatetime: Timestamp.now(),
 					updatedByUser: user.displayName,
 					createdThrough: { creator: "po", id: poData.id, creatorNo: poData.poNo },

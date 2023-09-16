@@ -35,6 +35,7 @@ const AstStatesForm = ({ formData }) => {
 			...formData.metaData,
 			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
+			updatedByUserId: user.uid,
 		},
 	});
 

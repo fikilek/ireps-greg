@@ -84,7 +84,7 @@ export const useFirestore = fbCollection => {
 	const ref = collection(db, fbCollection);
 
 	const addDocument = async doc => {
-		// console.log(`start adding doc`, doc)
+		// console.log(`addDocument`, doc)
 
 		doc = {
 			...doc,
@@ -92,6 +92,7 @@ export const useFirestore = fbCollection => {
 				...doc.metaData,
 				updatedAtDatetime: Timestamp.now(),
 				updatedByUser: user.displayName,
+				updatedByUserId: user.uid,
 			},
 		};
 
@@ -109,7 +110,7 @@ export const useFirestore = fbCollection => {
 	const deleteDocument = async id => {};
 
 	const updateDocument = async document => {
-		console.log(`Firestore updating document`, document);
+		// console.log(`updateDocument`, document);
 
 		document = {
 			...document,
@@ -117,6 +118,7 @@ export const useFirestore = fbCollection => {
 				...document.metaData,
 				updatedAtDatetime: Timestamp.now(),
 				updatedByUser: user.displayName,
+				updatedByUserId: user.uid,
 			},
 		};
 
@@ -141,7 +143,7 @@ export const useFirestore = fbCollection => {
 	};
 
 	const updateDocument_ = async (id, update) => {
-		console.log(`Firestore updating document`, update);
+		// console.log(`Firestore updating document`, update);
 
 		update = {
 			...update,
@@ -149,6 +151,7 @@ export const useFirestore = fbCollection => {
 				...update.metaData,
 				updatedAtDatetime: Timestamp.now(),
 				updatedByUser: user.displayName,
+				updatedByUserId: user.uid,
 			},
 		};
 
@@ -194,7 +197,7 @@ export const useFirestore = fbCollection => {
 	};
 
 	const getDocument = async uid => {
-		console.log(`uid`, uid);
+		// console.log(`uid`, uid);
 		const docRef = doc(db, fbCollection, uid);
 		// console.log(`docRef`, docRef);
 		dispatch({ type: "IS_PENDING" });

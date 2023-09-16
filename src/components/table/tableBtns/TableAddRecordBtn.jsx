@@ -29,6 +29,7 @@ const TableAddRecordBtn = props => {
 					...newFormData.metaData,
 					createdAtDatetime: Timestamp.now(),
 					createdByUser: user.displayName,
+					createdByUserId: user.uid,
 					updatedAtDatetime: Timestamp.now(),
 					updatedByUser: user.displayName,
 				},

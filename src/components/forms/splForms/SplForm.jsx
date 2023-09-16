@@ -39,6 +39,7 @@ const SplForm = ({ formData }) => {
 			...formData.metaData,
 			updatedAtDatetime: timestamp.fromDate(new Date()),
 			updatedByUser: user.displayName,
+			updatedByUserId: user.uid,
 		},
 	});
 

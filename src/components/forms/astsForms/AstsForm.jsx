@@ -30,9 +30,10 @@ const AstsForm = ({ formData }) => {
 			...formData.data.metaData,
 			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: user.displayName,
+			updatedByUserId: user.uid,
 		},
 	});
-	console.log(`ast`, ast);
+	// console.log(`ast`, ast);
 
 	const onSubmit = values => {
 		// console.log(`values`, values);

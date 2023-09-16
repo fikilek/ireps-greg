@@ -10,7 +10,7 @@ const authReducer = (state, action) => {
 		case "SIGNOUT":
 			return { ...state, user: null };
 		case "AUTH_IS_READY":
-			// console.log(`AUTH_IS_READY updated with payload: `, action.payload);
+			// console.log(`AUTH_IS_READYp updated with payload: `, action.payload);
 			return { ...state, user: action.payload, isAuthReady: true };
 		default:
 			return state;
@@ -24,15 +24,15 @@ const AuthContextProvider = ({ children }) => {
 		user: null,
 		isAuthReady: false,
 	});
-	console.log(`AuthContextProvider state`, state);
+	// console.log(`AuthContextProvider state`, state);
 
 	useEffect(() => {
-		console.log(`AuthContext useEffect running`)
+		// console.log(`AuthContext useEffect running`)
 		const unsub = onAuthStateChanged(auth, user => {
 			// console.log(`user`, user);
 			// console.log(`auth`, auth);
 
-			auth.currentUser.getIdTokenResult(true).then(userIdToken => {
+			auth.currentUser?.getIdTokenResult(true).then(userIdToken => {
 				// console.log(
 				// 	`userIdToken.claims.roles`,
 				// 	userIdToken.claims.roles

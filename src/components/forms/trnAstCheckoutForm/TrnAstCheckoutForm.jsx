@@ -248,6 +248,7 @@ const TrnAstCheckoutForm = props => {
 					...document.metaData,
 					updatedAtDatetime: timestamp.fromDate(new Date()),
 					updatedByUser: user.displayName,
+					updatedByUserId: user.uid,
 				},
 			});
 		}
@@ -283,6 +284,7 @@ const TrnAstCheckoutForm = props => {
 						...document.metaData,
 						updatedAtDatetime: timestamp.fromDate(new Date()),
 						updatedByUser: user.displayName,
+						updatedByUserId: user.uid,
 					},
 				});
 			} else {

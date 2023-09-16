@@ -9,7 +9,7 @@ const viewportFilter = data => {
 
 	if (viewportWidth < 475) {
 		// console.log(`viewport > [${viewportWidth}] < [475] - xs`);
-		tf = tableFields?.filter(tf => tf.breakpoint === "xs");
+		tf = tableFields?.filter(tf => tf.cellRendererParams.breakpoint === "xs");
 		// console.log(`tf`, tf);
 		// iretate through tf and make all columns flex 1
 		tf = tf.map(col => {
@@ -26,7 +26,7 @@ const viewportFilter = data => {
 	if (viewportWidth >= 475 && viewportWidth < 768) {
 		// console.log(`viewport [475] > [${viewportWidth}] < [768] - sm`);
 		tf = tableFields?.filter(
-			tf => tf.breakpoint === "xs" || tf.breakpoint === "sm"
+			tf => tf.cellRendererParams.breakpoint === "xs" || tf.cellRendererParams.breakpoint === "sm"
 		); // iretate through tf and make all columns flex 1
 		tf = tf.map(col => {
 			return {
@@ -42,7 +42,7 @@ const viewportFilter = data => {
 		// console.log(`viewport [768] > [${viewportWidth}] < [1024] - md`);
 		tf = tableFields?.filter(
 			tf =>
-				tf.breakpoint === "xs" || tf.breakpoint === "sm" || tf.breakpoint === "md"
+				tf.cellRendererParams.breakpoint === "xs" || tf.cellRendererParams.breakpoint === "sm" || tf.cellRendererParams.breakpoint === "md"
 		);
 		tf = tf.map(col => {
 			return {
@@ -58,10 +58,10 @@ const viewportFilter = data => {
 		// console.log(`viewport >= [1024] [${viewportWidth}] < [1200] - lg`);
 		tf = tableFields?.filter(
 			tf =>
-				tf.breakpoint === "xs" ||
-				tf.breakpoint === "sm" ||
-				tf.breakpoint === "md" ||
-				tf.breakpoint === "lg"
+				tf.cellRendererParams.breakpoint === "xs" ||
+				tf.cellRendererParams.breakpoint === "sm" ||
+				tf.cellRendererParams.breakpoint === "md" ||
+				tf.cellRendererParams.breakpoint === "lg"
 		);
 
 		tf = tf.map(col => {
@@ -78,11 +78,11 @@ const viewportFilter = data => {
 		// console.log(`viewport [${viewportWidth}] >= [1200] - xl`);
 		tf = tableFields?.filter(
 			tf =>
-				tf.breakpoint === "xs" ||
-				tf.breakpoint === "sm" ||
-				tf.breakpoint === "md" ||
-				tf.breakpoint === "lg" ||
-				tf.breakpoint === "xl"
+				tf.cellRendererParams.breakpoint === "xs" ||
+				tf.cellRendererParams.breakpoint === "sm" ||
+				tf.cellRendererParams.breakpoint === "md" ||
+				tf.cellRendererParams.breakpoint === "lg" ||
+				tf.cellRendererParams.breakpoint === "xl"
 		);
 		// console.log(`tf`, tf);
 		// return { tableFields: tf };

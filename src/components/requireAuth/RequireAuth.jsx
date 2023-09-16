@@ -51,8 +51,8 @@ const RequireAuth = ({ children, allowedRoles }) => {
 			// check if user role is permitted to access resourse
 			if (allowedRoles) {
 				const allowed = userClaimsArray?.find(role => allowedRoles?.includes(role));
-				console.log(`allowed`, allowed);
 				if (!allowed) {
+					console.log(`allowed`, allowed);
 					navigate("/unauthorised");
 				}
 			}

@@ -87,6 +87,7 @@ const TableBtnTrnSelect = params => {
 				...newTrnData.metaData,
 				createdAtDatetime: Timestamp.now(),
 				createdByUser: user.displayName,
+				createdByUserId: user.uid,
 				updatedAtDatetime: Timestamp.now(),
 				updatedByUser: user.displayName,
 			},

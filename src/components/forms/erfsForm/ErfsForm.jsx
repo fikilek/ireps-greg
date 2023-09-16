@@ -34,7 +34,7 @@ const ErfsForm = props => {
 
 	const onSubmit = useCallback(
 		values => {
-			console.log(`Erf Form formik submitted values`, values);
+			// console.log(`Erf Form formik submitted values`, values);
 			if (values.id) {
 				updateDocument(values);
 			} else {

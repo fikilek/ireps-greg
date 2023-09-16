@@ -34,8 +34,10 @@ const useUpload = collectionName => {
 						...erf.metaData,
 						updatedAtDatetime: Timestamp.now(),
 						updatedByUser: user.displayName,
+						updatedByUserId: user.uid,
 						createdAtDatetime: Timestamp.now(),
 						createdByUser: user.displayName,
+						createdByUserId: user.uid,
 					},
 				};
 

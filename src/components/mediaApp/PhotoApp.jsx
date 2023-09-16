@@ -145,6 +145,7 @@ const PhotoApp = () => {
 				mediaType: "photo",
 				mediaCategory: imageCategory, // eg meter no photo, meter serail no photo , etc
 				createdByUser: user.displayName,
+				createdByUserId: user.uid,
 				createdAtDatetime: format(new Date(), "yyyy-MMM-dd_HH:mm:ss"),
 				createdAtLocation: {
 					lat: location?.coordinates?.lat,

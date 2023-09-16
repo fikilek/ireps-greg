@@ -608,8 +608,10 @@ const getNewTrnCommissioning = trnAfter => {
 		metaData: {
 			createdAtDatetime: Timestamp.now(),
 			createdByUser: "admin",
+			// createdByUserId: user.uid,
 			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: "admin",
+			// createdByUserId: user.uid,
 			trnHistory: 0, // how many times transaction has been updated
 			trnType: "commissioning",
 			trnNo: "",
@@ -707,8 +709,10 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 		metaData: {
 			createdAtDatetime: Timestamp.now(),
 			createdByUser: "admin",
+			// createdByUserId: user.uid,
 			updatedAtDatetime: Timestamp.now(),
 			updatedByUser: "admin",
+			// updatedByUserId: user.uid,
 			createdThrough: {
 				creator: "audit",
 				creatorNo: trnAfter.metaData.trnNo,

@@ -146,6 +146,7 @@ const getNewTrnsArray = (selectedRows, trnType, user) => {
 					metaData: {
 						createdAtDatetime: Timestamp.now(),
 						createdByUser: user.displayName,
+						createdByUserId: user.uid,
 						updatedAtDatetime: Timestamp.now(),
 						updatedByUser: user.displayName,
 						trnHistory: 0, // how many times transaction has been updated

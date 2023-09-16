@@ -21,9 +21,9 @@ const SignedInMenu = () => {
 	const { openModal } = useOpenModal();
 	const { menuStatus, setMenuStatus } = useContext(MenuContext);
 	const { user } = useAuthContext();
-	let words = user.displayName;
+	let words = user?.displayName;
 	// console.log(`words`, words);
-	words = words.split(" ");
+	words = words?.split(" ");
 	const name = words[0];
 	const surname = words[1];
 	// }

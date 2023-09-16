@@ -26,6 +26,8 @@ const useStoreMedia = () => {
 				mediaType: imgData.metaData.mediaType,
 				mediaCategory: imgData.metaData.mediaCategory,
 				createdByUser: imgData.metaData.createdByUser,
+				createdByUserId: imgData.metaData.createdByUserId,
+
 				lat: imgData.metaData.createdAtLocation.lat,
 				lng: imgData.metaData.createdAtLocation.lng,
 				astCat: imgData.metaData.astCat,
