@@ -5,14 +5,15 @@ import "./GeocodingApp.css";
 import useAuthContext from "../../hooks/useAuthContext";
 import useGeoLocation from "../../hooks/useGeolocation";
 import { GeocodingContext } from "../../contexts/GeocodingContext";
-import {
-	GoogleMap,
-	MarkerF,
-	Data,
-	useLoadScript,
-	InfoWindowF,
-	DataF,
-} from "@react-google-maps/api";
+// import {
+// 	GoogleMap,
+// 	MarkerF,
+// 	Data,
+// 	useLoadScript,
+// 	InfoWindowF,
+// 	DataF,
+// } from "@react-google-maps/api";
+import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 import { ErfsContext } from "../../contexts/ErfsContext";
 import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
@@ -57,9 +58,9 @@ const GeocodingApp = () => {
 		gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr
 	);
 
-	const { isLoaded } = useLoadScript({
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-	});
+	// const { isLoaded } = useLoadScript({
+	// 	googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+	// });
 	// console.log(`isLoaded`, isLoaded);
 
 	// get currnet user data
@@ -227,10 +228,10 @@ const GeocodingApp = () => {
 			<div className="body">
 				{/* display map */}
 				<div className="geocoding-map">
-					{!isLoaded ? (
+					{true ? (
 						<h1>Loading...</h1>
 					) : (
-						<GoogleMap
+						<GoogleMapReact
 							mapContainerClassName="map-container"
 							onLoad={onMapLoad}
 							center={meterGps}
@@ -246,22 +247,23 @@ const GeocodingApp = () => {
 									const lat = latitude ? latitude : 0;
 									const lng = longitude ? longitude : 0;
 									return (
-										<MarkerF
-											key={id}
-											position={{ lat, lng }}
-											label={`${erfNo}`}
-										></MarkerF>
+										<div>M</div>
+										// <MarkerF
+										// 	key={id}
+										// 	position={{ lat, lng }}
+										// 	label={`${erfNo}`}
+										// ></MarkerF>
 									);
 								})}
 
-							<MarkerF
+							{/* <MarkerF
 								position={meterGps}
 								// label={`${center.lat} ${center.lng}`}
 								icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
 								draggable={true}
 								onDragEnd={onDragEnd}
-							></MarkerF>
-						</GoogleMap>
+							></MarkerF> */}
+						</GoogleMapReact>
 					)}
 				</div>
 			</div>

@@ -1,0 +1,98 @@
+.cluster-marker {
+  color: #fff;
+  background: #1978c8;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cluster-marker:hover {
+  border: 0.5rem solid blue;
+  cursor: pointer;
+}
+
+.erf-marker {
+  background: none;
+  border: none;
+  color: blue;
+  z-index: 20;
+}
+
+.erf-marker .erf-no {
+  font-weight: 600;
+  border: 0.3rem solid rgb(0, 149, 255);
+}
+
+.erf-marker img {
+  width: 23px;
+}
+
+/* ************************************************ */
+.map-container,
+.tabs-erfs-map {
+  height: 100%;
+  width: 100%;
+}
+
+.tabs-erfs-map {
+  position: relative;
+}
+
+.tabs-erfs-map .search-box {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  /* transform: translateX(7rem); */
+  width: 14rem;
+  z-index: 10;
+}
+
+.tabs-erfs-map .search-box .erf-search {
+  font-size: 1.5rem;
+  height: 2.3rem;
+  width: 14rem;
+}
+
+.tabs-erfs-map .search-box .erf-search:focus {
+  border: 0.2rem solid coral;
+}
+
+.tabs-erfs-map .search-box .search-dropdown {
+  background-color: blanchedalmond;
+  background-color: blanchedalmond;
+  height: 30rem;
+  overflow: hidden;
+  border: 0.1rem solid;
+}
+
+
+.tabs-erfs-map .search-box .search-dropdown p {
+  font-size: 1.5rem;
+  padding: 0.2rem;
+  margin: 0.5rem 0;
+  width: 14rem;
+}
+
+.tabs-erfs-map .search-box .search-dropdown p:hover {
+  outline: 0.1rem solid;
+  background-color: coral;
+  cursor: grabbing;
+}
+
+.tabs-erfs-map .search-box .show-erfs {
+  visibility: visible;
+}
+
+.tabs-erfs-map .search-box .hide-erfs {
+  visibility: hidden;
+}
+
+.tabs-erfs-map .marker {}
+
+.tabs-erfs-map .icon {
+  background-color: blue;
+  color: white;
+  font-size: 0.6rem;
+}

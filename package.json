@@ -4,7 +4,6 @@
 	"private": true,
 	"dependencies": {
 		"@ramonak/react-progress-bar": "^5.0.3",
-		"@react-google-maps/api": "^2.18.1",
 		"@reduxjs/toolkit": "^1.8.6",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.3.0",
@@ -21,6 +20,7 @@
 		"firebase-tools": "^11.20.0",
 		"flat": "^5.0.2",
 		"formik": "^2.2.9",
+		"google-map-react": "^2.2.1",
 		"lodash.clonedeep": "^4.5.0",
 		"moment": "^2.29.4",
 		"papaparse": "^5.4.1",
@@ -40,6 +40,9 @@
 		"react-toastify": "^9.1.1",
 		"react-webcam": "^7.1.1",
 		"redux-state-sync": "^3.1.4",
+		"supercluster": "^7.1.5",
+		"swr": "^2.2.2",
+		"use-supercluster": "^0.2.2",
 		"web-vitals": "^2.1.4",
 		"yup": "^1.0.0"
 	},

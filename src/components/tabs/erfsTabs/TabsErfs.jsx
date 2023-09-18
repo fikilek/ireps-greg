@@ -5,7 +5,8 @@ import useAuthContext from "../../../hooks/useAuthContext";
 import useModal from "../../../hooks/useModal";
 import { formSects } from "../../forms/formComponents/formSections/formSects";
 import "./TabsErfs.css";
-import TabsErfsMap from "./tabsMap/TabsErfsMap";
+import { TabsErfsClusterMap } from "./tabsMap/TabsErfsClusterMap";
+// import TabsErfsMap from "./tabsMap/TabsErfsMap";
 import TabsErfsTable from "./tabsTable/TabsErfsTable";
 import TabsErfsTree from "./tabsTree/TabsErfsTree";
 
@@ -177,7 +178,7 @@ const TabsErfs = props => {
 	const { purpose } = props;
 	// console.log(`purpose`, purpose);
 
-	const [active, setActive] = useState("tabs-table");
+	const [active, setActive] = useState("tabs-map");
 
 	const [selectedRows, setSelectedRows] = useState([]);
 	// console.log(`selectedRows`, selectedRows);
@@ -300,7 +301,8 @@ const TabsErfs = props => {
 					} `}
 					id="tabs-map"
 				>
-					<TabsErfsMap {...props} />
+					{/* <TabsErfsMap {...props} /> */}
+					<TabsErfsClusterMap {...props} />
 				</div>
 				<div
 					className={`tabs-body-content tabs-tree ${

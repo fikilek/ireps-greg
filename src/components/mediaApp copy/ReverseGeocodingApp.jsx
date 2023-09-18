@@ -3,7 +3,8 @@ import "./ReverseGeocodingApp.css";
 // TODO: change GeodingApp.css to Geocoding.css
 import useAuthContext from "../../hooks/useAuthContext";
 import { ReverseGeocodingContext } from "../../contexts/ReverseGeocodingContext";
-import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+// import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
 
@@ -26,9 +27,9 @@ const ReverseGeocodingApp = () => {
 
 	const [map, setMap] = useState();
 
-	const { isLoaded } = useLoadScript({
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-	});
+	// const { isLoaded } = useLoadScript({
+	// 	googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+	// });
 	// console.log(`isLoaded`, isLoaded);
 
 	const closeReverseGeocodingApp = e => {
@@ -115,22 +116,22 @@ const ReverseGeocodingApp = () => {
 			<div className="body">
 				{/* display map */}
 				<div className="reverse-geocoding-map">
-					{!isLoaded ? (
+					{true ? (
 						<h1>Loading...</h1>
 					) : (
-						<GoogleMap
+						<GoogleMapReact
 							mapContainerClassName="map-container"
 							onLoad={onMapLoad}
 							center={{ lat, lng }}
 							zoom={16}
 							onUnmount={onUnmount}
 						>
-							<MarkerF
+							{/* <MarkerF
 								position={{ lat, lng }}
 									icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
 									label={erfNo}
-							></MarkerF>
-						</GoogleMap>
+							></MarkerF> */}
+						</GoogleMapReact>
 					)}
 				</div>
 			</div>

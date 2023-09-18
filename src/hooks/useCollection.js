@@ -13,7 +13,7 @@ const useCollection = (ml1, ml2, ml3) => {
 	const [error, setError] = useState("");
 	const [isPending, setIsPending] = useState(false);
 	const [success, setSuccess] = useState(false);
-	
+
 	// console.log(`START useCollection  ---------------------------------------`);
 	// console.log(`inside useCollecion ml1:`, ml1);
 	// console.log(`inside useCollecion ml2:`, ml2);
@@ -61,19 +61,19 @@ const useCollection = (ml1, ml2, ml3) => {
 			}
 		}
 		// assets
-		if (ml1 === "asts" & (ml2 == undefined || ml2 == null)) {
+		if ((ml1 === "asts") & (ml2 == undefined || ml2 == null)) {
 			// console.log(`ONLY ${ml1}`);
 			q = query(
 				collection(db, ml1),
 				orderBy("metaData.updatedAtDatetime", "desc")
 			);
 		}
-		if (ml1 === "asts" & (ml2 != undefined || ml2 != null)) {
+		if ((ml1 === "asts") & (ml2 != undefined || ml2 != null)) {
 			// console.log(`BOTH ${ml1} and ${ml2}`);
 			q = query(
 				collection(db, ml1),
 				orderBy("metaData.updatedAtDatetime", "desc"),
-				where("astData.astCartegory", "==", ml2),
+				where("astData.astCartegory", "==", ml2)
 			);
 		}
 

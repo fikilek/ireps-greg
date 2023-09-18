@@ -165,7 +165,7 @@ export const useColumnDefs = props => {
 			// },
 			cellRenderer: memo(TableAstsInErfBtn),
 			cellRendererParams: {
-				breakpoint: "xs",
+				breakpoint: "md",
 			},
 		},
 		// {
@@ -207,7 +207,7 @@ export const useColumnDefs = props => {
 			headerName: "Street",
 			width: 300,
 			cellRendererParams: {
-				breakpoint: "sm",
+				breakpoint: "xs",
 			},
 		},
 		{
@@ -289,12 +289,12 @@ export const useColumnDefs = props => {
 					headerName: "Street",
 					width: 170,
 					cellRendererParams: {
-						breakpoint: "sm",
+						breakpoint: "md",
 					},
 				},
 			],
 			cellRendererParams: {
-				breakpoint: "sm",
+				breakpoint: "md",
 			},
 		},
 		{

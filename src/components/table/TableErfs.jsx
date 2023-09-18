@@ -16,18 +16,17 @@ import { useViewportDimensions } from "../../hooks/useViewportDimentions";
 import { useColDefs } from "../../hooks/useColDefs";
 
 const TableErfs = props => {
-	// console.log(`TableErfs rendering`)
-	// console.log(`TableErfs props`, props);
-	const { ml1, tn, ml3, nfd, fn } = props;
+	// console.log(`TableErfs props-------------------------`, props);
+	const { ml1, tn, ml3 } = props;
 
-	const { user } = useAuthContext()
+	// const { user } = useAuthContext()
 	// console.log(`user`, user)
 
 	const {
 		data: rowData,
-		error,
-		isPending,
-		success,
+		// error,
+		// isPending,
+		// success,
 	} = useCollection(ml1, tn, ml3);
 	// console.log(`rowData`, rowData);
 
@@ -46,7 +45,12 @@ const TableErfs = props => {
 
 	return (
 		<div className={`table`}>
-			<TabsErfs {...props} rowData={rowData} columnDefs={tableFields} purpose={"firestoreErfs"} />
+			<TabsErfs
+				{...props}
+				rowData={rowData}
+				columnDefs={tableFields}
+				purpose={"firestoreErfs"}
+			/>
 		</div>
 	);
 };
