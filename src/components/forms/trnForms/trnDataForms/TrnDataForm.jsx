@@ -44,7 +44,7 @@ const TrnDataForm = props => {
 	// console.log(`id`, id);
 
 	// get meter doc id
-	const { erfNo} = props.formData.erfData;
+	const { erfNo } = props.formData.erfData;
 	// console.log(`erfNo`, erfNo);
 
 	// get trnType

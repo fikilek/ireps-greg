@@ -94,7 +94,7 @@ export function TabsErfsClusterMap(props) {
 			const lat = selectedErf?.address?.gps?.latitude;
 			const lng = selectedErf?.address?.gps?.longitude;
 			// console.log(`mapRef`, mapRef);
-			console.log(`zoom`, zoom);
+			// console.log(`zoom`, zoom);
 			mapRef.current?.panTo({ lat, lng });
 			mapRef.current?.setZoom(20);
 		}
@@ -120,21 +120,13 @@ export function TabsErfsClusterMap(props) {
 		// mapRef.data.addListener("click", handleErfClick);
 	};
 
-	// markers ********************************************************
-
-	// info window ***********************************************
-	const [isInfoWindowOpen, setIsInfoWindowOpen] = useState(false);
-	const [infoWindowData, setInfoWindowData] = useState();
-
 	// this will fire everytime there is a click on the marker
-	const handleMarkerClick = (id, lat, lng, erfNo) => {
+	const handleMarkerClick = (id, lat, lng) => {
 		mapRef.current?.panTo({ lat, lng });
-		// setInfoWindowData({ id, erfNo });
-		// setIsInfoWindowOpen(true);
 
 		// get erf data using erf id
 		const erf = erfs.find(erf => erf.id === id);
-		console.log(`erf`, erf);
+		// console.log(`erf`, erf);
 
 		if (erf) {
 			openModal({
@@ -216,7 +208,7 @@ export function TabsErfsClusterMap(props) {
 						>
 							<button
 								className="erf-marker"
-								onClick={() => handleMarkerClick(id, latitude, longitude, erfNo)}
+								onClick={() => handleMarkerClick(id, latitude, longitude)}
 							>
 								<span className="erf-no">{erfNo}</span>
 							</button>

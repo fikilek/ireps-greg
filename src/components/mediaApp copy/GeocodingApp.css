@@ -85,8 +85,8 @@
 }
 
 .geocoding-app .body .geocoding-map {
-  width: 100%;
-  height: 100%;
+  width: 60rem;
+  height: 40rem;
 }
 
 .geocoding-app .body .geocoding-map .map-container {

@@ -14,8 +14,8 @@ const FormikGeocodeButton = props => {
 
 	const handleClick = (e, props) => {
 		e.preventDefault();
-		console.log(`e.target.value`, e.target.value);
-		console.log(`props`, props);
+		// console.log(`e.target.value`, e.target.value);
+		// console.log(`props`, props);
 		// const { field, meta, form } = props;
 
 		// open geocoding modal
@@ -37,7 +37,9 @@ const FormikGeocodeButton = props => {
 					// console.log(`form.values`, form.values)
 					return (
 						<button className="geocoding-btn" onClick={e => handleClick(e, props)}>
-							<p className="geocoding-btn-p">{ meta.value ? meta.value : 'Meter Location Address' } </p>
+							<p className="geocoding-btn-p">
+								{meta.value ? meta.value : "Meter Location Address"}{" "}
+							</p>
 						</button>
 					);
 				}}

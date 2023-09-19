@@ -1,33 +1,42 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import Webcam from "react-webcam";
 // import { GeocodingAppContext } from "../../contexts/GeocodingAppContext";
 import "./GeocodingApp.css";
 import useAuthContext from "../../hooks/useAuthContext";
 import useGeoLocation from "../../hooks/useGeolocation";
 import { GeocodingContext } from "../../contexts/GeocodingContext";
-// import {
-// 	GoogleMap,
-// 	MarkerF,
-// 	Data,
-// 	useLoadScript,
-// 	InfoWindowF,
-// 	DataF,
-// } from "@react-google-maps/api";
 import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 import { ErfsContext } from "../../contexts/ErfsContext";
 import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
+import useSupercluster from "use-supercluster";
+
+// const Marker = ({ children }) => children;
 
 const GeocodingApp = () => {
 	const { gcData, setGcData } = useContext(GeocodingContext);
 	// console.log(`gcData`, gcData);
 
+	const mapRef = useRef();
+	// console.log(`mapRef`, mapRef);
+
 	const { erfs } = useContext(ErfsContext);
+
+	// get geolocation
+	// const [userGps, setUserGps] = useState(null);
+	const { userGps } = useGeoLocation();
+	// console.log(`location`, location);
+	// console.log(`userGps`, userGps);
 	// console.log(`erfs`, erfs);
+
+	const [bounds, setBounds] = useState([]);
+	// console.log(`bounds`, bounds);
+	const [zoom, setZoom] = useState(10);
+	// console.log(`zoom`, zoom)
 
 	// console.log(
 	// 	`lat`,
-	// 	gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lat
+	// 	gcData?.data?.form?.values?.astDatmeterGpsa?.meter[0].trnData.astAdr.gps.lat
 	// );
 
 	// current meter address
@@ -43,12 +52,6 @@ const GeocodingApp = () => {
 	});
 	// console.log(`meterGps`, meterGps);
 
-	// get geolocation
-	// const [userGps, setUserGps] = useState(null);
-	const { userGps } = useGeoLocation();
-	// console.log(`location`, location);
-	// console.log(`userGps`, userGps);
-
 	const [map, setMap] = useState();
 	// const [isInfoWindowOpen, setIsInfoWindowOpen] = useState(false);
 	// const [infoWindowData, setInfoWindowData] = useState();
@@ -58,10 +61,32 @@ const GeocodingApp = () => {
 		gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr
 	);
 
-	// const { isLoaded } = useLoadScript({
-	// 	googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-	// });
-	// console.log(`isLoaded`, isLoaded);
+	const points = erfs?.map(erf => {
+		// console.log(`erf`, erf);
+		// const lat = erf.address.gps.latitude;
+		// const lng = erf.address.gps.longitude;
+
+		return {
+			type: "Feature",
+			properties: { cluster: false, erfId: erf.id, erf: erf },
+			geometry: {
+				type: "Point",
+				coordinates: [
+					parseFloat(erf.address.gps.longitude),
+					parseFloat(erf.address.gps.latitude),
+				],
+			},
+		};
+	});
+	// console.log(`points`, points);
+
+	const { clusters, supercluster } = useSupercluster({
+		points,
+		bounds,
+		zoom,
+		options: { radius: 75, maxZoom: 20 },
+	});
+	// console.log(`clusters`, clusters);
 
 	// get currnet user data
 	const { user } = useAuthContext();
@@ -80,24 +105,6 @@ const GeocodingApp = () => {
 			isOpened: false,
 		});
 	};
-
-	const onMapLoad = map => {
-		// console.log(`bounds`, bounds);
-		// const bounds = new window.google.maps.LatLngBounds();
-		// setBounds(bounds);
-		setMap(map);
-	};
-
-	const onUnmount = React.useCallback(map => {
-		setMap(null);
-	}, []);
-
-	// const center = {
-	// 	// lat: location?.coordinates?.lat,
-	// 		lat: -32.332396172986854,
-	// 	// lng: location?.coordinates?.lng,
-	// 		lng: 28.14446795090262,
-	// };
 
 	const onDragEnd = e => {
 		// e.preventDefault()
@@ -191,8 +198,10 @@ const GeocodingApp = () => {
 					lng: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lng,
 			  })
 			: setMeterGps({
-					lat: userGps?.coordinates?.lat,
-					lng: userGps?.coordinates?.lng,
+					lat: gcData?.data?.form?.values?.erfData?.address.gps.latitude,
+					lng: gcData?.data?.form?.values?.erfData?.address.gps.longitude,
+					// lat: userGps?.coordinates?.lat,
+					// lng: userGps?.coordinates?.lng,
 					// lat: -27.42526206328501,
 					// lng: 30.81783694804052,
 			  });
@@ -206,6 +215,28 @@ const GeocodingApp = () => {
 			});
 		}
 	}, [map]);
+
+	const onMapLoad = mapObjects => {
+		console.log(`myMapObjects`, mapObjects);
+		const { map, maps } = mapObjects;
+		// console.log(`mapRef`, mapRef);
+		mapRef.current = map;
+		// console.log(`mapRef`, mapRef);
+		// console.log(`clusters`, clusters);
+		mapRef.current?.data?.loadGeoJson(edumbe);
+		mapRef.current?.data?.setStyle({
+			fillOpacity: 0.0,
+		});
+		// mapRef.data.addListener("click", handleErfClick);
+
+		let marker = new maps.Marker({
+			position: { lat: meterGps.lat, lng: meterGps.lng },
+			map,
+			draggable: true,
+		});
+		console.log(`marker`, marker);
+		marker.addListener("dragend", onDragEnd);
+	};
 
 	return (
 		<div className={`geocoding-app ${openGeocodingApp}`}>
@@ -228,43 +259,77 @@ const GeocodingApp = () => {
 			<div className="body">
 				{/* display map */}
 				<div className="geocoding-map">
-					{true ? (
-						<h1>Loading...</h1>
-					) : (
-						<GoogleMapReact
-							mapContainerClassName="map-container"
-							onLoad={onMapLoad}
-							center={meterGps}
-							zoom={18}
-							onUnmount={onUnmount}
-						>
-							{erfs &&
-								erfs.map(erf => {
-									// console.log(`erf`, erf)
-									const { erfNo, address, id } = erf;
-									const { gps } = address;
-									const { latitude, longitude } = gps;
-									const lat = latitude ? latitude : 0;
-									const lng = longitude ? longitude : 0;
-									return (
-										<div>M</div>
-										// <MarkerF
-										// 	key={id}
-										// 	position={{ lat, lng }}
-										// 	label={`${erfNo}`}
-										// ></MarkerF>
-									);
-								})}
+					<GoogleMapReact
+						bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+						center={meterGps}
+						zoom={18}
+						yesIWantToUseGoogleMapApiInternals
+						onGoogleApiLoaded={onMapLoad}
+						// onChange={({ zoom, bounds }) => {
+						// 	setZoom(zoom);
+						// 	setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
+						// }}
+					>
+						{/* {clusters.map(cluster => {
+							// console.log(`cluster?.properties?.erf`, cluster?.properties?.erf);
+							const [longitude, latitude] = cluster.geometry.coordinates;
+							const { cluster: isCluster, point_count: pointCount } =
+								cluster.properties;
+							const erfNo = cluster?.properties?.erf?.erfNo;
+							// const id = cluster?.properties?.erf?.id;
 
-							{/* <MarkerF
-								position={meterGps}
-								// label={`${center.lat} ${center.lng}`}
-								icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
-								draggable={true}
-								onDragEnd={onDragEnd}
-							></MarkerF> */}
-						</GoogleMapReact>
-					)}
+							if (isCluster) {
+								return (
+									<Marker key={`${cluster.id}`} lat={latitude} lng={longitude}>
+										<div
+											className="cluster-marker"
+											style={{
+												width: `${10 + (pointCount / points.length) * 20}px`,
+												height: `${10 + (pointCount / points.length) * 20}px`,
+											}}
+											onClick={() => {
+												const expansionZoom = Math.min(
+													supercluster.getClusterExpansionZoom(cluster.id),
+													20
+												);
+												mapRef.current.setZoom(expansionZoom);
+												mapRef.current.panTo({ lat: latitude, lng: longitude });
+											}}
+										>
+											{pointCount}
+										</div>
+									</Marker>
+								);
+							}
+
+							return (
+								<Marker
+									key={`${cluster.properties.erfId}`}
+									lat={latitude}
+									lng={longitude}
+								>
+									<button
+										className="erf-marker"
+										// onClick={() => handleMarkerClick(id, latitude, longitude)}
+									>
+										<span className="erf-no">{erfNo}</span>
+									</button>
+								</Marker>
+							);
+						})} */}
+
+						{/* <Marker
+							lat={userGps.lat}
+							lng={userGps.lng}
+							draggable={true}
+							// onDragEnd={onDragEnd}
+						>
+							<img
+								src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+								alt="xx"
+							/>
+						</Marker> */}
+					</GoogleMapReact>
 				</div>
 			</div>
 			<div className="footer"></div>

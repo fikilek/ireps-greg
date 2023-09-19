@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import "./ReverseGeocodingApp.css";
 // TODO: change GeodingApp.css to Geocoding.css
 import useAuthContext from "../../hooks/useAuthContext";
@@ -8,7 +8,11 @@ import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
 
+const Marker = ({ children }) => children;
+
 const ReverseGeocodingApp = () => {
+	const mapRef = useRef();
+	// console.log(`mapRef`, mapRef);
 	const { rgcData, setRgcData } = useContext(ReverseGeocodingContext);
 	// console.log(`rgcData`, rgcData);
 
@@ -38,10 +42,6 @@ const ReverseGeocodingApp = () => {
 			...rgcData,
 			isOpened: false,
 		});
-	};
-
-	const onMapLoad = map => {
-		setMap(map);
 	};
 
 	const onUnmount = React.useCallback(map => {
@@ -95,6 +95,15 @@ const ReverseGeocodingApp = () => {
 		}
 	}, [map]);
 
+	const onMapLoad = ({ map }) => {
+		mapRef.current = map;
+		// console.log(`mapRef`, mapRef);
+		mapRef.current?.data?.loadGeoJson(edumbe);
+		mapRef.current?.data?.setStyle({
+			fillOpacity: 0.0,
+		});
+	};
+
 	return (
 		<div className={`reverse-geocoding-app ${openReverseGeocodingApp}`}>
 			<div className="header">
@@ -116,23 +125,17 @@ const ReverseGeocodingApp = () => {
 			<div className="body">
 				{/* display map */}
 				<div className="reverse-geocoding-map">
-					{true ? (
-						<h1>Loading...</h1>
-					) : (
-						<GoogleMapReact
-							mapContainerClassName="map-container"
-							onLoad={onMapLoad}
-							center={{ lat, lng }}
-							zoom={16}
-							onUnmount={onUnmount}
-						>
-							{/* <MarkerF
-								position={{ lat, lng }}
-									icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
-									label={erfNo}
-							></MarkerF> */}
-						</GoogleMapReact>
-					)}
+					<GoogleMapReact
+						bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+						zoom={19}
+						center={{ lat, lng }}
+						yesIWantToUseGoogleMapApiInternals
+						onGoogleApiLoaded={onMapLoad}
+					>
+						<Marker lat={lat} lng={lng}>
+							<span className="erf-no">{erfNo}</span>
+						</Marker>
+					</GoogleMapReact>
 				</div>
 			</div>
 			<div className="footer"></div>
