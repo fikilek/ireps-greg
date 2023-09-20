@@ -45,7 +45,7 @@ const TableWithAddRecordBtn = props => {
 	// console.log(`isPending`, isPending);
 	// console.log(`success`, success);
 	// console.log(`tn`, tn);
-	const ml2 = (tn === 'undefined') ? "" :  tn
+	const ml2 = tn === "undefined" ? "" : tn;
 	// console.log(`ml2`, ml2);
 	// console.log(`ml3`, ml3);
 	// console.log(`tn`, tn);

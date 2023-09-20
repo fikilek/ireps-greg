@@ -67,6 +67,7 @@
 .tabs .tabs-body {
   /* height: calc(100vh - 8rem); */
   height: 95%;
+  margin-top: 0.45rem;
 }
 
 .tabs .tabs-tab {

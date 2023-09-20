@@ -27,9 +27,10 @@ header nav .nav-list a {
 	transition: color 650ms;
 	/* border-radius: 1rem; */
 	text-decoration: none;
+	/* width: 15rem; */
 }
 
-.header-container  header nav .nav-list .active {
+.header-container header nav .nav-list .active {
 	background-color: rgb(206, 234, 151);
 }
 
@@ -214,7 +215,7 @@ header nav .nav-list-right li>.sub-menu li .sub-menu::before {
 		height: 100vh;
 		/* flex-direction: column; */
 		/* align-items: initial; */
-		background-color: #e3e3e3ca;
+		background-color: hwb(0 54% 46% / 0.92);
 		z-index: 1000;
 		color: rgb(18, 18, 18);
 		visibility: hidden;
@@ -227,7 +228,7 @@ header nav .nav-list-right li>.sub-menu li .sub-menu::before {
 	}
 
 	header nav .nav-list a {
-		width: 15rem;
+		width: 100%;
 		font-size: 1.2rem;
 		font-weight: 700;
 	}
@@ -251,9 +252,13 @@ header nav .nav-list-right li>.sub-menu li .sub-menu::before {
 		visibility: hidden;
 	}
 
+	header nav .nav-list .nav-list-left>li {
+		margin: 0;
+		width: 100%;
+	}
+
 	header nav .nav-list li {
-		margin: 0 3rem;
-		width: 15rem;
+		margin: 0;
 	}
 
 	header nav .nav-list .nav-list-right li a {
@@ -290,6 +295,7 @@ header nav .nav-list-right li>.sub-menu li .sub-menu::before {
 		opacity: 1;
 		visibility: visible;
 		max-height: initial;
+		width: 100%;
 	}
 
 	header nav .sub-menu::before {

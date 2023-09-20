@@ -165,7 +165,9 @@ const TrnDataForm = props => {
 					// entity no (eg astNo, trnNo, erfNo)
 					dataRl={erfNumber}
 					closeModal={closeModal}
-				/>
+				>
+					<button>NT</button>
+				</FormHeader8>
 				<Formik
 					// enableReinitialize
 					initialValues={trn}

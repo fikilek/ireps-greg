@@ -15,7 +15,7 @@ const viewportFilter = data => {
 		tf = tf.map(col => {
 			return {
 				...col,
-				flex: 1,
+				// flex: 1,
 				cellStyle: { fontSize: "11px" },
 			};
 		});
@@ -26,12 +26,14 @@ const viewportFilter = data => {
 	if (viewportWidth >= 475 && viewportWidth < 768) {
 		// console.log(`viewport [475] > [${viewportWidth}] < [768] - sm`);
 		tf = tableFields?.filter(
-			tf => tf.cellRendererParams.breakpoint === "xs" || tf.cellRendererParams.breakpoint === "sm"
+			tf =>
+				tf.cellRendererParams.breakpoint === "xs" ||
+				tf.cellRendererParams.breakpoint === "sm"
 		); // iretate through tf and make all columns flex 1
 		tf = tf.map(col => {
 			return {
 				...col,
-				flex: 1,
+				// flex: 1,
 			};
 		});
 		// console.log(`tf`, tf);
@@ -42,12 +44,14 @@ const viewportFilter = data => {
 		// console.log(`viewport [768] > [${viewportWidth}] < [1024] - md`);
 		tf = tableFields?.filter(
 			tf =>
-				tf.cellRendererParams.breakpoint === "xs" || tf.cellRendererParams.breakpoint === "sm" || tf.cellRendererParams.breakpoint === "md"
+				tf.cellRendererParams.breakpoint === "xs" ||
+				tf.cellRendererParams.breakpoint === "sm" ||
+				tf.cellRendererParams.breakpoint === "md"
 		);
 		tf = tf.map(col => {
 			return {
 				...col,
-				flex: null,
+				// flex: null,
 			};
 		});
 		// console.log(`tf`, tf);
@@ -67,7 +71,7 @@ const viewportFilter = data => {
 		tf = tf.map(col => {
 			return {
 				...col,
-				flex: null,
+				// flex: null,
 			};
 		});
 		// console.log(`tf`, tf);
@@ -86,7 +90,6 @@ const viewportFilter = data => {
 		);
 		// console.log(`tf`, tf);
 		// return { tableFields: tf };
-		
 	}
 
 	// console.log(`tf`, tf)
@@ -96,9 +99,9 @@ const viewportFilter = data => {
 export const useColDefs = props => {
 	// console.log(`useColDefs props`, props);
 	// const [tableFields, setTableFields] = useState([]);
-	
+
 	const { tableFields } = useColumnDefs(props);
-	// console.log(`tableFields`, tableFields);
+	console.log(`tableFields`, tableFields);
 
 	// const getColDefs = () => {
 	const { viewportDimesions } = props;
@@ -106,7 +109,7 @@ export const useColDefs = props => {
 
 	// filter tableFields against viewportWidth
 	const tf = viewportFilter({ viewportWidth, tableFields });
-	// console.log(`tf`, tf);
+	console.log(`tf`, tf);
 
-	return tf ;
+	return tf;
 };

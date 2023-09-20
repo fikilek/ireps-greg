@@ -29,7 +29,7 @@ const getAstsInErf = trns => {
 };
 
 const TableAstsInErfMap = props => {
-	console.log(`props`, props);
+	// console.log(`props`, props);
 
 	// destructure asts from props.data
 	const trns = props.rowData;

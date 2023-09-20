@@ -6,7 +6,7 @@ import TabsErfMapInfo from "./TabsErfMapInfo";
 import "./TabsErfMapInfoWrapper.css";
 
 const TabsErfMapInfoWrapper = props => {
-	console.log(`props`, props);
+	// console.log(`props`, props);
 	const { erf } = props;
 	const { getNoOfAstsInErf } = useErf(erf);
 	let noOfAstsInErf = getNoOfAstsInErf();
@@ -39,15 +39,13 @@ const TabsErfMapInfoWrapper = props => {
 	);
 
 	// anomalies
-	const noOfAnomalies = 3
+	const noOfAnomalies = 3;
 	const anomalies = (
 		<button className="anomalies">
 			<span>Anomalies</span> &nbsp;&nbsp;
 			<span className="data-emphasis">{` ${noOfAnomalies}`}</span>
 		</button>
 	);
-
-
 
 	return (
 		<div className="tabs-erf-map-info-wrapper">
@@ -60,7 +58,7 @@ const TabsErfMapInfoWrapper = props => {
 					// no of trns in erf
 					dataRl={noOfTrnsInErf}
 					// anomalies
-					dataRr={''}
+					dataRr={""}
 					closeModal={closeModal}
 				/>
 				<TabsErfMapInfo erf={erf} />

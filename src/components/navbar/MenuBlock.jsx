@@ -12,7 +12,7 @@ const MenuBlock = ({ menuData, classes }) => {
 		menuData.map(item => (
 			<li key={item.to} className={classes}>
 				<NavLink to={item.to}>
-					{item.icon}
+					{/* {item.icon} */}
 					{item.menu}
 				</NavLink>
 				{item.children && (
