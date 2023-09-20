@@ -67,11 +67,11 @@ export function TabsErfsClusterMap(props) {
 	// erf search/filter *************************************************
 
 	const [selectedErf, setSelectedErf] = useState("");
-	// console.log(`selectedErf`, selectedErf);
+	console.log(`selectedErf`, selectedErf);
 	const [erfSearch, setErfSearch] = useState("");
-	// console.log(`erfSearch`, erfSearch);
+	console.log(`erfSearch`, erfSearch);
 	const [filteredErfs, setFilteredErfs] = useState("");
-	// console.log(`filteredErfs`, filteredErfs);
+	console.log(`filteredErfs`, filteredErfs);
 
 	useEffect(() => {
 		// console.log(`erfs`, erfs);
@@ -84,12 +84,6 @@ export function TabsErfsClusterMap(props) {
 	const hideShow = erfSearch?.length > 0 ? "show-erfs" : "hide-erfs";
 
 	useEffect(() => {
-		const erfSelected = erfs?.find(erf => erf.erfNo === erfSearch);
-		// console.log(`erfSelected`, erfSelected);
-		setSelectedErf(erfSelected);
-	}, [erfSearch]);
-
-	useEffect(() => {
 		if (selectedErf) {
 			const lat = selectedErf?.address?.gps?.latitude;
 			const lng = selectedErf?.address?.gps?.longitude;
@@ -100,10 +94,9 @@ export function TabsErfsClusterMap(props) {
 		}
 	}, [selectedErf]);
 
-	const selectErf = e => {
-		// console.log(`e.target?.innerHTML`, e.target?.innerHTML);
-		setErfSearch(e.target?.innerHTML);
-		// setErfSearch("");
+	const selectErf = erf => {
+		// console.log(`erf`, erf);
+		setSelectedErf(erf);
 	};
 
 	const onMapLoad = mapObjects => {
@@ -136,6 +129,18 @@ export function TabsErfsClusterMap(props) {
 		}
 	};
 
+	// map options
+	var options = {
+		// panControl: true,
+		// zoomControl: true,
+		mapTypeControl: true,
+		// scaleControl: true,
+		// streetViewControl: true,
+		overviewMapControl: true,
+		rotateControl: true,
+		fullscreenControl: false,
+	};
+
 	return (
 		<div className="tabs-erfs-map">
 			<div className="search-box">
@@ -151,7 +156,7 @@ export function TabsErfsClusterMap(props) {
 						filteredErfs?.map(erf => {
 							// console.log(`erf`, erf);
 							return (
-								<p key={erf.id} onClick={selectErf}>
+								<p key={erf.id} onClick={() => selectErf(erf)}>
 									{erf.erfNo}
 								</p>
 							);
@@ -168,6 +173,7 @@ export function TabsErfsClusterMap(props) {
 					setZoom(zoom);
 					setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
 				}}
+				options={options}
 			>
 				{clusters.map(cluster => {
 					// console.log(`cluster?.properties?.erf`, cluster?.properties?.erf);
@@ -175,6 +181,8 @@ export function TabsErfsClusterMap(props) {
 					const { cluster: isCluster, point_count: pointCount } = cluster.properties;
 					const erfNo = cluster?.properties?.erf?.erfNo;
 					const id = cluster?.properties?.erf?.id;
+					const hasAsts =
+						cluster?.properties?.erf?.asts?.length > 0 ? "has-asts" : "";
 
 					if (isCluster) {
 						return (
@@ -210,7 +218,7 @@ export function TabsErfsClusterMap(props) {
 								className="erf-marker"
 								onClick={() => handleMarkerClick(id, latitude, longitude)}
 							>
-								<span className="erf-no">{erfNo}</span>
+								<span className={`erf-no ${hasAsts}`}>{erfNo}</span>
 							</button>
 						</Marker>
 					);

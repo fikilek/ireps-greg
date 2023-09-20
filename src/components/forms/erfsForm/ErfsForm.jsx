@@ -70,7 +70,7 @@ const ErfsForm = props => {
 	// erf form
 	const formName = (
 		<>
-			<span className="data-emphasis">{'Erf Form'}</span>.
+			<span className="data-emphasis">{"Erf Form"}</span>.
 		</>
 	);
 
@@ -91,7 +91,7 @@ const ErfsForm = props => {
 						<FormHeader8
 							dataLl={formName}
 							dataLr={erfNo}
-							dataRl={''}
+							dataRl={""}
 							dataRr={""}
 							closeModal={closeModal}
 						/>

@@ -22,7 +22,6 @@ const FormHeader8 = props => {
 					</button>
 				</div>
 			</div>
-			{props.children}
 		</>
 	);
 };

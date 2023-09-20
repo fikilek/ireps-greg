@@ -3,9 +3,10 @@ import "./admin.css";
 import AdminSystTables from "./ml2/AdminSystTables";
 import { useParams } from "react-router-dom";
 import TableWithAddRecordBtn from "../../components/table/TableWithAddRecordBtn";
-import Downloads from '../../pages/downloads/Downloads';
-import Uploads from '../../pages/uploads/Uploads';
+import Downloads from "../../pages/downloads/Downloads";
+import Uploads from "../../pages/uploads/Uploads";
 import TableUsersList from "../../components/table/TableUsersList";
+import RequireAuth from "../../components/requireAuth/RequireAuth";
 
 const Admin = () => {
 	const { ml2, ml3 } = useParams();
@@ -13,7 +14,7 @@ const Admin = () => {
 		<>
 			{/* users */}
 			{ml2 === "users" && ml3 === undefined && (
-				<TableUsersList ml1="admin" ml2="users"  />
+				<TableUsersList ml1="admin" ml2="users" />
 			)}
 
 			{/* downloads */}
@@ -23,7 +24,9 @@ const Admin = () => {
 
 			{/* uploads */}
 			{ml2 === "uploads" && ml3 === undefined && (
-				<Uploads ml1="admin" tn="uploads" nfd="" fn="" />
+				<RequireAuth allowedRoles={["superuser"]}>
+					<Uploads ml1="admin" tn="uploads" nfd="" fn="" />
+				</RequireAuth>
 			)}
 
 			{ml2 === "syst" && ml3 === undefined ? <AdminSystTables /> : ""}

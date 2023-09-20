@@ -47,6 +47,10 @@ const TabsErfMapInfoWrapper = props => {
 		</button>
 	);
 
+	const createNewTrn = e => {
+		console.log(`createNewTrn`);
+	};
+
 	return (
 		<div className="tabs-erf-map-info-wrapper">
 			<div className="temiw-container">
@@ -60,7 +64,11 @@ const TabsErfMapInfoWrapper = props => {
 					// anomalies
 					dataRr={""}
 					closeModal={closeModal}
-				/>
+				>
+					<button onClick={createNewTrn} className="nt-btn">
+						New Trn
+					</button>
+				</FormHeader8>
 				<TabsErfMapInfo erf={erf} />
 			</div>
 		</div>

@@ -101,7 +101,7 @@ export const useColDefs = props => {
 	// const [tableFields, setTableFields] = useState([]);
 
 	const { tableFields } = useColumnDefs(props);
-	console.log(`tableFields`, tableFields);
+	// console.log(`tableFields`, tableFields);
 
 	// const getColDefs = () => {
 	const { viewportDimesions } = props;
@@ -109,7 +109,7 @@ export const useColDefs = props => {
 
 	// filter tableFields against viewportWidth
 	const tf = viewportFilter({ viewportWidth, tableFields });
-	console.log(`tf`, tf);
+	// console.log(`tf`, tf);
 
 	return tf;
 };
