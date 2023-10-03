@@ -1,4 +1,5 @@
 import React from "react";
+import useCreateTrnFromErf from "../../../../hooks/useCreateTrnFromErf";
 import { useErf } from "../../../../hooks/useErf";
 import useModal from "../../../../hooks/useModal";
 import FormHeader8 from "../../../forms/formComponents/formHeaders/FormHeader8";
@@ -8,6 +9,9 @@ import "./TabsErfMapInfoWrapper.css";
 const TabsErfMapInfoWrapper = props => {
 	// console.log(`props`, props);
 	const { erf } = props;
+
+	const { createTrnFromErf } = useCreateTrnFromErf(erf);
+
 	const { getNoOfAstsInErf } = useErf(erf);
 	let noOfAstsInErf = getNoOfAstsInErf();
 	const asts = props?.erf?.asts;
@@ -49,6 +53,7 @@ const TabsErfMapInfoWrapper = props => {
 
 	const createNewTrn = e => {
 		console.log(`createNewTrn`);
+		createTrnFromErf();
 	};
 
 	return (

@@ -37,24 +37,16 @@ const SignedInMenu = () => {
 			onClick={() => setMenuStatus(true)}
 		>
 			<div className="nav-list-left">
-				{/* Dashboard */}
-				{/* <MenuBlock menuData={dataDbd} /> */}
-				{/* Assets */}
-				<MenuBlock menuData={dataAsts} />
-				{/* Transactions */}
-				<MenuBlock menuData={dataTrns} />
-				{/* Supply Chain */}
-				{/* <MenuBlock menuData={dataSch} /> */}
-				{/* Erfs */}
 				<MenuBlock menuData={dataErfs} />
-				{/* Body of Knowledge (Bok) */}
+				<MenuBlock menuData={dataTrns} />
+				<MenuBlock menuData={dataAsts} />
+				{/* <MenuBlock menuData={dataSch} /> */}
 				{/* <MenuBlock menuData={dataBok} /> */}
 			</div>
 
 			<div className="nav-list-right">
-				{/* Admin */}
+				<MenuBlock menuData={dataDbd} />
 				<MenuBlock menuData={dataAdmin} />
-				{/* User */}
 				<li className="nav-list-btn-signedin-user">
 					<Tooltip title={`${user.displayName}`} position="left">
 						<NavLink to="/unp" className="user-initials">

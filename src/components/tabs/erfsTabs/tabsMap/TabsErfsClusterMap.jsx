@@ -67,11 +67,11 @@ export function TabsErfsClusterMap(props) {
 	// erf search/filter *************************************************
 
 	const [selectedErf, setSelectedErf] = useState("");
-	console.log(`selectedErf`, selectedErf);
+	// console.log(`selectedErf`, selectedErf);
 	const [erfSearch, setErfSearch] = useState("");
-	console.log(`erfSearch`, erfSearch);
+	// console.log(`erfSearch`, erfSearch);
 	const [filteredErfs, setFilteredErfs] = useState("");
-	console.log(`filteredErfs`, filteredErfs);
+	// console.log(`filteredErfs`, filteredErfs);
 
 	useEffect(() => {
 		// console.log(`erfs`, erfs);
@@ -87,10 +87,10 @@ export function TabsErfsClusterMap(props) {
 		if (selectedErf) {
 			const lat = selectedErf?.address?.gps?.latitude;
 			const lng = selectedErf?.address?.gps?.longitude;
-			// console.log(`mapRef`, mapRef);
+			console.log(`mapRef.current`, mapRef.current);
 			// console.log(`zoom`, zoom);
 			mapRef.current?.panTo({ lat, lng });
-			mapRef.current?.setZoom(20);
+			mapRef.current?.setZoom(19);
 		}
 	}, [selectedErf]);
 
@@ -100,8 +100,8 @@ export function TabsErfsClusterMap(props) {
 	};
 
 	const onMapLoad = mapObjects => {
-		// console.log(`myMapObjects`, mapObjects);
-		const { map } = mapObjects;
+		console.log(`myMapObjects`, mapObjects);
+		const { map, maps } = mapObjects;
 		// console.log(`mapRef`, mapRef);
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
@@ -166,10 +166,12 @@ export function TabsErfsClusterMap(props) {
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
 				defaultCenter={{ lat: -27.422497628330788, lng: 30.81734906312119 }}
-				defaultZoom={13}
+				defaultZoom={15}
 				yesIWantToUseGoogleMapApiInternals
 				onGoogleApiLoaded={onMapLoad}
-				onChange={({ zoom, bounds }) => {
+				onChange={args => {
+					// console.log(`args`, args);
+					const { zoom, bounds } = args;
 					setZoom(zoom);
 					setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
 				}}
@@ -177,12 +179,20 @@ export function TabsErfsClusterMap(props) {
 			>
 				{clusters.map(cluster => {
 					// console.log(`cluster?.properties?.erf`, cluster?.properties?.erf);
+
+					const anomaly = false;
+
 					const [longitude, latitude] = cluster.geometry.coordinates;
 					const { cluster: isCluster, point_count: pointCount } = cluster.properties;
 					const erfNo = cluster?.properties?.erf?.erfNo;
 					const id = cluster?.properties?.erf?.id;
 					const hasAsts =
 						cluster?.properties?.erf?.asts?.length > 0 ? "has-asts" : "";
+
+					if (cluster?.properties?.erf?.asts?.length > 0) {
+						// console.log(`erf with asts`, cluster?.properties?.erf);
+					}
+					const hasAnomaly = anomaly ? "has-anomaly" : "";
 
 					if (isCluster) {
 						return (
@@ -215,10 +225,10 @@ export function TabsErfsClusterMap(props) {
 							lng={longitude}
 						>
 							<button
-								className="erf-marker"
+								className={`erf-marker`}
 								onClick={() => handleMarkerClick(id, latitude, longitude)}
 							>
-								<span className={`erf-no ${hasAsts}`}>{erfNo}</span>
+								<span className={`erf-no ${hasAsts} ${hasAnomaly}`}>{erfNo}</span>
 							</button>
 						</Marker>
 					);

@@ -31,6 +31,10 @@
   border-left: 0.7rem solid rgb(250, 113, 255)
 }
 
+.has-anomaly {
+  border-right: 0.7rem solid rgb(252, 0, 0)
+}
+
 .erf-marker img {
   width: 23px;
 }

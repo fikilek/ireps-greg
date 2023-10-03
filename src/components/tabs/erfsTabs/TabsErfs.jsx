@@ -124,7 +124,7 @@ const getNewTrnsArray = (selectedRows, trnType, user) => {
 			let astData = {};
 			if (trnType === "inspection") {
 				astData = getTrnObjectsArray(row);
-				console.log(`astData`, astData);
+				// console.log(`astData`, astData);
 				if (!astData) return null;
 			}
 

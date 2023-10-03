@@ -33,14 +33,14 @@ import AuthFormHeader from "./AuthFormHeader";
 import useModal from "../../../hooks/useModal";
 
 export const userObj = {
-	surname: "kentane",
-	name: "fikile",
-	email: "fikile@gmail.com",
-	role: "guest",
-	password: "fkpass123",
-	confirmPassword: "fkpass123",
+	surname: "",
+	name: "",
+	email: "",
+	role: "",
+	password: "",
+	confirmPassword: "",
 	signedon: false,
-	phoneNumber: "081 726 2352",
+	phoneNumber: "",
 };
 
 const Signup = () => {
@@ -75,7 +75,7 @@ const Signup = () => {
 				progress: undefined,
 				theme: "light",
 			});
-			closeModal()
+			closeModal();
 			navigate("/unp", { replace: true });
 		}
 	}, [success, error, isPending]);

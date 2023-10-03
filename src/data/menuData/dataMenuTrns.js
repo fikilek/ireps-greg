@@ -3,6 +3,7 @@
 export const dataTrns = [
 	{
 		// This is an "li" element.
+		title: "Transactions",
 		to: "/trns",
 		menu: "Trns",
 		"menu-level": "1",

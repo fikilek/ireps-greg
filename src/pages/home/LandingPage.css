@@ -5,15 +5,13 @@
   padding: 1rem;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   gap: 1rem;
 }
 
 .landing-page .lp-section {}
 
 .landing-page .lp-sub-section {
-  width: 100%;
-  height: 100%;
   border: 0.1rem solid;
 }
 
@@ -29,12 +27,380 @@
   gap: 1rem;
 }
 
-.landing-page .lp-section .main {}
+.landing-page .lp-section .main {
+  width: 100%;
+  height: 100%;
+
+}
+
+.landing-page .lp-section .main .main-sub-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: relative;
+}
+
+.landing-page .main-section .main .why-ireps {
+  opacity: 0;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+
+.landing-page .main-section .main .who-needs-ireps {
+  opacity: 0;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+
+
+.landing-page .main-section .main .ireps-splash-page .isp {
+  /* outline: 0.1rem solid; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper {
+  border: 1rem solid rgb(237 237 237);
+  border-radius: 2rem;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper p {
+  padding: 2rem;
+  background-color: cornsilk;
+}
+
+.landing-page .main-section .main .ireps-splash-page .ireps-acronym {
+  height: 90%;
+  font-size: 14rem;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .ireps-fullname {
+  height: 10%;
+  font-size: 1.5rem;
+  background-color: blanchedalmond;
+  position: absolute;
+  top: 0%;
+  left: 0;
+}
+
 
 .landing-page .lp-section .capabilities {}
 
 .landing-page .lp-section .asts {}
 
+.landing-page .lp-section .lp-header {
+  width: 100%;
+  height: 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  justify-content: space-around;
+  align-items: center;
+  background-color: khaki;
+  font-size: 3rem;
+  font-weight: 700;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.landing-page .lp-section .lp-header p {
+  text-align: center;
+}
+
+.landing-page .lp-section .lp-header .lp-header-total-asts {
+  background-color: var(---asts-secondary-color);
+}
+
+.landing-page .lp-section .lp-header .lp-header-total-trns {
+  background-color: var(---trns-secondary-color);
+}
+
+.landing-page .lp-section .lp-header .lp-header-total-erfs {
+  background-color: var(---erfs-secondary-color);
+}
+
+.landing-page .lp-section .asts-body,
+.landing-page .lp-section .trns-body,
+.landing-page .lp-section .erfs-body {
+  height: var(---lp-section-body);
+  position: relative;
+  height: 80%;
+  overflow: hidden;
+}
+
+.landing-page .lp-section .asts-body .assets,
+.landing-page .lp-section .trns-body .trns,
+.landing-page .lp-section .erfs-body .erfs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* outline: 0.1rem solid; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.landing-page .lp-section .asts-body .assets .wrapper,
+.landing-page .lp-section .trns-body .trns .wrapper,
+.landing-page .lp-section .erfs-body .erfs .wrapper {
+  width: 100%;
+  height: 100%;
+  outline: 0.1rem solid;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-page .lp-section .asts-body .assets .wrapper .ast-cat,
+.landing-page .lp-section .trns-body .trns .wrapper .trn-type,
+.landing-page .lp-section .erfs-body .erfs .wrapper .erf-status {
+  font-size: 4rem;
+  /* background-color: khaki; */
+  width: 100%;
+  text-align: center;
+}
+
+.landing-page .lp-section .asts-body .assets .wrapper .ast-cat {
+  background-color: var(---asts-primary-color);
+}
+
+.landing-page .lp-section .trns-body .trns .wrapper .trn-type {
+  background-color: var(---trns-primary-color);
+}
+
+.landing-page .lp-section .erfs-body .erfs .wrapper .erf-status {
+  background-color: var(---erfs-primary-color);
+}
+
+.landing-page .lp-section .asts-body .assets .wrapper .total,
+.landing-page .lp-section .trns-body .trns .wrapper .total,
+.landing-page .lp-section .erfs-body .erfs .wrapper .total {
+  font-size: 10rem;
+}
+
+/* ast cat */
+
+.landing-page .lp-section .seal {
+  animation-name: flyin, opacityChange;
+  animation-duration: 15s, 15s;
+  animation-timing-function: ease-out, ease-out;
+  animation-delay: 0s, 0s;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: normal, normal;
+  animation-fill-mode: none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .cb {
+  animation-name: flyin, opacityChange;
+  animation-duration: 15s, 15s;
+  animation-timing-function: ease-out, ease-out;
+  animation-delay: 5s, 5s;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: normal, normal;
+  animation-fill-mode: none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .meter {
+  animation-name: flyin, opacityChange;
+  animation-duration: 15s, 15s;
+  animation-timing-function: ease-out, ease-out;
+  animation-delay: 10s, 10s;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: normal, normal;
+  animation-fill-mode: none;
+  opacity: 0;
+}
+
+/* trnTypes */
+
+/* .landing-page .lp-section .installations {
+  opacity: 0;
+} */
+
+/* .landing-page .lp-section .commissioning {
+  opacity: 0;
+} */
+
+.landing-page .lp-section .audit {
+  animation: flyin 12s ease-out 0s infinite normal none,
+    opacityChange 12s ease-out 0s infinite normal none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .inspection {
+  animation: flyin 12s ease-out 3s infinite normal none,
+    opacityChange 12s ease-out 3s infinite normal none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .tid {
+  animation: flyin 12s ease-out 6s infinite normal none,
+    opacityChange 12s ease-out 6s infinite normal none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .disconnection {
+  animation: flyin 12s ease-out 9s infinite normal none,
+    opacityChange 12s ease-out 9s infinite normal none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .reconnection {
+  animation: flyin 12s ease-out 12s infinite normal none,
+    opacityChange 12s ease-out 12s infinite normal none;
+  opacity: 0;
+}
+
+/* .landing-page .lp-section .sale {
+  animation-name: flyin, opacityChange;
+    animation-duration: 15s, 15s;
+    animation-timing-function: ease-out, ease-out;
+    animation-delay: 10s, 10s;
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, normal;
+    animation-fill-mode: none;
+    opacity: 0;
+} */
+
+/* .landing-page .lp-section .returns {
+  animation-name: flyin, opacityChange;
+    animation-duration: 15s, 15s;
+    animation-timing-function: ease-out, ease-out;
+    animation-delay: 10s, 10s;
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, normal;
+    animation-fill-mode: none;
+    opacity: 0;
+} */
+
+/* .landing-page .lp-section .missing {
+  animation-name: flyin, opacityChange;
+    animation-duration: 15s, 15s;
+    animation-timing-function: ease-out, ease-out;
+    animation-delay: 10s, 10s;
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, normal;
+    animation-fill-mode: none;
+    opacity: 0;
+} */
+
+/* .landing-page .lp-section .found {
+  animation-name: flyin, opacityChange;
+    animation-duration: 15s, 15s;
+    animation-timing-function: ease-out, ease-out;
+    animation-delay: 10s, 10s;
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, normal;
+    animation-fill-mode: none;
+    opacity: 0;
+} */
+
+
+
+/* .landing-page .lp-section .vending {
+  opacity: 0;
+}
+
+.landing-page .lp-section .grv {
+  opacity: 0;
+}
+
+.landing-page .lp-section .decommissioning {
+  opacity: 0;
+}
+
+.landing-page .lp-section .dispose {
+  opacity: 0;
+} */
+
+
+
+/* erfs */
+.landing-page .lp-section .unknown {
+  animation: flyin 15s ease-out 10s infinite normal none,
+    opacityChange 15s ease-out 10s infinite normal none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .developed {
+  animation: flyin 15s ease-out 5s infinite normal none,
+    opacityChange 15s ease-out 5s infinite normal none;
+  opacity: 0;
+}
+
+.landing-page .lp-section .not-developed {
+  animation: flyin 15s ease-out 0s infinite normal none,
+    opacityChange 15s ease-out 0s infinite normal none;
+  opacity: 0;
+}
+
+
+
 .landing-page .lp-section .trns {}
 
 .landing-page .lp-section .erfs {}
+
+
+/* animations */
+
+@keyframes flyin {
+  0% {
+    transform: perspective(700rem) translateZ(-700rem);
+  }
+
+  50% {
+    transform: perspective(700rem) translateZ(700rem);
+  }
+
+  100% {
+    transform: perspective(700rem) translateZ(700rem);
+  }
+}
+
+@keyframes opacityChange {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .landing-page .lp-section {
+    grid-template-columns: 1fr;
+  }
+}

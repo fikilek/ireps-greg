@@ -788,7 +788,7 @@ export const useColumnDefs = props => {
 			headerName: "Ast Cat",
 			width: 150,
 			cellStyle: TableCellStyleAstStateMap,
-			flex: 0.4,
+			flex: 0.7,
 			cellRendererParams: {
 				breakpoint: "xs",
 			},
@@ -833,7 +833,7 @@ export const useColumnDefs = props => {
 			headerName: "New trn",
 			width: 150,
 			cellRenderer: TableBtnTrnSelect,
-			flex: 1,
+			flex: 0.9,
 			cellRendererParams: {
 				breakpoint: "xs",
 			},
@@ -842,7 +842,7 @@ export const useColumnDefs = props => {
 			field: "trnMetaData.trnType",
 			headerName: "Creater",
 			width: 150,
-			flex: 0.7,
+			flex: 0.6,
 			cellRendererParams: {
 				breakpoint: "xs",
 			},

@@ -595,12 +595,12 @@ const trnNames = [
 const unpData = [
 	{
 		id: 1,
-		surname: "kentane",
-		name: "fikile",
-		email: "fikilekentane@gmail.com",
-		password: "pwd",
-		role: "superuser", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
-		state: "advance", // ['trial', 'basic', 'advance', 'guest']
+		surname: "",
+		name: "",
+		email: "",
+		password: "",
+		role: "", // system roles ['superuser', 'admin', 'manager', 'supervisor', 'fieldWorker' ]
+		state: "", // ['trial', 'basic', 'advance', 'guest']
 		dateCreated: timestamp.fromDate(new Date()),
 		dateUpdate: timestamp.fromDate(new Date()),
 		signedon: false,

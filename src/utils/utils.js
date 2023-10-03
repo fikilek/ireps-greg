@@ -166,10 +166,9 @@ export const formSelectOptions = {
 
 	erfStatusOptions: [
 		{ key: "choose", value: "choose" },
-		{ key: "not known", value: "not known" },
 		{ key: "developed", value: "developed" },
-		{ key: "not developed", value: "not developed" },
-		{ key: "delapidated", value: "delapidated" },
+		{ key: "empty", value: "empty" },
+		{ key: "vandalised", value: "vandalised" },
 	],
 	disconnectionLevelOptions: [
 		{ key: "choose", value: "choose" },
@@ -392,24 +391,24 @@ export const getAstCatMediaCat = namePath => {
 	return { astCat: astCat[1], mediaCatName, astCatMediaCat };
 };
 
-export const irepsDictionary = new Map()
+export const irepsDictionary = new Map();
 
-irepsDictionary.set('astNo', 'Ast No')
-irepsDictionary.set('astNoMedia', 'No')
-irepsDictionary.set('temperMedia', 'Temper')
-irepsDictionary.set('meterReadingMedia', 'Reading')
+irepsDictionary.set("astNo", "Ast No");
+irepsDictionary.set("astNoMedia", "No");
+irepsDictionary.set("temperMedia", "Temper");
+irepsDictionary.set("meterReadingMedia", "Reading");
 
-irepsDictionary.set('sizeMedia', "Size")
-irepsDictionary.set('insideBox', "Inside Box")
-irepsDictionary.set('insideBoxMedia', "Inside Box")
-irepsDictionary.set('keyPadMedia', 'Key Pad')
-irepsDictionary.set('keyPad', 'Key Pad')
-irepsDictionary.set('asts', 'Assets')
-irepsDictionary.set('trns', 'Transactions')
-irepsDictionary.set('admin', 'Admin')
-irepsDictionary.set('meter', 'Meter')
-irepsDictionary.set('seal', 'Seal')
-irepsDictionary.set('cb', 'Cb')
-irepsDictionary.set('users', 'User')
+irepsDictionary.set("sizeMedia", "Size");
+irepsDictionary.set("insideBox", "Inside Box");
+irepsDictionary.set("insideBoxMedia", "Inside Box");
+irepsDictionary.set("keyPadMedia", "Key Pad");
+irepsDictionary.set("keyPad", "Key Pad");
+irepsDictionary.set("asts", "Assets");
+irepsDictionary.set("trns", "Transactions");
+irepsDictionary.set("admin", "Admin");
+irepsDictionary.set("meter", "Meter");
+irepsDictionary.set("seal", "Seal");
+irepsDictionary.set("cb", "Cb");
+irepsDictionary.set("users", "User");
 irepsDictionary.set("systt", "System");
 irepsDictionary.set("user-roles", "User Role");

@@ -78,9 +78,10 @@ function App() {
 																	{/* <div className="header-container"> */}
 																	<Routes>
 																		<Route path={"/"} element={<Header />}>
-																			<Route index element={<Home />} />
+																			<Route index element={<LandingPage />} />
+																			<Route path={"landing-page"} element={<LandingPage />} />
 
-																			<Route path="/landing-page" element={<LandingPage />} />
+																			<Route path="/dbd" element={<Home />} />
 
 																			{/* <Route
 																				element={

@@ -3,6 +3,7 @@ import { MdArrowDropDown, MdArrowRight } from "react-icons/md";
 export const dataAsts = [
 	{
 		// This is an "li" element.
+		title: "All assets",
 		to: "/asts",
 		menu: "Asts",
 		"menu-level": "1",
@@ -31,6 +32,7 @@ export const dataAsts = [
 			// 	children: null,
 			// },
 			{
+				title: "Only Meters",
 				to: "/asts/meter",
 				menu: "Meters",
 				"menu-level": "2",
@@ -38,6 +40,7 @@ export const dataAsts = [
 				children: null,
 			},
 			{
+				title: "Only Circuit Breakers",
 				to: "/asts/cb",
 				menu: "CBs",
 				"menu-level": "2",
@@ -45,6 +48,7 @@ export const dataAsts = [
 				children: null,
 			},
 			{
+				title: "Only Seals",
 				to: "/asts/seal",
 				menu: "Seals",
 				"menu-level": "2",
