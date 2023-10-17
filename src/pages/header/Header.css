@@ -58,7 +58,7 @@ header .menu-icons svg {
 	left: 0;
 	/* outline: 1px solid #cfc5b1; */
 	overflow: auto;
-	/* height: 100%; */
+	height: 100%;
 	padding: 0.3rem 0.4rem 0.8rem;
 	min-width: 46rem;
 }

@@ -1,0 +1,10 @@
+.energy-network {
+  max-width: 100%;
+  height: auto;
+}
+
+.energy-network img {
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+}

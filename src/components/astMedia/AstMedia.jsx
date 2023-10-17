@@ -6,6 +6,7 @@ import AstMediaBody from "./AstMediaBody";
 import AstMediaView from "./AstMediaView";
 import { PropagateLoader } from "react-spinners";
 import useModal from "../../hooks/useModal";
+import { useEffect } from "react";
 
 const AstMedia = props => {
 	// console.log(`props`, props);
@@ -18,17 +19,34 @@ const AstMedia = props => {
 		media: "",
 	});
 
-	const {closeModal} = useModal()
+	const { closeModal } = useModal();
 
 	// get methods from useStorage
-	const { isPending, mediaList, getMediaList } = useStorage();
-	// console.log(`mediaList`, mediaList);
-	// console.log(`mediaList.length`, mediaList.length);
+	const { getMediaList } = useStorage();
 
 	// get all media for the astId
+
+	const [mediaList, setMediaList] = useState([]);
+	// console.log(`mediaList`, mediaList);
+
+	const [isPending, setIsPending] = useState(true);
+	// const isPending = useMemo(() => mediaList, [mediaList?.length]);
+	// console.log(`isPending`, isPending);
+
+	useEffect(() => {
+		setIsPending(true);
+		if (mediaList === undefined || mediaList?.length > 0) {
+			setIsPending(false);
+		}
+	}, [mediaList]);
+
 	if (id) {
 		// console.log(`id`, id)
-		getMediaList(`asts/${id}`);
+		getMediaList(`asts/${id}`).then(list => {
+			if (mediaList?.length === 0) {
+				setMediaList(list);
+			}
+		});
 	}
 
 	// form header dataL

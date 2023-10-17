@@ -25,10 +25,14 @@ import { ref } from "firebase/storage";
 import useStoreMedia from "../../hooks/useStoreMedia";
 import useGeoLocation from "../../hooks/useGeolocation";
 import useStorage from "../../hooks/useStorage";
+import { useMemo } from "react";
 
 const PhotoApp = () => {
 	const { photoAppData, setPhotoAppData } = useContext(PhotoAppContext);
 	// console.log(`photoAppData`, photoAppData);
+
+	const listSize = useRef();
+	listSize.current = 0;
 
 	// get save media function from save media hook
 	const { response, storeMedia } = useStoreMedia();
@@ -51,9 +55,21 @@ const PhotoApp = () => {
 	const [facingMode, setFacingMode] = useState({ exact: "environment" });
 	// console.log(`facingMode`, facingMode);
 
-	// get methods from useStorage
-	const { isPending, mediaList, getMediaList } = useStorage();
+	const [mediaList, setMediaList] = useState([]);
 	// console.log(`mediaList`, mediaList);
+
+	const [isPending, setIsPending] = useState(true);
+	// const isPending = useMemo(() => mediaList, [mediaList?.length]);
+	// console.log(`isPending`, isPending);
+
+	useEffect(() => {
+		setIsPending(true);
+		if (mediaList === undefined || mediaList?.length > 0) {
+			setIsPending(false);
+		}
+	}, [mediaList]);
+
+	const { getMediaList } = useStorage();
 
 	// get geolocation
 	const [location, setLocation] = useState(null);
@@ -126,12 +142,11 @@ const PhotoApp = () => {
 		astNo = trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astNo;
 		astCat =
 			trnDoc[keysArray[0]][keysArray[1]][keysArray[2]][keysArray[3]]?.astCartegory;
-		// console.log(`astId`, astId);
-		// console.log(`trnId`, trnId);
-		// console.log(`astCat`, astCat);
-
-		// get all media for the astId
-		getMediaList(`asts/${astId}`);
+		getMediaList(`asts/${astId}`).then(list => {
+			if (mediaList?.length === 0) {
+				setMediaList(list);
+			}
+		});
 	}
 
 	// create a capture function
@@ -161,9 +176,12 @@ const PhotoApp = () => {
 	const closePhotoApp = e => {
 		e.preventDefault();
 		setPhotoAppData({
-			...photoAppData,
+			data: "",
 			isPhotoAppOpened: false,
+			ml1: "",
 		});
+		setMediaList([]);
+		// setIsPending(true);
 	};
 
 	const saveToStorage = e => {
@@ -184,8 +202,20 @@ const PhotoApp = () => {
 		// save image to storage
 		storeMedia(storageRef, imgData)
 			.then(() => {
-				// console.log(`Media stored succesfully at firebase storge and firestore`);
+				console.log(`Media stored succesfully at firebase storge and firestore`);
 				setImgData(null);
+				// get all media for the astId
+				console.log(`mediaList.length`, mediaList?.length);
+
+				getMediaList(`asts/${astId}`).then(list => {
+					console.log(`list`, list);
+					console.log(`list.length`, list?.length);
+					listSize.current = Number(mediaList?.length) + 1;
+					console.log(`listSize.current`, listSize.current);
+					if (list?.length === listSize.current || mediaList === undefined) {
+						setMediaList(list);
+					}
+				});
 			})
 			.catch(err => {
 				console.log(`Error in storing media`, err);
@@ -346,7 +376,7 @@ const PhotoApp = () => {
 						<MediaView />
 					</>
 				)}
-				{/* {isPending && (
+				{isPending && (
 					<PropagateLoader
 						color="lightblue"
 						loading={isPending}
@@ -354,8 +384,8 @@ const PhotoApp = () => {
 						aria-label="Loading Spinner"
 						data-testid="loader"
 					/>
-				)} */}
-				{mediaList === 0 && <p className="no-photos">No Photos to show</p>}
+				)}
+				{mediaList === undefined && <p className="no-photos">No Photos to show</p>}
 			</div>
 		</div>
 	);

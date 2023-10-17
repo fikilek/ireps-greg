@@ -65,120 +65,39 @@ const getList = async fRef => {
 };
 
 const useStorage = () => {
-	// upload file
-	// const [progress, setUploadProgress] = useState(0);
-	// const [error, setUploadError] = useState("");
-	// const [url, setUploadUrl] = useState("");
-
-	// delete file
-	// const [fileDeletePending, setFileDeletePending] = useState(null);
-	// const [fileDeleteSuccess, setFileDeleteSuccess] = useState(null);
-	// const [fileDeleteError, setFileDeleteError] = useState(null);
-
 	// mediaList
-	const [isPending, setIsPending] = useState(true)
-	const [mediaList, setMediaList] = useState([]);
+	// const [isPending, setIsPending] = useState(true);
+	// const [mediaList, setMediaList] = useState([]);
 	// console.log(`mediaList`, mediaList);
 
-	// const addFile = (path, file) => {
-	// 	// Upload file and metadata to the object 'images/mountains.jpg'
-	// 	const storageRef = ref(storage, path);
-	// 	const uploadTask = uploadBytesResumable(storageRef, file);
+	const mediaList = useRef();
 
-	// 	// Listen for state changes, errors, and completion of the upload.
-	// 	uploadTask.on(
-	// 		"state_changed",
-	// 		snapshot => {
-	// 			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-	// 			const uploadProgress =
-	// 				(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-	// 			setUploadProgress(uploadProgress);
-	// 			// console.log("Upload is " + uploadProgress + "% done");
-	// 			switch (snapshot.state) {
-	// 				case "paused":
-	// 					// console.log("Upload is paused");
-	// 					setUploadProgress("paused");
-	// 					break;
-	// 				case "running":
-	// 					// console.log("Upload is running");
-	// 					setUploadProgress("running");
-	// 					break;
-	// 				default:
-	// 				// console.log(`snapshot.state`, snapshot.state);
-	// 			}
-	// 		},
-	// 		error => {
-	// 			// console.log(`upoad error`, error)
-	// 			setUploadError(error.code);
-	// 		},
-	// 		() => {
-	// 			// Upload completed successfully, now we can get the download URL
-	// 			getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-	// 				// console.log("File available at", downloadURL);
-	// 				setUploadUrl(downloadURL);
-	// 			});
-	// 		}
-	// 	);
-	// };
+	const getMediaList = async path => {
+		// console.log(`running getMediaList ------[path]`, path);
+		// get reference to asts storage media
+		const mediaRef = ref(storage, path);
+		// meaidRef now points to 'path'
+		// console.log(`mediaRef`, mediaRef)
 
-	// const deleteFile = path => {
-	// 	console.log(`deleting file on path: ${path}`);
-	// 	// Create a reference ot the file to delete
-	// 	const fileRef = ref(storage, path);
-	// 	console.log(`fileRef`, fileRef);
-	// 	// // delete the file
-	// 	setFileDeletePending(true);
-	// 	setFileDeleteError(null);
-	// 	setFileDeleteSuccess(false);
-	// 	try {
-	// 		deleteObject(fileRef)
-	// 			.then(() => {
-	// 				setFileDeletePending(false);
-	// 				setFileDeleteSuccess(true);
-	// 				setFileDeleteError(null);
-	// 				console.log(`file in path [${path}] deleted successfully`);
-	// 			})
-	// 			.catch(error => {
-	// 				setFileDeletePending(false);
-	// 				setFileDeleteError(error.message);
-	// 				setFileDeleteSuccess(false);
-	// 				console.log(`error deleting file`, error.message);
-	// 			});
-	// 	} catch {
-	// 		console.log(`file delete error`, fileDeleteError);
-	// 	}
-	// };
+		const list = await getList(mediaRef);
+		// console.log(`list`, list);
+		return list;
 
-	const getMediaList = useCallback(
-		async path => {
-			// console.log(`running getMediaList ------[path]`, path);
-			// get reference to asts storage media
-			const mediaRef = ref(storage, path);
-			// meaidRef now points to 'path'
-			// console.log(`mediaRef`, mediaRef)
-
-			const list = await getList(mediaRef);
-			// console.log(`list`, list);
-
-			// console.log(`mediaList length is : ${mediaList.length}`);
-			if (mediaList?.length === 0) {
-				// console.log(`mediaList length zero (0)`);
-				setMediaList(list);
-				// setIsPending(false)
-			} else {
-				// setMediaList([]);
-				// console.log(`mediaList length NOT zero (0)`);
-			}
-		},
-		[mediaList?.length]
-	);
+		// console.log(`mediaList length is : ${mediaList.length}`);
+		// if (mediaList?.length === 0) {
+		// console.log(`mediaList length zero (0)`);
+		// setMediaList(list);
+		// setIsPending(false);
+		// console.log(`list`, list);
+		// }
+	};
 
 	useEffect(() => {
 		// console.log(`CLEARING !!!!!!! mediaList on mount`);
-		setMediaList([]);
+		// setMediaList([]);
 		return () => {
 			// console.log(`CLEARING ^^^^^^^ mediaList on UNmount`);
-			setMediaList([]);
+			// setMediaList([]);
 		};
 	}, []);
 
@@ -191,9 +110,12 @@ const useStorage = () => {
 		// fileDeletePending,
 		// fileDeleteSuccess,
 		// fileDeleteError,
-		mediaList,
-		isPending,
+		// mediaList,
+		// setMediaList,
+		// isPending,
+		// setIsPending,
 		getMediaList,
+		// getMList,
 	};
 };
 

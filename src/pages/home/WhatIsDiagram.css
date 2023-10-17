@@ -1,0 +1,44 @@
+.what-is-diagram {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meter-monitoring .mamar-content {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meter-monitoring .mamar-content li {
+  list-style-type: circle;
+}
+
+
+.what-is-diagram-main-challenge {
+  background-image: url('../../images/mainChallenge3.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  /* background-position: center; */
+  height: 90%;
+}
+
+.what-is-diagram-ireps-offer {
+  background-image: url('../../images/irepsOffer.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  /* background-position: center; */
+  height: 90%;
+}
+
+.what-is-diagram-meter-alarm-monitoring {
+  background-image: url('../../images/meterAlarmMonitoringAndResponse.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  /* background-position: center; */
+  height: 90%;
+}

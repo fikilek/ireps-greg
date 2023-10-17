@@ -2223,7 +2223,7 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "Ast Id",
 			width: 100,
-			hide: true,
+			hide: false,
 			cellRendererParams: {
 				breakpoint: "xs",
 			},

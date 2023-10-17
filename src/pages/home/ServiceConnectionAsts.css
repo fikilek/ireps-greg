@@ -1,0 +1,15 @@
+.energy-network-asts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+
+.energy-network-asts .ena {
+  width: 80%;
+  height: auto;
+  outline: 0.1rem solid;
+  border-radius: 2rem;
+}

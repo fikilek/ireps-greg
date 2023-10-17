@@ -1,24 +1,26 @@
 .landing-page {
   width: 100%;
   height: 100%;
-  border: 0.1rem solid;
-  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr;
-  /* grid-template-rows: 1fr 1fr; */
-  gap: 1rem;
+  grid-template-rows: 70% 27%;
+}
+
+.landing-page .data-emphasis {
+  font-weight: 600;
+  color: blue;
 }
 
 .landing-page .lp-section {}
 
-.landing-page .lp-sub-section {
-  border: 0.1rem solid;
-}
+.landing-page .lp-sub-section {}
 
 .landing-page .main-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  width: 100%;
+  height: 100%;
 }
 
 .landing-page .items-section {
@@ -50,72 +52,304 @@
   position: relative;
 }
 
-.landing-page .main-section .main .why-ireps {
-  opacity: 0;
-  position: absolute;
-  top: 10%;
-  left: 0;
-}
-
-.landing-page .main-section .main .who-needs-ireps {
-  opacity: 0;
-  position: absolute;
-  top: 10%;
-  left: 0;
-}
-
-
-.landing-page .main-section .main .ireps-splash-page .isp {
-  /* outline: 0.1rem solid; */
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper {
   width: 100%;
+  height: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  outline: 0.1rem solid;
 }
 
-.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper {
-  border: 1rem solid rgb(237 237 237);
-  border-radius: 2rem;
-}
-
-.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper p {
-  padding: 2rem;
-  background-color: cornsilk;
-}
-
-.landing-page .main-section .main .ireps-splash-page .ireps-acronym {
+.landing-page .main-section .main .ireps-splash-page .isp {
+  width: 100%;
   height: 90%;
-  font-size: 14rem;
   position: absolute;
   top: 10%;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .ireps {
+  font-size: 14rem;
+  padding: 2rem;
+  background-color: cornsilk;
+  text-align: center;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .energy-network {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .landing-page .main-section .main .ireps-splash-page .ireps-fullname {
+  width: 100%;
   height: 10%;
   font-size: 1.5rem;
   background-color: blanchedalmond;
   position: absolute;
-  top: 0%;
+  top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-header {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  background-color: rgba(234, 233, 233, 0.694);
+  color: blue;
+}
+
+/* type a */
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-a {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-a .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.8rem;
+  text-align: center;
+  font-size: 1.6rem;
+  line-height: 4rem;
+}
+
+/* type b */
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-b {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-b .content {
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  line-height: 2.3rem;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-b .type-b-contents {
+  width: 100%;
+  height: 100%;
+}
+
+/* type c */
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-c {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.7fr;
+  gap: 1rem;
 }
 
 
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-type-c .type-c-contents {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1rem;
+}
+
+/* what is diagram */
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .main-challenge,
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .ireps-offer {
+  position: relative;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .what-is-container {
+  position: absolute;
+  top: 1%;
+  right: 0;
+  width: 40%;
+  padding: 1rem;
+  outline: 0.1rem solid;
+  margin: 1rem;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .trns-what-is-container {
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-page .main-section .main .ireps-splash-page .isp .isp-inner-wrapper .what-is .ireps-offer-container {
+  position: absolute;
+  top: 1%;
+  right: 0;
+  width: 30%;
+  padding: 1rem;
+  outline: none;
+  margin: 1rem;
+}
+
+/* transactions section */
+
+.landing-page .main-section .ireps-transactions .transactions-section {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: relative;
+}
+
+.landing-page .main-section .ireps-transactions .transactions-section .transactions-heading {
+  width: 100%;
+  height: 10%;
+  font-size: 1.5rem;
+  background-color: blanchedalmond;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-page .main-section .main .ireps-splash-page .ireps {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .what-is-ireps {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .properly-managed-asts {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .utility-network {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .distribution-network {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .distribution-network-challenges {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .main-challenge {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .ireps-offer {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .meter-alarm-monitoring-and-response {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .mamar {
+  opacity: 1;
+}
+
+/* transactions */
+
+.landing-page .main-section .main .ireps-splash-page .trns-grv {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-installation {
+  opacity: 1;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-commissioning {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-audit {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-tid {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-inspection {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-alarm {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-disconnection {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-reconnection {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-vending {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-decommissioning {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-disposal {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-missing {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-return {
+  opacity: 0;
+}
+
+.landing-page .main-section .main .ireps-splash-page .trns-sale {
+  opacity: 0;
+}
+
 .landing-page .lp-section .capabilities {}
 
-.landing-page .lp-section .asts {}
+.landing-page .lp-section .asts {
+  outline: 0.1rem solid;
+}
 
 .landing-page .lp-section .lp-header {
   width: 100%;
-  height: 20%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   justify-content: space-around;
   align-items: center;
   background-color: khaki;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 700;
   gap: 1rem;
   padding: 1rem;
@@ -158,7 +392,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .landing-page .lp-section .asts-body .assets .wrapper,
@@ -167,7 +401,7 @@
   width: 100%;
   height: 100%;
   outline: 0.1rem solid;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,8 +410,7 @@
 .landing-page .lp-section .asts-body .assets .wrapper .ast-cat,
 .landing-page .lp-section .trns-body .trns .wrapper .trn-type,
 .landing-page .lp-section .erfs-body .erfs .wrapper .erf-status {
-  font-size: 4rem;
-  /* background-color: khaki; */
+  font-size: 2rem;
   width: 100%;
   text-align: center;
 }
@@ -197,7 +430,7 @@
 .landing-page .lp-section .asts-body .assets .wrapper .total,
 .landing-page .lp-section .trns-body .trns .wrapper .total,
 .landing-page .lp-section .erfs-body .erfs .wrapper .total {
-  font-size: 10rem;
+  font-size: 5rem;
 }
 
 /* ast cat */
@@ -246,14 +479,14 @@
 } */
 
 .landing-page .lp-section .audit {
-  animation: flyin 12s ease-out 0s infinite normal none,
-    opacityChange 12s ease-out 0s infinite normal none;
+  animation: all 12s ease-out 0s infinite normal none;
+  /* opacityChange 12s ease-out 0s infinite normal none; */
   opacity: 0;
 }
 
 .landing-page .lp-section .inspection {
-  animation: flyin 12s ease-out 3s infinite normal none,
-    opacityChange 12s ease-out 3s infinite normal none;
+  animation: all 12s ease-out 3s infinite normal none;
+  /* opacityChange 12s ease-out 3s infinite normal none; */
   opacity: 0;
 }
 
@@ -358,16 +591,18 @@
   opacity: 0;
 }
 
+.landing-page .lp-section .trns {
+  outline: 0.1rem solid;
+}
 
-
-.landing-page .lp-section .trns {}
-
-.landing-page .lp-section .erfs {}
+.landing-page .lp-section .erfs {
+  outline: 0.1rem solid;
+}
 
 
 /* animations */
 
-@keyframes flyin {
+/* @keyframes flyin {
   0% {
     transform: perspective(700rem) translateZ(-700rem);
   }
@@ -379,7 +614,7 @@
   100% {
     transform: perspective(700rem) translateZ(700rem);
   }
-}
+} */
 
 @keyframes opacityChange {
   0% {

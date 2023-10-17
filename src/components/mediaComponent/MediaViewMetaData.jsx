@@ -1,9 +1,9 @@
 import React from "react";
 import "./MediaViewMetaData.css";
 
-const MediaViewMetaData = (props) => {
-  // console.log(`props`, props);
-  const { mediaViewData } = props
+const MediaViewMetaData = props => {
+	// console.log(`props`, props);
+	const { mediaViewData } = props;
 	return (
 		<div className="media-view-metadata">
 			<p>{mediaViewData?.metaData.mediaCategory}</p>
