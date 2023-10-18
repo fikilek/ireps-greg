@@ -1,4 +1,5 @@
 import React from "react";
+import { formSelectOptions } from "../../../../../../utils/utils";
 import FormikControl from "../../../formik/FormikControl";
 import FormSectionTrnAst from "../../../formSection/FormSectionTrnAst";
 
@@ -17,22 +18,30 @@ const SealAuditJsx = props => {
 					<div className="row-1 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
+								control="select"
+								type="text"
+								label="meter sealed?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.meterSealed`}
+								placeholder="Meter Sealed?"
+								options={formSelectOptions.yesNoOptions}
+							/>
+							<FormikControl
 								control="input"
 								type="text"
 								label="seal no"
 								name={`astData[${astCat}][${astCatIndex}].astData.astNo`}
 								placeholder="Seal No"
 							/>
+						</div>
+						<div className="half-row-50-50">
 							<FormikControl
 								control="mediaButton"
 								type="button"
 								label="seal no media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.astNoMedia`}
 								placeholder="Seal No Media"
-								ml1='asts'
+								ml1="asts"
 							/>
-						</div>
-						<div className="row-1 ast-row">
 							<FormikControl
 								control="input"
 								type="text"
@@ -41,6 +50,18 @@ const SealAuditJsx = props => {
 								placeholder="Linked Meter No"
 							/>
 						</div>
+					</div>
+					<div className="row-1 ast-row">
+						{/* <div className="half-row-50-50"> */}
+						<FormikControl
+							control="select"
+							type="text"
+							label="seal comments"
+							name={`astData[${astCat}][${astCatIndex}].trnData.sealComments`}
+							placeholder="Meter Phase"
+							options={formSelectOptions.sealCommentsOptions}
+						/>
+						{/* </div> */}
 					</div>
 				</div>
 			</FormSectionTrnAst>

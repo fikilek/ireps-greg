@@ -11,8 +11,8 @@ const FormikInput = props => {
 	const { formState } = useContext(FormStateContext);
 	// console.log(`formState`, formState);
 
-	let fieldStatus = null
-	let errorStauts = null
+	let fieldStatus = null;
+	let errorStauts = null;
 
 	return (
 		<div className={`form-control ${name} `}>
@@ -39,6 +39,18 @@ const FormikInput = props => {
 						}
 					}
 
+					if (field.name === "astData[seal][0].trnData.linkedMeterNo") {
+						// console.log(`field is inkedMeterNo`);
+						// console.log(
+						// 	`form.values.astData["meter"][0].astData.meter.astNo`,
+						// 	form.values.astData["meter"][0].astData.astNo
+						// );
+						// console.log(`form`, form);
+						// form.setFieldValue(
+						// 	"astData[seal][0].trnData.linkedMeterNo",
+						// 	form.values.astData["meter"][0].astData.astNo
+						// );
+					}
 					return (
 						<input {...field} {...rest} className={`${errorStauts} ${fieldStatus}`} />
 					);

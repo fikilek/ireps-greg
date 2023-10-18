@@ -18,7 +18,7 @@ const MeterAuditJsx = props => {
 					<div className="row-1 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
-								control="input"
+								control="meterNo"
 								type="text"
 								label="Meter No"
 								name={`astData[${astCat}][${astCatIndex}].astData.astNo`}

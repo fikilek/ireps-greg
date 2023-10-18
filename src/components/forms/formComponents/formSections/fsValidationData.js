@@ -814,6 +814,10 @@ export const fsValidationData = {
 		},
 
 		auditValidationData: {
+			meterSealed: {
+				constraints: [{ required: "yes", condition: "" }],
+				verdict: "",
+			},
 			linkedMeterNo: {
 				constraints: [{ required: "yes", condition: "" }],
 				verdict: "",
@@ -828,6 +832,10 @@ export const fsValidationData = {
 				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
 			},
+			sealComments: {
+				constraints: [{ required: "no", condition: "" }],
+				verdict: "",
+			},
 
 			// astData
 
@@ -836,7 +844,7 @@ export const fsValidationData = {
 				verdict: "",
 			},
 			astNo: {
-				constraints: [{ required: "yes", condition: "" }],
+				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
 			},
 			astSerialNo: {

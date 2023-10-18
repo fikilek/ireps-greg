@@ -55,7 +55,7 @@ export const fsTrnData = {
 		auditData: {
 			location: {
 				premises: "", //inside/outside
-				insideBox: '', //yes/no, photo needed
+				insideBox: "", //yes/no, photo needed
 				exactLocation: "", //['pole top', pole bottom', 'stand alone', 'other']
 			},
 			serviceConnection: {
@@ -84,7 +84,7 @@ export const fsTrnData = {
 			linkedSeal: {
 				isThereSeal: "",
 			},
-			anomalies: '',
+			anomalies: "",
 			confirmations: {
 				confirmTrn: "not done",
 			},
@@ -173,7 +173,7 @@ export const fsTrnData = {
 		},
 
 		tidData: {
-			accessToKeyPad: '', //photo needed
+			accessToKeyPad: "", //photo needed
 			rolloverDone: {
 				done: "",
 				comments: "",
@@ -278,11 +278,13 @@ export const fsTrnData = {
 		},
 
 		auditData: {
+			meterSealed: "",
 			linkedMeterNo: "",
 			confirmations: {
 				confirmTrn: "not done",
 			},
 			photos: [],
+			sealComments: "",
 		},
 
 		inspectionData: {

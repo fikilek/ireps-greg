@@ -129,6 +129,15 @@ export const capitalize = string => {
 // ******************************************************
 
 export const formSelectOptions = {
+	sealCommentsOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "NO seal number", value: "NO seal number" },
+		{
+			key: "seal number NOT clearly visible",
+			value: "seal number NOT clearly visible",
+		},
+		{ key: "other", value: "other" },
+	],
 	anomaliesOptions: [
 		{ key: "choose", value: "choose" },
 		{ key: "Meter damaged", value: "Meter damaged" },

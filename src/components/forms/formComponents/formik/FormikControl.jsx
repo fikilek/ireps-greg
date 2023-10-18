@@ -8,6 +8,8 @@ import FormikReverseGeocodeButton from "./FormikReverseGeocodeButton";
 import FormikScFieldArray from "./FormikScFieldArray";
 import FormikSelect from "./FormikSelect";
 import FormikGeocodeButton from "./FormikGeocodeButton";
+import FormikLinkedMeter from "./FormikMeterNo";
+import FormikMeterNo from "./FormikMeterNo";
 
 const FormikControl = props => {
 	const { control, ...rest } = props;
@@ -15,6 +17,8 @@ const FormikControl = props => {
 	switch (control) {
 		case "input":
 			return <FormikInput {...rest} />;
+		case "meterNo":
+			return <FormikMeterNo {...rest} />;
 		case "scFieldArray":
 			return <FormikScFieldArray {...rest} />;
 		case "meterFieldArray":
