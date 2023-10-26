@@ -138,8 +138,7 @@ exports.updateUserRole = functions.https.onCall((data, context) => {
 		rolesControllerArray.includes("manager") ||
 		rolesControllerArray.includes("superuser")
 	) {
-	}
-	else
+	} else
 		return {
 			userRecord: "",
 			msg: "PERMISSION DENIED - only manager or superuser can modify roles",
@@ -557,9 +556,9 @@ const updateAstsInTrn = (trn, newAstsState) => {
 };
 
 const updateErf = (trnAfter, ast, updatingObj) => {
-	console.log(`ast - line 304`, ast);
-	console.log(`updatingObj - line 305`, updatingObj);
-	console.log(`trnAfter - line 306`, trnAfter);
+	// console.log(`ast - line 304`, ast);
+	// console.log(`updatingObj - line 305`, updatingObj);
+	// console.log(`trnAfter - line 306`, trnAfter);
 	// get id of the erf attached to the trn
 	const erfId = trnAfter.erfData.id;
 	console.log(`erfId - line 309`, erfId);
@@ -723,10 +722,11 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 		astData: {
 			...astData,
 			astState: nextState,
+			astLocation: astUpdatedObj?.astLocation,
 		},
 		erfData: trnAfter.erfData,
 	};
-	console.log(`newAst`, newAst);
+	// console.log(`newAst`, newAst);
 
 	// add the new ast to the asts collection
 	db
@@ -734,17 +734,23 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 		.doc(ast.astId)
 		.set(newAst)
 		.then(docRef => {
-			console.log("Document added with ID: ", docRef.id);
+			// console.log("Document added with ID: ", docRef.id);
 			return `Document added with ID: ${docRef.id}`;
 		})
 		.catch(error => {
-			console.error("Error adding document: ", error.msg);
+			console.error("Error adding document (741): ", error.msg);
 			return "Error adding document: ", error.msg;
 		});
 };
 
 const getUpdatingObj = (trnAfter, ast) => {
 	// create object that will be used to update ast, erf and commissioning obj
+	console.log(`getUpdatingObj trnAfter (line 748)`, trnAfter);
+	console.log(`getUpdatingObj ast (line 749)`, ast);
+	console.log(
+		`getUpdatingObj [ast.trnObject.trnData.astAdr] (line 750)`,
+		ast?.trnObject?.trnData?.astAdr
+	);
 
 	const trnType =
 		trnAfter.metaData.trnType === "audit"
@@ -754,11 +760,26 @@ const getUpdatingObj = (trnAfter, ast) => {
 	// capitalise first letter of trnType
 	const capTrnType = trnType.charAt(0).toUpperCase() + trnType.slice(1);
 
-	return {
-		id: ast.astId,
-		[`${ast.astCat}${capTrnType}`]: ast.trnObject.trnData,
-		trnMetaData: trnAfter.metaData,
-	};
+	if (trnType === "audit" || trnType === "installation") {
+		return {
+			id: ast.astId,
+			[`${ast.astCat}${capTrnType}`]: ast.trnObject.trnData,
+			trnMetaData: trnAfter.metaData,
+			astLocation: {
+				address: ast?.trnObject?.trnData?.astAdr?.adr,
+				gps: {
+					lat: ast?.trnObject?.trnData?.astAdr?.gps?.lat,
+					lng: ast?.trnObject?.trnData?.astAdr?.gps?.lng,
+				},
+			},
+		};
+	} else {
+		return {
+			id: ast.astId,
+			[`${ast.astCat}${capTrnType}`]: ast.trnObject.trnData,
+			trnMetaData: trnAfter.metaData,
+		};
+	}
 };
 
 // This cloud function will do the following :
@@ -772,7 +793,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 		// trn data from the chenge parameter
 		// const trn = change.after.data();
 		let trnAfter = change.after.data();
-		console.log(`trnAfter line 507`, trnAfter);
+		// console.log(`trnAfter line 782`, trnAfter);
 
 		if (!trnAfter.id) {
 			// insert trn id into trn
@@ -781,13 +802,13 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 				id: change.after.id,
 			};
 		}
-		console.log(`trnAfter line 516`, trnAfter);
+		// console.log(`trnAfter line 516`, trnAfter);
 
 		// Retrieve the current, previous states and trnType
 		const currentTrnState = trnAfter.metaData.trnState;
-		console.log(`currentTrnState`, currentTrnState);
+		// console.log(`currentTrnState`, currentTrnState);
 		const previousTrnState = trnAfter.metaData.trnState;
-		console.log(`previousTrnState`, previousTrnState);
+		// console.log(`previousTrnState`, previousTrnState);
 		const trnType = change.after.data().metaData.trnType;
 		// console.log(`trnType`, trnType);
 
@@ -798,7 +819,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 		// 3. Update all the trnAfterrn asts that are on 'field' state. This will be done by iterating though each of the ids (trnAfter.astData[astCat][index].astData.id).
 		const astsInTrn = getAstsInTrn(trnAfter);
-		console.log(`astsInTrn`, astsInTrn);
+		console.log(`astsInTrn line 810`, astsInTrn);
 		// All asts in astInTrn are confirmations.conformTrn 'done'. Others are filtered out.
 
 		if (
@@ -945,9 +966,10 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 			// iterate through astsInTrn, create new asts and update each to a 'field' state.
 			astsInTrn &&
 				astsInTrn.forEach(ast => {
-					console.log(`ast - line 679`, ast);
+					// console.log(`ast (957)`, ast);
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
+					console.log(`updatingObj (960)`, updatingObj);
 
 					// create new ast
 					createNewAst(trnAfter, ast, "service", updatingObj);
@@ -1016,7 +1038,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
-					console.log(`updatingObj`, updatingObj);
+					console.log(`updatingObj [line 1033]`, updatingObj);
 
 					// update ast
 					updateAst(trnAfter, ast, "disconnected", updatingObj);
