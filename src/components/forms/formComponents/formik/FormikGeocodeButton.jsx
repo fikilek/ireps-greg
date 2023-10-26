@@ -4,6 +4,7 @@ import "./FormikGeocodeButton.css";
 import React from "react";
 import { useContext } from "react";
 import { GeocodingContext } from "../../../../contexts/GeocodingContext";
+import { getAstCat } from "../../../../utils/utils";
 
 const FormikGeocodeButton = props => {
 	// console.log(`props`, props);
@@ -35,10 +36,14 @@ const FormikGeocodeButton = props => {
 					const { field, meta, form } = props;
 					// console.log(`madiaCat`, mediaCat, field.value.length)
 					// console.log(`form.values`, form.values)
+
+					const astCat = getAstCat(props?.field?.name);
+					// console.log(`astCat`, astCat);
+
 					return (
 						<button className="geocoding-btn" onClick={e => handleClick(e, props)}>
 							<p className="geocoding-btn-p">
-								{meta.value ? meta.value : "Meter Location Address"}{" "}
+								{meta.value ? meta.value : `${astCat} Location Address`}{" "}
 							</p>
 						</button>
 					);

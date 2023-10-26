@@ -131,10 +131,10 @@ export const capitalize = string => {
 export const formSelectOptions = {
 	sealCommentsOptions: [
 		{ key: "choose", value: "choose" },
-		{ key: "NO seal number", value: "NO seal number" },
+		{ key: "no seal number", value: "no seal number" },
 		{
-			key: "seal number NOT clearly visible",
-			value: "seal number NOT clearly visible",
+			key: "seal number not clearly visible",
+			value: "seal number not clearly visible",
 		},
 		{ key: "other", value: "other" },
 	],
@@ -421,3 +421,17 @@ irepsDictionary.set("cb", "Cb");
 irepsDictionary.set("users", "User");
 irepsDictionary.set("systt", "System");
 irepsDictionary.set("user-roles", "User Role");
+
+export const getAstCat = fieldNameStr => {
+	// if (!gcData) return null;
+	// let fieldNameStr = gcData?.data?.field?.name;
+	if (!fieldNameStr) return null;
+	// console.log(`fieldNameStr`, fieldNameStr);
+	fieldNameStr = fieldNameStr?.replaceAll("[", ".");
+	fieldNameStr = fieldNameStr?.replaceAll("]", ".");
+	fieldNameStr = fieldNameStr?.replaceAll("..", ".");
+	const fieldNameArray = fieldNameStr?.split(".");
+	const astCategory = fieldNameArray[1];
+	// console.log(`astCategory`, astCategory);
+	return astCategory;
+};

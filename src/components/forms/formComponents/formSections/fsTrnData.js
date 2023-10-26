@@ -265,6 +265,13 @@ export const fsTrnData = {
 				confirmTrn: "not done",
 			},
 			photos: [],
+			astAdr: {
+				adr: "",
+				gps: {
+					lat: "",
+					lng: "",
+				},
+			},
 		},
 
 		commissioningData: {
@@ -285,6 +292,13 @@ export const fsTrnData = {
 			},
 			photos: [],
 			sealComments: "",
+			astAdr: {
+				adr: "",
+				gps: {
+					lat: "",
+					lng: "",
+				},
+			},
 		},
 
 		inspectionData: {

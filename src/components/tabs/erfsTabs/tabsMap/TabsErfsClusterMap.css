@@ -108,3 +108,12 @@
   color: white;
   font-size: 0.6rem;
 } */
+
+.userGpsPosition {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: rgb(4, 255, 0);
+  background-color: rgb(4, 255, 0);
+  border: 0.3rem solid blueviolet;
+  border-radius: 50%;
+}

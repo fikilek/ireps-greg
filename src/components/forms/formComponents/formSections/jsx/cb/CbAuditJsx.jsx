@@ -31,7 +31,7 @@ const CbAuditJsx = props => {
 								label="cb size media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.sizeMedia`}
 								placeholder="Cb Size Media"
-								ml1='asts'
+								ml1="asts"
 							/>
 						</div>
 						<div>
@@ -50,6 +50,37 @@ const CbAuditJsx = props => {
 									name={`astData[${astCat}][${astCatIndex}].astData.cb.type`}
 									placeholder="Cb Type"
 									options={formSelectOptions.cbPoleOtions}
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="row-2 ast-row">
+						<div className="cb-adr">
+							<FormikControl
+								control="gcButton"
+								type="button"
+								label="click for cb address"
+								name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.adr`}
+								placeholder="Cb Address"
+							/>
+						</div>
+						<div className="meter-gps">
+							<div className="half-row-50-50">
+								<FormikControl
+									readOnly={true}
+									control="input"
+									type="text"
+									label="gps(lat)"
+									name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps.lat`}
+									placeholder="CB Gps"
+								/>
+								<FormikControl
+									readOnly={true}
+									control="input"
+									type="text"
+									label="gps(lng)"
+									name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps.lng`}
+									placeholder="CB Gps"
 								/>
 							</div>
 						</div>

@@ -39,7 +39,7 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "System Id",
 			width: 200,
-			hide: true,
+			hide: false,
 			cellRendererParams: {
 				breakpoint: "xs",
 			},

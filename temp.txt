@@ -1,0 +1,263 @@
+---------------------------------------
+
+
+
+
+
+import React, { useState, useRef, useEffect } from "react";
+import GoogleMapReact from "google-map-react";
+import useSupercluster from "use-supercluster";
+import "./TabsErfsClusterMap.css";
+import edumbe from "../../../../data/cadastral/edumbe/edumbe.geojson";
+import ratandab from "../../../../data/cadastral/lesedi/ratandab.geojson";
+import useModal from "../../../../hooks/useModal";
+import useGeoLocation from "../../../../hooks/useGeolocation";
+import useCollection from "../../../../hooks/useCollection";
+import { useGetAstsCluster } from "../../../../hooks/useGetAstsCluster";
+
+const Marker = ({ children }) => children;
+
+export function TabsErfsClusterMap(props) {
+	// console.log(`props`, props);
+
+	const mapRef = useRef();
+	// console.log(`mapRef`, mapRef);
+
+	const { openModal } = useModal();
+
+	const [erfs, setErfs] = useState(props.rowData);
+	// console.log(`erfs`, erfs);
+
+	useEffect(() => {
+		setErfs(props.rowData);
+	}, [props.rowData]);
+
+	// get user location
+	const { setGeolocation, userGps } = useGeoLocation();
+	// console.log(`userGps`, userGps);
+
+	setGeolocation();
+
+	// const erfs = props.rowData;
+	// console.log(`erfs`, erfs);
+
+	const points = erfs?.map(erf => {
+		return {
+			type: "Feature",
+			properties: { cluster: false, erfId: erf.id, erf: erf },
+			geometry: {
+				type: "Point",
+				coordinates: [
+					parseFloat(erf.address.gps.longitude),
+					parseFloat(erf.address.gps.latitude),
+				],
+			},
+		};
+	});
+	// console.log(`points`, points);
+
+	const [bounds, setBounds] = useState([]);
+	// console.log(`bounds`, bounds);
+	const [zoom, setZoom] = useState(10);
+	// console.log(`zoom`, zoom)
+
+	// console.log(`######################################################`);
+	// console.log(`bounds`, bounds);
+	// console.log(`zoom`, zoom);
+
+	const result = useSupercluster({
+		points,
+		bounds,
+		zoom,
+		options: { radius: 75, maxZoom: 20 },
+	});
+
+	const { clusters, supercluster } = result;
+	// console.log(`clusters`, clusters);
+	// console.log(`supercluster`, supercluster);
+
+	// erf search/filter *************************************************
+
+	const [selectedErf, setSelectedErf] = useState("");
+	// console.log(`selectedErf`, selectedErf);
+	const [erfSearch, setErfSearch] = useState("");
+	// console.log(`erfSearch`, erfSearch);
+	const [filteredErfs, setFilteredErfs] = useState("");
+	// console.log(`filteredErfs`, filteredErfs);
+
+	useEffect(() => {
+		// console.log(`erfs`, erfs);
+		const filteredErfs = erfs?.filter(erf => erf.erfNo.includes(erfSearch));
+		// console.log(`filteredErfs`, filteredErfs);
+		setFilteredErfs(filteredErfs);
+	}, [erfSearch]);
+
+	// console.log(`erfSearch.length`, erfSearch.length);
+	const hideShow = erfSearch?.length > 0 ? "show-erfs" : "hide-erfs";
+
+	useEffect(() => {
+		if (selectedErf) {
+			const lat = selectedErf?.address?.gps?.latitude;
+			const lng = selectedErf?.address?.gps?.longitude;
+			// console.log(`mapRef.current`, mapRef.current);
+			// console.log(`zoom`, zoom);
+			mapRef.current?.panTo({ lat, lng });
+			mapRef.current?.setZoom(19);
+		}
+	}, [selectedErf]);
+
+	const selectErf = erf => {
+		// console.log(`erf`, erf);
+		setSelectedErf(erf);
+	};
+
+	const onMapLoad = mapObjects => {
+		// console.log(`myMapObjects`, mapObjects);
+		const { map, maps } = mapObjects;
+		// console.log(`mapRef`, mapRef);
+		mapRef.current = map;
+		// console.log(`mapRef`, mapRef);
+		// console.log(`clusters`, clusters);
+		mapRef.current?.data?.loadGeoJson(edumbe);
+		mapRef.current?.data?.loadGeoJson(ratandab.geojson);
+		mapRef.current?.data?.setStyle({
+			fillOpacity: 0.0,
+		});
+		// mapRef.data.addListener("click", handleErfClick);
+	};
+
+	// this will fire everytime there is a click on the marker
+	const handleMarkerClick = (id, lat, lng) => {
+		mapRef.current?.panTo({ lat, lng });
+
+		// get erf data using erf id
+		const erf = erfs.find(erf => erf.id === id);
+		// console.log(`erf`, erf);
+
+		if (erf) {
+			openModal({
+				modalName: "tabsErfMapInfoWrapper",
+				payload: erf,
+			});
+		}
+	};
+
+	// map options
+	var options = {
+		// panControl: true,
+		// zoomControl: true,
+		mapTypeControl: true,
+		// scaleControl: true,
+		// streetViewControl: true,
+		overviewMapControl: true,
+		rotateControl: true,
+		fullscreenControl: false,
+	};
+
+	return (
+		<div className="tabs-erfs-map">
+			<div className="search-box">
+				<input
+					className="erf-search"
+					type="text"
+					placeholder=" enter erf no"
+					onChange={e => setErfSearch(e.target.value)}
+					value={erfSearch}
+				/>
+				<div className={`search-dropdown ${hideShow} `}>
+					{filteredErfs &&
+						filteredErfs?.map(erf => {
+							// console.log(`erf`, erf);
+							return (
+								<p key={erf.id} onClick={() => selectErf(erf)}>
+									{erf.erfNo}
+								</p>
+							);
+						})}
+				</div>
+			</div>
+			<GoogleMapReact
+				bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+				// defaultCenter={{ lat: -27.422497628330788, lng: 30.81734906312119 }}
+				defaultCenter={{ lat: -26.56924, lng: 28.32348 }}
+				// defaultCenter={{
+				// 	lat: userGps.coordinates.lat,
+				// 	lng: userGps.coordinates.lng,
+				// }}
+				defaultZoom={15}
+				yesIWantToUseGoogleMapApiInternals
+				onGoogleApiLoaded={onMapLoad}
+				onChange={args => {
+					// console.log(`args`, args);
+					const { zoom, bounds } = args;
+					setZoom(zoom);
+					setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
+				}}
+				options={options}
+			>
+				{clusters.map(cluster => {
+					// console.log(`cluster?.properties?.erf`, cluster?.properties?.erf);
+
+					const anomaly = false;
+
+					const [longitude, latitude] = cluster.geometry.coordinates;
+					const { cluster: isCluster, point_count: pointCount } = cluster.properties;
+					const erfNo = cluster?.properties?.erf?.erfNo;
+					const id = cluster?.properties?.erf?.id;
+					const hasAsts =
+						cluster?.properties?.erf?.asts?.length > 0 ? "has-asts" : "";
+
+					if (cluster?.properties?.erf?.asts?.length > 0) {
+						// console.log(`erf with asts`, cluster?.properties?.erf);
+					}
+					const hasAnomaly = anomaly ? "has-anomaly" : "";
+
+					if (isCluster) {
+						return (
+							<Marker key={`${cluster.id}`} lat={latitude} lng={longitude}>
+								<div
+									className="cluster-marker"
+									style={{
+										width: `${25 + (pointCount / points.length) * 20}px`,
+										height: `${25 + (pointCount / points.length) * 20}px`,
+									}}
+									onClick={() => {
+										const expansionZoom = Math.min(
+											supercluster.getClusterExpansionZoom(cluster.id),
+											20
+										);
+										mapRef.current.setZoom(expansionZoom);
+										mapRef.current.panTo({ lat: latitude, lng: longitude });
+									}}
+								>
+									{pointCount}
+								</div>
+							</Marker>
+						);
+					}
+
+					return (
+						<Marker
+							key={`${cluster.properties.erfId}`}
+							lat={latitude}
+							lng={longitude}
+						>
+							<button
+								className={`erf-marker`}
+								onClick={() => handleMarkerClick(id, latitude, longitude)}
+							>
+								<span className={`erf-no ${hasAsts} ${hasAnomaly}`}>{erfNo}</span>
+							</button>
+						</Marker>
+					);
+				})}
+
+				<Marker
+					position={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}
+				>
+					<div className="userGpsPosition"></div>
+				</Marker>
+			</GoogleMapReact>
+		</div>
+	);
+}

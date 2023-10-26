@@ -6,13 +6,13 @@ import { Timestamp } from "firebase/firestore";
 
 // prepare asts for trn by going to th erf and get each ast in the erf and prepare an array of all of them
 const getTrnObjectsArray = erf => {
-	console.log(`erf`, erf);
+	// console.log(`erf`, erf);
 
 	// an erf already has an array of all asts in it. They are in asts property. Go inside asts property and extract needed astData as well as catInstallation ( and catCommissining data if it there).
 
 	// step 1: destructire asts array
 	const { asts } = erf;
-	console.log(`asts`, asts);
+	// console.log(`asts`, asts);
 
 	if (!asts) return null;
 
@@ -26,7 +26,7 @@ const getTrnObjectsArray = erf => {
 
 			// destructure astId
 			const { astId } = ast;
-			console.log(`astId`, astId);
+			// console.log(`astId`, astId);
 
 			// get astCat from ast
 			const astCat = ast.astData.astCartegory;

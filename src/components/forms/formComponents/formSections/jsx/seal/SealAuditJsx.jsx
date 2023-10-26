@@ -51,7 +51,7 @@ const SealAuditJsx = props => {
 							/>
 						</div>
 					</div>
-					<div className="row-1 ast-row">
+					<div className="row-2 ast-row">
 						{/* <div className="half-row-50-50"> */}
 						<FormikControl
 							control="select"
@@ -62,6 +62,37 @@ const SealAuditJsx = props => {
 							options={formSelectOptions.sealCommentsOptions}
 						/>
 						{/* </div> */}
+					</div>
+					<div className="row-3 ast-row">
+						<div className="seal-adr">
+							<FormikControl
+								control="gcButton"
+								type="button"
+								label="click for seal address"
+								name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.adr`}
+								placeholder="Seal Address"
+							/>
+						</div>
+						<div className="seal-gps">
+							<div className="half-row-50-50">
+								<FormikControl
+									readOnly={true}
+									control="input"
+									type="text"
+									label="gps(lat)"
+									name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps.lat`}
+									placeholder="Seal Gps"
+								/>
+								<FormikControl
+									readOnly={true}
+									control="input"
+									type="text"
+									label="gps(lng)"
+									name={`astData[${astCat}][${astCatIndex}].trnData.astAdr.gps.lng`}
+									placeholder="Seal Gps"
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</FormSectionTrnAst>

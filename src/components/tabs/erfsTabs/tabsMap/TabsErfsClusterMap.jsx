@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import "./TabsErfsClusterMap.css";
-import edumbe from "../../../../data/cadastral/edumbe/edumbe.geojson";
+import ratandab from "../../../../data/cadastral/lesedi/ratandab.geojson";
 import useModal from "../../../../hooks/useModal";
+import useGeoLocation from "../../../../hooks/useGeolocation";
 
 const Marker = ({ children }) => children;
 
@@ -24,6 +25,12 @@ export function TabsErfsClusterMap(props) {
 
 	// const erfs = props.rowData;
 	// console.log(`erfs`, erfs);
+
+	// get user location
+	const { setGeolocation, userGps } = useGeoLocation();
+	// console.log(`userGps`, userGps);
+
+	setGeolocation();
 
 	const points = erfs?.map(erf => {
 		// console.log(`erf`, erf);
@@ -106,7 +113,7 @@ export function TabsErfsClusterMap(props) {
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
 		// console.log(`clusters`, clusters);
-		mapRef.current?.data?.loadGeoJson(edumbe);
+		mapRef.current?.data?.loadGeoJson(ratandab);
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});
@@ -165,7 +172,7 @@ export function TabsErfsClusterMap(props) {
 			</div>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-				defaultCenter={{ lat: -27.422497628330788, lng: 30.81734906312119 }}
+				defaultCenter={{ lat: -26.56924, lng: 28.32348 }}
 				defaultZoom={15}
 				yesIWantToUseGoogleMapApiInternals
 				onGoogleApiLoaded={onMapLoad}
@@ -233,6 +240,11 @@ export function TabsErfsClusterMap(props) {
 						</Marker>
 					);
 				})}
+				<Marker
+					position={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}
+				>
+					<div className="userGpsPosition"></div>
+				</Marker>
 			</GoogleMapReact>
 		</div>
 	);

@@ -1,5 +1,11 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { addDoc, collection, doc, Timestamp, writeBatch } from "firebase/firestore";
+import {
+	addDoc,
+	collection,
+	doc,
+	Timestamp,
+	writeBatch,
+} from "firebase/firestore";
 import { useState } from "react";
 import ErfsForm from "../components/forms/erfsForm/ErfsForm";
 import { db, timestamp } from "../firebaseConfig/fbConfig";
@@ -15,12 +21,12 @@ const useUpload = collectionName => {
 	const { user } = useAuthContext();
 
 	const upload = uploadData => {
-		console.log(`uploadData`, uploadData);
+		// console.log(`uploadData`, uploadData);
 		// const ref = collection(db, collectionName);
 
 		// Get a new write batch
 		const batch = writeBatch(db);
-		console.log(`batch`, batch);
+		// console.log(`batch`, batch);
 
 		try {
 			setResult({
@@ -42,11 +48,12 @@ const useUpload = collectionName => {
 				};
 
 				const ref = doc(db, collectionName, nanoid());
-				console.log(`add erf to erfs collection`, erf);
+				// console.log(`add erf to erfs collection`, erf);
 				batch.set(ref, erf);
 			});
-			const uploadBarchOutcome = batch.commit();
-			console.log(`uploadBarchOutcome`, uploadBarchOutcome);
+			batch.commit().then(uploadBarchOutcome => {
+				console.log(`uploadBarchOutcome`, uploadBarchOutcome);
+			});
 			setResult({
 				...result,
 				success: true,

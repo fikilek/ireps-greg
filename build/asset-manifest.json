@@ -1,16 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.d6d16b91.css",
-    "main.js": "/static/js/main.dff481c9.js",
+    "main.css": "/static/css/main.77c82af3.css",
+    "main.js": "/static/js/main.4f066277.js",
     "static/media/edumbe.geojson": "/static/media/edumbe.73fce9dd50f41bcb2413.geojson",
+    "static/media/mainChallenge3.jpeg": "/static/media/mainChallenge3.5678703f2d6bce64ed04.jpeg",
+    "static/media/irepsOffer.jpeg": "/static/media/irepsOffer.da035fb0e3b6e6c9a3c8.jpeg",
+    "static/media/energyNetwork6.jpg": "/static/media/energyNetwork6.ebac981caa8186f826d6.jpg",
+    "static/media/meterAlarmMonitoringAndResponse.jpeg": "/static/media/meterAlarmMonitoringAndResponse.9136b8b52c60b1a0f335.jpeg",
     "service-worker.js": "/service-worker.js",
+    "static/media/distributionNetwork8.jpg": "/static/media/distributionNetwork8.0c6e57aa1fa34ca17242.jpg",
     "static/media/oops1.jpg": "/static/media/oops1.422a6509f0c4619fefd7.jpg",
+    "static/media/grv2.JPG": "/static/media/grv2.893bd1b35523aaf4479e.JPG",
+    "static/media/pole2.jpg": "/static/media/pole2.9aeafe931ef5696039b5.jpg",
+    "static/media/meter7.jpg": "/static/media/meter7.fedda8bed8c5c93f5fd8.jpg",
+    "static/media/meter6.jpg": "/static/media/meter6.aea5795ec436a66d0e7f.jpg",
+    "static/media/meter8.jpg": "/static/media/meter8.cf4d98da04c47097fb3d.jpg",
     "index.html": "/index.html",
-    "main.d6d16b91.css.map": "/static/css/main.d6d16b91.css.map",
-    "main.dff481c9.js.map": "/static/js/main.dff481c9.js.map"
+    "main.77c82af3.css.map": "/static/css/main.77c82af3.css.map",
+    "main.4f066277.js.map": "/static/js/main.4f066277.js.map"
   },
   "entrypoints": [
-    "static/css/main.d6d16b91.css",
-    "static/js/main.dff481c9.js"
+    "static/css/main.77c82af3.css",
+    "static/js/main.4f066277.js"
   ]
 }

@@ -8,10 +8,12 @@ import { GeocodingContext } from "../../contexts/GeocodingContext";
 import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 import { ErfsContext } from "../../contexts/ErfsContext";
-import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
+// import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
+import ratandab from "../../data/cadastral/lesedi/ratandab.geojson";
 import useSupercluster from "use-supercluster";
+import { getAstCat } from "../../utils/utils";
 
-// const Marker = ({ children }) => children;
+const Marker = ({ children }) => children;
 
 const GeocodingApp = () => {
 	const { gcData, setGcData } = useContext(GeocodingContext);
@@ -22,12 +24,20 @@ const GeocodingApp = () => {
 
 	const { erfs } = useContext(ErfsContext);
 
+	// extract ast cat
+	const astCat = getAstCat(gcData?.data?.field?.name);
+	// console.log(`astCat`, astCat);
+
 	// get geolocation
 	// const [userGps, setUserGps] = useState(null);
-	const { userGps } = useGeoLocation();
 	// console.log(`location`, location);
 	// console.log(`userGps`, userGps);
 	// console.log(`erfs`, erfs);
+	// get user location
+	const { setGeolocation, userGps } = useGeoLocation();
+	// console.log(`userGps`, userGps);
+
+	setGeolocation();
 
 	const [bounds, setBounds] = useState([]);
 	// console.log(`bounds`, bounds);
@@ -46,11 +56,13 @@ const GeocodingApp = () => {
 	// };
 	// console.log(`currentMeterAdrGps`, currentMeterAdrGps);
 
-	const [meterGps, setMeterGps] = useState({
-		lat: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lat,
-		lng: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lng,
+	const [astGps, setAstGps] = useState({
+		lat: gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr
+			?.gps?.lat,
+		lng: gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr
+			?.gps?.lng,
 	});
-	// console.log(`meterGps`, meterGps);
+	// console.log(`astGps`, astGps);
 
 	const [map, setMap] = useState();
 	// const [isInfoWindowOpen, setIsInfoWindowOpen] = useState(false);
@@ -58,38 +70,38 @@ const GeocodingApp = () => {
 	// const [center, setCenter] = useState(null);
 	// const [bounds, setBounds] = useState(null);
 	const [address, setAddress] = useState(
-		gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr
+		gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr?.adr
 	);
 
-	const points = erfs?.map(erf => {
-		// console.log(`erf`, erf);
-		// const lat = erf.address.gps.latitude;
-		// const lng = erf.address.gps.longitude;
+	// const points = erfs?.map(erf => {
+	// 	// console.log(`erf`, erf);
+	// 	// const lat = erf.address.gps.latitude;
+	// 	// const lng = erf.address.gps.longitude;
 
-		return {
-			type: "Feature",
-			properties: { cluster: false, erfId: erf.id, erf: erf },
-			geometry: {
-				type: "Point",
-				coordinates: [
-					parseFloat(erf.address.gps.longitude),
-					parseFloat(erf.address.gps.latitude),
-				],
-			},
-		};
-	});
+	// 	return {
+	// 		type: "Feature",
+	// 		properties: { cluster: false, erfId: erf.id, erf: erf },
+	// 		geometry: {
+	// 			type: "Point",
+	// 			coordinates: [
+	// 				parseFloat(erf.address.gps.longitude),
+	// 				parseFloat(erf.address.gps.latitude),
+	// 			],
+	// 		},
+	// 	};
+	// });
 	// console.log(`points`, points);
 
-	const { clusters, supercluster } = useSupercluster({
-		points,
-		bounds,
-		zoom,
-		options: { radius: 75, maxZoom: 20 },
-	});
+	// const { clusters, supercluster } = useSupercluster({
+	// 	points,
+	// 	bounds,
+	// 	zoom,
+	// 	options: { radius: 75, maxZoom: 20 },
+	// });
 	// console.log(`clusters`, clusters);
 
 	// get currnet user data
-	const { user } = useAuthContext();
+	// const { user } = useAuthContext();
 	// console.log(`user`, user)
 
 	const { data, isOpened } = gcData;
@@ -101,20 +113,20 @@ const GeocodingApp = () => {
 	const closeGeocodingApp = e => {
 		e.preventDefault();
 		setGcData({
-			...gcData,
+			data: {},
 			isOpened: false,
 		});
 	};
 
 	const onDragEnd = e => {
 		// e.preventDefault()
-		// console.log(`end of drag`, e);
-		const newMeterGps = new window.google.maps.LatLng(
+		console.log(`end of drag`, e);
+		const newAstGps = new window.google.maps.LatLng(
 			e.latLng.lat(),
 			e.latLng.lng()
 		);
 
-		setMeterGps(newMeterGps);
+		setAstGps(newAstGps);
 
 		if (Geocode) {
 			// console.log(`Geocode`, Geocode);
@@ -154,32 +166,36 @@ const GeocodingApp = () => {
 					const address = response.results[0].formatted_address;
 					// console.log(address);
 					setAddress(address);
+					// if (astCat) {
+					console.log(`astCat`, astCat);
+
 					gcData.data.form.setFieldValue(
-						"astData[meter][0].trnData.astAdr.adr",
+						`astData[${astCat}][0].trnData.astAdr.adr`,
 						address
 					);
 					gcData.data.form.setFieldValue(
-						"astData[meter][0].trnData.astAdr.gps.lat",
+						`astData[${astCat}][0].trnData.astAdr.gps.lat`,
 						e.latLng.lat()
 					);
 					gcData.data.form.setFieldValue(
-						"astData[meter][0].trnData.astAdr.gps.lng",
+						`astData[${astCat}][0].trnData.astAdr.gps.lng`,
 						e.latLng.lng()
 					);
+					// }
 				})
 				.catch(error => {
 					console.error(`Error reverse geocoding: `, error);
 					setAddress("address NOT avaiable");
 					gcData.data.form.setFieldValue(
-						"astData[meter][0].trnData.astAdr.adr",
+						`astData[${astCat}][0].trnData.astAdr.adr`,
 						"address NOT avaiable - try manual (GPS is Correct though)"
 					);
 					gcData.data.form.setFieldValue(
-						"astData[meter][0].trnData.astAdr.gps.lat",
+						`astData[${astCat}][0].trnData.astAdr.gps.lat`,
 						e.latLng.lat()
 					);
 					gcData.data.form.setFieldValue(
-						"astData[meter][0].trnData.astAdr.gps.lng",
+						`astData[${astCat}][0].trnData.astAdr.gps.lng`,
 						e.latLng.lng()
 					);
 				});
@@ -187,29 +203,39 @@ const GeocodingApp = () => {
 	};
 
 	useEffect(() => {
-		setAddress(gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.adr);
-	}, [gcData]);
+		setAddress(
+			gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr?.adr
+		);
+		// return setGcData({
+		// 	data: {},
+		// 	isOpened: false,
+		// });
+	}, [gcData, setGcData, astCat]);
 
 	useEffect(() => {
 		// console.log(`userGps`, userGps);
-		gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lat
-			? setMeterGps({
-					lat: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lat,
-					lng: gcData?.data?.form?.values?.astData?.meter[0].trnData.astAdr.gps.lng,
+		gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr?.gps
+			.lat
+			? setAstGps({
+					lat: gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr
+						?.gps?.lat,
+					lng: gcData?.data?.form?.values?.astData?.[`${astCat}`][0]?.trnData?.astAdr
+						?.gps?.lng,
 			  })
-			: setMeterGps({
-					lat: gcData?.data?.form?.values?.erfData?.address.gps.latitude,
-					lng: gcData?.data?.form?.values?.erfData?.address.gps.longitude,
+			: setAstGps({
+					lat: gcData?.data?.form?.values?.erfData?.address?.gps?.latitude,
+					lng: gcData?.data?.form?.values?.erfData?.address?.gps?.longitude,
 					// lat: userGps?.coordinates?.lat,
 					// lng: userGps?.coordinates?.lng,
 					// lat: -27.42526206328501,
 					// lng: 30.81783694804052,
 			  });
-	}, [userGps, gcData]);
+	}, [userGps, gcData, astCat]);
 
 	useEffect(() => {
 		if (map) {
-			map.data.loadGeoJson(edumbe);
+			// map.data.loadGeoJson(edumbe);
+			// map.data.loadGeoJson(lesedi);
 			map.data.setStyle({
 				fillOpacity: 0.0,
 			});
@@ -217,24 +243,25 @@ const GeocodingApp = () => {
 	}, [map]);
 
 	const onMapLoad = mapObjects => {
-		console.log(`myMapObjects`, mapObjects);
+		// console.log(`myMapObjects`, mapObjects);
 		const { map, maps } = mapObjects;
 		// console.log(`mapRef`, mapRef);
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
 		// console.log(`clusters`, clusters);
-		mapRef.current?.data?.loadGeoJson(edumbe);
+		// mapRef.current?.data?.loadGeoJson(edumbe);
+		mapRef.current?.data?.loadGeoJson(ratandab);
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});
 		// mapRef.data.addListener("click", handleErfClick);
 
 		let marker = new maps.Marker({
-			position: { lat: meterGps.lat, lng: meterGps.lng },
+			position: { lat: astGps?.lat, lng: astGps?.lng },
 			map,
 			draggable: true,
 		});
-		console.log(`marker`, marker);
+		// console.log(`marker`, marker);
 		marker.addListener("dragend", onDragEnd);
 	};
 
@@ -242,14 +269,14 @@ const GeocodingApp = () => {
 		<div className={`geocoding-app ${openGeocodingApp}`}>
 			<div className="header">
 				<div className="header-subsection header-name">
-					<h3 className="data-emphasis">Meter Address</h3>
+					<h3 className="data-emphasis">{`${astCat} Address`}</h3>
 				</div>
 				<div className="header-subsection address">
 					<button>{address ? address : "No Address"}</button>
 				</div>
 				<div className="header-subsection ast-no">
 					<h3 className="data-emphasis">
-						{gcData?.data?.form?.values?.astData?.meter[0].astData.astNo}{" "}
+						{gcData?.data?.form?.values?.astData?.[`${astCat}`][0].astData?.astNo}{" "}
 					</h3>
 				</div>
 				<div className="header-subsection geocoding-app-close-btn">
@@ -261,7 +288,7 @@ const GeocodingApp = () => {
 				<div className="geocoding-map">
 					<GoogleMapReact
 						bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-						center={meterGps}
+						center={astGps}
 						zoom={18}
 						yesIWantToUseGoogleMapApiInternals
 						onGoogleApiLoaded={onMapLoad}
@@ -270,65 +297,11 @@ const GeocodingApp = () => {
 						// 	setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
 						// }}
 					>
-						{/* {clusters.map(cluster => {
-							// console.log(`cluster?.properties?.erf`, cluster?.properties?.erf);
-							const [longitude, latitude] = cluster.geometry.coordinates;
-							const { cluster: isCluster, point_count: pointCount } =
-								cluster.properties;
-							const erfNo = cluster?.properties?.erf?.erfNo;
-							// const id = cluster?.properties?.erf?.id;
-
-							if (isCluster) {
-								return (
-									<Marker key={`${cluster.id}`} lat={latitude} lng={longitude}>
-										<div
-											className="cluster-marker"
-											style={{
-												width: `${10 + (pointCount / points.length) * 20}px`,
-												height: `${10 + (pointCount / points.length) * 20}px`,
-											}}
-											onClick={() => {
-												const expansionZoom = Math.min(
-													supercluster.getClusterExpansionZoom(cluster.id),
-													20
-												);
-												mapRef.current.setZoom(expansionZoom);
-												mapRef.current.panTo({ lat: latitude, lng: longitude });
-											}}
-										>
-											{pointCount}
-										</div>
-									</Marker>
-								);
-							}
-
-							return (
-								<Marker
-									key={`${cluster.properties.erfId}`}
-									lat={latitude}
-									lng={longitude}
-								>
-									<button
-										className="erf-marker"
-										// onClick={() => handleMarkerClick(id, latitude, longitude)}
-									>
-										<span className="erf-no">{erfNo}</span>
-									</button>
-								</Marker>
-							);
-						})} */}
-
-						{/* <Marker
-							lat={userGps.lat}
-							lng={userGps.lng}
-							draggable={true}
-							// onDragEnd={onDragEnd}
+						<Marker
+							position={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}
 						>
-							<img
-								src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-								alt="xx"
-							/>
-						</Marker> */}
+							<div className="userGpsPosition"></div>
+						</Marker>
 					</GoogleMapReact>
 				</div>
 			</div>

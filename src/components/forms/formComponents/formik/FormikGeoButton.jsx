@@ -7,7 +7,7 @@ import useGeoLocation from "../../../../hooks/useGeolocation";
 import Geocode from "react-geocode";
 
 const FormikGeoButton = props => {
-	// console.log(`props`, props);
+	console.log(`props`, props);
 	const { label, name, ...rest } = props;
 
 	const { getGeolocation } = useGeoLocation();
@@ -15,7 +15,7 @@ const FormikGeoButton = props => {
 	const handleClick = (e, props) => {
 		e.preventDefault();
 		console.log(`e.target`, e.target);
-		// console.log(`props`, props);
+		console.log(`props`, props);
 		const { field, meta, form } = props;
 
 		// call setGeolocation and populate gps lat and gps lng

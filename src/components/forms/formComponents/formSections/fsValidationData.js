@@ -54,16 +54,16 @@ export const fsValidationData = {
 			},
 			astAdr: {
 				adr: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 				gps: {
-					Latitude: {
-						constraints: [{ required: "yes", condition: "" }],
+					latitude: {
+						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
-					Longitude: {
-						constraints: [{ required: "yes", condition: "" }],
+					longitude: {
+						constraints: [{ required: "", condition: "" }],
 						verdict: "",
 					},
 				},
@@ -207,11 +207,11 @@ export const fsValidationData = {
 					verdict: "",
 				},
 				gps: {
-					Latitude: {
+					latitude: {
 						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
-					Longitude: {
+					longitude: {
 						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
@@ -541,11 +541,11 @@ export const fsValidationData = {
 					verdict: "",
 				},
 				gps: {
-					lat: {
+					latitude: {
 						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
-					lng: {
+					longitude: {
 						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
@@ -615,7 +615,7 @@ export const fsValidationData = {
 					verdict: "",
 				},
 				gps: {
-					katitude: {
+					latitude: {
 						constraints: [{ required: "no", condition: "" }],
 						verdict: "",
 					},
@@ -680,55 +680,6 @@ export const fsValidationData = {
 			},
 		},
 
-		// auditValidationData: {
-		// 	// installation data
-		// 	linkedMeterNo: {
-		// 		constraints: [{ required: "yes", condition: "" }],
-		// 		verdict: "",
-		// 	},
-		// 	confirmations: {
-		// 		confirmTrn: {
-		// 			constraints: [{ required: "yes", condition: "" }],
-		// 			verdict: "",
-		// 		},
-		// 	},
-		// 	photos: {
-		// 		constraints: [{ required: "no", condition: "" }],
-		// 		verdict: "",
-		// 	},
-		// 	// astData
-		// 	astCartegory: {
-		// 		constraints: [{ required: "no", condition: "" }],
-		// 		verdict: "",
-		// 	},
-		// 	astNo: {
-		// 		constraints: [{ required: "no", condition: "" }],
-		// 		verdict: "",
-		// 	},
-		// 	astSerialNo: {
-		// 		constraints: [{ required: "no", condition: "" }],
-		// 		verdict: "",
-		// 	},
-		// 	astState: {
-		// 		constraints: [{ required: "no", condition: "" }],
-		// 		verdict: "",
-		// 	},
-		// 	cb: {
-		// 		size: {
-		// 			constraints: [{ required: "yes", condition: "" }],
-		// 			verdict: "",
-		// 		},
-		// 		code: {
-		// 			constraints: [{ required: "no", condition: "" }],
-		// 			verdict: "",
-		// 		},
-		// 		type: {
-		// 			constraints: [{ required: "yes", condition: "" }],
-		// 			verdict: "",
-		// 		},
-		// 	},
-		// },
-
 		inspectionValidationData: {
 			cbPresent: {
 				constraints: [{ required: "yes", condition: "" }],
@@ -766,6 +717,22 @@ export const fsValidationData = {
 			photos: {
 				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
+			},
+			astAdr: {
+				adr: {
+					constraints: [{ required: "no", condition: "" }],
+					verdict: "",
+				},
+				gps: {
+					latitude: {
+						constraints: [{ required: "no", condition: "" }],
+						verdict: "",
+					},
+					longitude: {
+						constraints: [{ required: "no", condition: "" }],
+						verdict: "",
+					},
+				},
 			},
 
 			// astData
@@ -835,6 +802,22 @@ export const fsValidationData = {
 			sealComments: {
 				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
+			},
+			astAdr: {
+				adr: {
+					constraints: [{ required: "no", condition: "" }],
+					verdict: "",
+				},
+				gps: {
+					latitude: {
+						constraints: [{ required: "no", condition: "" }],
+						verdict: "",
+					},
+					longitude: {
+						constraints: [{ required: "no", condition: "" }],
+						verdict: "",
+					},
+				},
 			},
 
 			// astData

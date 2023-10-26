@@ -6,7 +6,7 @@ import { ReverseGeocodingContext } from "../../contexts/ReverseGeocodingContext"
 // import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
-import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
+// import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
 
 const Marker = ({ children }) => children;
 
@@ -88,7 +88,7 @@ const ReverseGeocodingApp = () => {
 
 	useEffect(() => {
 		if (map) {
-			map.data.loadGeoJson(edumbe);
+			// map.data.loadGeoJson(edumbe);
 			map.data.setStyle({
 				fillOpacity: 0.0,
 			});
@@ -98,7 +98,7 @@ const ReverseGeocodingApp = () => {
 	const onMapLoad = ({ map }) => {
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
-		mapRef.current?.data?.loadGeoJson(edumbe);
+		// mapRef.current?.data?.loadGeoJson(edumbe);
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});
@@ -132,9 +132,9 @@ const ReverseGeocodingApp = () => {
 						yesIWantToUseGoogleMapApiInternals
 						onGoogleApiLoaded={onMapLoad}
 					>
-						<Marker lat={lat} lng={lng}>
+						{/* <Marker lat={lat} lng={lng}>
 							<span className="erf-no">{erfNo}</span>
-						</Marker>
+						</Marker> */}
 					</GoogleMapReact>
 				</div>
 			</div>
