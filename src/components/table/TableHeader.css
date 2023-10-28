@@ -24,11 +24,13 @@
 .th .th-right {}
 
 .th .th-right .th-right-submit-btn {
-  /* width: 5rem; */font-size: 1.7rem;
+  /* width: 5rem; */
+  font-size: 1.7rem;
 }
 
 .th .th-right .th-right-close-btn {
-  /* width: 3rem; */font-size: 1.7rem;
+  /* width: 3rem; */
+  font-size: 1.7rem;
 }
 
 .th button {
@@ -44,4 +46,11 @@
   cursor: pointer;
   background-color: #e8fee8b5;
   outline: 0.1rem solid rgb(121, 255, 121);
+}
+
+@media (max-width: 700px) {
+
+  .th {
+    grid-template-columns: 1fr;
+  }
 }

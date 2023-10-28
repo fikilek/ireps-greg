@@ -131,12 +131,11 @@ export const capitalize = string => {
 export const formSelectOptions = {
 	sealCommentsOptions: [
 		{ key: "choose", value: "choose" },
-		{ key: "no seal number", value: "no seal number" },
+		{ key: "nsn (sealed)", value: "nsn (sealed)" },
 		{
-			key: "seal number not clearly visible",
-			value: "seal number not clearly visible",
+			key: "snnv (sealed)",
+			value: "snnv (sealed)",
 		},
-		{ key: "other", value: "other" },
 	],
 	anomaliesOptions: [
 		{ key: "choose", value: "choose" },
@@ -257,7 +256,7 @@ export const formSelectOptions = {
 	],
 
 	trnConfirmationOptions: [
-		{ key: "choose", value: "choose" },
+		// { key: "choose", value: "choose" },
 		{ key: "done", value: "done" },
 		{ key: "not done", value: "not done" },
 	],

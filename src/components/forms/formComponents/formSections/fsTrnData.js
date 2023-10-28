@@ -88,6 +88,7 @@ export const fsTrnData = {
 			confirmations: {
 				confirmTrn: "not done",
 			},
+			meterSealed: "",
 		},
 
 		inspectionData: {
@@ -285,7 +286,6 @@ export const fsTrnData = {
 		},
 
 		auditData: {
-			meterSealed: "",
 			linkedMeterNo: "",
 			confirmations: {
 				confirmTrn: "not done",

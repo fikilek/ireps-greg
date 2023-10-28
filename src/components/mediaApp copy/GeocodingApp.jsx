@@ -37,7 +37,7 @@ const GeocodingApp = () => {
 	const { setGeolocation, userGps } = useGeoLocation();
 	// console.log(`userGps`, userGps);
 
-	setGeolocation();
+	// setGeolocation();
 
 	const [bounds, setBounds] = useState([]);
 	// console.log(`bounds`, bounds);
@@ -288,14 +288,16 @@ const GeocodingApp = () => {
 				<div className="geocoding-map">
 					<GoogleMapReact
 						bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+						defaultCenter={astGps}
+						// center={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}
 						center={astGps}
 						zoom={18}
 						yesIWantToUseGoogleMapApiInternals
 						onGoogleApiLoaded={onMapLoad}
-						// onChange={({ zoom, bounds }) => {
-						// 	setZoom(zoom);
-						// 	setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
-						// }}
+						onChange={({ zoom, bounds }) => {
+							setZoom(zoom);
+							setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
+						}}
 					>
 						<Marker
 							position={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}

@@ -202,16 +202,16 @@ const PhotoApp = () => {
 		// save image to storage
 		storeMedia(storageRef, imgData)
 			.then(() => {
-				console.log(`Media stored succesfully at firebase storge and firestore`);
+				// console.log(`Media stored succesfully at firebase storge and firestore`);
 				setImgData(null);
 				// get all media for the astId
 				console.log(`mediaList.length`, mediaList?.length);
 
 				getMediaList(`asts/${astId}`).then(list => {
-					console.log(`list`, list);
-					console.log(`list.length`, list?.length);
+					// console.log(`list`, list);
+					// console.log(`list.length`, list?.length);
 					listSize.current = Number(mediaList?.length) + 1;
-					console.log(`listSize.current`, listSize.current);
+					// console.log(`listSize.current`, listSize.current);
 					if (list?.length === listSize.current || mediaList === undefined) {
 						setMediaList(list);
 					}

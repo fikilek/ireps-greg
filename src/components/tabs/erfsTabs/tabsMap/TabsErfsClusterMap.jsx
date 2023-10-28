@@ -23,12 +23,9 @@ export function TabsErfsClusterMap(props) {
 		setErfs(props.rowData);
 	}, [props.rowData]);
 
-	// const erfs = props.rowData;
-	// console.log(`erfs`, erfs);
-
 	// get user location
 	const { setGeolocation, userGps } = useGeoLocation();
-	// console.log(`userGps`, userGps);
+	console.log(`userGps`, userGps);
 
 	setGeolocation();
 
@@ -107,7 +104,7 @@ export function TabsErfsClusterMap(props) {
 	};
 
 	const onMapLoad = mapObjects => {
-		console.log(`myMapObjects`, mapObjects);
+		// console.log(`myMapObjects`, mapObjects);
 		const { map, maps } = mapObjects;
 		// console.log(`mapRef`, mapRef);
 		mapRef.current = map;
@@ -173,6 +170,10 @@ export function TabsErfsClusterMap(props) {
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
 				defaultCenter={{ lat: -26.56924, lng: 28.32348 }}
+				center={{
+					lat: userGps?.coordinates?.lat,
+					lng: userGps?.coordinates?.lng,
+				}}
 				defaultZoom={15}
 				yesIWantToUseGoogleMapApiInternals
 				onGoogleApiLoaded={onMapLoad}

@@ -191,47 +191,23 @@ const MeterAuditJsx = props => {
 								placeholder="No Access Reasons"
 								options={formSelectOptions.keyPadNoAccessOptions}
 							/>
+							{/* TODO: hide the form control if the was access to keypad */}
 						</div>
 						{/* TODO: come back to include control for the installation group photos */}
 					</div>
-					{/* <div className="row-6 ast-row">
+					<div className="row-6 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
-								control="select"
+								control="meterSealedSelect"
 								type="text"
-								label="is there cb?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedCb.isThereCb`}
-								placeholder="Is There Cb?"
-								options={formSelectOptions.yesNoOptions}
-							/>
-							<FormikControl
-								control="select"
-								type="text"
-								label="is there seal?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.linkedSeal.isThereSeal`}
-								placeholder="Is There Cb?"
+								label="meter sealed?"
+								name={`astData[${astCat}][${astCatIndex}].trnData.meterSealed`}
+								placeholder="Meter Sealed?"
 								options={formSelectOptions.yesNoOptions}
 							/>
 						</div>
-						<div className="half-row-50-50">
-							<FormikControl
-								control="select"
-								type="text"
-								label="exact location?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.location.exactLocation`}
-								placeholder="Exact Location"
-								options={formSelectOptions.astExactLocationOptions}
-							/>
-							<FormikControl
-								control="select"
-								type="text"
-								label="service connection?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.serviceConnection.connection`}
-								placeholder="Service Connection"
-								options={formSelectOptions.serviceConnectionEntryOptions}
-							/>
-						</div>
-					</div> */}
+						{/* TODO: come back to include control for the installation group photos */}
+					</div>
 				</div>
 			</FormSectionTrnAst>
 		</div>

@@ -18,19 +18,19 @@ const SealAuditJsx = props => {
 					<div className="row-1 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
-								control="select"
-								type="text"
-								label="meter sealed?"
-								name={`astData[${astCat}][${astCatIndex}].trnData.meterSealed`}
-								placeholder="Meter Sealed?"
-								options={formSelectOptions.yesNoOptions}
-							/>
-							<FormikControl
 								control="input"
 								type="text"
 								label="seal no"
 								name={`astData[${astCat}][${astCatIndex}].astData.astNo`}
 								placeholder="Seal No"
+							/>
+							<FormikControl
+								control="sealCommentsSelect"
+								type="text"
+								label="seal comments"
+								name={`astData[${astCat}][${astCatIndex}].trnData.sealComments`}
+								placeholder="Meter Phase"
+								options={formSelectOptions.sealCommentsOptions}
 							/>
 						</div>
 						<div className="half-row-50-50">
@@ -53,14 +53,6 @@ const SealAuditJsx = props => {
 					</div>
 					<div className="row-2 ast-row">
 						{/* <div className="half-row-50-50"> */}
-						<FormikControl
-							control="select"
-							type="text"
-							label="seal comments"
-							name={`astData[${astCat}][${astCatIndex}].trnData.sealComments`}
-							placeholder="Meter Phase"
-							options={formSelectOptions.sealCommentsOptions}
-						/>
 						{/* </div> */}
 					</div>
 					<div className="row-3 ast-row">

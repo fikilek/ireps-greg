@@ -10,6 +10,8 @@ import FormikSelect from "./FormikSelect";
 import FormikGeocodeButton from "./FormikGeocodeButton";
 import FormikLinkedMeter from "./FormikMeterNo";
 import FormikMeterNo from "./FormikMeterNo";
+import FormikMeterSealedSelect from "./FormikMeterSealedSelect";
+import FormikSealCommentsSelect from "./FormikSealCommentsSelect";
 
 const FormikControl = props => {
 	const { control, ...rest } = props;
@@ -34,6 +36,10 @@ const FormikControl = props => {
 		// case 'textarea': return '';
 		case "select":
 			return <FormikSelect {...rest} />;
+		case "meterSealedSelect":
+			return <FormikMeterSealedSelect {...rest} />;
+		case "sealCommentsSelect":
+			return <FormikSealCommentsSelect {...rest} />;
 		// case 'radio': return '';
 		// case 'checkbox': return '';
 		case "datetime":

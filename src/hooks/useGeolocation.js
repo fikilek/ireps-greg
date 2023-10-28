@@ -8,20 +8,21 @@ const useGeoLocation = () => {
 	// console.log(`userGps.coordinates`, userGps.coordinates);
 
 	const onSuccess = userPositionGps => {
-		// console.log(`userGps`, userGps)
+		// console.log(`userGps`, userGps);
+		// console.log(`userPositionGps`, userPositionGps);
 
-		if (
-			userGps.coordinates.lat !== userPositionGps.coords.latitude &&
-			userGps.coordinates.lng !== userPositionGps.coords.longitude
-		) {
-			setUserGps({
-				loaded: true,
-				coordinates: {
-					lat: userPositionGps.coords.latitude,
-					lng: userPositionGps.coords.longitude,
-				},
-			});
-		}
+		// if (
+		// 	userGps.coordinates.lat !== userPositionGps.coords.latitude &&
+		// 	userGps.coordinates.lng !== userPositionGps.coords.longitude
+		// ) {
+		setUserGps({
+			loaded: true,
+			coordinates: {
+				lat: userPositionGps.coords.latitude,
+				lng: userPositionGps.coords.longitude,
+			},
+		});
+		// }
 	};
 
 	const onError = error => {

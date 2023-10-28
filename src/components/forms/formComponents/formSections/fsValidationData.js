@@ -208,11 +208,11 @@ export const fsValidationData = {
 				},
 				gps: {
 					latitude: {
-						constraints: [{ required: "no", condition: "" }],
+						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
 					longitude: {
-						constraints: [{ required: "no", condition: "" }],
+						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
 				},
@@ -252,6 +252,10 @@ export const fsValidationData = {
 					constraints: [{ required: "yes", condition: "" }],
 					verdict: "",
 				},
+			},
+			meterSealed: {
+				constraints: [{ required: "yes", condition: "" }],
+				verdict: "",
 			},
 
 			// astData
@@ -616,11 +620,11 @@ export const fsValidationData = {
 				},
 				gps: {
 					latitude: {
-						constraints: [{ required: "no", condition: "" }],
+						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
 					longitude: {
-						constraints: [{ required: "no", condition: "" }],
+						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
 				},
@@ -781,12 +785,8 @@ export const fsValidationData = {
 		},
 
 		auditValidationData: {
-			meterSealed: {
-				constraints: [{ required: "yes", condition: "" }],
-				verdict: "",
-			},
 			linkedMeterNo: {
-				constraints: [{ required: "yes", condition: "" }],
+				constraints: [{ required: "no", condition: "" }],
 				verdict: "",
 			},
 			confirmations: {
@@ -810,11 +810,11 @@ export const fsValidationData = {
 				},
 				gps: {
 					latitude: {
-						constraints: [{ required: "no", condition: "" }],
+						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
 					longitude: {
-						constraints: [{ required: "no", condition: "" }],
+						constraints: [{ required: "yes", condition: "" }],
 						verdict: "",
 					},
 				},
@@ -827,7 +827,7 @@ export const fsValidationData = {
 				verdict: "",
 			},
 			astNo: {
-				constraints: [{ required: "no", condition: "" }],
+				constraints: [{ required: "yes", condition: "" }],
 				verdict: "",
 			},
 			astSerialNo: {
