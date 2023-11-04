@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState, useEffect } from "react";
+import React, { useRef, useMemo } from "react";
 import "./Table.css";
 import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 
@@ -6,9 +6,6 @@ import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 
 import "react-tippy/dist/tippy.css";
-import { useColumnDefs } from "../../hooks/useColumnDefs";
-import useAuthContext from "../../hooks/useAuthContext";
-// import PoTooltip from "./PoTooltip";
 
 const Table = (props) => {
 	// console.log(`Table props`, props);

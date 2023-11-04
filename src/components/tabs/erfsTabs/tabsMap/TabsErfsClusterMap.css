@@ -53,16 +53,16 @@
 .tabs-erfs-map .search-box {
   position: absolute;
   top: 1rem;
-  right: 0;
+  right: 10rem;
   /* transform: translateX(7rem); */
   width: 14rem;
   z-index: 10;
 }
 
 .tabs-erfs-map .search-box .erf-search {
-  font-size: 1.5rem;
+  font-size: 2rem;
   height: 4rem;
-  width: 14rem;
+  width: 30rem;
 }
 
 .tabs-erfs-map .search-box .erf-search:focus {
@@ -72,7 +72,7 @@
 .tabs-erfs-map .search-box .search-dropdown {
   background-color: blanchedalmond;
   background-color: blanchedalmond;
-  height: 24rem;
+  height: 30rem;
   overflow: hidden;
   border: 0.1rem solid;
 }
@@ -82,7 +82,7 @@
   font-size: 1.5rem;
   padding: 0.2rem;
   margin: 0.5rem 0;
-  width: 14rem;
+  width: 30rem;
   height: 2.5rem;
 }
 
@@ -94,6 +94,7 @@
 
 .tabs-erfs-map .search-box .show-erfs {
   visibility: visible;
+  width: 23.5rem;
 }
 
 .tabs-erfs-map .search-box .hide-erfs {

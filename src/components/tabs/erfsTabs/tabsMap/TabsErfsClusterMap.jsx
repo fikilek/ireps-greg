@@ -81,7 +81,7 @@ export function TabsErfsClusterMap(props) {
 	useEffect(() => {
 		// console.log(`erfs`, erfs);
 		const filteredErfs = erfs?.filter(erf => erf.erfNo.includes(erfSearch));
-		// console.log(`filteredErfs`, filteredErfs);
+		console.log(`filteredErfs`, filteredErfs);
 		setFilteredErfs(filteredErfs);
 	}, [erfSearch]);
 
@@ -95,7 +95,7 @@ export function TabsErfsClusterMap(props) {
 			console.log(`mapRef.current`, mapRef.current);
 			// console.log(`zoom`, zoom);
 			mapRef.current?.panTo({ lat, lng });
-			mapRef.current?.setZoom(19);
+			mapRef.current?.setZoom(20);
 		}
 	}, [selectedErf]);
 
@@ -160,9 +160,16 @@ export function TabsErfsClusterMap(props) {
 					{filteredErfs &&
 						filteredErfs?.map(erf => {
 							// console.log(`erf`, erf);
+							const erfNo = erf?.erfNo;
+							const unitName = erf.propertyType?.unitName
+								? `| ${erf.propertyType?.unitName}`
+								: "";
+							const unitNo = erf.propertyType?.unitNo
+								? `| ${erf.propertyType?.unitNo}`
+								: "";
 							return (
 								<p key={erf.id} onClick={() => selectErf(erf)}>
-									{erf.erfNo}
+									{`${erfNo} ${unitName} ${unitNo} `}
 								</p>
 							);
 						})}
@@ -175,7 +182,7 @@ export function TabsErfsClusterMap(props) {
 					lat: userGps?.coordinates?.lat,
 					lng: userGps?.coordinates?.lng,
 				}}
-				defaultZoom={15}
+				defaultZoom={16}
 				yesIWantToUseGoogleMapApiInternals
 				onGoogleApiLoaded={onMapLoad}
 				onChange={args => {

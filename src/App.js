@@ -5,14 +5,14 @@ import "./App.css";
 // import pages
 import Header from "./pages/header/Header";
 import Home from "./pages/home/Home";
-import Erfs from "./pages/erfs/Erfs";
-import Trns from "./pages/trns/Trns";
-import Asts from "./pages/asts/Asts";
-import Admin from "./pages/admin/Admin";
-import AdminMain from "./pages/admin/AdminMain";
-import Unp from "./pages/unps/UserProfile";
-import NoPageFound from "./pages/errors/NoPageFound";
-import NotAuthenticated from "./pages/auth/NotAuthenticated";
+// import Erfs from "./pages/erfs/Erfs";
+// import Trns from "./pages/trns/Trns";
+// import Asts from "./pages/asts/Asts";
+// import Admin from "./pages/admin/Admin";
+// import AdminMain from "./pages/admin/AdminMain";
+// import Unp from "./pages/unps/UserProfile";
+// import NoPageFound from "./pages/errors/NoPageFound";
+// import NotAuthenticated from "./pages/auth/NotAuthenticated";
 
 // import Dbd from "./pages/dbd/Dbd";
 // import Bok from "./pages/bok/Bok";
@@ -46,6 +46,31 @@ import CliamsContextProvider from "./contexts/ClaimsContext";
 import { ToastContainer } from "react-toastify";
 import store from "./store/irepsStore";
 import { Provider } from "react-redux";
+import { Suspense, lazy } from "react";
+import { ClockLoader } from "react-spinners";
+
+const Erfs = lazy(() => import("./pages/erfs/Erfs"));
+const Trns = lazy(() => import("./pages/trns/Trns"));
+const Asts = lazy(() => import("./pages/asts/Asts"));
+const Admin = lazy(() => import("./pages/admin/Admin"));
+const Unp = lazy(() => import("./pages/unps/UserProfile"));
+const NoPageFound = lazy(() => import("./pages/errors/NoPageFound"));
+const NotAuthenticated = lazy(() => import("./pages/auth/NotAuthenticated"));
+
+const cssProperties = {
+	margin: "auto",
+};
+
+const loader = (
+	<ClockLoader
+		color="blue"
+		loading={true}
+		size={150}
+		aria-label="Loading Spinner"
+		data-testid="loader"
+		cssOverride={cssProperties}
+	/>
+);
 
 function App() {
 	return (
@@ -79,25 +104,31 @@ function App() {
 																				<Route
 																					index
 																					element={
-																						<RequireAuth>
-																							<Asts />
-																						</RequireAuth>
+																						<Suspense fallback={loader}>
+																							<RequireAuth>
+																								<Asts />
+																							</RequireAuth>
+																						</Suspense>
 																					}
 																				/>
 																				<Route
 																					path=":ml2"
 																					element={
-																						<RequireAuth>
-																							<Asts />
-																						</RequireAuth>
+																						<Suspense fallback={loader}>
+																							<RequireAuth>
+																								<Asts />
+																							</RequireAuth>
+																						</Suspense>
 																					}
 																				>
 																					<Route
 																						path=":ml3"
 																						element={
-																							<RequireAuth>
-																								<Asts />
-																							</RequireAuth>
+																							<Suspense fallback={loader}>
+																								<RequireAuth>
+																									<Asts />
+																								</RequireAuth>
+																							</Suspense>
 																						}
 																					/>
 																				</Route>
@@ -109,25 +140,31 @@ function App() {
 																				<Route
 																					index
 																					element={
-																						<RequireAuth>
-																							<Trns />
-																						</RequireAuth>
+																						<Suspense fallback={loader}>
+																							<RequireAuth>
+																								<Trns />
+																							</RequireAuth>
+																						</Suspense>
 																					}
 																				/>
 																				<Route
 																					path=":ml2"
 																					element={
-																						<RequireAuth>
-																							<Trns />
-																						</RequireAuth>
+																						<Suspense fallback={loader}>
+																							<RequireAuth>
+																								<Trns />
+																							</RequireAuth>
+																						</Suspense>
 																					}
 																				>
 																					<Route
 																						path=":ml3"
 																						element={
-																							<RequireAuth>
-																								<Trns />
-																							</RequireAuth>
+																							<Suspense fallback={loader}>
+																								<RequireAuth>
+																									<Trns />
+																								</RequireAuth>
+																							</Suspense>
 																						}
 																					/>
 																				</Route>
@@ -138,9 +175,11 @@ function App() {
 																			<Route
 																				path="/erfs"
 																				element={
-																					<RequireAuth>
-																						<Erfs />
-																					</RequireAuth>
+																					<Suspense fallback={loader}>
+																						<RequireAuth>
+																							<Erfs />
+																						</RequireAuth>
+																					</Suspense>
 																				}
 																			></Route>
 
@@ -157,9 +196,11 @@ function App() {
 																				<Route
 																					path=":ml2"
 																					element={
-																						<RequireAuth allowedRoles={["manager", "superuser"]}>
-																							<Admin />
-																						</RequireAuth>
+																						<Suspense fallback={loader}>
+																							<RequireAuth allowedRoles={["manager", "superuser"]}>
+																								<Admin />
+																							</RequireAuth>
+																						</Suspense>
 																					}
 																				>
 																					{/* <Route
@@ -180,9 +221,11 @@ function App() {
 																			<Route
 																				path="/unp"
 																				element={
-																					<RequireAuth>
-																						<Unp />
-																					</RequireAuth>
+																					<Suspense fallback={loader}>
+																						<RequireAuth>
+																							<Unp />
+																						</RequireAuth>
+																					</Suspense>
 																				}
 																			>
 																				{/* ml2 = ''[] or ''[] or ''[] or ''[] */}

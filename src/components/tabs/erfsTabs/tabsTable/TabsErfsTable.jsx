@@ -1,12 +1,7 @@
-import React, { useRef, useMemo, useState } from "react";
+import React from "react";
 import "./tabsErfsTable.css";
-import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
-
-import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 
 import "react-tippy/dist/tippy.css";
-import { Tooltip } from "react-tippy";
 import Table from "../../../table/Table";
 import TableAddRecordBtn from "../../../table/tableBtns/TableAddRecordBtn";
 import TableWrapper from "../../../table/TableWrapper";

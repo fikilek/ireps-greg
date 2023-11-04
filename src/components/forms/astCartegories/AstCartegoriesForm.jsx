@@ -1,12 +1,8 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import moment from "moment";
+import { Formik, Form} from "formik";
 import React, { useEffect, useState } from "react";
-import { MdLockClock, MdPerson } from "react-icons/md";
-import { timestamp } from "../../../firebaseConfig/fbConfig";
 import useAuthContext from "../../../hooks/useAuthContext";
 import FormBtn from "../formComponents/formBtn/FormBtn";
 import { object, string } from "yup";
-// import TextError from "../formComponents/formError/TextError";
 import FormikControl from "../formComponents/formik/FormikControl";
 import FormHeader1 from "../formComponents/formHeaders/FormHeader1";
 import useModal from "../../../hooks/useModal";
