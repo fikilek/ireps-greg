@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import "./TabsErfsClusterMap.css";
-import ratandab from "../../../../data/cadastral/lesedi/ratandab.geojson";
+// import ratandab from "../../../../data/cadastral/lesedi/ratandab.geojson";
+import lesediObedNkosiA from "../../../../data/cadastral/lesedi/ObedNkosi/lesediObedNkosiA.geojson";
 import useModal from "../../../../hooks/useModal";
 import useGeoLocation from "../../../../hooks/useGeolocation";
 
@@ -25,9 +26,9 @@ export function TabsErfsClusterMap(props) {
 
 	// get user location
 	const { setGeolocation, userGps } = useGeoLocation();
-	console.log(`userGps`, userGps);
+	// console.log(`userGps`, userGps);
 
-	setGeolocation();
+	// setGeolocation();
 
 	const points = erfs?.map(erf => {
 		// console.log(`erf`, erf);
@@ -110,7 +111,7 @@ export function TabsErfsClusterMap(props) {
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
 		// console.log(`clusters`, clusters);
-		mapRef.current?.data?.loadGeoJson(ratandab);
+		mapRef.current?.data?.loadGeoJson(lesediObedNkosiA);
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});

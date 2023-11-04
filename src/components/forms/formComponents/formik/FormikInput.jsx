@@ -51,6 +51,10 @@ const FormikInput = props => {
 						// 	form.values.astData["meter"][0].astData.astNo
 						// );
 					}
+					if (field.name === "astData[cb][0]..astData.astMedia.sizeMedia") {
+						console.log(`its a cb`);
+						console.log(`form.values`, form.values);
+					}
 					return (
 						<input {...field} {...rest} className={`${errorStauts} ${fieldStatus}`} />
 					);

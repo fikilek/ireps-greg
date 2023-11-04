@@ -12,6 +12,8 @@ import FormikLinkedMeter from "./FormikMeterNo";
 import FormikMeterNo from "./FormikMeterNo";
 import FormikMeterSealedSelect from "./FormikMeterSealedSelect";
 import FormikSealCommentsSelect from "./FormikSealCommentsSelect";
+import FormikSelectPropertyType from "./FormikSelectPropertyType";
+import FormikInputNumberOnly from "./FormikInputNumberOnly";
 
 const FormikControl = props => {
 	const { control, ...rest } = props;
@@ -19,6 +21,8 @@ const FormikControl = props => {
 	switch (control) {
 		case "input":
 			return <FormikInput {...rest} />;
+		case "inputNumberOnly":
+			return <FormikInputNumberOnly {...rest} />;
 		case "meterNo":
 			return <FormikMeterNo {...rest} />;
 		case "scFieldArray":
@@ -36,6 +40,8 @@ const FormikControl = props => {
 		// case 'textarea': return '';
 		case "select":
 			return <FormikSelect {...rest} />;
+		case "selectPropertyType":
+			return <FormikSelectPropertyType {...rest} />;
 		case "meterSealedSelect":
 			return <FormikMeterSealedSelect {...rest} />;
 		case "sealCommentsSelect":

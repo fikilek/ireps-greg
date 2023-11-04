@@ -678,7 +678,7 @@ export const fsValidationData = {
 					verdict: "",
 				},
 				size: {
-					constraints: [{ required: "yes", condition: "" }],
+					constraints: [{ required: "no", condition: "" }],
 					verdict: "",
 				},
 			},

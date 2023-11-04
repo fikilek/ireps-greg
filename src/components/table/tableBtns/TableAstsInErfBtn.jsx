@@ -8,7 +8,7 @@ const TableAstsInErfBtn = props => {
 	const trnCount = props.data?.asts?.length || 0;
 
 	// destructure asts from erf
-	const { asts } = props.data
+	const { asts } = props.data;
 	// console.log(`asts`, asts)
 
 	// Get tenCount newTrns from metaData.trnCount
@@ -17,11 +17,14 @@ const TableAstsInErfBtn = props => {
 
 	// workout how many asts in the asts array
 	let erfAsts = [];
-	asts && asts.forEach(ast => {
-		if (!erfAsts.includes(ast?.astData?.astNo)) {
-			erfAsts.push(ast.astData.astNo);
-		}
-	});
+	asts &&
+		asts.forEach(ast => {
+			const tempAstNo = ast?.astData?.astNo;
+			const cleanAstNo = tempAstNo.trim();
+			if (!erfAsts.includes(cleanAstNo)) {
+				erfAsts.push(ast.astData.astNo);
+			}
+		});
 
 	const { openModal } = useModal();
 

@@ -26,6 +26,9 @@ const FormikSealCommentsSelect = props => {
 						) {
 							form.setFieldValue("astData[seal][0].astData.astNo", e.target.value);
 						}
+						if (e.target.value === "choose") {
+							form.setFieldValue("astData[seal][0].astData.astNo", "");
+						}
 					};
 
 					return (

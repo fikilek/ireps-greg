@@ -1,10 +1,12 @@
 import React from "react";
+import "./FormSection.css";
 import FormShowHideSection from "../formShowHideSection/FormShowHideSection";
 
 const FormSection = props => {
 	const { active, setActive, children, sectionData } = props;
 	// console.log(`setionData`, sectionData);
-	const { sectionName, astCat, trnType } = sectionData;
+	const { sectionName, astCat, trnType, formik } = sectionData;
+	// console.log(`formik`, formik);
 	return (
 		// fs - form section
 		// fsh - form section header
@@ -18,6 +20,9 @@ const FormSection = props => {
 						active={active}
 						setActive={setActive}
 					/>
+					<div className="property-type">
+						{formik ? formik.values?.propertyType?.type : ""}
+					</div>
 				</div>
 				<div>
 					<p>

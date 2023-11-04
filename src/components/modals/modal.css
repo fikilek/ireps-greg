@@ -40,6 +40,10 @@
 	}
 
 	.modal-payload {
-		/* width: 50%; */
+		width: 70%;
+	}
+
+	.modal-body {
+		width: 100%;
 	}
 }

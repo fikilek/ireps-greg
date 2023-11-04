@@ -2,7 +2,8 @@
   /* height: 100%; */
   height: calc(100% - var(--header-height));
   font-size: 1.5rem;
-  min-width: 47rem;
+  /* min-width: 47rem; */
+  min-width: 80rem;
 }
 
 .upload-table {
@@ -142,6 +143,10 @@
   width: 15rem;
 }
 
+.table-trns-config {
+  height: "60vh"
+}
+
 
 @media (max-width: 1200px) {}
 
@@ -149,7 +154,7 @@
 
 @media (max-width: 768px) {
   .table {
-    min-width: min-content;
+    min-width: 100%;
   }
 
   .ireps-ag-table {

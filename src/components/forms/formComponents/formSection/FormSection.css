@@ -1,0 +1,11 @@
+form .fs .fsh .open-colse-icons {
+  display: flex;
+}
+
+form .fs .fsh .open-colse-icons .property-type {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+}

@@ -19,8 +19,8 @@ const CbAuditJsx = props => {
 					<div className="row-1 ast-row">
 						<div className="half-row-50-50">
 							<FormikControl
-								control="input"
-								type="text"
+								control="inputNumberOnly"
+								type="number"
 								label="cb size"
 								name={`astData[${astCat}][${astCatIndex}].astData.cb.size`}
 								placeholder="Cb Size"

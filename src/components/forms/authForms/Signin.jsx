@@ -17,14 +17,14 @@ const initSigninData = {
 	password: "",
 };
 
-const Signin = (props) => {
+const Signin = props => {
 	// console.log(`props`, props)
 
-	const pathname = props.location.pathname
+	const pathname = props.location.pathname;
 	// console.log(`pathname`, pathname)
 
-	// after authentication, navigate to destination if there is. otherwiese go to home, 
-	const destination = pathname ? pathname : './landing-page';
+	// after authentication, navigate to destination if there is. otherwiese go to home,
+	const destination = pathname ? pathname : "./landing-page";
 
 	// user credentials comprise of user email and password
 	const [userCredentials, setUserCredentials] = useState(initSigninData);
@@ -83,7 +83,7 @@ const Signin = (props) => {
 			// setModalOpened(false);
 			setMenuStatus(false);
 			// navigate(from, { replace: true });
-			navigate( destination, { replace: true });
+			navigate(destination, { replace: true });
 		}
 	}, [success, error, isPending]);
 
@@ -142,7 +142,7 @@ const Signin = (props) => {
 					>
 						Reset
 					</button>
-					<FormBtn isPending={isPending} btnName={'Signup'} />
+					<FormBtn isPending={isPending} btnName={"Signin"} />
 				</div>
 			</form>
 

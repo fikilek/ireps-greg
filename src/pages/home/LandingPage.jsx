@@ -900,7 +900,7 @@ const LandingPage = () => {
 				</div>
 			</div>
 
-			<div className="lp-section items-section">
+			{/* <div className="lp-section items-section">
 				<DashboardItemWrapper
 					astCat={"asts"}
 					total={astsData.total}
@@ -924,7 +924,7 @@ const LandingPage = () => {
 				>
 					<DashboardItemErfs erfsData={erfsData} />
 				</DashboardItemWrapper>
-			</div>
+			</div> */}
 		</div>
 	);
 };

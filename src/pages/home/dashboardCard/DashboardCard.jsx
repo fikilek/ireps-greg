@@ -4,7 +4,7 @@ import "./DashboardCard.css";
 import DashboardCardChart from "./DashboardCardChart";
 
 const DashboardCard = props => {
-	// console.log(`props`, props)
+	// console.log(`props`, props);
 	const { name, dcData } = props;
 	const { total, items } = dcData;
 

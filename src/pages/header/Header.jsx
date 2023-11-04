@@ -28,13 +28,7 @@ const Header = () => {
 							<FaRubleSign />
 						</NavLink>
 					</div>
-					{
-						user ? (
-								<SignedInMenu />
-							) : (
-								<SignedOutMenu />
-							)
-					}
+					{user ? <SignedInMenu /> : <SignedOutMenu />}
 
 					<div className="menu-icons" onClick={() => setMenuStatus(!menuStatus)}>
 						{menuStatus ? <MdMenu /> : <MdClose />}
@@ -52,24 +46,23 @@ export default Header;
 
 // TODO: Introduce React Router
 
-
-					// {
-					// 	isAuthReady && user ? (
-					// 		user ? (
-					// 			<SignedInMenu />
-					// 		) : (
-					// 			<SignedOutMenu />
-					// 		)
-					// 	) : (
-					// 		// <div className="test-nav">navbar</div>
-					// 		<div className="loading-spinner">
-					// 			<PropagateLoader
-					// 				color="#36d7b7"
-					// 				loading={!isAuthReady}
-					// 				size={15}
-					// 				aria-label="Loading Spinner"
-					// 				data-testid="loader"
-					// 			/>
-					// 		</div>
-					// 	);
-					// }
+// {
+// 	isAuthReady && user ? (
+// 		user ? (
+// 			<SignedInMenu />
+// 		) : (
+// 			<SignedOutMenu />
+// 		)
+// 	) : (
+// 		// <div className="test-nav">navbar</div>
+// 		<div className="loading-spinner">
+// 			<PropagateLoader
+// 				color="#36d7b7"
+// 				loading={!isAuthReady}
+// 				size={15}
+// 				aria-label="Loading Spinner"
+// 				data-testid="loader"
+// 			/>
+// 		</div>
+// 	);
+// }

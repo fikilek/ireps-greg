@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import MenuBlock from "../MenuBlock";
+import "../navbar.css";
 import { dataBok } from "../../../data/menuData/dataMenuBox";
 import { dataErfs } from "../../../data/menuData/dataMenuErfs";
 import { MenuContext } from "../../../contexts/MenuContext";

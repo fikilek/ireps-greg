@@ -27,7 +27,8 @@ const TableTrns = ({ rowData, columnDefs }) => {
 	);
 
 	return (
-		<div style={{ height: "60vh", width: "60rem" }} className="ag-theme-alpine">
+		// <div style={{ height: "60vh", width: "60rem" }} className="ag-theme-alpine">
+		<div style={{ height: "60vh" }} className="ag-theme-alpine table-trns-config">
 			<AgGridReact
 				ref={gridRef} // Ref for accessing Grid's API
 				rowData={rowData} // Row Data for Rows

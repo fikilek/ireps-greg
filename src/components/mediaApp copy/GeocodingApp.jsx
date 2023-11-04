@@ -9,7 +9,8 @@ import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 import { ErfsContext } from "../../contexts/ErfsContext";
 // import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
-import ratandab from "../../data/cadastral/lesedi/ratandab.geojson";
+// import ratandab from "../../data/cadastral/lesedi/ratandab.geojson";
+import lesediObedNkosiA from "../../data/cadastral/lesedi/ObedNkosi/lesediObedNkosiA.geojson";
 import useSupercluster from "use-supercluster";
 import { getAstCat } from "../../utils/utils";
 
@@ -28,11 +29,6 @@ const GeocodingApp = () => {
 	const astCat = getAstCat(gcData?.data?.field?.name);
 	// console.log(`astCat`, astCat);
 
-	// get geolocation
-	// const [userGps, setUserGps] = useState(null);
-	// console.log(`location`, location);
-	// console.log(`userGps`, userGps);
-	// console.log(`erfs`, erfs);
 	// get user location
 	const { setGeolocation, userGps } = useGeoLocation();
 	// console.log(`userGps`, userGps);
@@ -250,7 +246,7 @@ const GeocodingApp = () => {
 		// console.log(`mapRef`, mapRef);
 		// console.log(`clusters`, clusters);
 		// mapRef.current?.data?.loadGeoJson(edumbe);
-		mapRef.current?.data?.loadGeoJson(ratandab);
+		mapRef.current?.data?.loadGeoJson(lesediObedNkosiA);
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});
@@ -272,7 +268,7 @@ const GeocodingApp = () => {
 					<h3 className="data-emphasis">{`${astCat} Address`}</h3>
 				</div>
 				<div className="header-subsection address">
-					<button>{address ? address : "No Address"}</button>
+					<button>{address ? address : "ast ddress"}</button>
 				</div>
 				<div className="header-subsection ast-no">
 					<h3 className="data-emphasis">

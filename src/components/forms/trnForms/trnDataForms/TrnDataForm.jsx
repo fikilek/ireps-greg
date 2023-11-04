@@ -131,8 +131,8 @@ const TrnDataForm = props => {
 
 	const handleOnChange = e => {
 		const { name, value } = e.target;
-		console.log(`name`, name);
-		console.log(`value`, value);
+		// console.log(`name`, name);
+		// console.log(`value`, value);
 		fieldValidation(name, value);
 	};
 
@@ -192,7 +192,7 @@ const TrnDataForm = props => {
 									{/* trnDataForm */}
 									{formSections &&
 										formSections.map((formSection, index) => {
-											console.log(`formSection`, formSection);
+											// console.log(`formSection`, formSection);
 											return <div key={index}>{formSection}</div>;
 										})}
 

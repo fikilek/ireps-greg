@@ -35,7 +35,7 @@ const updateMetersData = asts => {
 
 	// get an array of all meter phases
 	const metersPhasesArray = [
-		// ...new Set(metersArray.map(item => item.astData.meter.phase)),
+		...new Set(metersArray.map(item => item.astData.meter.phase)),
 	];
 	// console.log(`metersPhasesArray`, metersPhasesArray);
 
@@ -73,18 +73,18 @@ const updateMetersData = asts => {
 
 	//from meters array, count ocuureance of each meter state
 	const meterStatesArray = [
-		{ "stores": 0 },
-		{ "chechekOut": 0 },
-		{ "field": 0 },
-		{ "service": 0 },
-		{ "disconnected": 0 },
+		{ stores: 0 },
+		{ chechekOut: 0 },
+		{ field: 0 },
+		{ service: 0 },
+		{ disconnected: 0 },
 	];
 
 	// iterate though metersStatesArray and get total count of each state from metersArray
 	meterStatesArray?.forEach((state, index) => {
 		// console.log(`state`, state);
-		
-		const objKey = Object.keys(state)[0]
+
+		const objKey = Object.keys(state)[0];
 		// console.log(`objKey`, objKey);
 
 		const metersOnState = metersArray?.filter(

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import MenuBlock from "../MenuBlock";
+import "../navbar.css";
 import { dataBok } from "../../../data/menuData/dataMenuBox";
 import { dataErfs } from "../../../data/menuData/dataMenuErfs";
 import { dataUnp } from "../../../data/menuData/dataMenuUnp";
@@ -45,7 +46,7 @@ const SignedInMenu = () => {
 			</div>
 
 			<div className="nav-list-right">
-				<MenuBlock menuData={dataDbd} />
+				{/* <MenuBlock menuData={dataDbd} /> */}
 				<MenuBlock menuData={dataAdmin} />
 				<li className="nav-list-btn-signedin-user">
 					<Tooltip title={`${user.displayName}`} position="left">

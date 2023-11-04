@@ -1,46 +1,39 @@
-import { useContext, useState } from "react";
-import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
 // import pages
 import Header from "./pages/header/Header";
 import Home from "./pages/home/Home";
-import Dbd from "./pages/dbd/Dbd";
 import Erfs from "./pages/erfs/Erfs";
-import Bok from "./pages/bok/Bok";
+import Trns from "./pages/trns/Trns";
+import Asts from "./pages/asts/Asts";
 import Admin from "./pages/admin/Admin";
+import AdminMain from "./pages/admin/AdminMain";
 import Unp from "./pages/unps/UserProfile";
 import NoPageFound from "./pages/errors/NoPageFound";
-import Stores from "./pages/stores/Stores";
+import NotAuthenticated from "./pages/auth/NotAuthenticated";
 
-// import components
+// import Dbd from "./pages/dbd/Dbd";
+// import Bok from "./pages/bok/Bok";
+// import Stores from "./pages/stores/Stores";
+// import Sch from "./pages/sch/Sch";
+// import Sch1 from "./pages/sch/Sch1";
+// import PgDbdMl2Meter from "./pages/dbd/dbdMeters/DbdMeters";
+// import DbdBoxes from "./pages/dbd/dbdBoxes/DbdBoxes";
+// import DbdMeters from "./pages/dbd/dbdMeters/DbdMeters";
+// import DbdPoles from "./pages/dbd/dbdPoles/DbdPoles";
+
+// import custom components
 import Signout from "./components/forms/authForms/Signout";
 import Modal from "./components/modals/Modal";
+import RequireAuth from "./components/requireAuth/RequireAuth";
 
 // import ModalContext and UserContext
 import ModalContextProvider from "./contexts/ModalContext.js";
-import { UserContextProvider } from "./contexts/UserContext";
 import { MenuContextProvider } from "./contexts/MenuContext";
-
-// import redux store
-import store from "./store/irepsStore";
-import { Provider } from "react-redux";
-import Sch from "./pages/sch/Sch";
 import { PoContextProvider } from "./contexts/PoContext";
-import PgDbdMl2Meter from "./pages/dbd/dbdMeters/DbdMeters";
-import DbdBoxes from "./pages/dbd/dbdBoxes/DbdBoxes";
-import DbdMeters from "./pages/dbd/dbdMeters/DbdMeters";
-import DbdPoles from "./pages/dbd/dbdPoles/DbdPoles";
 import AuthContextProvider from "./contexts/AuthContextProvider";
-import Signin from "./components/forms/authForms/Signin";
-import RequireAuth from "./components/requireAuth/RequireAuth";
-import SigninPage from "./pages/signinPage/SigninPage";
-import { ToastContainer } from "react-toastify";
-import TableWithAddRecordBtn from "./components/table/TableWithAddRecordBtn";
-import Sch1 from "./pages/sch/Sch1";
-import Asts from "./pages/asts/Asts";
-import Trns from "./pages/trns/Trns";
 import FormStateContextProvider from "./contexts/FormStateContextProvider";
 import MediaViewContextProvider from "./contexts/MediaViewContext";
 import PhotoAppContextProvider from "./contexts/PhotoAppContext";
@@ -48,12 +41,11 @@ import GeocodingContextProvider from "./contexts/GeocodingContext";
 import ErfsContextProvider from "./contexts/ErfsContext";
 import ReverseGeocodingContextProvider from "./contexts/ReverseGeocodingContext";
 import CliamsContextProvider from "./contexts/ClaimsContext";
-import LandingPage from "./pages/home/LandingPage";
-import AdminMain from "./pages/admin/AdminMain";
-import NotAuthenticated from "./pages/auth/NotAuthenticated";
 
-// console.log(`store`, store)
-// console.log(`UserContextProvider`, UserContextProvider)
+// import npm and other cpmponents modules
+import { ToastContainer } from "react-toastify";
+import store from "./store/irepsStore";
+import { Provider } from "react-redux";
 
 function App() {
 	return (
@@ -78,18 +70,9 @@ function App() {
 																	{/* <div className="header-container"> */}
 																	<Routes>
 																		<Route path={"/"} element={<Header />}>
-																			<Route index element={<LandingPage />} />
-																			<Route path={"landing-page"} element={<LandingPage />} />
+																			<Route index element={<Home />} />
+																			<Route path={"landing-page"} element={<Home />} />
 
-																			<Route path="/dbd" element={<Home />} />
-
-																			{/* <Route
-																				element={
-																					<RequireAuth>
-																						<Trns />
-																					</RequireAuth>
-																				}
-																			> */}
 																			{/* assets section -----------------------------------------------------*/}
 																			{/* path to assets main page [ml1 = asts] */}
 																			<Route path="/asts">
@@ -163,14 +146,14 @@ function App() {
 
 																			{/* admin section -----------------------------------------------------*/}
 																			<Route path="/admin">
-																				<Route
+																				{/* <Route
 																					index
 																					element={
 																						<RequireAuth allowedRoles={["manager", "superuser"]}>
 																							<AdminMain />
 																						</RequireAuth>
 																					}
-																				/>
+																				/> */}
 																				<Route
 																					path=":ml2"
 																					element={
@@ -179,14 +162,14 @@ function App() {
 																						</RequireAuth>
 																					}
 																				>
-																					<Route
+																					{/* <Route
 																						path=":ml3"
 																						element={
 																							<RequireAuth allowedRoles={["manager", "superuser"]}>
 																								<Admin />
 																							</RequireAuth>
 																						}
-																					/>
+																					/> */}
 																				</Route>
 																			</Route>
 																			{/* </Route> */}

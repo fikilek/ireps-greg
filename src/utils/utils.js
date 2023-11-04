@@ -129,6 +129,19 @@ export const capitalize = string => {
 // ******************************************************
 
 export const formSelectOptions = {
+	propertyTypeOptions: [
+		{ key: "choose", value: "choose" },
+		{ key: "Stand Alone", value: "Stand Alone" },
+		{ key: "Flats", value: "Flats" },
+		{ key: "Estate", value: "Estate" },
+		{ key: "Complex", value: "Complex" },
+		{ key: "Townhouses", value: "Townhouses" },
+		{
+			key: "Stand Alone (with outside rooms)",
+			value: "Stand Alone (with outside rooms)",
+		},
+		{ key: "other", value: "other" },
+	],
 	sealCommentsOptions: [
 		{ key: "choose", value: "choose" },
 		{ key: "nsn (sealed)", value: "nsn (sealed)" },
@@ -170,6 +183,8 @@ export const formSelectOptions = {
 		{ key: "gate locked", value: "gate locked" },
 		{ key: "occupant refused", value: "occupant refused" },
 		{ key: "dogs danger", value: "dogs danger" },
+		{ key: "resident not available", value: "resident not available" },
+		{ key: "propert lockd", value: "propert lockd" },
 	],
 
 	erfStatusOptions: [

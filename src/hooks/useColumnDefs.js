@@ -136,11 +136,43 @@ export const useColumnDefs = props => {
 		{
 			field: "erfNo",
 			headerName: "Erf",
-			width: 110,
+			width: 130,
 			checkboxSelection: true,
 			headerCheckboxSelection: true,
 			headerCheckboxSelectionFilteredOnly: true,
 			// cellRenderer: memo(ErfBtn),
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			headerName: "Property Type",
+			children: [
+				{
+					field: "propertyType.type",
+					headerName: "Type",
+					width: 150,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "propertyType.unitName",
+					headerName: "Unit Name",
+					width: 130,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "propertyType.unitNo",
+					headerName: "Unit No",
+					width: 100,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+			],
 			cellRendererParams: {
 				breakpoint: "xs",
 			},
@@ -154,15 +186,19 @@ export const useColumnDefs = props => {
 			},
 		},
 		{
-			field: "asts",
+			field: "asts.length",
 			headerName: "Asts",
-			width: 90,
+			width: 130,
+			filterParams: {
+				valueGetter: params => {
+					console.log(`params.data`, params.data);
+					console.log(`params.data.asts.length`, params.data.asts.length);
+					const erfAsts = params.data.asts.length;
+					return erfAsts;
+				},
+			},
 			tooltipField: "asts",
 			tooltipComponent: TableTrnsForAstsTooltip,
-			// cellRenderer: params => {
-			// 	console.log(`params`, params);
-			// 	return params.data?.asts?.length;
-			// },
 			cellRenderer: memo(TableAstsInErfBtn),
 			cellRendererParams: {
 				breakpoint: "xs",
@@ -2330,6 +2366,12 @@ export const useColumnDefs = props => {
 			field: "metaData.trnCount",
 			headerName: "Ast Trn(s)",
 			width: 120,
+			filterParams: {
+				valueGetter: params => {
+					const erfAsts = params.data.metaData.trnCount.length;
+					return erfAsts;
+				},
+			},
 			cellRenderer: memo(TableTnsForAstBtn), //These are all transactions that happen on an ast
 			cellRendererParams: {
 				breakpoint: "xs",
@@ -2371,7 +2413,7 @@ export const useColumnDefs = props => {
 					field: "astData.astCartegory",
 					columnGroupShow: "closed",
 					headerName: "Ast Cat",
-					width: 90,
+					width: 130,
 					cellRendererParams: {
 						breakpoint: "xs",
 					},
@@ -2401,7 +2443,7 @@ export const useColumnDefs = props => {
 				{
 					field: "erfData.erfNo",
 					headerName: "Erf No",
-					width: 90,
+					width: 130,
 					columnGroupShow: "close",
 					cellRenderer: TableAstsTrnsErfBtn,
 					cellRendererParams: {
@@ -2412,7 +2454,7 @@ export const useColumnDefs = props => {
 					field: "erfData.gps.latitude",
 					// columnGroupShow: "closed",
 					headerName: "Latitude",
-					width: 120,
+					width: 130,
 					columnGroupShow: "open",
 					cellRendererParams: {
 						breakpoint: "xs",
@@ -2422,11 +2464,77 @@ export const useColumnDefs = props => {
 					field: "erfData.gps.longitude",
 					// columnGroupShow: "closed",
 					headerName: "Longitude",
-					width: 120,
+					width: 130,
 					columnGroupShow: "open",
 					cellRendererParams: {
 						breakpoint: "xs",
 					},
+				},
+			],
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			headerName: "Property Type",
+			children: [
+				{
+					field: "erfData.propertyType.type",
+					headerName: "Type",
+					width: 150,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "erfData.propertyType.unitName",
+					headerName: "Unit Name",
+					width: 130,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "erfData.propertyType.unitNo",
+					headerName: "Unit No",
+					width: 100,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+			],
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			field: "erfStatus",
+			headerName: "Status",
+			width: 150,
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			headerName: "Ast Location",
+			children: [
+				{
+					field: "astData.astLocation.address",
+					headerName: "Ast Address",
+					width: 250,
+					columnGroupShow: "close",
+				},
+				{
+					field: "astData.astLocation.gps.lat",
+					headerName: "Gps Lat",
+					width: 150,
+					columnGroupShow: "open",
+				},
+				{
+					field: "astData.astLocation.gps.lng",
+					headerName: "Gps Lng",
+					width: 150,
+					columnGroupShow: "open",
 				},
 			],
 			cellRendererParams: {
@@ -2846,7 +2954,7 @@ export const useColumnDefs = props => {
 			field: "id",
 			headerName: "Trn Id",
 			width: 220,
-			hide: true,
+			hide: false,
 			cellRendererParams: {
 				breakpoint: "xs",
 			},
@@ -3019,6 +3127,33 @@ export const useColumnDefs = props => {
 					// 	console.log(`params`, params)
 					// 	return <button className="table-row-btn">{params.value}</button>;
 					// },
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "erfData.propertyType.type",
+					// columnGroupShow: "closed",
+					headerName: "Property Type",
+					width: 150,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "erfData.propertyType.unitName",
+					// columnGroupShow: "closed",
+					headerName: "Unit Name",
+					width: 150,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "erfData.propertyType.unitNo",
+					// columnGroupShow: "closed",
+					headerName: "Unit No",
+					width: 150,
 					cellRendererParams: {
 						breakpoint: "xs",
 					},

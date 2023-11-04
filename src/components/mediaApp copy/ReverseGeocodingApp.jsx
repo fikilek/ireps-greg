@@ -7,6 +7,8 @@ import { ReverseGeocodingContext } from "../../contexts/ReverseGeocodingContext"
 import GoogleMapReact from "google-map-react";
 import Geocode from "react-geocode";
 // import edumbe from "../../data/cadastral/edumbe/edumbe.geojson";
+import lesediObedNkosiA from "../../data/cadastral/lesedi/ObedNkosi/lesediObedNkosiA.geojson";
+import useGeoLocation from "../../hooks/useGeolocation";
 
 const Marker = ({ children }) => children;
 
@@ -15,6 +17,10 @@ const ReverseGeocodingApp = () => {
 	// console.log(`mapRef`, mapRef);
 	const { rgcData, setRgcData } = useContext(ReverseGeocodingContext);
 	// console.log(`rgcData`, rgcData);
+
+	// get user location
+	const { setGeolocation, userGps } = useGeoLocation();
+	// console.log(`userGps`, userGps);
 
 	const [address, setAddress] = useState("");
 	// console.log(`address`, address);
@@ -72,13 +78,14 @@ const ReverseGeocodingApp = () => {
 			.then(response => {
 				// console.log(`response`, response);
 				const address = response.results[0].formatted_address;
-				// console.log(address);
+				console.log(address);
 				setAddress(address);
 				rgcData.data.form.setFieldValue("address.systemAdr", address);
 			})
 			.catch(error => {
 				console.error(`Error reverse geocoding: `, error);
-				// setAddress("address NOT avaiable");
+				setAddress("Google address NOT avaiable");
+				rgcData.data.form.setFieldValue("address.systemAdr", address);
 			});
 	}
 
@@ -88,7 +95,7 @@ const ReverseGeocodingApp = () => {
 
 	useEffect(() => {
 		if (map) {
-			// map.data.loadGeoJson(edumbe);
+			map.data.loadGeoJson(lesediObedNkosiA);
 			map.data.setStyle({
 				fillOpacity: 0.0,
 			});
@@ -98,7 +105,7 @@ const ReverseGeocodingApp = () => {
 	const onMapLoad = ({ map }) => {
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
-		// mapRef.current?.data?.loadGeoJson(edumbe);
+		mapRef.current?.data?.loadGeoJson(lesediObedNkosiA);
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});
@@ -132,9 +139,14 @@ const ReverseGeocodingApp = () => {
 						yesIWantToUseGoogleMapApiInternals
 						onGoogleApiLoaded={onMapLoad}
 					>
-						{/* <Marker lat={lat} lng={lng}>
+						<Marker lat={lat} lng={lng}>
 							<span className="erf-no">{erfNo}</span>
-						</Marker> */}
+						</Marker>
+						<Marker
+							position={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}
+						>
+							<div className="userGpsPosition"></div>
+						</Marker>
 					</GoogleMapReact>
 				</div>
 			</div>

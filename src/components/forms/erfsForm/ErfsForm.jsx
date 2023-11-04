@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
-
+import "./ErfsForm.css";
 import useModal from "../../../hooks/useModal";
 import { useFirestore } from "../../../hooks/useFirestore";
 import useAuthContext from "../../../hooks/useAuthContext";
@@ -14,6 +14,7 @@ import { useCallback } from "react";
 import { useMemo } from "react";
 import ReverseGeocodingApp from "../../mediaApp copy/ReverseGeocodingApp";
 import PhotoAppErf from "../../mediaApp/PhotoAppErf";
+import cloneDeep from "lodash.clonedeep";
 
 const ErfsForm = props => {
 	// console.log(`ErfsForm props`, props);
@@ -34,7 +35,8 @@ const ErfsForm = props => {
 
 	const onSubmit = useCallback(
 		values => {
-			// console.log(`Erf Form formik submitted values`, values);
+			console.log(`Erf Form formik submitted values`, values);
+
 			if (values.id) {
 				updateDocument(values);
 			} else {
@@ -44,13 +46,37 @@ const ErfsForm = props => {
 		[addDocument, updateDocument]
 	);
 
-	// console.log(`response`, response);
+	// diplicate erf form
+	const duplicateErfForm = () => {
+		// console.log(`duplicating erfData`, formData);
+
+		// 0. first clone the erf data
+		const clonedErfData = cloneDeep(formData);
+
+		// 1. remove id
+		delete clonedErfData.id;
+		// console.log(`clonedErfData without id`, clonedErfData);
+
+		// 2. remove unit no
+		const newClonedErfData = {
+			...clonedErfData,
+			propertyType: {
+				...clonedErfData.propertyType,
+				unitNo: "",
+			},
+		};
+		// console.log(`newClonedErfData`, newClonedErfData);
+
+		// 3. add clonedErfData to erfs
+		addDocument(newClonedErfData);
+	};
 
 	useEffect(() => {
+		// console.log(`response`, response);
 		if (response.success) {
 			closeModal();
 			toast(
-				`${formData.erfNo} ?  ${formData.erfNo} UPDATED' : Erf CREATED succeesfully!`,
+				`${formData.erfNo} ?  ${formData.erfNo} UPDATED / CREATED succeesfully!`,
 				{
 					position: "bottom-left",
 					autoClose: 5000,
@@ -81,6 +107,16 @@ const ErfsForm = props => {
 		</>
 	);
 
+	// duolicate form
+	const duplicateForm = (
+		<>
+			<button className="data-emphasis fh-btn" onClick={duplicateErfForm}>
+				{"Duplicate The Form"}
+			</button>
+			.
+		</>
+	);
+
 	return (
 		<div className="form-wrapper">
 			<div className="form-container simcards-form-container">
@@ -91,7 +127,7 @@ const ErfsForm = props => {
 						<FormHeader8
 							dataLl={formName}
 							dataLr={erfNo}
-							dataRl={""}
+							dataRl={duplicateForm}
 							dataRr={""}
 							closeModal={closeModal}
 						/>
@@ -107,7 +143,7 @@ const ErfsForm = props => {
 				>
 					{formik => {
 						const disabled = !(formik.isValid && formik.dirty);
-						// console.log(`formik.dirty`, formik.dirty);
+						// console.log(`formik`, formik);
 						// console.log(`formik.isValid`, formik.isValid);
 						// console.log(`disabled`, disabled);
 						// console.log(`formik.values`, formik.values);
@@ -115,6 +151,48 @@ const ErfsForm = props => {
 						return (
 							<Form>
 								<div className="ireps-form">
+									<FormSection
+										sectionData={{
+											sectionName: "property-type",
+											formik: formik,
+										}}
+										active={active}
+										setActive={setActive}
+									>
+										<div className="ast proprty-type-wrapper">
+											<div className="ast-wrapper">
+												<div className="ast-row">
+													<div>
+														<FormikControl
+															control="selectPropertyType"
+															type="text"
+															label="property type"
+															name="propertyType.type"
+															placeholder="Property Type"
+															options={formSelectOptions.propertyTypeOptions}
+														/>
+													</div>
+													<div className="half-row-50-50">
+														<FormikControl
+															control="input"
+															type="text"
+															label="unit name"
+															name="propertyType.unitName"
+															placeholder="Unit Name"
+														/>
+														<FormikControl
+															control="input"
+															type="text"
+															label="unit no"
+															name="propertyType.unitNo"
+															placeholder="Unit No"
+														/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</FormSection>
+
 									<FormSection
 										sectionData={{
 											sectionName: "customer-adr",
