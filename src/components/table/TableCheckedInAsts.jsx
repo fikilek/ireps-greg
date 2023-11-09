@@ -1,17 +1,27 @@
 import React, { useRef, useMemo, useState } from "react";
 import "./Table.css";
-import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 
-import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+import { AgGridReact } from "@ag-grid-community/react";
+import "@ag-grid-community/styles/ag-grid.css";
+import "@ag-grid-community/styles/ag-theme-alpine.css";
+import { ModuleRegistry } from "@ag-grid-community/core";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 
 import "react-tippy/dist/tippy.css";
 import { useCallback } from "react";
+
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+// import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
+
+// import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
+// import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+
 // import PoTooltip from "./PoTooltip";
 
-const TableCheckedInAsts = (props) => {
+const TableCheckedInAsts = props => {
 	// console.log(`props`, props)
-	const { rowData, columnDefs, setSelectedRows, trn } = props
+	const { rowData, columnDefs, setSelectedRows, trn } = props;
 	// console.log(`rowData`, rowData);
 	// console.log(`columnDefs`, columnDefs);
 
@@ -36,6 +46,7 @@ const TableCheckedInAsts = (props) => {
 			resizable: true,
 			floatingFilter: true,
 			// tooltipComponent: PoTooltip,
+			suppressMovable: true,
 		}),
 		[]
 	);
@@ -61,7 +72,7 @@ const TableCheckedInAsts = (props) => {
 		) {
 			columnApi.setColumnVisible("Chck Out", false);
 		}
-	}
+	};
 
 	return (
 		<div style={{ height: "calc(100% - 25px)" }} className="ag-theme-alpine">

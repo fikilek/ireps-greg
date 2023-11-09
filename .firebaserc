@@ -1,7 +1,8 @@
 {
   "projects": {
-    "default": "ireps-cl1-live",
-    "ireps1": "ireps-cl1-live"
+    "default": "ireps-development",
+    "ireps1": "ireps-cl1-live",
+    "ireps-development": "ireps-development"
   },
   "targets": {},
   "etags": {}

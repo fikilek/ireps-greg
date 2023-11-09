@@ -28,6 +28,13 @@ const TabsErfMapInfoWrapper = props => {
 		</>
 	);
 
+	// erf property type
+	const propertyType = (
+		<>
+			<span className="data-emphasis">{`${erf?.propertyType?.unitName} - ${erf?.propertyType?.unitNo}`}</span>
+		</>
+	);
+
 	// no of asts in erf
 	noOfAstsInErf = (
 		<>
@@ -62,6 +69,8 @@ const TabsErfMapInfoWrapper = props => {
 				<FormHeader8
 					// erf no- dataLl
 					dataLl={erfNo}
+					// property type
+					dataLm={propertyType}
 					// no of asts in erf = dataLr
 					dataLr={noOfAstsInErf}
 					// no of trns in erf

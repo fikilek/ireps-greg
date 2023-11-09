@@ -34,6 +34,63 @@ export const useColumnDefs = props => {
 	// -----------------------------
 
 	// erfs
+	const tidKtcTokensTableFields = [
+		{
+			field: "metaData.createdByUser",
+			headerName: "Created By",
+			width: 130,
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			field: "metaData.createdAtDatetime",
+			headerName: "Date Created",
+			width: 180,
+			cellRenderer: params => {
+				// console.log(`params`, params);
+				// create a firestore Timestamp
+				const timestamp = new Timestamp(
+					params.value.seconds,
+					params.value.nanoseconds
+				);
+				// console.log(`timestamp`, timestamp);
+				return <p>{moment(timestamp.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
+			},
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			field: "meterNo",
+			headerName: "Meter No",
+			width: 130,
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			field: "kctTokenOne",
+			headerName: "Ktc Token One",
+			width: 220,
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+		{
+			field: "kctTokenTwo",
+			headerName: "Ktc Token Two",
+			width: 220,
+			cellRendererParams: {
+				breakpoint: "xs",
+			},
+		},
+	];
+
+	// START: erfs table fields
+	// -----------------------------
+
+	// erfs
 	const erfsTableFields = [
 		{
 			field: "id",
@@ -61,44 +118,6 @@ export const useColumnDefs = props => {
 					columnGroupShow: "closed",
 					headerName: "Date Created",
 					width: 180,
-					cellRenderer: params => {
-						// console.log(`params.value`, params.value);
-
-						// create a firestore Timestamp
-						const timestamp = new Timestamp(
-							params.value.seconds,
-							params.value.nanoseconds
-						);
-
-						// console.log(`timestamp`, timestamp);
-						return <p>{moment(timestamp.toDate()).format("YYYY-MM-DD HH:mm:ss")}</p>;
-					},
-					cellRendererParams: {
-						breakpoint: "xs",
-					},
-				},
-			],
-			cellRendererParams: {
-				breakpoint: "xs",
-			},
-		},
-		{
-			headerName: "Updated",
-			children: [
-				{
-					field: "metaData.updatedByUser",
-					columnGroupShow: "closed",
-					headerName: "Updated By",
-					width: 130,
-					cellRendererParams: {
-						breakpoint: "xs",
-					},
-				},
-				{
-					field: "metaData.updatedAtDatetime",
-					columnGroupShow: "open",
-					headerName: "Updated At Datetime",
-					width: 190,
 					cellRenderer: params => {
 						// console.log(`params.value`, params.value);
 
@@ -323,6 +342,14 @@ export const useColumnDefs = props => {
 				{
 					field: "address.street",
 					headerName: "Street",
+					width: 170,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "address.irepsAreaName",
+					headerName: "Area Name",
 					width: 170,
 					cellRendererParams: {
 						breakpoint: "xs",
@@ -2613,6 +2640,14 @@ export const useColumnDefs = props => {
 						breakpoint: "xs",
 					},
 				},
+				{
+					field: "erfData.address.irepsAreaName",
+					headerName: "Area Name",
+					width: 170,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
 			],
 			cellRendererParams: {
 				breakpoint: "xs",
@@ -3206,6 +3241,15 @@ export const useColumnDefs = props => {
 					field: "erfData.address.street",
 					// columnGroupShow: "closed",
 					headerName: "Street",
+					width: 130,
+					cellRendererParams: {
+						breakpoint: "xs",
+					},
+				},
+				{
+					field: "erfData.address.irepsAreaName",
+					// columnGroupShow: "closed",
+					headerName: "Area Name",
 					width: 130,
 					cellRendererParams: {
 						breakpoint: "xs",
@@ -4692,6 +4736,11 @@ export const useColumnDefs = props => {
 					if (ml3 === "ast-cartegories") {
 						fields = [...astCartegoriesTableFields];
 					}
+				}
+			}
+			if (ml2 === "uploads") {
+				if (ml3 === "tidKtcTokens") {
+					fields = [...tidKtcTokensTableFields];
 				}
 			}
 		}

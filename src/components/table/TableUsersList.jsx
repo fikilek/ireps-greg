@@ -70,7 +70,7 @@ const TableUsersList = props => {
 			<NotAuthenticated />
 		)
 	) : (
-		<div className="users-list-loader">
+		<div className="users-list-loader ireps-loader">
 			<PropagateLoader
 				color="orange"
 				loading={!isAuthReady}

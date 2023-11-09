@@ -1,12 +1,22 @@
 import React, { useRef, useMemo, useState } from "react";
 import "./Table.css";
-import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 
-import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+import { AgGridReact } from "@ag-grid-community/react";
+import "@ag-grid-community/styles/ag-grid.css";
+import "@ag-grid-community/styles/ag-theme-alpine.css";
+
+import { ModuleRegistry } from "@ag-grid-community/core";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 
 import "react-tippy/dist/tippy.css";
 import TableTrnsForAstsTooltip from "./TableTrnsForAstsTooltip";
+
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+// import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
+// import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
+// import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+
 // import PoTooltip from "./PoTooltip";
 
 const TableTrns = ({ rowData, columnDefs }) => {
@@ -22,6 +32,7 @@ const TableTrns = ({ rowData, columnDefs }) => {
 			resizable: true,
 			floatingFilter: true,
 			tooltipComponent: TableTrnsForAstsTooltip,
+			suppressMovable: true,
 		}),
 		[]
 	);

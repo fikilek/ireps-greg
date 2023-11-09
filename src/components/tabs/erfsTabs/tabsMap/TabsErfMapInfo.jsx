@@ -221,13 +221,13 @@ const TabsErfMapInfo = props => {
 				<div className="tabs-btns">
 					{" "}
 					<div
-						className={`th-btn tabs-header-table ${
-							active === "tab1" ? "tab-active" : ""
+						className={`th-btn tabs-header-tree ${
+							active === "tab3" ? "tab-active" : ""
 						} tabs-tab`}
-						id="tab1"
+						id="tab3"
 						onClick={handleTabClick}
 					>
-						Asts in Erf
+						Erf Form
 					</div>
 					<div
 						className={`th-btn tabs-header-map ${
@@ -239,13 +239,13 @@ const TabsErfMapInfo = props => {
 						Trns In Erf
 					</div>
 					<div
-						className={`th-btn tabs-header-tree ${
-							active === "tab3" ? "tab-active" : ""
+						className={`th-btn tabs-header-table ${
+							active === "tab1" ? "tab-active" : ""
 						} tabs-tab`}
-						id="tab3"
+						id="tab1"
 						onClick={handleTabClick}
 					>
-						Erf Form
+						Asts in Erf
 					</div>
 				</div>
 			</div>

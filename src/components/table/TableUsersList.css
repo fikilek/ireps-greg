@@ -1,7 +1,8 @@
-
-
 .users-list-loader {
+  width: 50%;
+  height: 50%;
   display: flex;
   justify-content: center;
   margin-top: 5rem;
+  align-items: center;
 }

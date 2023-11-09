@@ -32,7 +32,7 @@ const MeterTidJsx = props => {
 								label="keypad media"
 								name={`astData[${astCat}][${astCatIndex}].astData.astMedia.keyPadMedia`}
 								placeholder="KeyPad Media"
-								ml1='asts'
+								ml1="asts"
 							/>
 						</div>
 						<div className="half-row-50-50">
@@ -93,6 +93,27 @@ const MeterTidJsx = props => {
 								options={formSelectOptions.tidRolloverKrnOptions}
 							/>
 						</div>
+					</div>
+					<div className="row-3 ast-row">
+						{/* <div className="half-row-50-50"> */}
+						{/* before TID rollover */}
+						<FormikControl
+							control="input"
+							type="text"
+							readOnly={true}
+							label="ktc one"
+							name={`astData[${astCat}][${astCatIndex}].astData.meterTokens.ktcOne`}
+							placeholder="Ktc One"
+						/>
+						<FormikControl
+							control="input"
+							type="text"
+							readOnly={true}
+							label="ktc two"
+							name={`astData[${astCat}][${astCatIndex}].astData.meterTokens.ktcTwo`}
+							placeholder="Ktc Two"
+						/>
+						{/* </div> */}
 					</div>
 				</div>
 			</FormSectionTrnAst>

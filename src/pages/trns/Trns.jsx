@@ -4,6 +4,7 @@ import TableWithAddRecordBtn from "../../components/table/TableWithAddRecordBtn"
 import useAuthContext from "../../hooks/useAuthContext";
 import { PropagateLoader } from "react-spinners";
 import NotAuthenticated from "../auth/NotAuthenticated";
+import "../../components/table/TableUsersList.css";
 
 const Trns = () => {
 	// console.log(`Asts rendering`);
@@ -12,14 +13,13 @@ const Trns = () => {
 	const { user, isAuthReady } = useAuthContext();
 	// console.log(`user`, user);
 	// console.log(`ml3`, ml3)
-	return  (isAuthReady ? ( 
+	return isAuthReady ? (
 		user ? (
-		<TableWithAddRecordBtn ml1="trns" tn={ml2} ml3={ml3} fn="TrnsForm" />
+			<TableWithAddRecordBtn ml1="trns" tn={ml2} ml3={ml3} fn="TrnsForm" />
+		) : (
+			<NotAuthenticated />
+		)
 	) : (
-		<NotAuthenticated />
-		) )
-	
-		: (
 		<div className="users-list-loader">
 			<PropagateLoader
 				color="orange"
@@ -29,7 +29,7 @@ const Trns = () => {
 				data-testid="loader"
 			/>
 		</div>
-	))
+	);
 };
 
 export default Trns;

@@ -1,0 +1,101 @@
+:root {
+  --btn-height: 3rem;
+}
+
+.checkbox {
+  font-size: 16px;
+  user-select: none;
+  padding: 20px;
+  box-sizing: content-box;
+  border: 0.1rem solid;
+  margin-bottom: var(--btn-height);
+}
+
+.checkbox .tree,
+.checkbox .tree-node,
+.checkbox .tree-node-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkbox .tree-branch-wrapper,
+.checkbox .tree-node__leaf {
+  outline: none;
+}
+
+.checkbox .tree-node {
+  cursor: pointer;
+}
+
+.checkbox .tree-node .name:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.checkbox .tree-node--focused .name {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.checkbox .tree-node {
+  display: inline-block;
+}
+
+.checkbox .checkbox-icon {
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.checkbox button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.checkbox .arrow {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.checkbox .arrow--open {
+  transform: rotate(90deg);
+}
+
+/* area tree */
+.area-tree {
+  border: 0.1rem solid;
+  margin: 0.5rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: beige;
+  /* min-height: 40rem; */
+  min-width: 40rem;
+}
+
+.area-tree .show {
+  opacity: 1;
+  position: static;
+}
+
+.area-tree .hide {
+  opacity: 0;
+  position: absolute;
+  left: 100rem
+}
+
+.area-tree .area-tree-control-btn {
+  display: grid;
+
+  width: 100%;
+}
+
+.area-tree .area-tree-control-btn button {
+  height: var(--btn-height);
+  width: 100%;
+}
+
+.area-tree .area-tree-control-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

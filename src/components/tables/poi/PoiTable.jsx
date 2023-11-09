@@ -1,8 +1,13 @@
 import React, { useRef, useMemo, useState, useCallback } from "react";
 import "./poi.css";
-import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
-import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+
+import { AgGridReact } from "@ag-grid-community/react";
+import "@ag-grid-community/styles/ag-grid.css";
+import "@ag-grid-community/styles/ag-theme-alpine.css";
+
+// import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
+// import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
+// import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 
 import "react-tippy/dist/tippy.css";
 import { Tooltip } from "react-tippy";
@@ -87,6 +92,7 @@ const PoiTable = ({ po, setPo }) => {
 			filter: true,
 			resizable: true,
 			editable: true,
+			suppressMovable: true,
 		}),
 		[]
 	);

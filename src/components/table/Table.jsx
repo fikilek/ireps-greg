@@ -1,23 +1,24 @@
 import React, { useRef, useMemo } from "react";
 import "./Table.css";
-import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
-
-import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 
 import "react-tippy/dist/tippy.css";
 
-const Table = (props) => {
+import { AgGridReact } from "@ag-grid-community/react";
+import "@ag-grid-community/styles/ag-grid.css";
+import "@ag-grid-community/styles/ag-theme-alpine.css";
+import { ModuleRegistry } from "@ag-grid-community/core";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+const Table = props => {
 	// console.log(`Table props`, props);
 	const { rowData, columnDefs, setSelectedRows, ml1 } = props;
 
-
-
-	let tableHeight = ''
-	if (ml1 === 'erfs') {
-		tableHeight = '100%'
+	let tableHeight = "";
+	if (ml1 === "erfs") {
+		tableHeight = "100%";
 	} else {
-		tableHeight = '95%'
+		tableHeight = "95%";
 	}
 
 	const gridRef = useRef();
@@ -28,6 +29,7 @@ const Table = (props) => {
 			filter: true,
 			resizable: true,
 			floatingFilter: true,
+			suppressMovable: true,
 		}),
 		[]
 	);
@@ -54,8 +56,6 @@ const Table = (props) => {
 		const viewportWidth = columnApi.columnModel.viewportRight;
 		// console.log(`viewportWidth`, viewportWidth);
 	};
-
-
 
 	return (
 		// <div style={{ height: "calc(100% - 25px)" }} className="ag-theme-alpine">

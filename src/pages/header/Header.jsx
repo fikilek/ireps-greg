@@ -11,6 +11,7 @@ import { MenuContext } from "../../contexts/MenuContext";
 import useAuthContext from "../../hooks/useAuthContext";
 import { PropagateLoader } from "react-spinners";
 import { isPending } from "@reduxjs/toolkit";
+import AreaTree from "../../components/areaTree/AreaTree";
 
 const Header = () => {
 	const { menuStatus, setMenuStatus } = useContext(MenuContext);
@@ -37,32 +38,10 @@ const Header = () => {
 			</header>
 			<div className="pages">
 				<Outlet />
+				<AreaTree />
 			</div>
 		</div>
 	);
 };
 
 export default Header;
-
-// TODO: Introduce React Router
-
-// {
-// 	isAuthReady && user ? (
-// 		user ? (
-// 			<SignedInMenu />
-// 		) : (
-// 			<SignedOutMenu />
-// 		)
-// 	) : (
-// 		// <div className="test-nav">navbar</div>
-// 		<div className="loading-spinner">
-// 			<PropagateLoader
-// 				color="#36d7b7"
-// 				loading={!isAuthReady}
-// 				size={15}
-// 				aria-label="Loading Spinner"
-// 				data-testid="loader"
-// 			/>
-// 		</div>
-// 	);
-// }

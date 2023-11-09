@@ -7,9 +7,13 @@ import Downloads from "../../pages/downloads/Downloads";
 import Uploads from "../../pages/uploads/Uploads";
 import TableUsersList from "../../components/table/TableUsersList";
 import RequireAuth from "../../components/requireAuth/RequireAuth";
+import UploadsMain from "../uploads/UploadsMain";
+import UploadsTidKtcTokens from "../uploads/UploadsTidKtcTokens";
 
 const Admin = () => {
 	const { ml2, ml3 } = useParams();
+	// console.log(`ml2`, ml2);
+	// console.log(`ml3`, ml3);
 	return (
 		<>
 			{/* users */}
@@ -22,10 +26,23 @@ const Admin = () => {
 				<Downloads ml1="admin" tn="downloads" nfd="" fn="" />
 			)}
 
-			{/* uploads */}
+			{/* uploads erfs*/}
+			{ml2 === "uploads" && ml3 === "erfs" && (
+				<RequireAuth allowedRoles={["superuser"]}>
+					<Uploads ml1="admin" ml2={ml2} nfd="" ml3={"erfs"} />
+				</RequireAuth>
+			)}
+
+			{/* uploads erfs*/}
+			{ml2 === "uploads" && ml3 === "tidKtcTokens" && (
+				// <RequireAuth allowedRoles={["superuser"]}>
+				<UploadsTidKtcTokens ml1="admin" ml2={ml2} nfd="" ml3={"tidKtcTokens"} />
+				// </RequireAuth>
+			)}
+
 			{ml2 === "uploads" && ml3 === undefined && (
 				<RequireAuth allowedRoles={["superuser"]}>
-					<Uploads ml1="admin" tn="uploads" nfd="" fn="" />
+					<UploadsMain ml1="admin" ml2={ml2} nfd="" ml3={ml3} />
 				</RequireAuth>
 			)}
 

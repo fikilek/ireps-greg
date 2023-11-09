@@ -4,6 +4,7 @@ import TableErfs from "../../components/table/TableErfs";
 import useAuthContext from "../../hooks/useAuthContext";
 import NotAuthenticated from "../auth/NotAuthenticated";
 import { PropagateLoader } from "react-spinners";
+import "../../components/table/TableUsersList.css";
 
 const Erfs = () => {
 	// console.log(`Erfs rendering`);

@@ -561,7 +561,7 @@ const updateErf = (trnAfter, ast, updatingObj) => {
 	// console.log(`trnAfter - line 306`, trnAfter);
 	// get id of the erf attached to the trn
 	const erfId = trnAfter.erfData.id;
-	console.log(`erfId - line 309`, erfId);
+	// console.log(`erfId - line 309`, erfId);
 	// console.log(`erfId`, erfId);
 
 	// use erfId to get reference to the erf document that the ast is attached to
@@ -575,7 +575,7 @@ const updateErf = (trnAfter, ast, updatingObj) => {
 			asts: admin.firestore.FieldValue.arrayUnion(updatingObj),
 		})
 		.then(result => {
-			console.log(`result of updatedErfDocWithAstsData `, result);
+			// console.log(`result of updatedErfDocWithAstsData `, result);
 			return `result of updatedErfDocWithAstsData: ${result}`;
 		})
 		.catch(err => {
@@ -584,9 +584,9 @@ const updateErf = (trnAfter, ast, updatingObj) => {
 };
 
 const updateTrnWithNextState = (trnAfter, nextTrnState, nextAstsState) => {
-	console.log(`trnAfter`, trnAfter);
+	// console.log(`trnAfter`, trnAfter);
 	const updatedAstData = updateAstsInTrn(trnAfter, nextAstsState);
-	console.log(`updatedAstData`, updatedAstData);
+	// console.log(`updatedAstData`, updatedAstData);
 	// update trn to next state.
 	const trnDocRef = db.collection("trns").doc(trnAfter.id);
 	trnDocRef
@@ -623,28 +623,28 @@ const getNewTrnCommissioning = trnAfter => {
 
 const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 	// get reference to the ast to update
-	console.log(`ast`, ast);
-	console.log(`ast.astid`, ast.astid);
+	// console.log(`ast`, ast);
+	// console.log(`ast.astid`, ast.astid);
 	const astDocRef = db.collection("asts").doc(ast.astId);
-	console.log(`astDocRef`, astDocRef);
+	// console.log(`astDocRef`, astDocRef);
 
 	// check if the ast docuement exist
 	astDocRef.get().then(docSnapShot => {
 		if (!docSnapShot.exists) {
 			// ast doc does not exist, throw error
-			console.log("No such document!");
+			// console.log("No such document!");
 		} else {
 			// ast doc exist.
-			console.log("Document data:", docSnapShot.data());
+			// console.log("Document data:", docSnapShot.data());
 			const astDocData = docSnapShot.data();
-			console.log(`astDocData`, astDocData);
+			// console.log(`astDocData`, astDocData);
 
 			// get the current astState
 			const { astState, astCartegory } = astDocData.astData;
-			console.log(`astState`, astState);
-			console.log(`astCartegory`, astCartegory);
-			console.log(`nextState`, nextState);
-			console.log(`trnAfter.metaData.trnType`, trnAfter.metaData.trnType);
+			// console.log(`astState`, astState);
+			// console.log(`astCartegory`, astCartegory);
+			// console.log(`nextState`, nextState);
+			// console.log(`trnAfter.metaData.trnType`, trnAfter.metaData.trnType);
 
 			if (astCartegory === "meter" && astState === "disconnected") {
 				if (trnAfter.metaData.trnType === "reconnection") {
@@ -678,7 +678,7 @@ const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 				}
 			} else {
 				// ast is NOT a meter  - update the ast state
-				console.log(`Update ast `, ast);
+				// console.log(`Update ast `, ast);
 				astDocRef
 					.update({
 						"astData.astState": nextState,
@@ -688,7 +688,7 @@ const updateAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 						erfData: trnAfter.erfData,
 					})
 					.then(updatedAstDoc => {
-						console.log(`updatedAstDoc`, updatedAstDoc);
+						// console.log(`updatedAstDoc`, updatedAstDoc);
 						return updatedAstDoc;
 					});
 			}
@@ -745,12 +745,12 @@ const createNewAst = (trnAfter, ast, nextState, astUpdatedObj) => {
 
 const getUpdatingObj = (trnAfter, ast) => {
 	// create object that will be used to update ast, erf and commissioning obj
-	console.log(`getUpdatingObj trnAfter (line 748)`, trnAfter);
-	console.log(`getUpdatingObj ast (line 749)`, ast);
-	console.log(
-		`getUpdatingObj [ast.trnObject.trnData.astAdr] (line 750)`,
-		ast?.trnObject?.trnData?.astAdr
-	);
+	// console.log(`getUpdatingObj trnAfter (line 748)`, trnAfter);
+	// console.log(`getUpdatingObj ast (line 749)`, ast);
+	// console.log(
+	// 	`getUpdatingObj [ast.trnObject.trnData.astAdr] (line 750)`,
+	// 	ast?.trnObject?.trnData?.astAdr
+	// );
 
 	const trnType =
 		trnAfter.metaData.trnType === "audit"
@@ -819,7 +819,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 		// 3. Update all the trnAfterrn asts that are on 'field' state. This will be done by iterating though each of the ids (trnAfter.astData[astCat][index].astData.id).
 		const astsInTrn = getAstsInTrn(trnAfter);
-		console.log(`astsInTrn line 810`, astsInTrn);
+		// console.log(`astsInTrn line 810`, astsInTrn);
 		// All asts in astInTrn are confirmations.conformTrn 'done'. Others are filtered out.
 
 		if (
@@ -844,7 +844,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 			// iterate through astsInTrn, on each ast id, update ast to a 'field' state.
 			astsInTrn &&
 				astsInTrn.forEach(ast => {
-					console.log(`ast`, ast);
+					// console.log(`ast`, ast);
 					// For each ast installed do the following:
 					// (1). update the ast itself,
 					// (2). update erf where ast is installed
@@ -969,7 +969,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 					// console.log(`ast (957)`, ast);
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
-					console.log(`updatingObj (960)`, updatingObj);
+					// console.log(`updatingObj (960)`, updatingObj);
 
 					// create new ast
 					createNewAst(trnAfter, ast, "service", updatingObj);
@@ -1003,7 +1003,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
-					console.log(`updatingObj`, updatingObj);
+					// console.log(`updatingObj`, updatingObj);
 
 					// update ast
 					updateAst(trnAfter, ast, "service", updatingObj);
@@ -1038,7 +1038,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
-					console.log(`updatingObj [line 1033]`, updatingObj);
+					// console.log(`updatingObj [line 1033]`, updatingObj);
 
 					// update ast
 					updateAst(trnAfter, ast, "disconnected", updatingObj);
@@ -1076,7 +1076,7 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 
 					// get updating object
 					const updatingObj = getUpdatingObj(trnAfter, ast);
-					console.log(`updatingObj`, updatingObj);
+					// console.log(`updatingObj`, updatingObj);
 
 					// update ast
 					updateAst(trnAfter, ast, "service", updatingObj);
@@ -1137,4 +1137,74 @@ exports.updateTrnAndAstOnTrnValid = functions.firestore
 		}
 
 		return "update done succesfully";
+	});
+
+exports.createAst = functions.firestore
+	.document("asts/{astId}")
+	.onCreate(async (snap, context) => {
+		// console.log(`snap (1145)`, snap);
+		// console.log(`context (1146)`, context);
+
+		// get email adr of the user in context
+
+		// get reference to the snap (ast). THis will be used ot update astktcOne and ast.ktcTwo later
+		const astRef = snap.ref;
+		// console.log(`astRef (1152)`, astRef);
+
+		// get meterNo fom snap
+		const newAstData = snap.data();
+		// console.log(`newAstData (1156)`, newAstData);
+
+		const { astNo } = newAstData.astData;
+		// console.log(`astNo (1159)`, astNo);
+
+		// get tidKtcTokens record matching the meterNo. This will give the needed ktc tokens
+		const colRef = admin
+			.firestore()
+			.collection("tidKtcTokens")
+			.where("meterNo", "==", astNo);
+		// console.log(`colRef (1163)`, colRef);
+
+		colRef
+			.get()
+			.then(async querySnapshot => {
+				// qurySnapshot will give the required ktcTokens
+				// console.log(`querySnapshot (1172)`, querySnapshot);
+
+				let ktcTokenData = [];
+				querySnapshot.forEach(doc => {
+					// doc.data() is never undefined for query doc snapshots
+					// console.log(`doc data`, doc.id, " => ", doc.data());
+					ktcTokenData.push({
+						...doc.data(),
+						id: doc.id,
+						docRef: doc.ref,
+					});
+				});
+
+				// get data from the querySnapshot. This will include ktcOne and ktcTwo
+				const tidKtcTokensData = ktcTokenData[0];
+				console.log(`tidKtcTokensData (1186)`, tidKtcTokensData);
+				const { kctTokenOne, kctTokenTwo, docRef } = tidKtcTokensData;
+
+				// write ktcOne and ktcTwo to the ast on the snap above using astRef
+				const astDoc = await astRef.update({
+					"astData.meterTokens.ktcOne": kctTokenOne,
+					"astData.meterTokens.ktcTwo": kctTokenTwo,
+					"metaData.updatedAtDatetime": Timestamp.now(),
+					"metaData.updatedByUser": "admin",
+				});
+				console.log(`astDoc (1183)`, astDoc);
+
+				// update colRef with 'done' and 'updated by'
+				const updatedDoc = await docRef.update({
+					tidRolloverDone: "yes",
+					"metaData.updatedAtDatetime": Timestamp.now(),
+					"metaData.updatedByUser": "admin",
+				});
+				console.log(`updatedPoDoc (1192)`, updatedDoc);
+			})
+			.catch(err => {
+				console.log("Error getting documents:", err);
+			});
 	});

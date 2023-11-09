@@ -39,7 +39,25 @@ export const dataAdmin = [
 				menu: "Uploads",
 				"menu-level": "2",
 				icon: "",
-				children: null,
+
+				children: [
+					{
+						title: "User Roles",
+						to: "/admin/uploads/erfs",
+						menu: "Upload Erfs",
+						"menu-level": "3",
+						icon: "",
+						children: null,
+					},
+					{
+						title: "Asset States",
+						to: "/admin/uploads/tidKtcTokens",
+						menu: "Upload Tid KCT Tokens",
+						"menu-level": "3",
+						icon: null,
+						children: null,
+					},
+				],
 			},
 			// {
 			// 	// System tables

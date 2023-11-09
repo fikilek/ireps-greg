@@ -1,16 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import "./TabsErfsClusterMap.css";
 // import ratandab from "../../../../data/cadastral/lesedi/ratandab.geojson";
 import lesediObedNkosiA from "../../../../data/cadastral/lesedi/ObedNkosi/lesediObedNkosiA.geojson";
+import lesediObedNkosiB from "../../../../data/cadastral/lesedi/ObedNkosi/lesediObedNkosiB.geojson";
+import lesediObedNkosiC from "../../../../data/cadastral/lesedi/ObedNkosi/lesediObedNkosiC.geojson";
 import useModal from "../../../../hooks/useModal";
 import useGeoLocation from "../../../../hooks/useGeolocation";
+import { AreaTreeContext } from "../../../../contexts/AreaTreeContext";
 
 const Marker = ({ children }) => children;
 
+const areaCenter = {
+	"Obed Nkosi A": { lat: -26.541960658447646, lng: 28.338629116440828 },
+	"Obed Nkosi B": { lat: -26.52888160075503, lng: 28.3352936276032 },
+	"Obed Nkosi C": { lat: -26.532998883501552, lng: 28.345134598723572 },
+};
+
 export function TabsErfsClusterMap(props) {
 	// console.log(`props`, props);
+
+	const { area } = useContext(AreaTreeContext);
+	// console.log(`area`, area);
 
 	const mapRef = useRef();
 	// console.log(`mapRef`, mapRef);
@@ -81,7 +93,7 @@ export function TabsErfsClusterMap(props) {
 	useEffect(() => {
 		// console.log(`erfs`, erfs);
 		const filteredErfs = erfs?.filter(erf => erf.erfNo.includes(erfSearch));
-		console.log(`filteredErfs`, filteredErfs);
+		// console.log(`filteredErfs`, filteredErfs);
 		setFilteredErfs(filteredErfs);
 	}, [erfSearch]);
 
@@ -92,7 +104,7 @@ export function TabsErfsClusterMap(props) {
 		if (selectedErf) {
 			const lat = selectedErf?.address?.gps?.latitude;
 			const lng = selectedErf?.address?.gps?.longitude;
-			console.log(`mapRef.current`, mapRef.current);
+			// console.log(`mapRef.current`, mapRef.current);
 			// console.log(`zoom`, zoom);
 			mapRef.current?.panTo({ lat, lng });
 			mapRef.current?.setZoom(20);
@@ -110,13 +122,44 @@ export function TabsErfsClusterMap(props) {
 		// console.log(`mapRef`, mapRef);
 		mapRef.current = map;
 		// console.log(`mapRef`, mapRef);
-		// console.log(`clusters`, clusters);
-		mapRef.current?.data?.loadGeoJson(lesediObedNkosiA);
+
+		// const fileSelected = selectedArea[area.name];
+		// console.log(`fileSelected`, fileSelected);
+
+		// mapRef.current?.data?.loadGeoJson(fileSelected);
+
 		mapRef.current?.data?.setStyle({
 			fillOpacity: 0.0,
 		});
 		// mapRef.data.addListener("click", handleErfClick);
 	};
+
+	useEffect(() => {
+		// console.log(`area`, area);
+		// console.log(`mapRef.current?.data`, mapRef.current?.data);
+		// console.log(`mapRef.current`, mapRef.current);
+		// const fileSelected = selectedArea[area.name];
+		// console.log(`fileSelected`, fileSelected);
+		mapRef.current?.data?.forEach(function (feature) {
+			// console.log(`feature`, feature);
+			mapRef.current?.data.remove(feature);
+		});
+
+		if (area?.name === "Obed Nkosi A") {
+			mapRef.current?.data?.loadGeoJson(lesediObedNkosiA);
+		}
+		if (area?.name === "Obed Nkosi B") {
+			mapRef.current?.data?.loadGeoJson(lesediObedNkosiB);
+		}
+		if (area?.name === "Obed Nkosi C") {
+			mapRef.current?.data?.loadGeoJson(lesediObedNkosiC);
+		}
+		if (area?.name === "Obed Mthombeni Nkosi") {
+			mapRef.current?.data?.loadGeoJson(lesediObedNkosiA);
+			mapRef.current?.data?.loadGeoJson(lesediObedNkosiB);
+			mapRef.current?.data?.loadGeoJson(lesediObedNkosiC);
+		}
+	}, [area]);
 
 	// this will fire everytime there is a click on the marker
 	const handleMarkerClick = (id, lat, lng) => {
@@ -177,16 +220,13 @@ export function TabsErfsClusterMap(props) {
 			</div>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-				defaultCenter={{ lat: -26.56924, lng: 28.32348 }}
-				center={{
-					lat: userGps?.coordinates?.lat,
-					lng: userGps?.coordinates?.lng,
-				}}
+				defaultCenter={{ lat: -26.541960658447646, lng: 28.338629116440828 }}
+				center={areaCenter[area.name]}
 				defaultZoom={16}
 				yesIWantToUseGoogleMapApiInternals
 				onGoogleApiLoaded={onMapLoad}
 				onChange={args => {
-					// console.log(`args`, args);
+					console.log(`args`, args);
 					const { zoom, bounds } = args;
 					setZoom(zoom);
 					setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
@@ -249,11 +289,11 @@ export function TabsErfsClusterMap(props) {
 						</Marker>
 					);
 				})}
-				<Marker
+				{/* <Marker
 					position={{ lat: userGps.coordinates.lat, lng: userGps.coordinates.lng }}
 				>
 					<div className="userGpsPosition"></div>
-				</Marker>
+				</Marker> */}
 			</GoogleMapReact>
 		</div>
 	);

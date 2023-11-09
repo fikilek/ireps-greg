@@ -4,6 +4,7 @@
   font-size: 1.5rem;
   min-width: 47rem;
   /* min-width: 80rem; */
+  width: 100%;
 }
 
 .upload-table {

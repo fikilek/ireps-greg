@@ -73,7 +73,7 @@
   background-color: blanchedalmond;
   background-color: blanchedalmond;
   height: 30rem;
-  overflow: hidden;
+  overflow-y: scroll;
   border: 0.1rem solid;
 }
 

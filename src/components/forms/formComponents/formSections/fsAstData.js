@@ -18,6 +18,11 @@ export const fsAstData = {
 				phase: "", // required
 				manufacturer: "",
 			},
+			meterTokens: {
+				ktcOne: "",
+				ktcTwo: "",
+				vendingTokens: [],
+			},
 		},
 	},
 
@@ -28,7 +33,7 @@ export const fsAstData = {
 			astSerialNo: "",
 			astState: "service",
 			astMedia: {
-				sizeMedia: []
+				sizeMedia: [],
 			},
 			cb: {
 				code: "",
@@ -45,7 +50,7 @@ export const fsAstData = {
 			astSerialNo: "",
 			astState: "service",
 			astMedia: {
-				astNoMedia: []
+				astNoMedia: [],
 			},
 			seal: {
 				code: "",
@@ -61,7 +66,7 @@ export const fsAstData = {
 			astSerialNo: "",
 			astState: "service",
 			astMedia: {
-				astoMedia: []
+				astoMedia: [],
 			},
 			box: {
 				dimensions: {
@@ -93,6 +98,3 @@ export const fsAstData = {
 		},
 	},
 };
-
-
-
